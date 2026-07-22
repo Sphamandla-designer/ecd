@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ecdconnect.org/schemas/tenant-theme.schema.json",
+  "title": "TENANT.theme_tokens",
+  "description": "Contract for the theme_tokens JSON stored per tenant (plan §9 data model) and served to clients by the tenant config & theming service (plan §8). Clients cache this offline. Status colours are intentionally NOT part of this schema — they are platform constants.",
+  "type": "object",
+  "required": ["tenant", "model", "colors", "assets"],
+  "additionalProperties": false,
+  "properties": {
+    "$description": { "type": "string" },
+    "tenant": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "model": { "enum": ["OA", "WL"] },
+    "colors": {
+      "type": "object",
+      "required": [
+        "primary", "onPrimary", "primaryAccent1", "primaryAccent2",
+        "secondary", "onSecondary", "secondaryAccent1", "secondaryAccent2",
+        "tertiary", "onTertiary", "tertiaryAccent1", "tertiaryAccent2",
+        "textDark", "textMid", "textLight", "background", "surface", "modalScrim"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(primary|secondary|tertiary|quaternary|quinary)(Accent[12])?$": { "$ref": "#/$defs/hex" },
+        "^on(Primary|Secondary|Tertiary)$": { "$ref": "#/$defs/hex" },
+        "^text(Dark|Mid|Light)$": { "$ref": "#/$defs/hex" },
+        "^(background|surface)$": { "$ref": "#/$defs/hex" },
+        "^modalScrim$": { "$ref": "#/$defs/hexAlpha" }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "required": ["logoLight", "logoDark", "appIcon", "doodlePattern"],
+      "additionalProperties": false,
+      "properties": {
+        "logoLight": { "type": "string", "description": "SVG lockup used on primary surfaces (white/light)" },
+        "logoDark": { "type": "string", "description": "SVG lockup used on white surfaces" },
+        "appIcon": { "type": "string" },
+        "doodlePattern": { "type": "string", "description": "Single-colour SVG tile; rendered tonally on primary" },
+        "mascotPack": { "type": "string", "default": "default" }
+      }
+    },
+    "categoryMapping": {
+      "type": "object",
+      "description": "Optional hub-category → colour-role mapping",
+      "additionalProperties": { "enum": ["primary", "secondary", "tertiary", "quaternary", "quinary"] }
+    }
+  },
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "hexAlpha": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$" }
+  }
+}
