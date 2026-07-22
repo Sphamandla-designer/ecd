@@ -1,0 +1,42 @@
+{
+  "$description": "ECD Connect default theme (Open Access model, ships in-binary as fallback). Source: Draft ECD Planning, Figma 7Ti9Qvr0dc1STxr6AWSxVX variables.",
+  "tenant": "ecd-connect",
+  "model": "OA",
+  "colors": {
+    "primary": "#27385A",
+    "onPrimary": "#FFFFFF",
+    "primaryAccent1": "#52607B",
+    "primaryAccent2": "#D3D8E1",
+    "secondary": "#FF2180",
+    "onSecondary": "#FFFFFF",
+    "secondaryAccent1": "#FF7AB3",
+    "secondaryAccent2": "#FFD3E6",
+    "tertiary": "#83BB26",
+    "onTertiary": "#FFFFFF",
+    "tertiaryAccent1": "#A8D45E",
+    "tertiaryAccent2": "#E6F1D4",
+    "quaternary": "#1DBADF",
+    "quaternaryAccent2": "#D2F1F9",
+    "quinary": "#FFD525",
+    "quinaryAccent2": "#FFF6D0",
+    "textDark": "#231F20",
+    "textMid": "#52607B",
+    "textLight": "#9BA3B2",
+    "background": "#F4F6F9",
+    "surface": "#FFFFFF",
+    "modalScrim": "#52607BB3"
+  },
+  "assets": {
+    "logoLight": "assets/ecd-connect/logo-white.svg",
+    "logoDark": "assets/ecd-connect/logo-navy.svg",
+    "appIcon": "assets/ecd-connect/app-icon.svg",
+    "doodlePattern": "assets/ecd-connect/pattern-doodles.svg",
+    "mascotPack": "default"
+  },
+  "categoryMapping": {
+    "classroom": "secondary",
+    "business": "quinary",
+    "community": "quaternary",
+    "training": "tertiary"
+  }
+}

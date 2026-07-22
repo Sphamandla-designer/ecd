@@ -1,0 +1,36 @@
+{
+  "$description": "SmartStart white-label tenant theme (first WL tenant). Source: Funda App foundations, Figma PtgowNcKNzo12KErPmKPGr node 5:10497.",
+  "tenant": "smartstart",
+  "model": "WL",
+  "colors": {
+    "primary": "#583F99",
+    "onPrimary": "#FFFFFF",
+    "primaryAccent1": "#9484BD",
+    "primaryAccent2": "#D7D1E6",
+    "secondary": "#00B0E0",
+    "onSecondary": "#FFFFFF",
+    "secondaryAccent1": "#66D0EC",
+    "secondaryAccent2": "#C2ECF8",
+    "tertiary": "#ED145B",
+    "onTertiary": "#FFFFFF",
+    "tertiaryAccent1": "#F4729D",
+    "tertiaryAccent2": "#FBC7D8",
+    "quaternary": "#66D0EC",
+    "quaternaryAccent2": "#C2ECF8",
+    "quinary": "#F4729D",
+    "quinaryAccent2": "#FBC7D8",
+    "textDark": "#1F192E",
+    "textMid": "#483E63",
+    "textLight": "#9B96A6",
+    "background": "#F3F1F9",
+    "surface": "#FFFFFF",
+    "modalScrim": "#9484BDB3"
+  },
+  "assets": {
+    "logoLight": "assets/smartstart/logo-white.svg",
+    "logoDark": "assets/smartstart/logo-purple.svg",
+    "appIcon": "assets/smartstart/favicon.svg",
+    "doodlePattern": "assets/smartstart/pattern-flowers.svg",
+    "mascotPack": "default"
+  }
+}
