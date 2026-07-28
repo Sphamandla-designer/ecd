@@ -171,3 +171,55 @@ Only the visual layer moved.
 - The `.h0` display step was kept rather than collapsed into `h1`, to preserve the existing
   hierarchy — the DS has no display token, so it was landed on the 4 px grid instead.
 - Known UX issues in the prototype were left alone, per the brief.
+
+
+---
+
+## Follow-up: Home screen rebuilt as the Figma hub
+
+Requested after the re-skin: make Home match the Figma hub, keeping the bottom nav.
+Applied by `figma-hub-home.py` (same assert-on-miss approach).
+
+**Source:** [`139:66569` "W3.0 Hub page"](https://www.figma.com/design/8s2xe3EyBRhrzDFy93NbfN/App-Screens?node-id=139-66569) — spec in [`../screens/home.md`](../screens/home.md).
+
+| Change | Detail |
+|---|---|
+| Home body replaced | The scroll area is now the four category cards + points row, nothing else |
+| Category cards | Classroom (`category.stories`), Business (`teachingTips`), Community (`activities`), Training (`other`) — 328 × 80, radius 10, 48 dp icon circle, h4 label, chevron, **84 dp pitch** (80 + 4 gap) |
+| Points row | 328 × 80 on `status.success.bg`, 48 dp circle, `h1` value + `h4` unit, progress bar, chevron |
+| Header | Added the avatar button the Figma hub carries (→ Profile) |
+| Hero band | Added the tonal CI-shape motif Figma layers behind the greeting (`Graphic overlay Small 80px`, `100:8639`), drawn in CSS since the asset can't be exported here |
+| Bottom nav | **Kept**, as asked — the Figma frame has no bottom nav |
+
+Measured against Figma: cards 328 × 80, radius 10 px, icon circles 48 px, pitch 84 px. Exact.
+
+**Navigation** (verified for both roles, no console errors):
+
+| Card | Practitioner | Principal |
+|---|---|---|
+| Classroom | Classes tab | Classes tab |
+| Business | Downloads (`exports`) | Income tab |
+| Community | Resources | Resources |
+| Training | Resources | Resources |
+| Points | Profile | Profile |
+
+The prototype has no Business/Training sections, so those cards route to the nearest
+existing destination. Community and Training both land in Resources for the same reason.
+
+### What this cost
+
+The **scenario nudge card and the "a few things need a look" row are gone** — they are the
+prototype's own home, not the Figma one. Consequence: the **Live / Attendance due / Consent
+imminent / All clear / Month start** chips no longer change anything on Home. They still drive
+Classes and the attendance flow.
+
+Figma does allow this back: [`../screens/home.md`](../screens/home.md) records that hub
+notifications render between the greeting and the category list, one at a time
+(designer note `145:23755`). Re-inserting the nudge card in that slot would restore the
+scenario demo and stay Figma-conformant.
+
+### Scope
+
+Only Home changed. Verified across the same 10 screen states — Classes, Resources, Profile,
+Onboarding and the SmartStart tenant are byte-identical to the re-skinned build; the three
+scenario rows differ only because they *are* Home.
