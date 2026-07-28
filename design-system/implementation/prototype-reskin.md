@@ -242,3 +242,66 @@ renders, and there are no console errors.
 Only Home changed. Verified across the same 10 screen states — Classes, Resources, Profile,
 Onboarding and the SmartStart tenant are byte-identical to the re-skinned build; the three
 scenario rows differ only because they *are* Home.
+
+
+---
+
+## Follow-up: MVP review fixes
+
+Three fixes from the prototype review note. Nothing outside Home and the resource
+taxonomy was touched.
+
+**1. Points widget removed.** The points value, label and progress bar are gone from Home,
+along with the row that carried them. Gamification is out of MVP scope and cuts against the
+adult-professional aesthetic.
+
+**2. Training tile removed.** The shortcut and its route are gone. Confirmed by search that
+`Training` now appears nowhere in the bundle, and no route opens a training or course surface.
+(The "Business skills short course" and "First aid certification course" entries are resource
+*items* inside Resources, not a training surface.)
+
+**3. Resource taxonomy reconciled.** The Home shortcuts now use the Resources section's own
+category list verbatim, in its order, taken from the `Kh` component:
+
+| Home shortcut | Opens |
+|---|---|
+| Running your preschool | that category |
+| Early learning activities | that category |
+| Health and safety | that category |
+| Funding and subsidies | that category |
+
+Each navigates `resDetail{name}` — exactly the call the Resources hub itself makes, so both
+entry points land on the same screen. One taxonomy, used in both places.
+
+### A pre-existing crash had to be repaired to make fix 3 work
+
+`resDetail` had **no case in the router**. It fell through to `default:`, which renders `Rh` —
+a component defined nowhere in the bundle. Tapping any category *inside Resources* threw
+`ReferenceError: Rh is not defined` and white-screened the app. This reproduces in the
+original file as received, commit `062b279`; it is not a regression from any of this work.
+
+The acceptance criterion "tapping one opens that category" cannot hold against a destination
+that crashes, so two minimal repairs were made:
+
+- **`Rh` defined** as a placeholder screen, so any unimplemented route degrades to a titled
+  "not part of the prototype yet" card instead of taking the whole app down.
+- **`resDetail` wired** to a category screen built from helpers the bundle already ships
+  (`$d` for categories, `Ud` for a category's resources) and the existing header component.
+  It lists that category's resources with title, blurb and the data-free line, using
+  `status.success.dark` / `status.alert.dark`. Items are static — the main app has no
+  resource-detail route, so nothing implies a tap that does not exist.
+
+This also fixes the Resources tab, which had the same dead end.
+
+### Verification
+
+```
+Points widget absent : PASS      Running your preschool    -> opens that category
+Training tile absent : PASS      Early learning activities -> opens that category
+Today card present   : PASS      Health and safety         -> opens that category
+look line present    : PASS      Funding and subsidies     -> opens that category
+console errors: none
+```
+
+Classes, Resources, Profile, Onboarding and the SmartStart tenant are byte-identical across
+the 10-screen crawl. All four scenario states and both roles still drive the Today card.

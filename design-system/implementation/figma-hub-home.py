@@ -55,33 +55,28 @@ def card(label, tint, main, icon, go):
     )
 
 
+# Home shortcuts use the Resources taxonomy verbatim (Kh, the Resources hub):
+#   "Running your preschool" / "Early learning activities" /
+#   "Health and safety" / "Funding and subsidies"
+# Same order as Resources, and each opens that category via resDetail{name},
+# which is exactly what the Resources hub itself does. One taxonomy, both places.
+# No Points row and no Training tile — both are outside the MVP.
+RES_CATS = [
+    ("Running your preschool",    "--yellow-soft", "--yellow", "O.home"),
+    ("Early learning activities", "--pink-soft",   "--pink",   "O.classes"),
+    ("Health and safety",         "--cyan-soft",   "--cyan",   "O.warn"),
+    ("Funding and subsidies",     "--green-soft",  "--green",  "O.income"),
+]
+
 HUB = (
     't.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:4,marginTop:16},children:['
-    + card("Classroom", "--pink-soft",  "--pink",  "O.classes",   '()=>_st("classes")') + ','
-    + card("Business",  "--yellow-soft","--yellow","O.income",
-           '()=>{c==="principal"?_st("income"):f("exports")}') + ','
-    + card("Community", "--cyan-soft",  "--cyan",  "O.staff",     '()=>f("resourcesHub")') + ','
-    + card("Training",  "--green-soft", "--green", "O.plan",      '()=>_st("resources")')
-    + ']}),'
-    # points row — pale green, 48dp circle, value + label, progress bar, chevron
-    't.jsxs("button",{onClick:()=>f("profileHome"),style:{width:"100%",minHeight:80,'
-    'display:"flex",alignItems:"center",gap:16,background:"var(--green-soft)",border:0,'
-    'borderRadius:"var(--r-card)",padding:16,cursor:"pointer",textAlign:"left",'
-    'boxSizing:"border-box",marginTop:16},children:['
-    't.jsx("span",{style:{width:48,height:48,borderRadius:"var(--r-pill)",'
-    'background:"var(--green)",color:"var(--surface-0)",display:"flex",alignItems:"center",'
-    'justifyContent:"center",flex:"none"},children:O.check({size:24})}),'
-    't.jsxs("span",{style:{flex:1,display:"flex",flexDirection:"column",gap:6},children:['
-    't.jsxs("span",{style:{display:"flex",alignItems:"baseline",gap:6},children:['
-    't.jsx("span",{style:{font:"600 24px/32px var(--font-display)",color:"var(--ink-900)"},'
-    'children:"175"}),'
-    't.jsx("span",{style:{font:"600 16px/22px var(--font-display)",color:"var(--ink-900)"},'
-    'children:"Points"})]}),'
-    't.jsx("span",{style:{height:8,borderRadius:"var(--r-pill)",background:"var(--surface-0)",'
-    'display:"block",overflow:"hidden"},children:t.jsx("span",{style:{display:"block",'
-    'height:"100%",width:"70%",background:"var(--green)"}})})]}),'
-    't.jsx("span",{style:{color:"var(--ink-900)",display:"flex"},children:O.chevron({size:24})})]})'
+    + ','.join(
+        card(name, tint, main, icon,
+             '()=>f("resDetail",{name:"' + name + '"})')
+        for name, tint, main, icon in RES_CATS)
+    + ']})'
 )
+
 
 # ── Scenario card — Figma "WO5.4.3 Hub notification" (145:27122) ────────
 # That frame places an Action Panel "with link" (100:7530, 328x145) directly
@@ -201,6 +196,58 @@ sub(OLD_BELL_TAIL, NEW_BELL_TAIL, "Header: add Figma avatar button")
 sub("function wh({name:s,date:c,sync:a}){const{navigate:f,db:u}=ne()",
     "function wh({name:s,date:c,sync:a}){const{navigate:f,db:u}=ne()",
     "Header: navigate already available")
+
+# ── Repair: the resDetail route ─────────────────────────────────────────
+# Pre-existing bug in the file as received: the Resources hub (Kh) navigates to
+# "resDetail", but the router has no case for it, so it falls to `default:`
+# which renders `Rh` — a component defined nowhere in the bundle. Result:
+# ReferenceError and a white screen. Tapping ANY category inside Resources
+# already crashed the prototype before this change.
+#
+# The acceptance criterion "tapping a Home shortcut opens that category"
+# cannot hold while that destination crashes, so it is repaired here using the
+# data helpers the bundle already ships ($d for categories, Ud for a category's
+# resources) and the existing header/DS components.
+
+CAT_SCREEN = (
+    # missing placeholder that the router's default branch renders
+    'function Rh({title:_t}){return t.jsxs(t.Fragment,{children:['
+    't.jsx(le,{title:_t||"Screen"}),'
+    't.jsx("div",{className:"scr",style:{flex:1,overflow:"auto",padding:16},'
+    'children:t.jsx("div",{style:{background:"var(--surface-0)",'
+    'borderRadius:"var(--r-card)",boxShadow:"var(--e-card)",padding:16,'
+    'font:"400 14px/20px var(--font-body)",color:"var(--ink-500)"},'
+    'children:"This screen isn\\u2019t part of the prototype yet."})})]})}'
+    # the resource-category screen
+    'function elpResCat(){const{route:_r}=ne();'
+    'const _n=(_r.params&&_r.params.name)||"Resources";'
+    'const _tn=(typeof document<"u"&&document.documentElement.dataset.tenant==="smartstart")'
+    '?"smartstart":"ecd";'
+    'const _c=$d(_tn).find(x=>x.name===_n);'
+    'const _items=Ud(_tn,_c?_c.id:void 0);'
+    'return t.jsxs(t.Fragment,{children:['
+    't.jsx(le,{title:_n,subtitle:"Resources"}),'
+    't.jsx("div",{className:"scr",style:{flex:1,overflow:"auto",padding:16},'
+    'children:t.jsx("div",{style:{display:"flex",flexDirection:"column",gap:8},'
+    'children:_items.map(_x2=>t.jsxs("div",{style:{background:"var(--surface-0)",'
+    'border:"1px solid var(--doc-line)",borderRadius:"var(--r-card)",'
+    'boxShadow:"var(--e-card)",padding:16,display:"flex",flexDirection:"column",'
+    'gap:4,boxSizing:"border-box"},children:['
+    't.jsx("div",{style:{font:"600 16px/22px var(--font-display)",'
+    'color:"var(--ink-900)"},children:_x2.title}),'
+    't.jsx("div",{style:{font:"400 14px/20px var(--font-body)",'
+    'color:"var(--ink-500)"},children:_x2.blurb}),'
+    't.jsx("div",{style:{font:"600 14px/20px var(--font-body)",marginTop:4,'
+    'color:_x2.dataFree?"var(--success-dark)":"var(--warning-dark)"},'
+    'children:_x2.dataFree'
+    '?"Data free \\u2014 opening it won\\u2019t use your data."'
+    ':"Opens outside the app and uses data."})]},_x2.id))})})]})}'
+)
+sub("function _x(){const{route:s}=ne();", CAT_SCREEN + "function _x(){const{route:s}=ne();",
+    "Repair: define Rh placeholder + resource-category screen")
+sub('case"resourcesHub":return t.jsx(Kh,{});',
+    'case"resourcesHub":return t.jsx(Kh,{});case"resDetail":return t.jsx(elpResCat,{});',
+    "Repair: wire resDetail into the router")
 
 lines[INNER] = json.dumps(inner).replace("/", "\\u002F")
 OUT.write_text("\n".join(lines), encoding="utf-8")
