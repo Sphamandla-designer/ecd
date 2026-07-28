@@ -39,6 +39,15 @@ role.background #EFF6FA           screen background AND input fill
 | **Back-end dev** | [implementation/backend-contract.md](implementation/backend-contract.md) |
 | **Designer** | [foundations/](foundations/) + [extraction/](extraction/) (raw Figma readout) |
 | **Adding a tenant** | [patterns/white-label-theming.md](patterns/white-label-theming.md) |
+| **Anyone — just want to see it** | **[preview/index.html](preview/index.html)** — open in a browser |
+
+### Live preview
+
+[`preview/index.html`](preview/index.html) renders the whole system from `tokens/tokens.css`:
+the palette, type scale, every component state, and **mini prototypes of all seven screen
+templates at 360 dp**. Nothing in it is hard-coded — the tenant switch at the top re-points the
+roles and you can watch colour change while layout, type and spacing stay put. That is the
+white-label mechanism working, visibly.
 
 ---
 

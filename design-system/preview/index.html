@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECD Connect 2.0 — Design System Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<style>
+/* ---- page chrome (not part of the design system) ---- */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F7F9FB;color:var(--ecd-text-dark);
+     font:var(--ecd-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 24px 96px}
+header.page{padding:32px 0 8px}
+header.page h1{font:var(--ecd-h1);margin:0 0 8px}
+header.page p{font:var(--ecd-help);color:var(--ecd-text-mid);margin:0;max-width:70ch}
+.tenant-switch{display:flex;gap:8px;align-items:center;margin-top:20px}
+.tenant-switch button{font:var(--ecd-button);cursor:pointer;padding:8px 14px;
+  border-radius:var(--ecd-radius-md);border:2px solid var(--ecd-line);
+  background:#fff;color:var(--ecd-text-mid)}
+.tenant-switch button[aria-pressed=true]{border-color:var(--ecd-action);
+  color:var(--ecd-action);background:var(--ecd-action-subtle)}
+section{margin-top:56px}
+section > h2{font:var(--ecd-h2);margin:0 0 4px;padding-bottom:10px;
+  border-bottom:2px solid var(--ecd-line)}
+section > .lede{font:var(--ecd-help);color:var(--ecd-text-mid);margin:10px 0 24px;max-width:78ch}
+h3.sub{font:var(--ecd-h4);margin:32px 0 12px;color:var(--ecd-text-mid)}
+.grid{display:grid;gap:16px}
+.specimens{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.card-demo{background:#fff;border:1px solid var(--ecd-line);border-radius:12px;padding:20px}
+.note{font:var(--ecd-caption);color:var(--ecd-text-mid);margin-top:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+  background:var(--ecd-background);padding:1px 5px;border-radius:4px;color:var(--ecd-text-dark)}
+
+/* ---- swatches ---- */
+.swatches{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.sw{border-radius:var(--ecd-radius-md);overflow:hidden;border:1px solid var(--ecd-line);background:#fff}
+.sw .chipc{height:76px}
+.sw .meta{padding:10px 12px}
+.sw .n{font:var(--ecd-help-strong);display:block}
+.sw .v{font:var(--ecd-caption);color:var(--ecd-text-mid);font-family:ui-monospace,monospace}
+
+/* ================= DESIGN SYSTEM COMPONENTS ================= */
+/* Buttons — 328x40, radius 15, padding 10/17, Quicksand SemiBold 14/20 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--ecd-space-2);
+  height:var(--ecd-button-h);padding:10px 17px;border-radius:var(--ecd-radius-lg);
+  font:var(--ecd-button);border:0;cursor:pointer;width:var(--ecd-content-width);max-width:100%}
+.btn-primary{background:var(--ecd-action);color:var(--ecd-on-action);
+  box-shadow:var(--ecd-elevation-button)}
+.btn-primary:hover{background:var(--ecd-action-hover)}
+.btn-secondary{background:var(--ecd-surface);color:var(--ecd-action);
+  border:2px solid var(--ecd-action);box-shadow:none}
+.btn-secondary:hover{border-color:var(--ecd-action-hover);color:var(--ecd-action-hover)}
+.btn-primary[disabled]{background:var(--ecd-action-disabled);box-shadow:none;cursor:not-allowed}
+.btn-secondary[disabled]{border-color:var(--ecd-action-disabled);
+  color:var(--ecd-action-disabled);background:transparent;cursor:not-allowed}
+.btn-sm{height:var(--ecd-button-small-h);border-radius:var(--ecd-radius-md);
+  font:var(--ecd-button-small);padding:8px 12px;width:auto}
+.btn-sm.sec{background:var(--ecd-select-subtle);color:var(--ecd-select);border:0}
+.btn-sm.pri{background:var(--ecd-action);color:var(--ecd-on-action)}
+.btn-sm.out{background:transparent;color:var(--ecd-select);border:2px solid var(--ecd-select)}
+.fab{display:inline-flex;align-items:center;gap:var(--ecd-space-2);height:var(--ecd-fab);
+  padding:12px 20px 12px 16px;border-radius:var(--ecd-radius-xxl);background:var(--ecd-action);
+  color:var(--ecd-on-action);font:var(--ecd-button-fab);border:0;cursor:pointer;
+  box-shadow:var(--ecd-elevation-button)}
+.fab.round{width:var(--ecd-fab);padding:12px;justify-content:center}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.45);
+  border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Chips */
+.chip{display:inline-flex;align-items:center;height:var(--ecd-chip-h);padding:9px 16px;
+  border-radius:var(--ecd-radius-xl);background:var(--ecd-select-subtle);color:var(--ecd-select);
+  font:var(--ecd-chip);box-shadow:var(--ecd-elevation-sm);border:0;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ecd-select);color:var(--ecd-on-select);
+  font:var(--ecd-chip-active)}
+.segment{display:flex;gap:6px;width:var(--ecd-content-width);max-width:100%;
+  border-radius:var(--ecd-radius-sm)}
+.segment button{flex:1;padding:12px;border-radius:var(--ecd-radius-md);border:0;cursor:pointer;
+  background:var(--ecd-select-subtle);color:var(--ecd-select);font:var(--ecd-chip)}
+.segment button[aria-pressed=true]{background:var(--ecd-select);color:var(--ecd-on-select);
+  font:var(--ecd-chip-active)}
+
+/* Fields */
+.field{width:var(--ecd-content-width);max-width:100%;display:flex;flex-direction:column;gap:var(--ecd-space-1)}
+.field label{font:var(--ecd-h4);color:var(--ecd-text-dark)}
+.field .help{font:var(--ecd-help);color:var(--ecd-text-mid)}
+.field .err{font:var(--ecd-help);color:var(--ecd-status-error-dark)}
+.input{height:var(--ecd-input-h);border-radius:var(--ecd-radius-sm);border:0;
+  background:var(--ecd-background);padding:0 16px;font:var(--ecd-body-tight);
+  color:var(--ecd-text-dark);width:100%}
+.input::placeholder{color:var(--ecd-text-mid)}
+.input:focus{outline:0;background:var(--ecd-surface);
+  box-shadow:inset 0 0 0 2px var(--ecd-action);padding:0 14px}
+.input.is-error{background:var(--ecd-surface);box-shadow:inset 0 0 0 2px var(--ecd-status-error-main);
+  color:var(--ecd-status-error-dark);padding:0 14px}
+textarea.input{height:var(--ecd-textarea-h);padding:12px 16px;resize:vertical}
+.validator{display:flex;gap:4px;margin-top:4px}
+.validator i{flex:1;height:4px;border-radius:var(--ecd-radius-xs);background:var(--ecd-line)}
+
+/* Alerts */
+.alert{display:flex;gap:var(--ecd-space-3);width:var(--ecd-content-width);max-width:100%;
+  padding:var(--ecd-space-4);border-radius:var(--ecd-radius-md)}
+.alert .ico{width:20px;height:20px;flex:0 0 20px;border-radius:50%;display:grid;
+  place-items:center;color:#fff;font:600 12px/1 var(--ecd-font-body)}
+.alert .t{font:var(--ecd-help-strong)}
+.alert .b{font:var(--ecd-help);color:var(--ecd-text-dark);margin-top:8px}
+.alert.error{background:var(--ecd-status-error-bg)}
+.alert.error .t{color:var(--ecd-status-error-dark)} .alert.error .ico{background:var(--ecd-status-error-main)}
+.alert.warn{background:var(--ecd-status-alert-bg)}
+.alert.warn .t{color:var(--ecd-status-alert-dark)} .alert.warn .ico{background:var(--ecd-status-alert-main)}
+.alert.ok{background:var(--ecd-status-success-bg)}
+.alert.ok .t{color:var(--ecd-status-success-dark)} .alert.ok .ico{background:var(--ecd-status-success-main)}
+.alert.info{background:var(--ecd-status-info-bg)}
+.alert.info .t{color:var(--ecd-status-info-dark)} .alert.info .ico{background:var(--ecd-status-info-main)}
+
+/* List rows */
+.row{display:flex;align-items:center;gap:var(--ecd-space-4);width:var(--ecd-content-width);
+  max-width:100%;min-height:var(--ecd-row-default);padding:var(--ecd-space-4);
+  border-radius:var(--ecd-radius-md);background:var(--ecd-background);cursor:pointer}
+.row .circ{width:var(--ecd-icon-circle);height:var(--ecd-icon-circle);border-radius:50%;
+  flex:0 0 var(--ecd-icon-circle);display:grid;place-items:center;color:#fff;font-size:20px}
+.row .txt{flex:1;min-width:0}
+.row .txt b{font:var(--ecd-h4);display:block;color:var(--ecd-text-dark)}
+.row .txt span{font:var(--ecd-help);color:var(--ecd-text-mid)}
+.row .chev{color:var(--ecd-text-mid);font-size:20px}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:4px;height:var(--ecd-badge-h);padding:0 12px;
+  border-radius:var(--ecd-radius-xxl);font:var(--ecd-help-strong);color:#fff}
+.badge.solid{background:var(--ecd-status-success-main)}
+.badge.outline{background:#fff;color:var(--ecd-status-alert-main);
+  box-shadow:inset 0 0 0 1px var(--ecd-status-alert-main)}
+.badge.info{background:var(--ecd-status-info-main)}
+.badge.offline{height:16px;padding:0 8px;font:var(--ecd-caption-medium);
+  background:var(--ecd-status-error-main)}
+.badge.type{background:var(--ecd-category-activities-tint);color:var(--ecd-text-dark)}
+
+/* Phone frames */
+.phones{display:flex;flex-wrap:wrap;gap:28px}
+.phone{width:360px;flex:0 0 360px;border-radius:16px;overflow:hidden;background:#fff;
+  box-shadow:0 12px 32px rgba(39,56,90,.16);border:1px solid var(--ecd-line);position:relative}
+.phone .cap{font:var(--ecd-help-strong);color:var(--ecd-text-mid);margin-bottom:8px;display:block}
+.pw{display:flex;flex-direction:column}
+.appbar{height:var(--ecd-app-bar-h);background:var(--ecd-app-bar);color:var(--ecd-on-app-bar);
+  display:flex;align-items:center;gap:12px;padding:0 16px}
+.appbar .ttl{flex:1;min-width:0}
+.appbar .ttl b{font:var(--ecd-h3);display:block;line-height:22px}
+.appbar .ttl span{font:var(--ecd-help);opacity:.85}
+.appbar .help{width:24px;height:24px;border-radius:50%;background:var(--ecd-action);
+  display:grid;place-items:center;font:600 14px/1 var(--ecd-font-body)}
+.tabs{height:var(--ecd-tab-bar-h);display:flex;border-bottom:1px solid var(--ecd-line);
+  overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;padding:0 18px;background:0;border:0;cursor:pointer;
+  font:var(--ecd-h4);color:var(--ecd-text-mid);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button[aria-selected=true]{color:var(--ecd-action);border-bottom-color:var(--ecd-action)}
+.filterbar{height:var(--ecd-filter-bar-h);background:var(--ecd-background);
+  border-bottom:1px solid var(--ecd-line);display:flex;align-items:center;gap:8px;
+  padding:0 20px;overflow-x:auto;scrollbar-width:none}
+.filterbar::-webkit-scrollbar{display:none}
+.searchbtn{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--ecd-select);
+  color:#fff;border:0;display:grid;place-items:center;cursor:pointer;font-size:17px}
+.trigger{flex:0 0 auto;height:40px;padding:0 16px;border-radius:8px;background:#fff;
+  border:1px solid var(--ecd-line);font:var(--ecd-help);color:var(--ecd-text-dark);cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.trigger.applied{background:var(--ecd-action);color:#fff;border-color:var(--ecd-action)}
+.body{padding:16px;display:flex;flex-direction:column;gap:16px;min-height:240px}
+.body.tight{gap:8px}
+.ptitle{font:var(--ecd-h2);color:var(--ecd-text-dark)}
+.footerbar{border-top:1px solid var(--ecd-line);padding:16px;display:flex;
+  flex-direction:column;gap:16px}
+.footerbar .btn{width:100%}
+.langbar{height:var(--ecd-language-selector-h);background:var(--ecd-background);
+  border-bottom:1px solid var(--ecd-line);display:flex;align-items:center;gap:12px;padding:0 16px}
+.langbar span{font:var(--ecd-help);color:var(--ecd-text-dark)}
+.langbar .pill{height:40px;padding:0 14px;border-radius:8px;background:var(--ecd-action);
+  color:#fff;font:var(--ecd-help-strong);display:inline-flex;align-items:center;gap:6px}
+.emptyill{width:110px;height:110px;border-radius:50%;margin:8px auto;display:grid;
+  place-items:center;font-size:44px;background:var(--ecd-category-teaching-tips-tint)}
+.dashed{height:1px;background:repeating-linear-gradient(90deg,var(--ecd-line) 0 6px,transparent 6px 12px)}
+
+/* Dialog */
+.scrim{position:absolute;inset:0;background:var(--ecd-scrim);display:grid;place-items:center;padding:16px}
+.dialog{width:328px;max-width:100%;border-radius:var(--ecd-radius-xl);background:var(--ecd-surface);
+  padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:16px;
+  box-shadow:var(--ecd-elevation-dialog);text-align:center}
+.dialog .dico{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  color:#fff;font-size:24px}
+.dialog h4{font:var(--ecd-h3);margin:0;color:var(--ecd-text-dark)}
+.dialog p{font:var(--ecd-body);color:var(--ecd-text-mid);margin:0}
+.dialog .btn{width:296px}
+.mascot{width:96px;height:96px;border-radius:50%;background:var(--ecd-category-teaching-tips-main);
+  display:grid;place-items:center;font-size:44px}
+
+/* Walkthrough */
+.tutorial{position:absolute;left:16px;right:16px;bottom:16px;background:#fff;border-radius:12px;
+  padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--ecd-elevation-dialog)}
+.tutorial .m{width:64px;height:64px;flex:0 0 64px;border-radius:50%;
+  background:var(--ecd-category-teaching-tips-main);display:grid;place-items:center;font-size:30px}
+.tutorial .msg{font:var(--ecd-h4);color:var(--ecd-text-dark)}
+.dots{display:flex;gap:5px;align-items:center;margin-top:12px}
+.dots i{width:10px;height:10px;border-radius:5px;background:var(--ecd-line)}
+.dots i.on{width:20px;background:var(--ecd-select)}
+.spot{position:absolute;border:2px solid #fff;border-radius:var(--ecd-radius-xxl);
+  box-shadow:0 0 0 9999px var(--ecd-scrim)}
+@media (max-width:820px){.phone{flex:0 0 100%;width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page">
+  <h1>ECD Connect 2.0 — Design System Preview</h1>
+  <p>Every element below is rendered from <code>tokens/tokens.css</code> — nothing is hard-coded.
+     Use it to eyeball the system against the Figma frames, and to confirm that a tenant swap
+     changes only colour, never layout.</p>
+  <div class="tenant-switch" role="group" aria-label="Tenant">
+    <span style="font:var(--ecd-help);color:var(--ecd-text-mid)">Tenant:</span>
+    <button aria-pressed="true"  data-tenant="">ECD Connect (OA)</button>
+    <button aria-pressed="false" data-tenant="smartstart">SmartStart (WL)</button>
+  </div>
+</header>
+
+<!-- ============ COLOUR ============ -->
+<section>
+  <h2>Colour</h2>
+  <p class="lede">Roles are what components reference. Status and domain colours are platform
+     constants — switch the tenant above and watch them stay put while the roles move.</p>
+
+  <h3 class="sub">Roles</h3>
+  <div class="grid swatches" id="swRoles"></div>
+
+  <h3 class="sub">Status — never themed</h3>
+  <div class="grid swatches" id="swStatus"></div>
+
+  <h3 class="sub">Developmental domains — never themed</h3>
+  <div class="grid swatches" id="swDomain"></div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section>
+  <h2>Typography</h2>
+  <p class="lede">Quicksand names things, Inter explains them. Two families, no exceptions.</p>
+  <div class="card-demo">
+    <div style="font:var(--ecd-h1)">H1 — Page title · Quicksand SemiBold 24/32</div>
+    <div style="font:var(--ecd-h2);margin-top:12px">H2 — Section title · 20/28</div>
+    <div style="font:var(--ecd-h3);margin-top:12px">H3 — Card &amp; dialog title · 18/24</div>
+    <div style="font:var(--ecd-h4);margin-top:12px">H4 — Form label, list title · 16/22</div>
+    <div style="font:var(--ecd-body);color:var(--ecd-text-mid);margin-top:16px">
+      Body — Inter Regular 16/24. The default for reading text, dialog copy and long descriptions.</div>
+    <div style="font:var(--ecd-help);color:var(--ecd-text-mid);margin-top:10px">
+      Help — Inter Regular 14/20. Help text, list subtitles, app-bar subtitles, error messages.</div>
+    <div style="font:var(--ecd-caption);color:var(--ecd-text-mid);margin-top:10px">
+      Caption — Inter Regular 12/16.</div>
+    <div style="font:var(--ecd-overline);letter-spacing:var(--ecd-overline-tracking);margin-top:14px">
+      OVERLINE — LEVEL BADGES</div>
+  </div>
+</section>
+
+<!-- ============ BUTTONS ============ -->
+<section>
+  <h2>Buttons</h2>
+  <p class="lede">328 × 40, radius <strong>15</strong>, padding 10/17. Only the primary carries a
+     shadow — disabled loses it entirely.</p>
+  <div class="specimens">
+    <div><button class="btn btn-primary">Primary</button>
+         <div class="note">role.action + elevation.button</div></div>
+    <div><button class="btn btn-secondary">Secondary</button>
+         <div class="note">2 dp border, no shadow</div></div>
+    <div><button class="btn btn-primary">⤓ Primary with icon</button>
+         <div class="note">20 dp leading icon, 8 dp gap</div></div>
+    <div><button class="btn btn-primary" disabled>Primary disabled</button>
+         <div class="note">1.3:1 — never the only signal</div></div>
+    <div><button class="btn btn-secondary" disabled>Secondary disabled</button></div>
+    <div><button class="btn btn-primary"><span class="spinner"></span> Loading</button>
+         <div class="note">actionHover fill + 16 dp spinner</div></div>
+  </div>
+  <h3 class="sub">Small (32 dp) &amp; FAB</h3>
+  <div class="specimens" style="align-items:center">
+    <button class="btn btn-sm sec">Edit ✎</button>
+    <button class="btn btn-sm pri">＋ Add income</button>
+    <button class="btn btn-sm out">＋ Add</button>
+    <button class="fab">＋ Add a child</button>
+    <button class="fab round">＋</button>
+  </div>
+</section>
+
+<!-- ============ CHIPS ============ -->
+<section>
+  <h2>Chips &amp; segmented control</h2>
+  <p class="lede">Selection changes <strong>fill and weight</strong> (Medium → SemiBold) — the
+     weight shift is what keeps selection legible.</p>
+  <div class="specimens" style="align-items:center">
+    <button class="chip" aria-pressed="false" onclick="this.setAttribute('aria-pressed',this.getAttribute('aria-pressed')!=='true')">Fees</button>
+    <button class="chip" aria-pressed="true"  onclick="this.setAttribute('aria-pressed',this.getAttribute('aria-pressed')!=='true')">Salaries</button>
+    <button class="chip" aria-pressed="false" onclick="this.setAttribute('aria-pressed',this.getAttribute('aria-pressed')!=='true')">Rent</button>
+    <span class="note">← click to toggle</span>
+  </div>
+  <h3 class="sub">Yes / No / Don't know</h3>
+  <div class="segment" id="seg">
+    <button aria-pressed="true">Yes</button><button aria-pressed="false">No</button>
+    <button aria-pressed="false">Don't know</button>
+  </div>
+</section>
+
+<!-- ============ INPUTS ============ -->
+<section>
+  <h2>Inputs</h2>
+  <p class="lede">The focus signal is an <strong>inversion</strong>: tinted fill flips to white and
+     gains a 2 dp cyan ring. Click into the first field to see it.</p>
+  <div class="specimens">
+    <div class="field">
+      <label for="i1">Preschool name</label>
+      <input class="input" id="i1" placeholder="Tap to type">
+      <span class="help">This is how caregivers will see your preschool.</span>
+    </div>
+    <div class="field">
+      <label for="i2">Start date</label>
+      <input class="input" id="i2" value="Mon, 5 May 2024">
+    </div>
+    <div class="field">
+      <label for="i3">Amount</label>
+      <input class="input is-error" id="i3" value="-40">
+      <span class="err">Please enter an amount greater than zero.</span>
+    </div>
+    <div class="field">
+      <label for="i4">Password</label>
+      <input class="input" id="i4" type="password" value="corrrect-horse">
+      <div class="validator"><i style="background:var(--ecd-status-success-main)"></i>
+        <i style="background:var(--ecd-status-success-main)"></i>
+        <i style="background:var(--ecd-status-success-main)"></i><i></i></div>
+      <span class="help" style="color:var(--ecd-status-success-dark)">Good</span>
+    </div>
+    <div class="field">
+      <label for="i5">Please add details</label>
+      <textarea class="input" id="i5" placeholder="E.g. Themba loves to talk to other children."></textarea>
+      <span class="help">Optional</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALERTS ============ -->
+<section>
+  <h2>Alerts</h2>
+  <p class="lede">Title takes the status <em>dark</em> tone; the body stays navy. Getting this
+     backwards is the most common alert mistake.</p>
+  <div class="specimens">
+    <div class="alert error"><div class="ico">✕</div><div>
+      <div class="t">We couldn't save your changes</div>
+      <div class="b">Check the highlighted fields and try again.</div></div></div>
+    <div class="alert warn"><div class="ico">!</div><div>
+      <div class="t">This resource is not data free</div>
+      <div class="b">Going to this link will use your data.</div></div></div>
+    <div class="alert ok"><div class="ico">✓</div><div>
+      <div class="t">These dates are available</div></div></div>
+    <div class="alert info"><div class="ico">i</div><div>
+      <div class="t">Children learn and grow at different rates!</div>
+      <div class="b">It is fine if a child can't do the things in the progress tracker yet.</div></div></div>
+  </div>
+</section>
+
+<!-- ============ LISTS & BADGES ============ -->
+<section>
+  <h2>List rows &amp; badges</h2>
+  <p class="lede">The 80 dp <code>action item icon</code> row is the workhorse: 48 dp icon circle,
+     title + subtitle, optional badge, chevron.</p>
+  <div class="specimens" style="flex-direction:column">
+    <div class="row"><div class="circ" style="background:var(--ecd-category-activities-main)">◱</div>
+      <div class="txt"><b>Activities</b><span>Games, crafts and movement</span></div>
+      <span class="badge info">👍 0</span><span class="chev">›</span></div>
+    <div class="row"><div class="circ" style="background:var(--ecd-category-stories-main)">◲</div>
+      <div class="txt"><b>Stories</b><span>Read-aloud and story books</span></div>
+      <span class="badge solid">👍 15</span><span class="chev">›</span></div>
+    <div class="row"><div class="circ" style="background:var(--ecd-category-teaching-tips-main)">◳</div>
+      <div class="txt"><b>Teaching tips</b><span>Practical classroom guidance</span></div>
+      <span class="chev">›</span></div>
+    <div class="row"><div class="circ" style="background:var(--ecd-category-other-main)">◴</div>
+      <div class="txt"><b>Other</b><span>Everything else</span></div><span class="chev">›</span></div>
+  </div>
+  <h3 class="sub">Badges</h3>
+  <div class="specimens" style="align-items:center">
+    <span class="badge solid">Available now</span>
+    <span class="badge outline">Coming soon</span>
+    <span class="badge type">Activities</span>
+    <span class="badge offline">offline</span>
+    <span class="badge solid">0/5</span>
+  </div>
+</section>
+
+<!-- ============ SCREEN TEMPLATES ============ -->
+<section>
+  <h2>Mini prototypes — the seven templates</h2>
+  <p class="lede">Each phone is 360 dp wide, exactly like the Figma frames. These are the templates
+     described in <code>patterns/screen-templates.md</code>.</p>
+
+  <div class="phones">
+
+    <!-- 1. HUB -->
+    <div><span class="cap">1 · Hub / dashboard</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Classroom</b><span>Monday, 12 June</span></div><div class="help">?</div></div>
+      <div class="tabs"><button>Attendance</button><button>Progress</button>
+        <button>Activities</button><button aria-selected="true">Resources</button></div>
+      <div class="body tight">
+        <div class="ptitle" style="margin-bottom:8px">What type of resource would you like to see?</div>
+        <div class="row" style="background:var(--ecd-category-activities-tint)">
+          <div class="circ" style="background:var(--ecd-category-activities-main)">◱</div>
+          <div class="txt"><b>Activities</b></div><span class="chev">›</span></div>
+        <div class="row" style="background:var(--ecd-category-stories-tint)">
+          <div class="circ" style="background:var(--ecd-category-stories-main)">◲</div>
+          <div class="txt"><b>Stories</b></div><span class="chev">›</span></div>
+        <div class="row" style="background:var(--ecd-category-teaching-tips-tint)">
+          <div class="circ" style="background:var(--ecd-category-teaching-tips-main)">◳</div>
+          <div class="txt"><b>Teaching tips</b></div><span class="chev">›</span></div>
+        <div class="row" style="background:var(--ecd-category-other-tint)">
+          <div class="circ" style="background:var(--ecd-category-other-main)">◴</div>
+          <div class="txt"><b>Other</b></div><span class="chev">›</span></div>
+      </div>
+      <div class="footerbar"><button class="btn btn-primary">👁 See all classroom resources</button></div>
+    </div></div></div>
+
+    <!-- 2. FILTERED LIST -->
+    <div><span class="cap">2 · Filtered list</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Classroom resources</b></div><span>✕</span></div>
+      <div class="filterbar">
+        <button class="searchbtn">⌕</button>
+        <button class="trigger">Type ⌄</button>
+        <button class="trigger">Data free ⌄</button>
+        <button class="trigger">Liked ⌄</button>
+        <button class="trigger applied">Most liked ⌄</button>
+      </div>
+      <div class="body tight">
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Playing with shapes and colours</b>
+            <span>A small-group activity using everyday objects to explore shape, size and colour.</span></div>
+          <span class="badge solid">👍 15</span><span class="chev">›</span></div>
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Story: The sky is falling down!</b>
+            <span>A read-aloud story with actions, available in four languages.</span></div>
+          <span class="badge info">👍 0</span><span class="chev">›</span></div>
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Making music with shakers</b>
+            <span>Movement and rhythm for large groups.</span></div>
+          <span class="badge solid">👍 3</span><span class="chev">›</span></div>
+      </div>
+      <div class="footerbar"><button class="btn btn-secondary">👁 See more resources</button></div>
+    </div></div></div>
+
+    <!-- 3. FORM / WIZARD -->
+    <div><span class="cap">3 · Form / wizard step</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Report 2</b><span>step 1 of 6</span></div><span>✕</span></div>
+      <div class="body">
+        <div class="ptitle">Tell us about Themba</div>
+        <span class="badge" style="background:var(--ecd-select);align-self:flex-start">0–5 months progress tracker</span>
+        <div style="font:var(--ecd-body);color:var(--ecd-text-dark)">
+          Does Themba smile when others smile at him/her?</div>
+        <div class="segment"><button aria-pressed="true">Yes</button>
+          <button aria-pressed="false">No</button><button aria-pressed="false">Don't know</button></div>
+        <div class="dashed"></div>
+        <div style="font:var(--ecd-body);color:var(--ecd-text-dark)">
+          Does Themba grasp onto a small object when put in his/her hand?</div>
+        <div class="segment"><button aria-pressed="false">Yes</button>
+          <button aria-pressed="false">No</button><button aria-pressed="false">Don't know</button></div>
+      </div>
+      <div class="footerbar">
+        <button class="btn btn-primary" disabled>→ Next</button>
+        <button class="btn btn-secondary">✕ Save &amp; exit</button>
+      </div>
+    </div></div></div>
+
+    <!-- 4. DETAIL -->
+    <div><span class="cap">4 · Detail / content view</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Playing with shapes</b></div><span>✕</span></div>
+      <div class="langbar"><span>Change Language:</span><span class="pill">English ⌄</span></div>
+      <div class="body">
+        <div class="ptitle">Playing with shapes and colours</div>
+        <div style="display:flex;gap:8px">
+          <span class="badge type">Activities</span><span class="badge solid">👍 15 likes</span></div>
+        <div class="alert ok" style="width:100%"><div class="ico">✓</div>
+          <div><div class="t">This resource is data free!</div></div></div>
+        <button class="btn btn-primary" style="width:100%">🔗 See resource</button>
+        <div style="font:var(--ecd-body);color:var(--ecd-text-mid)">
+          A small-group activity using everyday objects to explore shape, size and colour.
+          Works well outdoors and needs no printed materials.</div>
+        <div class="dashed"></div>
+        <div style="font:var(--ecd-h4)">Was this link helpful?</div>
+        <span class="help" style="font:var(--ecd-help);color:var(--ecd-text-mid)">
+          You can like it to let other ECD Heroes know.</span>
+        <div class="row" style="min-height:56px;background:var(--ecd-action-subtle);
+             box-shadow:inset 0 0 0 2px var(--ecd-action)">
+          <div class="circ" style="width:20px;height:20px;flex:0 0 20px;border-radius:4px;
+               background:var(--ecd-action);font-size:12px">✓</div>
+          <div class="txt"><b style="font:var(--ecd-body-tight)">You liked this resource</b></div>👍</div>
+      </div>
+    </div></div></div>
+
+    <!-- 5. EMPTY STATE -->
+    <div><span class="cap">5 · Empty state</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Classroom</b><span>Monday, 12 June</span></div><div class="help">?</div></div>
+      <div class="tabs"><button>Attendance</button><button>Progress</button>
+        <button>Activities</button><button aria-selected="true">Resources</button></div>
+      <div class="body" style="align-items:center;text-align:center;padding-top:40px">
+        <div class="ptitle">Resources coming soon!</div>
+        <div class="emptyill">🚧</div>
+        <div style="font:var(--ecd-body);color:var(--ecd-text-mid)">
+          We're putting these together. Check back shortly.</div>
+      </div>
+    </div></div></div>
+
+    <!-- 6. DIALOG -->
+    <div><span class="cap">6 · Dialog over a screen</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Themba's June report</b><span>step 3 of 3</span></div><span>✕</span></div>
+      <div class="body" style="min-height:420px">
+        <div class="ptitle">Share more detail for the caregiver report</div>
+        <input class="input" placeholder="How can Themba's caregiver help?">
+      </div>
+      <div class="scrim">
+        <div class="dialog">
+          <div class="dico" style="background:var(--ecd-status-alert-main)">!</div>
+          <h4>Are you sure you want to create the report?</h4>
+          <p>Once you create the report, you will not be able to edit it.</p>
+          <button class="btn btn-primary">📊 Yes, create report</button>
+          <button class="btn btn-secondary">✎ No, edit report</button>
+        </div>
+      </div>
+    </div></div></div>
+
+    <!-- 7. WALKTHROUGH -->
+    <div><span class="cap">7 · Walkthrough / coach-mark</span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl"><b>Activities</b><span>Elephants</span></div><div class="help">?</div></div>
+      <div class="body" style="min-height:420px">
+        <div class="ptitle">Elephants</div>
+        <div class="row"><div class="circ" style="background:var(--ecd-app-bar-muted)">◷</div>
+          <div class="txt"><b>Greeting time</b><span>10–20 min</span></div></div>
+        <div class="row"><div class="circ" style="background:var(--ecd-app-bar-muted)">◷</div>
+          <div class="txt"><b>Free play</b><span>90 min</span></div></div>
+      </div>
+      <div class="spot" style="left:150px;bottom:150px;width:180px;height:48px"></div>
+      <div style="position:absolute;left:196px;bottom:132px;color:var(--ecd-category-teaching-tips-main);font-size:22px">↓</div>
+      <div class="tutorial">
+        <div class="m">🤖</div>
+        <div style="flex:1">
+          <div class="msg">Tap here to add a theme!</div>
+          <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <button class="btn btn-sm pri" style="align-self:flex-end">Next →</button>
+      </div>
+    </div></div></div>
+
+  </div>
+</section>
+
+<!-- ============ DIALOG VARIANTS ============ -->
+<section>
+  <h2>Dialog variants</h2>
+  <p class="lede">The icon states the intent: red destructive · orange warning · blue information ·
+     mascot guidance · illustration celebration (no buttons).</p>
+  <div class="specimens">
+    <div class="dialog" style="box-shadow:var(--ecd-elevation-lg)">
+      <div class="dico" style="background:var(--ecd-status-error-main)">✕</div>
+      <h4>You can't delete this item</h4><p>Preschool fee items can only be changed by editing the child's record.</p>
+      <button class="btn btn-primary" style="width:100%">Got it</button></div>
+
+    <div class="dialog" style="box-shadow:var(--ecd-elevation-lg)">
+      <div class="dico" style="background:var(--ecd-status-alert-main)">!</div>
+      <h4>Are you sure you want to exit?</h4><p>If you exit now your changes will not be saved.</p>
+      <button class="btn btn-primary" style="width:100%">💾 Save note</button>
+      <button class="btn btn-secondary" style="width:100%">✕ Exit</button></div>
+
+    <div class="dialog" style="box-shadow:var(--ecd-elevation-lg)">
+      <div class="mascot">🤖</div>
+      <h4>Want to learn how to track attendance?</h4>
+      <button class="btn btn-primary" style="width:100%">✓ Yes, help me!</button>
+      <button class="btn btn-secondary" style="width:100%">🕐 No, skip</button></div>
+
+    <div class="dialog" style="background:var(--ecd-background);box-shadow:var(--ecd-elevation-lg)">
+      <div class="mascot" style="background:var(--ecd-app-bar)">🎈</div>
+      <h4>Children are progressing well</h4>
+      <p>You've completed observations for every child this term.</p>
+      <div class="note">Celebrate variant — no buttons</div></div>
+  </div>
+</section>
+
+<footer style="margin-top:64px;padding-top:24px;border-top:1px solid var(--ecd-line);
+        font:var(--ecd-help);color:var(--ecd-text-mid)">
+  Rendered entirely from <code>design-system/tokens/tokens.css</code>. Emoji stand in for the
+  illustrated icon and animoji sets, which could not be exported in this environment —
+  see the README's asset-export note.
+</footer>
+
+</div>
+
+<script>
+const ROLES = [
+  ['action','--ecd-action'],['onAction','--ecd-on-action'],['actionHover','--ecd-action-hover'],
+  ['actionDisabled','--ecd-action-disabled'],['select','--ecd-select'],
+  ['selectSubtle','--ecd-select-subtle'],['appBar','--ecd-app-bar'],
+  ['appBarMuted','--ecd-app-bar-muted'],['background','--ecd-background'],
+  ['surface','--ecd-surface'],['line','--ecd-line'],['textDark','--ecd-text-dark'],
+  ['textMid','--ecd-text-mid'],['textLight','--ecd-text-light'],
+];
+const STATUS = [
+  ['error.main','--ecd-status-error-main'],['error.dark','--ecd-status-error-dark'],
+  ['error.bg','--ecd-status-error-bg'],['alert.main','--ecd-status-alert-main'],
+  ['alert.dark','--ecd-status-alert-dark'],['alert.bg','--ecd-status-alert-bg'],
+  ['success.main','--ecd-status-success-main'],['success.dark','--ecd-status-success-dark'],
+  ['success.bg','--ecd-status-success-bg'],['info.main','--ecd-status-info-main'],
+  ['info.dark','--ecd-status-info-dark'],['info.bg','--ecd-status-info-bg'],
+];
+const DOMAIN = [
+  ['happyAndSecure','--ecd-domain-happy-and-secure'],
+  ['speakingListening','--ecd-domain-speaking-listening'],
+  ['discoveryProblem','--ecd-domain-discovery-problem'],
+  ['developingBodies','--ecd-domain-developing-bodies'],
+];
+
+function hex(v){
+  v = v.trim();
+  if (v.startsWith('#')) return v.toUpperCase();
+  const m = v.match(/rgba?\(([^)]+)\)/);
+  if (!m) return v;
+  const p = m[1].split(',').map(s => parseFloat(s));
+  return '#' + p.slice(0,3).map(n => n.toString(16).padStart(2,'0')).join('').toUpperCase()
+       + (p[3] !== undefined ? ' @' + p[3] : '');
+}
+function paint(id, list){
+  const cs = getComputedStyle(document.documentElement);
+  document.getElementById(id).innerHTML = list.map(([name, v]) => {
+    const val = cs.getPropertyValue(v);
+    return `<div class="sw"><div class="chipc" style="background:var(${v})"></div>
+      <div class="meta"><span class="n">${name}</span><span class="v">${hex(val)}</span></div></div>`;
+  }).join('');
+}
+function paintAll(){ paint('swRoles',ROLES); paint('swStatus',STATUS); paint('swDomain',DOMAIN); }
+paintAll();
+
+// tenant switch — proves only colour changes
+document.querySelectorAll('.tenant-switch button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.tenant-switch button')
+      .forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const t = b.dataset.tenant;
+    if (t) document.documentElement.setAttribute('data-tenant', t);
+    else document.documentElement.removeAttribute('data-tenant');
+    paintAll();
+  });
+});
+
+// segmented control demo
+document.querySelectorAll('#seg button, .segment button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.querySelectorAll('button')
+       .forEach(x => x.setAttribute('aria-pressed', String(x === btn)));
+  });
+});
+</script>
+</body>
+</html>
