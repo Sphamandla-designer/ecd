@@ -83,6 +83,67 @@ HUB = (
     't.jsx("span",{style:{color:"var(--ink-900)",display:"flex"},children:O.chevron({size:24})})]})'
 )
 
+# ── Scenario card — Figma "WO5.4.3 Hub notification" (145:27122) ────────
+# That frame places an Action Panel "with link" (100:7530, 328x145) directly
+# above the category cards. Actionable scenarios use that panel; the all-clear
+# scenario uses the DS Success alert (100:3777) since a cleared state has no CTA.
+# Panel fill is role.surface, not role.background: the Figma panel sits on navy,
+# here it sits on the surface-ui content area, so the DS pairing inverts.
+NOTIF = (
+    # --- actionable: Action Panel "with link" ---
+    '!T.card.clear&&t.jsxs("div",{style:{background:"var(--surface-0)",'
+    'borderRadius:"var(--r-card)",boxShadow:"var(--e-card)",padding:16,'
+    'display:"flex",flexDirection:"column",boxSizing:"border-box"},children:['
+    # H3 title — DS action-panel heading
+    't.jsx("div",{style:{font:"600 18px/24px var(--font-display)",'
+    'color:"var(--ink-900)",textWrap:"pretty"},children:T.card.sentence}),'
+    # offline deferral -> DS Informational alert
+    'T.deferred&&t.jsxs("div",{style:{display:"flex",gap:12,alignItems:"flex-start",'
+    'background:"var(--info-bg)",borderRadius:"var(--r-card)",padding:16,marginTop:12},'
+    'children:[t.jsx("span",{style:{color:"var(--info)",display:"flex",flex:"none"},'
+    'children:O.cloud({size:20})}),'
+    't.jsx("span",{style:{font:"600 14px/20px var(--font-body)",'
+    'color:"var(--info-dark)"},children:"We\\u2019ll send this the moment '
+    'you\\u2019re back online."})]}),'
+    # DS primary button with leading icon
+    't.jsxs("button",{className:"btn-p",style:{marginTop:16},'
+    'onClick:()=>f(T.card.route.name,T.card.route.params),children:['
+    't.jsx("span",{style:{display:"flex",flex:"none"},children:O.chevron({size:20})}),'
+    'T.card.cta]})]}),'
+    # --- cleared: same white notification panel, DS Success alert inside ---
+    # The panel stays surface-0 so the notification reads as one distinct slot,
+    # the way Figma 145:27122 does. A bare success-tinted card would be the same
+    # #E6F1D4 as the Training and Points cards below and would blend into them.
+    'T.card.clear&&t.jsx("div",{style:{background:"var(--surface-0)",'
+    'borderRadius:"var(--r-card)",boxShadow:"var(--e-card)",padding:16,'
+    'boxSizing:"border-box"},children:'
+    't.jsxs("div",{style:{background:"var(--success-soft)",'
+    'borderRadius:"var(--r-card)",padding:16,display:"flex",gap:12,'
+    'alignItems:"flex-start"},children:['
+    't.jsx("span",{style:{color:"var(--success)",display:"flex",flex:"none"},'
+    'children:O.check({size:20})}),'
+    't.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:8,flex:1},children:['
+    't.jsx("div",{style:{font:"600 14px/20px var(--font-body)",'
+    'color:"var(--success-dark)"},children:T.card.sentence}),'
+    'T.card.note&&t.jsx("div",{style:{font:"400 14px/20px var(--font-body)",'
+    'color:"var(--ink-900)"},children:T.card.note})]})]})}),'
+    # --- secondary "a few things need a look" row, DS list row ---
+    'T.lookCount>0&&t.jsxs("button",{onClick:()=>f("attnAll"),style:{width:"100%",'
+    'minHeight:56,display:"flex",alignItems:"center",gap:12,'
+    'background:"var(--surface-0)",border:0,borderRadius:"var(--r-card)",'
+    'padding:"12px 16px",cursor:"pointer",textAlign:"left",marginTop:8,'
+    'boxSizing:"border-box"},children:['
+    't.jsx("span",{style:{width:24,height:24,borderRadius:"var(--r-pill)",'
+    'background:"var(--warning-soft)",color:"var(--warning-dark)",'
+    'font:"600 12px/16px var(--font-body)",display:"flex",alignItems:"center",'
+    'justifyContent:"center",flex:"none"},children:T.lookCount}),'
+    't.jsx("span",{style:{flex:1,font:"400 14px/20px var(--font-body)",'
+    'color:"var(--ink-900)"},children:"A few things need a look"}),'
+    't.jsx("span",{style:{color:"var(--ink-500)",display:"flex"},'
+    'children:O.chevron({size:20})})]}),'
+)
+
+
 # Replace the WHOLE body of the Home scroll area with the Figma hub, so the screen
 # is header -> greeting -> four category cards -> points row, exactly as 139:66569.
 # The scenario nudge card and the "a few things need a look" row belong to the
@@ -103,8 +164,8 @@ e = inner.find(OLD_EMPTY, start)
 if e < 0:
     raise SystemExit("MISS: end of Home body")
 end = e + len(OLD_EMPTY)
-inner = inner[:start] + HUB + inner[end:]
-report.append(("Home body -> Figma hub (cards + points)", "ok"))
+inner = inner[:start] + NOTIF + HUB + inner[end:]
+report.append(("Home body -> scenario card + Figma hub", "ok"))
 
 
 # ── 3. Hero band: the tonal CI pattern the Figma hub sits on ────────────

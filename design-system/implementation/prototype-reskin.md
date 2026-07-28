@@ -184,7 +184,7 @@ Applied by `figma-hub-home.py` (same assert-on-miss approach).
 
 | Change | Detail |
 |---|---|
-| Home body replaced | The scroll area is now the four category cards + points row, nothing else |
+| Home body replaced | The scroll area is now the scenario notification card, then the four category cards + points row |
 | Category cards | Classroom (`category.stories`), Business (`teachingTips`), Community (`activities`), Training (`other`) — 328 × 80, radius 10, 48 dp icon circle, h4 label, chevron, **84 dp pitch** (80 + 4 gap) |
 | Points row | 328 × 80 on `status.success.bg`, 48 dp circle, `h1` value + `h4` unit, progress bar, chevron |
 | Header | Added the avatar button the Figma hub carries (→ Profile) |
@@ -206,17 +206,36 @@ Measured against Figma: cards 328 × 80, radius 10 px, icon circles 48 px, pitch
 The prototype has no Business/Training sections, so those cards route to the nearest
 existing destination. Community and Training both land in Resources for the same reason.
 
-### What this cost
+### The scenario card, rebuilt to Figma
 
-The **scenario nudge card and the "a few things need a look" row are gone** — they are the
-prototype's own home, not the Figma one. Consequence: the **Live / Attendance due / Consent
-imminent / All clear / Month start** chips no longer change anything on Home. They still drive
-Classes and the attendance flow.
+Requested back after the first hub pass. Figma's **`WO5.4.3 Hub notification`**
+([`145:27122`](https://www.figma.com/design/8s2xe3EyBRhrzDFy93NbfN/App-Screens?node-id=145-27122))
+shows exactly how: an **Action Panel "with link"** (`100:7530`, 328 × 145) sits at the top of
+the content frame, directly above the category cards. That is the slot the home spec reserves
+for hub notifications, one at a time (designer note `145:23755`).
 
-Figma does allow this back: [`../screens/home.md`](../screens/home.md) records that hub
-notifications render between the greeting and the category list, one at a time
-(designer note `145:23755`). Re-inserting the nudge card in that slot would restore the
-scenario demo and stay Figma-conformant.
+| Scenario state | Component | Build |
+|---|---|---|
+| Actionable — attendance due, consent imminent, month start | **Action Panel "with link"** | `role.surface` panel, radius 10, `elevation.lg`, padding 16 → `h3` title → full-width primary button with a leading 20 dp icon |
+| Cleared — all clear | **Success alert** (`100:3777`) inside the same panel | `status.success.bg` fill, 20 dp check in `status.success.main`, `helpStrong` title in `status.success.dark`, note in `textDark` |
+| Offline deferral | **Informational alert** (`100:3778`) inside the panel | `status.info.bg`, 20 dp icon, `helpStrong` title in `status.info.dark` |
+| Secondary "a few things need a look" | DS list row | 56 dp, `role.surface`, count chip in `status.alert.bg`/`.dark`, chevron |
+
+**Why the cleared state is nested rather than bare.** A standalone success alert is
+`#E6F1D4` — the same tint as the Training and Points cards directly below it, so it blended
+into them. Keeping every state inside the one white panel preserves Figma's arrangement, where
+the notification is a single distinct slot above the tinted category rows.
+
+**Panel fill is `role.surface`, not `role.background`.** The DS defines the Action Panel as a
+`role.background` panel because in Figma it sits on navy. Here it sits on the `surface-ui`
+content area, so the pairing inverts to stay legible — same component, correct contrast.
+
+The one icon that could not be matched: Figma's button uses a filled circled-arrow
+(`Icon/Solid/arrow-circle-right`). The prototype ships a 15-glyph icon set without it, and the
+DS rule is not to invent components, so the nearest existing glyph (chevron) is used.
+
+Verified: all five scenarios × both roles produce distinct card content, the offline deferral
+renders, and there are no console errors.
 
 ### Scope
 
