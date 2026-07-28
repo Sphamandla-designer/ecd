@@ -23,10 +23,13 @@ documented exceptions below, or it's wrong.
 
 | Exception | Width | Why |
 |---|---|---|
-| Tables | **318 dp** | Tables sit inset inside the content column |
 | Dialog inner content & dialog buttons | **296 dp** | 328 − 2 × 16 dialog padding |
 | Sidebar / menu items | **288 dp** | Inside a 365 dp drawer |
 | `full width` divider | **360 dp** | Deliberately breaks the margin, edge to edge |
+
+> Tables are **not** an exception: they are 328 dp like everything else. The Table frame on the
+> Design System page is 318 dp, but that is its presentation frame — the live instance on the
+> money dashboard (`139:56619`) measures 328 dp across three 109.33 dp columns.
 
 Half-width field pairs are **164 dp** each (not 160 — measured on `100:4175`).
 

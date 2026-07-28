@@ -105,7 +105,9 @@
   --ecd-caption:     400 12px/16px var(--ecd-font-body);
   --ecd-caption-medium: 500 12px/16px var(--ecd-font-body);
   --ecd-overline:    600 12px/16px var(--ecd-font-body);   /* + letter-spacing below */
-  --ecd-overline-tracking: 2.5px;
+  --ecd-table-header:500 12px/16px var(--ecd-font-body);   /* + tracking below */
+  --ecd-overline-tracking: 0.025em;   /* Tailwind tracking-wide */
+  --ecd-table-header-tracking: 0.05em; /* Tailwind tracking-wider */
   --ecd-button:      600 14px/20px var(--ecd-font-heading);
   --ecd-button-small:600 12px/16px var(--ecd-font-heading);
   --ecd-button-fab:  600 16px/22px var(--ecd-font-heading);
@@ -134,7 +136,6 @@
   /* ---------- size ---------- */
   --ecd-frame-width:        360px;
   --ecd-content-width:      328px;
-  --ecd-table-width:        318px;
   --ecd-dialog-width:       328px;
   --ecd-dialog-content:     296px;
   --ecd-half-field:         164px;

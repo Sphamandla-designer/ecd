@@ -23,7 +23,12 @@ never the type system.
 Both are Google Fonts with broad glyph coverage for South African languages. Quicksand's
 rounded terminals carry the warm, child-centred brand tone; Inter carries the dense
 information (amounts, statements, observation questions) that Quicksand handles poorly at
-small sizes. Letter-spacing is **0** across the scale except `overline`.
+small sizes. Letter-spacing is **0** across the scale except `overline` and `tableHeader`.
+
+> The Figma styles are named `tracking-wide` and `tracking-wider`, and `get_variable_defs`
+> reports them as `letterSpacing: 2.5` / `5`. Those are **percentages** (Tailwind `0.025em` /
+> `0.05em`), not pixels — reading them as px makes "NOV 2021" ~50 % too wide and it wraps out
+> of a 109 dp table column.
 
 ---
 
@@ -54,7 +59,8 @@ small sizes. Letter-spacing is **0** across the scale except `overline`.
 | `helpStrong` | `Text SM Semibold` | 14 / 20 | 600 | status `Dark` | **Alert / banner titles** |
 | `caption` | `Text XS Regular` | 12 / 16 | 400 | `textMid` | Fine print |
 | `captionMedium` | `Text XS Medium` | 12 / 16 | 500 | varies | Badge labels, slide-over action captions, offline pill |
-| `overline` | `text-xs/…/uppercase` | 12 / 16, **letter-spacing 2.5**, UPPERCASE | 600 | `textDark` | `LEVEL 2` badges, subcategory headers |
+| `overline` | `text-xs/…/tracking-wide/uppercase` | 12 / 16, **letter-spacing 0.025em**, UPPERCASE | 600 | `textDark` | `LEVEL 2` badges, subcategory headers |
+| `tableHeader` | `text-xs/…/tracking-wider/uppercase` | 12 / 16, **letter-spacing 0.05em**, UPPERCASE | 500 | `textDark` | Table column headers ("NOV 2021") |
 
 ### 2.3 Interactive — Quicksand
 
@@ -134,7 +140,7 @@ auto-wrap. Content is translated per-tenant and per-resource (see the language s
 pattern) — never bake copy into an image.
 
 **Casing.** Sentence case everywhere, buttons included ("Complete your profile"). Only
-`overline` is uppercase, and it carries the 2.5 letter-spacing. Never uppercase a button label
+`overline` and `tableHeader` are uppercase, and they carry the tracking noted above. Never uppercase a button label
 or heading — it hurts legibility for low-literacy users.
 
 **Minimum sizes.** Body ≥ 16 sp, help ≥ 14 sp. 12 sp exists only for badges and captions, never

@@ -338,9 +338,24 @@ Rows sit in a `Children list` with a **4 dp gap** → pitch = height + 4.
 
 ### 8.1 Table — frame `100:4818`
 
-"Simple striped/Mobile", content width **318 dp** (narrower than the 328 grid). Built from
-**vertical column frames**, not rows. Striping alternates `role.surface` / `role.background`.
-Instances: `100:4819` (318 × 197, 3 cols 159/159/90) and `100:4890` (318 × 345, cols 185/116/110).
+"Simple striped/Mobile". Built from **vertical column frames**, not rows. Striping alternates
+`role.surface` / `role.background`.
+
+**Width follows the content column — 328 dp in real screens.** The Table frame on the Design
+System page is 318 dp wide, but that is the presentation frame, not a rule: the live instance on
+the money dashboard (`139:56619`) is **328 dp**, three equal columns of 109.33 dp.
+
+| Part | Height |
+|---|---|
+| Header cell | **40 dp** — label `typescale.tableHeader` (Inter Medium 12/16, **letter-spacing 5**, uppercase) |
+| Header divider | 1 dp, `role.action` — the cyan rule under the header is what separates it from the body |
+| Body cell | **52 dp**, text inset 24 dp left / 16 dp top |
+
+Body rows alternate `role.surface` / `role.background`. A final emphasis row (e.g. "Balance")
+uses `typescale.h4` with the value coloured by outcome — `status.success.dark` for a positive
+figure, `role.textDark` for zero, `status.error.dark` for negative.
+
+DS-page instances: `100:4819` (318 × 197, cols 159/159/90) and `100:4890` (318 × 345, cols 185/116/110).
 
 ### 8.2 Divider — frame `100:4956`
 

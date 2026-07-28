@@ -207,6 +207,48 @@ textarea.input{height:var(--ecd-textarea-h);padding:12px 16px;resize:vertical}
 .dots i.on{width:20px;background:var(--ecd-select)}
 .spot{position:absolute;border:2px solid #fff;border-radius:var(--ecd-radius-xxl);
   box-shadow:0 0 0 9999px var(--ecd-scrim)}
+
+/* ---- home hub ---- */
+.navheader{height:var(--ecd-app-bar-h);background:var(--ecd-app-bar);color:var(--ecd-on-app-bar);
+  display:flex;align-items:center;gap:10px;padding:0 16px}
+.menubtn{width:36px;height:36px;border-radius:var(--ecd-radius-md);
+  background:var(--ecd-app-bar-muted);display:grid;place-items:center;font-size:16px}
+.logo{display:inline-flex;align-items:center;gap:6px}
+.logo b{font:600 15px/1 var(--ecd-font-heading);font-style:italic}
+.logomark{width:22px;height:22px;border-radius:50%;
+  background:conic-gradient(var(--ecd-select) 0 25%,var(--ecd-action) 0 50%,
+    var(--ecd-category-teaching-tips-main) 0 75%,var(--ecd-category-other-main) 0)}
+.navico{font-size:17px;position:relative}
+.navico.bell i{position:absolute;top:-6px;right:-7px;min-width:16px;height:16px;border-radius:8px;
+  background:var(--ecd-status-error-main);color:#fff;font:var(--ecd-caption);font-style:normal;
+  display:grid;place-items:center;padding:0 4px}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--ecd-action);
+  display:grid;place-items:center;font-size:15px}
+.overlay80{height:80px;background:var(--ecd-app-bar);position:relative;overflow:hidden;
+  display:flex;align-items:center;padding:0 16px}
+.overlay80::before{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(circle at 12% 70%,#ffffff14 0 16px,transparent 17px),
+    radial-gradient(circle at 62% 25%,#ffffff10 0 22px,transparent 23px),
+    radial-gradient(circle at 88% 75%,#ffffff12 0 18px,transparent 19px),
+    radial-gradient(circle at 40% 85%,#ffffff0d 0 12px,transparent 13px)}
+.welcome{font:var(--ecd-h1);color:var(--ecd-on-app-bar);position:relative}
+.row.hubrow{min-height:80px}
+.pbar{display:block;height:8px;border-radius:var(--ecd-radius-full);
+  background:var(--ecd-line);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--ecd-category-other-main)}
+
+/* ---- money dashboard ---- */
+.sumcard{height:72px;border-radius:var(--ecd-radius-md);background:var(--ecd-app-bar-muted);
+  color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.sumcard .lbl{font:var(--ecd-h4)}
+.sumcard .amt{font:var(--ecd-h1)}
+.mtable{width:100%;border-collapse:collapse;table-layout:fixed}
+.mtable th{height:40px;font:var(--ecd-caption-medium);letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;
+  color:var(--ecd-text-dark);text-align:left;padding:0 8px;vertical-align:middle}
+.mtable thead tr{border-bottom:1px solid var(--ecd-action)}
+.mtable td{height:52px;font:var(--ecd-help);color:var(--ecd-text-dark);padding:0 8px;white-space:nowrap}
+.mtable tr.zebra{background:var(--ecd-background)}
+.mtable tr.tot td{font:var(--ecd-h4)}
 @media (max-width:820px){.phone{flex:0 0 100%;width:100%}}
 </style>
 </head>
@@ -388,6 +430,127 @@ textarea.input{height:var(--ecd-textarea-h);padding:12px 16px;resize:vertical}
     <span class="badge type">Activities</span>
     <span class="badge offline">offline</span>
     <span class="badge solid">0/5</span>
+  </div>
+</section>
+
+<!-- ============ EXTRACTED SCREENS ============ -->
+<section>
+  <h2>Extracted screens — 1:1 reproductions</h2>
+  <p class="lede">Three real screens rebuilt from their Figma geometry, at 360 dp. Every measurement
+     is the one recorded in the extraction docs; every colour is a token. Compare against the
+     Figma nodes linked under each.</p>
+
+  <div class="phones">
+
+    <!-- HOME HUB — 139:66569 -->
+    <div><span class="cap">Home / Hub · <code>139:66569</code></span>
+    <div class="phone"><div class="pw">
+      <div class="navheader">
+        <span class="menubtn">☰</span>
+        <span class="logo"><span class="logomark"></span><b>ECD Connect</b></span>
+        <span style="flex:1"></span>
+        <span class="navico">🗓</span>
+        <span class="navico bell">🔔<i>1</i></span>
+        <span class="avatar">👤</span>
+      </div>
+      <div class="overlay80"><div class="welcome">Welcome!</div></div>
+      <div style="padding:0 16px;margin-top:24px;display:flex;flex-direction:column;gap:4px">
+        <div class="row hubrow" style="background:var(--ecd-category-stories-tint)">
+          <div class="circ" style="background:var(--ecd-category-stories-main)">🎓</div>
+          <div class="txt"><b>Classroom</b></div><span class="chev">›</span></div>
+        <div class="row hubrow" style="background:var(--ecd-category-teaching-tips-tint)">
+          <div class="circ" style="background:var(--ecd-category-teaching-tips-main)">🐷</div>
+          <div class="txt"><b>Business</b></div><span class="chev">›</span></div>
+        <div class="row hubrow" style="background:var(--ecd-category-activities-tint)">
+          <div class="circ" style="background:var(--ecd-category-activities-main)">👥</div>
+          <div class="txt"><b>Community</b></div><span class="chev">›</span></div>
+        <div class="row hubrow" style="background:var(--ecd-category-other-tint)">
+          <div class="circ" style="background:var(--ecd-category-other-main)">📖</div>
+          <div class="txt"><b>Training</b></div><span class="chev">›</span></div>
+      </div>
+      <div style="padding:16px">
+        <div class="row hubrow" style="background:var(--ecd-status-success-bg)">
+          <div class="circ" style="background:var(--ecd-category-other-main)">🙂</div>
+          <div class="txt" style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;align-items:baseline;gap:6px">
+              <b style="font:var(--ecd-h1)">175</b>
+              <span style="font:var(--ecd-h4);color:var(--ecd-text-dark)">Points</span></span>
+            <span class="pbar"><i style="width:70%"></i></span>
+          </div>
+          <span class="chev">›</span></div>
+      </div>
+    </div></div>
+    <div class="note">Nav header 64 · overlay 80 · H1 at y88 · 4 rows 328×80 at 84 pitch · points row y516</div></div>
+
+    <!-- MONEY DASHBOARD — 139:56615 -->
+    <div><span class="cap">Money dashboard · <code>139:56615</code></span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl" style="text-align:center">
+        <b>Business</b><span>Monday, 30 December</span></div><div class="help">?</div></div>
+      <div class="tabs" style="background:var(--ecd-background)">
+        <button style="flex:1">Staff</button>
+        <button style="flex:1" aria-selected="true">Money</button>
+        <button style="flex:1">Resources</button></div>
+      <div style="padding:30px 16px 0">
+        <div class="sumcard">
+          <span class="lbl">December<br>balance</span><span class="amt">R 0.00</span></div>
+      </div>
+      <div style="padding:20px 16px 0">
+        <table class="mtable">
+          <thead><tr><th></th><th>Nov 2021</th><th>Dec 2021</th></tr></thead>
+          <tbody>
+            <tr><td>Income</td><td>R 2 000.00</td><td>R 0.00</td></tr>
+            <tr class="zebra"><td>Expenses</td><td>R 2 700.00</td><td>R 0.00</td></tr>
+            <tr class="tot"><td>Balance</td>
+              <td style="color:var(--ecd-status-success-dark)">+ R 300.10</td>
+              <td>+ R 0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:16px">
+        <button class="btn btn-primary" style="width:100%">🧾 See all statements</button></div>
+      <div style="padding:14px 16px 16px;display:flex;justify-content:flex-end">
+        <button class="fab">＋ Add income or expense</button></div>
+    </div></div>
+    <div class="note">Balance card 328×72 at y150 · table 328×197 (3 × 109.33) · CTA y455 · FAB 247×48 at y562</div></div>
+
+    <!-- RESOURCE LIST — 139:63445 -->
+    <div><span class="cap">Classroom resources · <code>139:63445</code></span>
+    <div class="phone"><div class="pw">
+      <div class="appbar"><span>←</span><div class="ttl" style="text-align:center">
+        <b>Classroom resources</b></div><span style="font-size:20px">✕</span></div>
+      <div class="filterbar">
+        <button class="searchbtn">⌕</button>
+        <button class="trigger">Type ⌄</button>
+        <button class="trigger">Data free ⌄</button>
+        <button class="trigger">Liked ⌄</button>
+      </div>
+      <div class="body tight">
+        <div class="row" style="min-height:118px;align-items:flex-start">
+          <div class="txt"><b>Lorem ipsum dolor aaaaaa</b>
+            <span>Lorem ipsum dolor sit amet, con lorem ipsum, lore</span></div>
+          <span class="badge solid">👍 15</span><span class="chev">›</span></div>
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Lorem ipsum dolor aaa</b>
+            <span>Lorem ipsum dolor sit amet, con lorem ipsum, lore</span></div>
+          <span class="badge solid">👍 15</span><span class="chev">›</span></div>
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Lorem ipsum dolor aaa</b>
+            <span>Lorem ipsum dolor sit amet, con lorem ipsum, lore</span></div>
+          <span class="badge solid">👍 15</span><span class="chev">›</span></div>
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Lorem ipsum dolor aaa</b>
+            <span>Lorem ipsum dolor sit amet, con lorem ipsum, lore</span></div>
+          <span class="badge solid">👍 15</span><span class="chev">›</span></div>
+        <div class="row" style="min-height:98px;align-items:flex-start">
+          <div class="txt"><b>Lorem ipsum dolor aaa</b>
+            <span>Lorem ipsum dolor sit amet, con lorem ipsum, lore</span></div>
+          <span class="badge info">👍 0</span><span class="chev">›</span></div>
+      </div>
+      <div class="footerbar"><button class="btn btn-secondary">👁 See more resources</button></div>
+    </div></div>
+    <div class="note">Filter bar 56 · first card 118, rest 98 · 4 dp gaps · footer secondary</div></div>
+
   </div>
 </section>
 
