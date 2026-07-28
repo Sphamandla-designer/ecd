@@ -96,3 +96,31 @@ screenshot of the same screen. Left here so nobody re-derives them.
   items in the seeded data.
 - The onboarding walker is click-driven, so step counts can drift by one between runs.
   103 screens is the current yield against 100 in `annotations.json`.
+
+---
+
+## Build status
+
+60 of 103 screens are on the Figma page. The remaining four batches are generated
+and committed in this folder — each is a complete, self-contained `use_figma`
+script; run them in any order.
+
+| Batch | Screens | Covers | Status |
+|---|---|---|---|
+| `out-b1.js` | 001–016 | Onboarding | **built** |
+| `out-b2.js` | 017–029 | Onboarding, first Home states | **built** |
+| `out-b3.js` | 030–037 | Home state matrix | **built** |
+| `out-b4.js` | 038–045 | Home state matrix | **built** |
+| `out-b5.js` | 046–053 | Home state matrix | pending |
+| `out-b6.js` | 054–065 | Home states, Classes & children, Attendance | pending |
+| `out-b7.js` | 066–080 | Attendance, Consent, Staff, Income | **built** |
+| `out-b8.js` | 081–097 | Income, Resources, Profile & exports | pending |
+| `out-b9.js` | 098–103 | Exports, Profile | pending |
+
+The page already holds the lookup tables and the three logo images
+(`setSharedPluginData` keys `elpx/tables`, `elpx/images`, `elpx/sections`,
+`elpx/raw`), so the pending batches need no setup — paste the file contents into
+`use_figma` against file `1b2PEGtGAWKqxN61KsVXy5` and they will land in the right
+area grid.
+
+Built so far: 2,630 layers — 727 text nodes, 549 vectors, 34 image fills.
