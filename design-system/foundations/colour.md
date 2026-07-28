@@ -197,13 +197,18 @@ tinted backgrounds, `success.dark` measures **3.3:1** and `alert.dark` **3.8:1**
 Fix: keep `Main` and `BG` Figma-literal so fills and icons are untouched, and darken the
 **title tone only**, staying on the same hue:
 
-| Role | Figma-literal | Accessible tone | Ratio |
+| Role | Figma-literal `dark` | Accessible `title` tone | Ratio |
 |---|---|---|---|
-| Success title | `#5A8F02` | `#487202` | 4.9:1 |
-| Alert title | `#E43802` | `#C23002` | 5.0:1 |
+| Success title | `#5A8F02` (3.3:1) | `#487202` | 4.7:1 |
+| Alert title | `#E43802` (3.8:1) | `#C23002` | 4.6:1 |
 
-This is what the ELP prototype ships (see `implementation/prototype-reskin.md`). Raise the
-underlying values with the designer so Figma and code converge.
+**Resolved.** These are now first-class tokens rather than a prototype-only patch:
+`status.<tone>.title` in `tokens.json`, `--ecd-status-<tone>-title` in `tokens.css`, and
+`status/<tone>/title` in the Figma library (file `1b2PEGtGAWKqxN61KsVXy5`, collection
+`2 · Colour`). For `error` and `info` the token aliases `dark`, which already passes, so
+components can bind `title` unconditionally and always be AA. `Main` and `BG` stay
+Figma-literal — only the small bold text tone moved. `title` is text-only: never a fill,
+border or icon.
 
 **2. Disabled primary buttons are white-on-`#D2F1F9` (1.3:1).** Effectively invisible text.
 Disabled buttons must therefore **never be the only indication** that an action is unavailable —

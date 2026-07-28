@@ -37,7 +37,7 @@ role.background #EFF6FA           screen background AND input fill
 | **Android dev, wiring it up** | [implementation/android-compose.md](implementation/android-compose.md) |
 | **Web dev** | [tokens/tokens.css](tokens/tokens.css) + [components.md](components.md) |
 | **Back-end dev** | [implementation/backend-contract.md](implementation/backend-contract.md) |
-| **Designer** | [foundations/](foundations/) + [extraction/](extraction/) (raw Figma readout) |
+| **Designer** | **[figma-library.md](figma-library.md)** → the live Figma library → [foundations/](foundations/) + [extraction/](extraction/) (raw Figma readout) |
 | **Adding a tenant** | [patterns/white-label-theming.md](patterns/white-label-theming.md) |
 | **Anyone — just want to see it** | **[preview/index.html](preview/index.html)** — open in a browser |
 

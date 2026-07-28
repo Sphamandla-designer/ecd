@@ -72,6 +72,17 @@
   --ecd-status-info-dark:     #1752AB;
   --ecd-status-info-bg:       #EBF3FF;
 
+  /* Title tone for small bold text on a status background.
+     Alert/banner titles are 14px SemiBold — below the WCAG large-text
+     threshold of 18.66px bold — so they need 4.5:1, not 3:1.
+     *-dark passes for error (5.72:1) and info (6.94:1) but fails for
+     alert (3.82:1) and success (3.34:1), so those two get a darker tone.
+     Text only. Never use these as a fill, border or icon colour. */
+  --ecd-status-error-title:   var(--ecd-status-error-dark);   /* 5.72:1 */
+  --ecd-status-info-title:    var(--ecd-status-info-dark);    /* 6.94:1 */
+  --ecd-status-alert-title:   #C23002;                        /* 4.62:1 */
+  --ecd-status-success-title: #487202;                        /* 4.71:1 */
+
   /* ---------- developmental domains (NEVER themed) ---------- */
   --ecd-domain-happy-and-secure:   #D3276C;  /* social & emotional */
   --ecd-domain-speaking-listening: #9E4D8E;  /* language */

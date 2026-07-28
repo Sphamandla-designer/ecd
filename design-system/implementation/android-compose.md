@@ -45,6 +45,15 @@ object Status {
     val alertMain = Color(0xFFFF5C00); val alertDark = Color(0xFFE43802); val alertBg = Color(0xFFFFEEE4)
     val successMain = Color(0xFF83BB26); val successDark = Color(0xFF5A8F02); val successBg = Color(0xFFE6F1D4)
     val infoMain = Color(0xFF1D67D5); val infoDark = Color(0xFF1752AB); val infoBg = Color(0xFFEBF3FF)
+
+    // Title tone for small bold text on a *Bg fill. Alert/banner titles are 14 sp
+    // SemiBold — below the WCAG large-text threshold — so they need 4.5:1.
+    // *Dark clears it for error and info but not for alert (3.8:1) or success (3.3:1).
+    // Text only: never a fill, border or icon.
+    val errorTitle = errorDark                  // 5.72:1
+    val infoTitle = infoDark                    // 6.94:1
+    val alertTitle = Color(0xFFC23002)          // 4.62:1
+    val successTitle = Color(0xFF487202)        // 4.71:1
 }
 
 /** Developmental domains — never themed. */
