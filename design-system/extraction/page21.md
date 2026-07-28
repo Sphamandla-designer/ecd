@@ -582,12 +582,24 @@ Base: `https://www.figma.com/design/8s2xe3EyBRhrzDFy93NbfN/App-Screens?node-id=`
 
 ---
 
-## 9. Extraction gaps
+## 9. Issues found (worth raising with the designer)
+
+| # | Issue | Node(s) |
+|---|---|---|
+| 1 | **Comply info page app bar reads "DBE registration - Apply"** — should say "Comply" | `139:66863` |
+| 2 | **Exit modal gives the destructive action primary emphasis** — "Exit" is the solid cyan button, "Continue editing" is secondary | `139:67151` |
+| 3 | **Resource list copy is placeholder** — six rows all read "Lorem ipsum" | `139:67144` |
+| 4 | **Dashboard tab strip is offset by −6.5 px** vs the Practitioners screen (tabs start at x −6.5 instead of 0) | `139:66388` vs `139:66595` |
+| 5 | **Select-card pitch is inconsistent** on step 13 — first card 54 h with 58/60/60 pitch vs the 56 h / 60 px standard | `139:67181`–`67184` |
+| 6 | **Misleading layer/variant names throughout** — registration screens named `Money dashboard`, questionnaire steps named `Child registration`, an onboarding prompt using `dialog card - error`, enabled rows using `action xl icon disabled`, a Community tab named `Club tab - purple` | many |
+| 7 | Frame names use two different step-numbering schemes (`step 4/7/9/10–13` in layer names vs "Step 1/2/3 of 3" in the rendered UI) — hard to map without opening each frame | `139:66461`, `139:66535`, `139:66554`, `139:66907`, `139:66921`, `139:67154`, `139:67174` |
+
+## 10. Extraction gaps
 
 | Gap | Reason | How to close |
 |---|---|---|
-| No PNGs on disk | Egress proxy 403s CONNECT to `www.figma.com` | Run extraction where figma.com is allow-listed, or capture from the Figma desktop app |
-| No variable definitions | Figma MCP seat tool-call limit reached | Re-run the two `get_variable_defs` calls in §7 after quota reset |
-| Colour values are visual approximations | Follows from the above | Replace with real variable tokens once §7 is filled in |
-| Component internals (`dialog card - overlay`, `Select card`, `Informational`, `Title with subtitle`) not expanded | They are library instances; metadata stops at the instance boundary | `get_design_context` / `get_metadata` on the component master nodes |
-| Screens rendered visually: `139:66377`, `139:66449`, `139:66469`, `139:66683`, `139:67019` (5) | Remaining budget spent on rate-limit retries | Render `139:66535`, `139:66744`, `139:66863`, `139:67151`, `139:67268`, `139:67111` next |
+| No PNGs on disk | Egress proxy returns **403 on CONNECT to `www.figma.com`**, so `curl` of Figma asset URLs always fails | Run extraction where figma.com is allow-listed, or capture from the Figma desktop app. Screens were instead rendered inline (base64) and transcribed — see §4/§5 |
+| 11 of 27 screens rendered visually | Figma MCP seat tool-call limit (30 s back-off + retries used) | Rendered: `139:66377`, `139:66449`, `139:66469`, `139:66535`, `139:66683`, `139:66744`, `139:66863`, `139:67019`, `139:67111`, `139:67151`, `139:67268`. Still to render: `139:66461`, `139:66554`, `139:66582`, `139:66623`, `139:66791`, `139:66907`, `139:66921`, `139:66935`, `139:67154`, `139:67174`, `139:67188`, and the `step3` variants `139:66485`/`66502`/`66519` |
+| Un-rendered screens are described from **geometry only** | Follows from the above | Their layout tables are accurate (from XML); their *copy* is unverified |
+| Component internals (`dialog card - overlay`, `Select card`, `Informational`, `Title with subtitle`, `Next buttons/Label & single-select`) not expanded | They are library instances; metadata stops at the instance boundary | `get_design_context` / `get_metadata` on the component master nodes |
+| Variables pulled from 2 nodes only | Per task scope | Run `get_variable_defs` on `139:66744` (info page) and `139:67111` (resources tab) for any additional tokens |

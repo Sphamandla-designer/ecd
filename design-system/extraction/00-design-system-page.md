@@ -634,3 +634,319 @@ Badge tokens: `Green Accent 1`/`Success Main #83BB26`, `Alert Main #FF5C00`, `Er
 
 **Avatar size scale: 48 dp (sm) / 120 dp / 125 dp (with camera badge).**
 
+---
+
+## 11. Iconography
+
+### 11.1 Icon frame `100:5163` "Icons" — 1258 × 1345 dp
+
+Two complete Heroicons-derived families plus a small set of bespoke icons.
+
+**Family A — `Icon/Outline/*` — every icon 24 × 24 dp** (stroke style). 200 icons, nodes `100:5164` → `100:5839` (step 3) and `100:6509`–`100:6518`:
+
+`mail`, `location-marker`, `color-swatch`, `menu`, `question-mark-circle`, `camera`, `mail-open`, `arrow-up`, `x-circle`, `dots-horizontal`, `currency-dollar`, `chat`, `bell`, `user`, `inbox`, `menu-alt-1`, `exclamation`, `globe-alt`, `document-duplicate`, `arrow-right`, `check-circle`, `dots-vertical`, `currency-yen`, `receipt-refund`, `home`, `users`, `inbox-in`, `menu-alt-2`, `duplicate`, `credit-card`, `arrow-down`, `exclamation-circle`, `upload`, `currency-euro`, `ticket`, `briefcase`, `user-group`, `archive`, `menu-alt-3`, `share`, `lock-closed`, `arrow-left`, `plus-circle`, `download`, `currency-pound`, `lock-open`, `shield-check`, `office-building`, `clock`, `menu-alt-4`, `chart-pie`, `heart`, `trending-up`, `arrow-circle-right`, `minus-circle`, `view-list`, `currency-rupee`, `dots-circle-horizontal`, `shield-exclamation`, `scale`, `photograph`, `switch-vertical`, `document`, `globe`, `trending-down`, `arrow-circle-down`, `user-circle`, `view-boards`, `chevron-down`, `hashtag`, `cog`, `pencil-alt`, `tag`, `switch-horizontal`, `document-download`, `volume-up`, `filter`, `arrow-circle-left`, `zoom-in`, `paper-clip`, `chevron-right`, `qrcode`, `check`, `pencil`, `phone`, `x`, `document-add`, `volume-off`, `at-symbol`, `arrow-circle-up`, `zoom-out`, `emoji-happy`, `chevron-up`, `clipboard-check`, `translate`, `eye`, `phone-outgoing`, `plus`, `document-remove`, `adjustments`, `trash`, `sort-ascending`, `search`, `emoji-sad`, `chevron-left`, `clipboard-list`, `cash`, `bookmark`, `phone-incoming`, `refresh`, `calendar`, `link`, `information-circle`, `sort-descending`, `user-add`, `printer`, `selector`, `clipboard`, `cake`, `document-search`, `chip`, `academic-cap`, `variable`, `cube-transparent`, `external-link`, `sun`, `moon`, `clipboard-copy`, `annotation`, `flag`, `collection`, `book-open`, `code`, `lightning-bolt`, `view-grid`, `folder`, `sparkles`, `icon-user-remove`, `arrow-narrow-up/right/down/left`, `template`, `reply`, `light-bulb`, `shopping-cart`, `badge-check`, `cursor-click`, `key`, `microphone`, `document-report`, `logout`, `speakerphone`, `ban`, `chat-alt`, `bookmark-alt`, `newspaper`, `sm-view-grid-add`, `play`, `pause`, `support`, `chart-bar`, `terminal`, `star`, `chart-square-bar`, `eye-off`, `library`, `desktop-computer`, `chat-alt-2`, `stop`, `fire`, `shopping-bag`, `thumb-up`, `thumb-down`, `hand`, `arrows-expand`, `puzzle`, `folder-download`, `folder-add`, `folder-remove`, `calculator`, `table`, `currency-bangladeshi`, `document-text`, `beaker`, `gift`, `video-camera`, `truck`, `device-tablet`, `map`, `identification`, `rss`, `cloud-upload`, `scissors`, `save`, `paper-airplane`, `backspace`, `music-note`, `film`, `database`, `device-mobile`, `chevron-double-right/down/left/up`, `finger-print`, `cube`, `cloud-download`, `folder-open`, `server`, `save-as`, `wifi`, `phone-missed-call`, `plus-sm`, `minus-sm`, `presentation-chart-line`, `status-online`, `status-offline`, `receipt-tax`, `fast-forward`, `rewind`, `presentation-chart-bar`, `cloud`, `search-circle`, `minus`, `arrow-sm-up/right/down/left`.
+
+**Family B — `Icon/Solid/*` — every icon 20 × 20 dp** (filled style). Nodes `100:5842` → `100:6506` and `100:6521`–`100:6530`. Same name set as Outline plus these solid-only entries: `user-remove`, `icon-currency-dollar`, `md-library`, `view-grid-add`, `Moneyout` (`100:6235`), `Moneyin` (`100:6239`).
+
+**Icon rendering convention (from design context):** inside a 24 dp Outline frame the glyph occupies `inset 15%`; inside a 20 dp Solid frame `inset 10%` (some, e.g. `x`, use `inset 20%`; `eye` uses `inset 15% 2.29%`; `arrow-sm-*` uses `inset 25% 20%`).
+
+**Bespoke / third-party icons in the same frame:**
+
+| Icon | Node | Size (dp) |
+|---|---|---|
+| Whatsapp | `100:6533` | 22 × 22 |
+| circle | `100:6536` | 24 × 24 |
+| Triangle | `100:6538` | 24 × 24 |
+| Mom | `100:6540` | 16 × 16 |
+| Baby | `100:6544` | 16 × 16 |
+| Square | `100:6548` | 24 × 24 |
+| man 1 | `100:6551` | 24 × 24 |
+| foot-print (2) 1 | `100:6558` | 24 × 24 |
+| puzzle (1) 1 | `100:6566` | 24 × 24 |
+| greeting 1 | `100:6573` | 24 × 24 |
+| trophy (4) 1 | `100:6580` | 20 × 20 |
+| piggy-bank 1 | `100:6587` | 24 × 24 |
+| book 1 | `100:6598` | 20 × 20 |
+| kindergarten 1 | `100:6601` | 20 × 20 |
+| crown (2) 1 | `100:6608` | 20 × 20 |
+| YouTube-icon-logo | `100:6610` | 19 × 14 |
+| man-dancing- 1 | `100:9408` | 28 × 28 |
+
+**Icon size scale in use: 16 dp (small buttons, inline) · 20 dp (Solid family, input affixes, alert icons) · 22 dp (dismiss X, chat) · 24 dp (Outline family, list chevrons, header actions) · 38 dp (chat-tip circle) · 48 dp (icon circles, immediate alerts, dialog icons).**
+
+### 11.2 Developmental-domain icons — 48 × 48 dp each
+
+| Domain | Node | Paired inner-shadow token |
+|---|---|---|
+| Social & emotional | `100:9047` | `Happy and secure` `#D3276C` (pink) |
+| cogntive *(sic)* | `100:9050` | `Discovery problem` `#6974AF` (indigo) |
+| physical | `100:9053` | `Developing bodies` `#359AD1` (blue) |
+| language | `100:9056` | `Speaking listening` `#9E4D8E` (purple) |
+
+These same 48 dp icons appear as the leading mark in `Grid Lists/Card` (`100:7324` "Exploring & finding out", `100:7328` "Songs, rhymes & sounds").
+
+### 11.3 icon_file
+
+`100:8947` "icon_file" — **177.2 × 177.2 dp**; inner `Group` `100:8948`/`100:8949` 173.6 dp, `Vector` `100:8950` 173.6 dp, `Capa_1` `100:8951` 118 × 107.4 dp. App-icon master artwork.
+
+---
+
+## 12. Illustration & brand
+
+### 12.1 Illustrated_Icons — frame `100:1214` (194.45 × 4656.94 dp)
+
+23 illustrated spot icons, each **193.56 × 193.57 dp** unless noted:
+
+| Illustration | Node | Size |
+|---|---|---|
+| ECD_Connect_blocks 1 | `100:1215` | 193.56 |
+| ECD_Connect_SpeechBubble | `100:1224` | 193.56 |
+| ECD_Connect_Child2 | `100:1225` | 173.6 |
+| ECD_Connect_Child | `100:1231` | 193.56 |
+| ECD_Connect_Documents | `100:1334` | 193.56 |
+| ECD_Connect_alien 1 | `100:1341` | 193.56 |
+| ECD_Connect_puzzle 1 | `100:1375` | 193.56 |
+| ECD_Connect_shakers 1 | `100:1386` | 193.56 |
+| ECD_Connect_puppet_lion 1 | `100:1425` | 193.56 |
+| ECD_Connect_drum 1 | `100:1507` | 193.56 |
+| ECD_Connect_elephant | `100:1532` | 194.45 × 193.56 |
+| ECD_Connect_phone | `100:1616` | 193.56 |
+| ECD_Connect_djembe 1 | `100:1638` | 193.56 |
+| ECD_Connect_ball 1 | `100:1656` | 193.56 |
+| ECD_Connect_duck 1 | `100:1684` | 193.56 |
+| ECD_Connect_piggybank 1 | `100:1701` | 193.56 |
+| ECD_Connect_lightbulb 1 | `100:1725` | 193.56 |
+| ECD_Connect_crayons 1 | `100:1775` | 193.56 |
+| ECD_Connect_balloons 1 | `100:1797` | 193.56 × 198.03 |
+| ECD_Connect_money 1 | `100:1821` | 193.56 |
+| ECD_Connect_rockinghorse 1 | `100:1878` | 193.56 |
+| ECD_Connect_thumbsup 1 | `100:1901` | 193.56 |
+| ECD_Connect_preschool 1 | `100:1911` | 174 |
+
+Standalone duplicates on canvas: `ECD_Connect_SpeechBubble` instance `100:2041` and frame `100:2061` (both 193.56 dp); `ECD_Connect_phone` instance `100:9428` (193.56 dp).
+
+### 12.2 Emojis — frame `100:2078` (176.48 × 1577.14 dp)
+
+8 illustrated emoji characters:
+
+| Emoji | Node | Size (dp) |
+|---|---|---|
+| ECD_Connect_emoji8 1 | `100:2079` | 176.48 × 183.14 |
+| ECD_Connect_emoji7 1 | `100:2093` | 176.48 × 211.47 |
+| ECD_Connect_emoji6 1 | `100:2107` | 176.48 × 199.55 |
+| ECD_Connect_emoji5 1 | `100:2123` | 176.48 × 190.83 |
+| ECD_Connect_emoji4 1 | `100:2137` | 172.72 × 172.72 |
+| ECD_Connect_emoji3 1 | `100:2153` | 176.48 × 176.48 |
+| ECD_Connect_emoji2 1 | `100:2168` | 176.48 × 176.48 |
+| ECD_Connect_emoji1 1 | `100:2180` | 176.48 × 176.48 |
+
+### 12.3 Graphics
+
+**Frame `100:2194` "Graphics"** — 628 × 2301.16 dp, 7 large scene illustrations:
+
+| Graphic | Node | Size (dp) |
+|---|---|---|
+| ECD_Connect_kids_boy 1 | `100:2195` | 336.5 × 355.2 |
+| ECD_Connect_kids_play 1 | `100:2291` | 494.4 × 308.0 |
+| ECD_Connect_kids_girl 1 | `100:2459` | 222.3 × 229.7 |
+| ECD_Connect_robots 1 | `100:2530` | 596 × 488 |
+| ECD_Connect_monster 1 | `100:3011` | 199.6 × 144.0 |
+| ECD_Connect_robot1 1 | `100:3126` | 265.1 × 342.5 |
+| Frame | `100:3196` | 180.7 × 353.7 |
+
+**Frame `100:8792` "Graphics"** — 3724 × 1179 dp; single child `Frame 1` `100:8793` (3468.8 × 994.4 dp) — the wide illustration sheet / character line-up board.
+
+### 12.4 Patterns — frame `100:3251` (861.9 × 1331.64 dp)
+
+Brand-identity (CI) pattern tiles built from the five brand hues (magenta `#FF2180`, cyan `#1DBADF`, green `#83BB26`, yellow `#FFD525`, navy `#27385A`):
+
+| Pattern | Node | Size (dp) | Description |
+|---|---|---|---|
+| ECD_Connect_CI_shapes 1 | `100:3252` | 861.9 × 474.1 | Scattered rings, rounded triangles/wedges, squircles and dot-textured blobs in all five hues on white |
+| ECD_Connect_CI_dots 1 | `100:3608` | 674.2 × 510.0 | Confetti of solid circles at mixed sizes |
+| ECD_Connect_CI_rings 1 | `100:3639` | 377.2 × 95.7 | Row of four outline rings (magenta, green, cyan, yellow) |
+| ECD_Connect_CI_lozenges 1 | `100:3646` | 179.3 × 201.9 | Stack of four rounded lozenge bars (magenta, green, cyan, yellow) |
+
+### 12.5 Graphic overlays (five sizes)
+
+Tonal navy pattern overlays used as page/section headers. The Large render shows the `#27385A` field with slightly lighter navy shapes (rings, wedges, squircles, dots) from the CI shapes pattern.
+
+| Overlay | Node | Size (dp) | Height |
+|---|---|---|---|
+| Graphic Overlay (square) | `100:7662` | 360 × 360 | **360 px** |
+| Graphic overlay (banner) | `100:7732` | 360 × 134 | **134 px** |
+| **Graphic overlay Large** | `100:8276` | 360 × 364 | **364 px** |
+| Graphic overlay Large 2 | `100:8367` | 360 × 244 | **244 px** |
+| Graphic overlay Medium | `100:8457` | 360 × 180 | **180 px** |
+| Graphic overlay Small | `100:8548` | 360 × 90 | **90 px** |
+| Graphic overlay Small 80px | `100:8639` | 360 × 80 | **80 px** |
+
+All overlays are full-bleed at the 360 dp frame width.
+
+### 12.6 animoji — frame `100:9059` (4000 × 864 dp)
+
+**116 animoji variants**, component property `Number=1 … Number=116`, every one **128 × 128 dp**. Node IDs run `100:9060` (Number=1) to `100:9405` (Number=116) in steps of 3. These are the character faces used in Tutorial cards (`100:4487` ff.), the Cebisa dialogs (`100:8729`, `100:8965`) and the tutorial dialog (`100:6858`).
+
+### 12.7 Logo & favicon
+
+| Asset | Node | Size (dp) | Notes |
+|---|---|---|---|
+| Logo_Colour (component) | `100:3653` | 120 × 120.003 | Master colour logo mark |
+| Logo_Colour (instance, large) | `100:9424` | 800 × 800 | Export-size instance |
+| favicon | `100:3667` | **512 × 512** | contains `ECD_Connect_logo_small 1` `100:3668` (442 × 442) → `Group` `100:3669`/`100:3670` (429.6 × 429.6) |
+| icon_file | `100:8947` | 177.2 × 177.2 | App-icon artwork (see §11.3) |
+| Logo lock-ups | `100:9413`, `100:9417`, `100:9421`, `100:9425` | 188 × 48 / 271 × 64 | see §9.2 |
+| Group 341 | `100:7044` | 798 × 200 | logo/tab presentation board |
+
+---
+
+## 13. Spacing, layout & elevation observations
+
+**Grid**
+- Design canvas width: **360 dp** (mobile).
+- Standard side margin: **16 dp** → content width **328 dp**. This holds for every component frame (buttons, inputs, alerts, cards, lists, dialogs, action panels).
+- Table content is the one exception at **318 dp**.
+- Menu/sidebar items are **288 dp** wide (within a 365 dp frame).
+- `full width` dividers deliberately break the margin at **360 dp**.
+
+**Padding**
+- Frame padding: `16px` all round (Colour Palette, Alerts, Alert, Input, Select, Cards…); Button frame uses `10px 16px`.
+- Card / alert / panel internal padding: **16 px**.
+- Dialog padding: **24 px top/bottom, 16 px left/right**.
+- Full-width button padding: **10 px vertical, 17 px horizontal** (17 = 16 + 1 to compensate the 2 px border on secondary).
+- Small button padding: **8 px vertical**, 12 px horizontal (no icon) or 9/11 px and 10/8 px (leading/trailing icon).
+- Chip padding: **9 px vertical, 16 px horizontal**.
+- Textarea padding: **12 px vertical, 16 px horizontal**.
+- Input text inset: 16 px (no icon) / 13 px (with trailing icon) / 14 px (bordered focused & error states, because the 2 px border eats 2 px).
+
+**Gaps**
+- 4 px — label→field, validator segments, icon→label in small buttons.
+- 6 px — button-group segments.
+- 7 px — bullet→text in alerts.
+- 8 px — button icon→label, chips, form-group stacks.
+- 12 px — alert icon→content, dialog leading content.
+- 16 px — default frame stack gap, alert/dialog content blocks.
+- 24 px — Button frame item gap.
+
+**Heights**
+- 32 dp small button · 36 dp menu button / nested menu item · 40 dp full-width button, chip, button-group segment, sidebar item, filter trigger · 48 dp input field, FAB, icon circle, avatar sm, list divider unit · 54/56 dp select card, radio row, compact list row · 64 dp headers, tab bar (standard), large-sum row · 72 dp input block · 76–77 dp list title rows, radio with description · 80 dp default list/action row · 90/134/180/244/360/364 dp graphic overlays.
+
+**Radii**
+| Radius | Used by |
+|---|---|
+| 2 px | password-strength segments |
+| 4 px | legacy small button inside "Alert - button" |
+| 6 px | input fields, textarea, select, `Informational 4` alert, button-group container |
+| 10 px | alerts, small buttons, button-group segments, action panels, outline pill |
+| 15 px | **full-width buttons** (primary/secondary/disabled/loading) |
+| 20 px | chips (pill), dialog cards |
+| 24 px | FAB, icon circles, `Modals/Illustration` wrapper |
+| 50 % | avatars, badges, level marks |
+
+**Elevation**
+| Level | Value | Applied to |
+|---|---|---|
+| shadow/sm | `0 1px 2px rgba(0,0,0,0.05)` | chips |
+| /shadow/base | `0 1px 2px #0000000F` + `0 1px 3px #0000001A` | cards (SmartStart set) |
+| /shadow/lg | `0 4px 6px −2px #0000000D` + `0 10px 15px −3px #0000001A` | raised cards |
+| ring + shadow-lg | ring `#CAC5D8` 1 px + the two /shadow/lg layers | dropdown menu surface |
+| button | `0 10px 10px −5px rgba(39,56,90,0.2)` | primary & FAB (`rgba(0,0,0,0.2)` on small primary trailing icon) |
+| dialog | `drop-shadow(0 20px 12.5px rgba(0,0,0,0.1))` + `drop-shadow(0 10px 5px rgba(0,0,0,0.1))` | all dialog cards |
+
+**Colour-system rules observed**
+- **Cyan `#1DBADF` is the action colour** (primary buttons, FAB, focus border, links, CTA icons); hover = `#8EDCEF`; disabled = `#D2F1F9`.
+- **Magenta `#FF2180` is the selection colour** (chips, single-select segments, avatar camera badge, outline pill CTAs); inactive fill = `#FFD3E6`.
+- **Navy `#27385A`** is text + header/overlay surface; **`#EFF6FA`** is the neutral surface for inputs and panels.
+- Status trio always uses Main (icon/border) + Dark (text) + BG (fill).
+
+---
+
+## 14. Figma node deep-link index
+
+Base URL: `https://www.figma.com/design/8s2xe3EyBRhrzDFy93NbfN/App-Screens?node-id=`
+
+| Node ID | What it shows | Deep link |
+|---|---|---|
+| `0:1` | Design System page (root canvas) | …?node-id=0-1 |
+| `100:1102` | Colour Palette — 20 swatch groups | …?node-id=100-1102 |
+| `100:1163` | Text — type scale H1→Help Text | …?node-id=100-1163 |
+| `100:1170` | Link — inline text link | …?node-id=100-1170 |
+| `100:1177` | Alerts — 12 semantic colour swatches | …?node-id=100-1177 |
+| `100:1214` | Illustrated_Icons — 23 spot illustrations | …?node-id=100-1214 |
+| `100:2041` / `100:2061` | ECD_Connect_SpeechBubble (standalone) | …?node-id=100-2041 |
+| `100:2078` | Emojis — 8 illustrated emoji | …?node-id=100-2078 |
+| `100:2194` | Graphics — 7 scene illustrations | …?node-id=100-2194 |
+| `100:3251` | Patterns — 4 CI pattern tiles | …?node-id=100-3251 |
+| `100:3653` | Logo_Colour master (120 dp) | …?node-id=100-3653 |
+| `100:3667` | favicon (512 dp) | …?node-id=100-3667 |
+| `100:3678` | Headers — search + title/subtitle variants | …?node-id=100-3678 |
+| `100:3721` | Alert — 15 alert component variants | …?node-id=100-3721 |
+| `100:3862` | Select — inactive/active/filled/dropdown | …?node-id=100-3862 |
+| `100:3920` | Filter — triggers, panel, items | …?node-id=100-3920 |
+| `100:3961` | Input — all field states + password validators | …?node-id=100-3961 |
+| `100:4371` | Form Photo — filled / empty / dashed | …?node-id=100-4371 |
+| `100:4387` | Cards — dashboard & tutorial cards | …?node-id=100-4387 |
+| `100:4818` | Table — 2 striped mobile tables | …?node-id=100-4818 |
+| `100:4956` | Divider — dashed / full / standard / with text | …?node-id=100-4956 |
+| `100:4971` | Title — page title, alert title with badge | …?node-id=100-4971 |
+| `100:4983` | Button — all variants, chips, button groups, FAB | …?node-id=100-4983 |
+| `100:5163` | Icons — Outline 24 dp + Solid 20 dp families | …?node-id=100-5163 |
+| `100:6610` | YouTube-icon-logo | …?node-id=100-6610 |
+| `100:6612` | List — all list-row variants | …?node-id=100-6612 |
+| `100:6831` | Modal (icon + title + 2 buttons) | …?node-id=100-6831 |
+| `100:6844` | dialog card - overlay (are-you-sure) | …?node-id=100-6844 |
+| `100:6858` | dialog card - tutorial (robot) | …?node-id=100-6858 |
+| `100:6915` | dialog card - celebrate (balloons) | …?node-id=100-6915 |
+| `100:6944` | dialog - simple warning/info page | …?node-id=100-6944 |
+| `100:6960` | Badge — pills, status, level badges | …?node-id=100-6960 |
+| `100:6994` | Nav header (360 × 64) | …?node-id=100-6994 |
+| `100:7044` | Group 341 — tab/logo board | …?node-id=100-7044 |
+| `100:7048` | Card — stats, progress, notes, activity, story | …?node-id=100-7048 |
+| `100:7330` | Checkbox — checkbox, list, select cards | …?node-id=100-7330 |
+| `100:7408` | Navbars/Menu button (36 dp, 4 states) | …?node-id=100-7408 |
+| `100:7417` | Avatars — photo, initials, add-photo | …?node-id=100-7417 |
+| `100:7481` | Slide-overs — bottom sheets, PWA prompt | …?node-id=100-7481 |
+| `100:7529` | Action Panel — with link, statements | …?node-id=100-7529 |
+| `100:7560` | Logo header Dark | …?node-id=100-7560 |
+| `100:7567` | Logo header White | …?node-id=100-7567 |
+| `100:7573` | Logo header Transparent | …?node-id=100-7573 |
+| `100:7580` | Menu items — sidebar navigation | …?node-id=100-7580 |
+| `100:7625` | Radio — radio group rows | …?node-id=100-7625 |
+| `100:7662` | Graphic Overlay 360 × 360 | …?node-id=100-7662 |
+| `100:7732` | Graphic overlay 360 × 134 | …?node-id=100-7732 |
+| `100:7780` | "b" illustration frame (360.1 × 194.2) | …?node-id=100-7780 |
+| `100:8135` | Asset 6 1 (276.7 × 269) | …?node-id=100-8135 |
+| `100:8181` | Asset 7 1 (276.7 × 269) | …?node-id=100-8181 |
+| `100:8228` | Frame (230.8 × 313.3) illustration | …?node-id=100-8228 |
+| `100:8262` / `100:8264` / `100:8267` / `100:8271` | small illustration Groups (76.5 × 57.6, 83.7 × 117.2, 138.9 × 117.2 ×2) | …?node-id=100-8262 |
+| `100:8276` | Graphic overlay Large (364 px) | …?node-id=100-8276 |
+| `100:8367` | Graphic overlay Large 2 (244 px) | …?node-id=100-8367 |
+| `100:8457` | Graphic overlay Medium (180 px) | …?node-id=100-8457 |
+| `100:8548` | Graphic overlay Small (90 px) | …?node-id=100-8548 |
+| `100:8639` | Graphic overlay Small 80px | …?node-id=100-8639 |
+| `100:8729` | Dialog card - Cebisa | …?node-id=100-8729 |
+| `100:8791` | Annotation text (practitioners note) | …?node-id=100-8791 |
+| `100:8792` | Graphics sheet (3724 × 1179) | …?node-id=100-8792 |
+| `100:8947` | icon_file — app-icon artwork | …?node-id=100-8947 |
+| `100:8965` | dialog card - question | …?node-id=100-8965 |
+| `100:9029` | checkbox-card (2 variants) | …?node-id=100-9029 |
+| `100:9047` | Social & emotional domain icon 48 dp | …?node-id=100-9047 |
+| `100:9050` | cognitive domain icon 48 dp | …?node-id=100-9050 |
+| `100:9053` | physical domain icon 48 dp | …?node-id=100-9053 |
+| `100:9056` | language domain icon 48 dp | …?node-id=100-9056 |
+| `100:9059` | animoji — 116 × 128 dp characters | …?node-id=100-9059 |
+| `100:9408` | man-dancing- 1 (28 dp) | …?node-id=100-9408 |
+| `100:9413` / `100:9421` | Logo lock-up 188 × 48 | …?node-id=100-9413 |
+| `100:9417` / `100:9425` | Logo lock-up 271 × 64 | …?node-id=100-9417 |
+| `100:9424` | Logo_Colour instance 800 dp | …?node-id=100-9424 |
+| `100:9428` | ECD_Connect_phone instance | …?node-id=100-9428 |
+
+---
+
+## 15. Gaps & caveats
+
+- **No PNG assets were saved.** The session's egress proxy returns `403` on `CONNECT www.figma.com:443`, so every `curl` of a Figma asset URL fails. All screenshots were viewed inline instead.
+- **Figma MCP rate limit** ("tool call limit for your Full seat") was hit during the run. `get_variable_defs` could not be completed for `100:7417` (Avatars), `100:7580` (Menu items) and `100:3678` (Headers) — their colour tokens are inferred from renders and from the shared token set. Every other listed node's variables were captured.
+- Nodes for which only geometry (from page XML) is documented, with no design-context CSS: `100:4818` Table, `100:3920` Filter, `100:7625` Radio, `100:9029` checkbox-card, `100:7408` Navbars/Menu button, `100:4956` Divider, `100:4971` Title, `100:6994` Nav header. Their dp sizes are exact; individual fills would need one further `get_design_context` call each.
+- The Colour Palette frame prints **names only, no hex codes**; hex values come from `get_design_context` fills and published variables, which is more precise than reading pixels.
+- Design-file naming inconsistencies preserved verbatim: "EDC H2" (should be ECD H2), "cogntive" (cognitive), and three palette rows mislabelled "Secondary/Accent 2" that are actually the Tertiary ramp.
