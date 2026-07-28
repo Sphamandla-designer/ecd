@@ -1,0 +1,173 @@
+# ELP prototype — design-system re-skin
+
+Applying the ECD Connect 2.0 design system to `ELP App Prototype (standalone).html`.
+
+**Scope: visual layer only.** No screen, flow, component, interaction, copy or piece of logic
+was changed. The commit before this one holds the prototype exactly as received, so the diff
+is the whole story.
+
+Rebuild command:
+
+```bash
+python3 design-system/implementation/apply-ds-to-prototype.py \
+        "ELP App Prototype (standalone).html" out.html
+```
+
+The script asserts every substitution — a pattern that no longer matches fails the build
+rather than silently skipping.
+
+---
+
+## Why this was a small diff
+
+The prototype was already built against an early read of the same Figma file and is
+**thoroughly tokenised**: 56 CSS custom properties, `var(--token)` used 1131 times across the
+React code, and only 3 hard-coded hex values in the whole stylesheet. So the re-skin is
+almost entirely a matter of re-pointing token values — which flows through every screen at
+once without touching markup.
+
+Structure of the file: a bundler wrapper whose line 400 is a JSON-encoded string containing the
+real single-page app. The script decodes it, edits, and re-encodes.
+
+> **Re-encoding gotcha:** the original escapes every `/` as `/` so that a literal
+> `</script>` inside the string cannot terminate the host `<script>` element. `json.dumps`
+> does not do this. Miss it and the app silently renders nothing. The script reproduces it.
+
+---
+
+## What changed
+
+### 1. Tokens (`:root`)
+
+| Token | Was | Now | Why |
+|---|---|---|---|
+| `--line`, `--doc-line` | `#e3e7ec` | `#d4d7de` | `role.line` = `palette.primaryAccent2` |
+| `--line-soft` | `#edf1f5` | `rgba(212,215,222,.55)` | derived from the DS line instead of an off-system grey |
+| `--warning` | `#f7a600` | `#ff5c00` | `status.alert.main` |
+| `--warning-soft` | `#fdf3e0` | `#ffeee4` | `status.alert.bg` |
+| `--warning-dark` | `#8f5b08` | `#c23002` | `status.alert.dark` hue, darkened for AA — see §4 |
+| `--success-dark` | `#4a7a16` | `#487202` | `status.success.dark` hue, darkened for AA — see §4 |
+| `--ink-black` | `#121212` | `#27385a` | on-system `textDark` (token was unused) |
+| `--ss-purple-soft` | `#efebf8` | `#d7d1e6` | DS SmartStart `primaryAccent2` |
+| `--hero` (smartstart) | `#3d2b6e` | `#583f99` | DS SmartStart `primary` |
+| `--r-semi` | `12px` | `10px` | 12 is not on the DS radius scale (2/4/6/10/15/20/24) |
+| `--e-card`, `--shadow-card` | `0 10px 10px -5px …` | `elevation.lg` | DS two-layer card shadow |
+| `--e-dialog`, `--shadow-dialog` | `0 20px 25px -5px …` | `elevation.dialog` | DS dialog shadow |
+
+**Added** (previously missing, now available to the whole app): `--action-hover`,
+`--action-disabled`, `--pink-mid`, `--green-mid`, `--cyan-mid`, `--yellow-mid`, the four
+`--domain-*` colours, and `--focus-ring`.
+
+Already correct and left alone: navy, pink, green, cyan, yellow and their softs, `--ink-900/500/300`,
+`--surface-0`, `--surface-ui`, `--scrim`, error and info triplets, `--r-input/card/btn/dialog/pill`,
+`--e-btn`, both font families.
+
+### 2. Typography
+
+Utility classes moved onto the DS scale:
+
+| Class | Was | Now |
+|---|---|---|
+| `.h1` | 600 26/32 | **600 24/32** (`typescale.h1`) |
+| `.h2` | 600 22/28 | **600 20/28** (`typescale.h2`) |
+| `.h3` | 600 20/26 | **600 18/24** (`typescale.h3`) |
+| `.h0` | 600 30/36 | **600 28/36** (display step, onto the 4 px grid) |
+| `.field-label` | 500 15/20 Inter, muted navy | **600 16/22 Quicksand, `--ink-900`** (`typescale.h4` — the DS form label) |
+| `.overline` | 600 11/16, `.04em` | **600 12/16, `.025em`** (`typescale.overline`, Tailwind `tracking-wide`) |
+
+`.h4`, `.body-copy`, `.help-text`, `.label`, `.micro`, `.meta` were already on-scale.
+
+**79 inline `font:` shorthands** in the React code were mapped the same way. Weight and family
+were never touched — only size/line-height pairs that were off-scale:
+
+```
+600 26/32 → 24/32     600 13/18 → 14/20     400 13/18 → 14/20
+600 22/28 → 20/28     600 15/21 → 16/22     400 13/19 → 14/20
+600 20/26 → 18/24     500 15/20 → 16/22     400 15/22 → 16/24
+600 30/36 → 28/36     500 13/18 → 14/20     400 12/18 → 12/16
+600 11/16 → 12/16                           400 12/17 → 12/16
+```
+
+### 3. Components
+
+| Component | Change |
+|---|---|
+| `.btn-p` primary | Label → `typescale.button` (14/20). Padding → 10/17 (DS border-compensated). Added `:hover` → `--action-hover` and a 150 ms `easingStandard` transition. |
+| `.btn-o` secondary | Was a 1.5 px grey border on transparent → now the DS **2 px `--action` border on `--surface-0`**, with hover. |
+| `.btn-dis` disabled | Fill → `--action-disabled`. DS metrics. `cursor:not-allowed`. |
+| `.btn-d` destructive | DS button metrics + shadow; keeps `status.error` fill (no DS destructive variant exists). |
+| `input.txt` | Was white with a 1.5 px border → now the **DS filled field**: `--surface-ui` fill, no resting border. Focus **inverts** to white + 2 px `--action` ring, drawn as an *inset* shadow so nothing shifts. Placeholder → `--ink-500` (`textMid`). |
+
+`.btn-ss` / `.btn-ss-o` (small secondary) and the banner components already matched the DS.
+
+**Button height:** the DS specifies a 40 dp painted pill inside a 48 dp touch target. The
+prototype paints the full 48. `min-height:48px` was **kept** — reducing the painted height would
+move every layout the brief requires preserved, and the DS mandates the ≥48 target either way.
+The DS's internal metrics (14/20 label, 10/17 padding) are applied within it.
+
+### 4. Accessibility
+
+Maintained and improved — the brief requires WCAG contrast be preserved, and three DS-literal
+pairings would have regressed it.
+
+| Element | Figma-literal | Shipped | Ratio |
+|---|---|---|---|
+| Disabled button label | white on `#D2F1F9` | `#52607B` on `#D2F1F9` | 1.19:1 → **5.33:1** |
+| Alert/warning title | `#E43802` on `#FFEEE4` | `#C23002` on `#FFEEE4` | 3.82:1 → **5.00:1** |
+| Success title | `#5A8F02` on `#E6F1D4` | `#487202` on `#E6F1D4` | 3.34:1 → **4.86:1** |
+
+In all three cases the **fill, icon and hue are unchanged** — only the small bold text tone is
+darkened, staying on the same hue. Banner titles are 14 px SemiBold, below WCAG's large-text
+threshold (18.66 px bold), so they need 4.5:1.
+
+This is not a departure from the design system: [`../foundations/colour.md`](../foundations/colour.md)
+states a 4.5:1 minimum for body text, so the darkened tones satisfy the system's own rule while
+the Figma-literal values do not. The contrast table in that file has been corrected — it
+previously mis-stated these two pairings as passing.
+
+Also added: a `:focus-visible` ring (2 px `--action`, 2 px offset) for keyboard users, and a
+`prefers-reduced-motion` block that neutralises the transitions introduced above.
+
+**Still outstanding** (inherited, unchanged): white on `--action` `#1DBADF` measures 2.2:1.
+Fixing it means darkening the brand action colour across every screen and the Figma file — a
+decision for the designer, not a re-skin.
+
+---
+
+## Verification
+
+Both versions were driven through Playwright across 10 screen states — Home, Classes,
+Resources, Profile, the Attendance-due / Consent-imminent / Month-start scenarios, Onboarding,
+and the SmartStart tenant. For each, DOM node count, button count, a recursive tag+class tree
+signature, and full rendered text were captured and compared.
+
+```
+SCREEN              nodes b/a     btns b/a    tree b/a        TEXT IDENTICAL
+home                77/77         21/21       950/950         True
+Classes             91/91         18/18       1065/1065       True
+Resources           93/93         17/17       1281/1281       True
+Profile             121/121       18/18       1433/1433       True
+Home                77/77         21/21       950/950         True
+Attendance due      77/77         21/21       950/950         True
+Consent imminent    77/77         21/21       950/950         True
+Month start         77/77         21/21       950/950         True
+Onboarding          25/25         11/11       176/176         True
+SmartStart          44/44         22/22       345/345         True
+
+ALL STRUCTURE + CONTENT IDENTICAL: True     console errors: none
+```
+
+Same screens, same flows, same navigation, same interactions, same hierarchy, same content.
+Only the visual layer moved.
+
+---
+
+## What was deliberately *not* done
+
+- No component moved, added, removed, renamed or merged.
+- No screen split, merged or reordered; no navigation or IA change.
+- No form, validation, business-logic or state-handling change.
+- No copy edits.
+- The `.h0` display step was kept rather than collapsed into `h1`, to preserve the existing
+  hierarchy — the DS has no display token, so it was landed on the 4 px grid instead.
+- Known UX issues in the prototype were left alone, per the brief.

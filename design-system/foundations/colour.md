@@ -171,10 +171,10 @@ Measured contrast against the surfaces these colours actually sit on:
 | White on `action #1DBADF` | 2.2:1 | ❌ **fails** — see below |
 | White on `select #FF2180` | 4.0:1 | ⚠️ large/bold text only |
 | White on `appBar #27385A` | 11.9:1 | ✅ AAA |
-| `status.success.dark` on `status.success.bg` | 4.6:1 | ✅ AA |
-| `status.error.dark` on `status.error.bg` | 6.9:1 | ✅ AA |
-| `status.info.dark` on `status.info.bg` | 7.4:1 | ✅ AA |
-| `status.alert.dark` on `status.alert.bg` | 5.0:1 | ✅ AA |
+| `status.error.dark` on `status.error.bg` | 5.0:1 | ✅ AA |
+| `status.info.dark` on `status.info.bg` | 6.6:1 | ✅ AA |
+| `status.success.dark` on `status.success.bg` | **3.3:1** | ❌ **fails** for small text — see below |
+| `status.alert.dark` on `status.alert.bg` | **3.8:1** | ❌ **fails** for small text — see below |
 
 ### Two known failures inherited from the design
 
@@ -188,6 +188,22 @@ debt. Options, in order of preference:
 **Do not** silently change the default — it would break visual parity with every screen in the
 file. Raise it with the designer; the token indirection (`role.action`) means the fix is a
 one-line theme change when a decision is made.
+
+**3. Success and Alert banner titles fail AA at 14 sp.** Alert titles are Inter SemiBold
+14 sp — below WCAG's large-text threshold (18.66 px bold), so they need 4.5:1. On their own
+tinted backgrounds, `success.dark` measures **3.3:1** and `alert.dark` **3.8:1**. `error.dark`
+(5.0:1) and `info.dark` (6.6:1) are fine.
+
+Fix: keep `Main` and `BG` Figma-literal so fills and icons are untouched, and darken the
+**title tone only**, staying on the same hue:
+
+| Role | Figma-literal | Accessible tone | Ratio |
+|---|---|---|---|
+| Success title | `#5A8F02` | `#487202` | 4.9:1 |
+| Alert title | `#E43802` | `#C23002` | 5.0:1 |
+
+This is what the ELP prototype ships (see `implementation/prototype-reskin.md`). Raise the
+underlying values with the designer so Figma and code converge.
 
 **2. Disabled primary buttons are white-on-`#D2F1F9` (1.3:1).** Effectively invisible text.
 Disabled buttons must therefore **never be the only indication** that an action is unavailable —
