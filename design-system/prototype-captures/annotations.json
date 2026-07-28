@@ -1,0 +1,2082 @@
+[
+ {
+  "area": "Classes & children",
+  "title": "Add a class",
+  "d": "Create a class: name, days of the week, and times.",
+  "dec": [
+   "Days are a multi-select chip row using the design system's selection magenta.",
+   "Minimum viable field set \u2014 anything not needed to take a register is deferred."
+  ],
+  "a": [
+   "Times are the same on every selected day; per-day variation is not supported."
+  ],
+  "p": [
+   "Per-day times and term dates are proposed for a later release."
+  ],
+  "route": "addClass",
+  "key": "app__addClass",
+  "w": 376,
+  "h": 726,
+  "file": "app__addClass.png"
+ },
+ {
+  "area": "Income",
+  "title": "Add expense",
+  "d": "Records an outgoing amount against the month.",
+  "dec": [
+   "Kept to amount, category and date \u2014 enough for a monthly picture, not a full accounting tool."
+  ],
+  "a": [
+   "Expense categories are a fixed list."
+  ],
+  "p": [
+   "Attaching a photo of a receipt is proposed."
+  ],
+  "route": "addExpense",
+  "key": "app__addExpense",
+  "w": 376,
+  "h": 726,
+  "file": "app__addExpense.png"
+ },
+ {
+  "area": "Staff",
+  "title": "Add staff",
+  "d": "Adds a practitioner to the preschool.",
+  "dec": [
+   "Minimal field set; the practitioner completes their own profile on first sign-in."
+  ],
+  "a": [
+   "Invitation is by phone number, matching the onboarding model."
+  ],
+  "p": [
+   "Bulk invite is proposed."
+  ],
+  "route": "addStaff",
+  "key": "app__addStaff",
+  "w": 376,
+  "h": 726,
+  "file": "app__addStaff.png"
+ },
+ {
+  "area": "Attendance",
+  "title": "Attendance saved",
+  "d": "Confirmation after submitting a register, including the sync state of the record.",
+  "dec": [
+   "The confirmation states where the data is ('saved on your phone' vs synced), because offline is the normal case.",
+   "Uses the design system Success alert rather than a transient toast, so the state is still visible after a scroll."
+  ],
+  "a": [
+   "Saving is always allowed offline; the queue reconciles later."
+  ],
+  "p": [
+   "An undo window immediately after save is proposed."
+  ],
+  "route": "attendanceSaved",
+  "key": "app__attendanceSaved__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__attendanceSaved__c1.png"
+ },
+ {
+  "area": "Attendance",
+  "title": "Take attendance",
+  "d": "The register for one class on one day. Every child defaults to present; the practitioner taps only the exceptions.",
+  "dec": [
+   "Default-present, tap-absent \u2014 the fastest path for the common case, and the single most-used screen in the product.",
+   "Children without consent are excluded from marking and shown as blocked, not silently missing.",
+   "Gated to the class's assigned practitioner."
+  ],
+  "a": [
+   "A register is taken once per class per day; late corrections use Edit attendance.",
+   "Present/Absent/Late is the full mark vocabulary."
+  ],
+  "p": [
+   "Bulk 'mark all absent' for a closed day is proposed, not built."
+  ],
+  "route": "attendance",
+  "key": "app__attendance__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__attendance__c1.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "A few things need a look",
+  "d": "The expanded list behind the Home secondary row. Collects the lower-priority items the Today card suppressed.",
+  "dec": [
+   "Exists so the priority ladder can show one card without hiding the rest of the day's work.",
+   "Count badge uses the status-alert tokens, matching the Home row it came from."
+  ],
+  "a": [
+   "Ordering mirrors the same priority ladder used for the Today card."
+  ],
+  "p": [
+   "No filtering or dismissal here yet; proposed once the list can exceed a screen."
+  ],
+  "route": "attnAll",
+  "key": "app__attnAll",
+  "w": 376,
+  "h": 726,
+  "file": "app__attnAll.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Child profile",
+  "d": "A single child: identity, class, consent state, fee state and the actions available on them.",
+  "dec": [
+   "Consent state is surfaced at the top because it gates everything else.",
+   "Actions are role-gated; practitioners without permission see the record but not the edit affordances."
+  ],
+  "a": [
+   "One caregiver contact per child in the MVP."
+  ],
+  "p": [
+   "Multiple caregivers and a relationship type are proposed."
+  ],
+  "route": "child",
+  "key": "app__child__k1",
+  "w": 376,
+  "h": 726,
+  "file": "app__child__k1.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Class detail",
+  "d": "One class: its children, schedule, and the entry points to take attendance or register a child.",
+  "dec": [
+   "Attendance is the primary action and sits as a full-width primary button.",
+   "Child rows show consent state, because consent gates attendance participation."
+  ],
+  "a": [
+   "Class size is assumed to fit a single scrolling list; no pagination."
+  ],
+  "p": [
+   "Bulk actions across children are proposed, not built."
+  ],
+  "route": "classDetail",
+  "key": "app__classDetail__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__classDetail__c1.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Classes",
+  "d": "All classes the user can act on, each with its days, times and today's register state.",
+  "dec": [
+   "Practitioners see only their assigned classes; principals see every class in the preschool.",
+   "Register state is a badge on the row (To do / Done / No class today) so the day is readable without drilling in."
+  ],
+  "a": [
+   "A class has one assigned practitioner at a time; co-teaching is out of scope."
+  ],
+  "p": [
+   "Sorting by 'needs attention first' is proposed; today the order is as configured."
+  ],
+  "route": "classList",
+  "key": "app__classList",
+  "w": 376,
+  "h": 726,
+  "file": "app__classList.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Coach visit",
+  "d": "The single-form coach visit record, including GPS capture, completable entirely offline.",
+  "dec": [
+   "One form, no wizard \u2014 the coach is standing in a preschool with one hand free.",
+   "GPS is captured with the record rather than as a separate check-in."
+  ],
+  "a": [
+   "A visit belongs to one preschool and one coach."
+  ],
+  "p": [
+   "Photo evidence attached to a visit is proposed."
+  ],
+  "route": "coachVisit",
+  "key": "app__coachVisit",
+  "w": 376,
+  "h": 726,
+  "file": "app__coachVisit.png"
+ },
+ {
+  "area": "Consent",
+  "title": "Consent \u2014 whole class",
+  "d": "Consent state for every child in a class, with a bulk send for those outstanding.",
+  "dec": [
+   "Bulk send exists because consent is chased in batches near a deadline.",
+   "Children already consented are shown but not selectable, so the list stays a complete picture."
+  ],
+  "a": [
+   "Bulk send uses the same per-child template."
+  ],
+  "p": [
+   "Staggered sending to avoid message-bundle costs is proposed."
+  ],
+  "route": "consentClass",
+  "key": "app__consentClass__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__consentClass__c1.png"
+ },
+ {
+  "area": "Consent",
+  "title": "Consent received",
+  "d": "Confirmation that a caregiver's consent has been recorded against a child.",
+  "dec": [
+   "Records who consented and when, because this is the audit trail for a legal obligation."
+  ],
+  "a": [
+   "Consent is captured out-of-band and recorded here; the prototype does not model the caregiver's own screen."
+  ],
+  "p": [
+   "Attaching the caregiver's signed artefact is proposed."
+  ],
+  "route": "consentReceived",
+  "key": "app__consentReceived__k1",
+  "w": 376,
+  "h": 726,
+  "file": "app__consentReceived__k1.png"
+ },
+ {
+  "area": "Consent",
+  "title": "Withdraw consent",
+  "d": "Records a caregiver withdrawing consent, and the effect that has on the child's participation.",
+  "dec": [
+   "Withdrawal is as easy to record as granting \u2014 a compliance requirement, not a symmetry nicety.",
+   "The consequence is stated on-screen before confirming."
+  ],
+  "a": [
+   "Withdrawal takes effect immediately and blocks attendance marking from that point."
+  ],
+  "p": [
+   "A grace period or scheduled withdrawal date is proposed."
+  ],
+  "route": "consentWithdraw",
+  "key": "app__consentWithdraw__k1",
+  "w": 376,
+  "h": 726,
+  "file": "app__consentWithdraw__k1.png"
+ },
+ {
+  "area": "Consent",
+  "title": "Deadline warning",
+  "d": "Warns that a consent deadline is imminent and what happens if it passes.",
+  "dec": [
+   "States the consequence in plain language rather than a date alone.",
+   "Uses the design system Alert tokens \u2014 orange, not red: this is urgent, not broken."
+  ],
+  "a": [
+   "The deadline is a fixed platform-side date."
+  ],
+  "p": [
+   "Escalation to the principal when a deadline passes is proposed."
+  ],
+  "route": "deadlineWarning",
+  "key": "app__deadlineWarning",
+  "w": 376,
+  "h": 726,
+  "file": "app__deadlineWarning.png"
+ },
+ {
+  "area": "Attendance",
+  "title": "Edit attendance",
+  "d": "Reopens a submitted register so marks can be corrected.",
+  "dec": [
+   "Editing is explicit rather than implicit, so a submitted register is a deliberate record.",
+   "Corrections re-enter the sync queue like any other write."
+  ],
+  "a": [
+   "Any assigned practitioner may correct the same day's register; no approval step."
+  ],
+  "p": [
+   "An edit history / audit trail is proposed for the platform, not shown in the app."
+  ],
+  "route": "editAttendance",
+  "key": "app__editAttendance__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__editAttendance__c1.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Export \u2014 configure",
+  "d": "Choose what to export: date range, class and format.",
+  "dec": [
+   "Range and scope are chosen before generation so a large export is never produced by accident."
+  ],
+  "a": [
+   "Only completed periods are offered."
+  ],
+  "p": [
+   "Saved export presets are proposed."
+  ],
+  "route": "exportConfig",
+  "key": "app__exportConfig",
+  "w": 376,
+  "h": 726,
+  "file": "app__exportConfig.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Export \u2014 nothing to export",
+  "d": "Empty state when the chosen range contains no records.",
+  "dec": [
+   "Offers a way to widen the range instead of a dead end."
+  ],
+  "a": [
+   "An empty result is a normal outcome, not an error."
+  ],
+  "p": [
+   "Suggesting the nearest range that does contain data is proposed."
+  ],
+  "route": "exportEmpty",
+  "key": "app__exportEmpty",
+  "w": 376,
+  "h": 726,
+  "file": "app__exportEmpty.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Export \u2014 failed",
+  "d": "Generation failed, with a retry.",
+  "dec": [
+   "States what to do next rather than surfacing an error code.",
+   "Uses the status-error tokens with an icon and a label, never colour alone."
+  ],
+  "a": [
+   "Failure is transient and retryable."
+  ],
+  "p": [
+   "Reporting a persistent failure to support is proposed."
+  ],
+  "route": "exportFailed",
+  "key": "app__exportFailed",
+  "w": 376,
+  "h": 726,
+  "file": "app__exportFailed.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Export \u2014 preparing",
+  "d": "Loading state while the file is generated.",
+  "dec": [
+   "An explicit preparing state rather than a spinner on the button, because generation can take several seconds on low-end devices."
+  ],
+  "a": [
+   "Generation is local and does not require connectivity."
+  ],
+  "p": [
+   "Background generation with a notification on completion is proposed."
+  ],
+  "route": "exportPreparing",
+  "key": "app__exportPreparing",
+  "w": 376,
+  "h": 726,
+  "file": "app__exportPreparing.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Export \u2014 queued (offline)",
+  "d": "The export needs connectivity and has been queued.",
+  "dec": [
+   "Queued rather than blocked \u2014 consistent with every other write in the app.",
+   "Uses the design system Informational alert, not an error."
+  ],
+  "a": [
+   "Queued exports resume automatically on reconnection."
+  ],
+  "p": [
+   "A queue view showing everything pending is proposed."
+  ],
+  "route": "exportQueued",
+  "key": "app__exportQueued",
+  "w": 376,
+  "h": 726,
+  "file": "app__exportQueued.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Export \u2014 ready",
+  "d": "Success state with the share/open action.",
+  "dec": [
+   "Hands off to the device share sheet rather than an in-app viewer."
+  ],
+  "a": [
+   "The device can open the format produced."
+  ],
+  "p": [
+   "Recently-generated exports list is proposed."
+  ],
+  "route": "exportReady",
+  "key": "app__exportReady",
+  "w": 376,
+  "h": 726,
+  "file": "app__exportReady.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Downloads",
+  "d": "Registers and reports the user can take away as files.",
+  "dec": [
+   "Exports are a first-class surface because paper records are still required by funders and the DBE."
+  ],
+  "a": [
+   "Exports are generated on the device from local data."
+  ],
+  "p": [
+   "Emailing an export directly is proposed."
+  ],
+  "route": "exports",
+  "key": "app__exports",
+  "w": 376,
+  "h": 726,
+  "file": "app__exports.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Today",
+  "d": "The daily landing screen. A navy hero carries the greeting and date; below it a single Today card states the one thing that matters now, then the 'a few things need a look' row, then the resource-category shortcuts.",
+  "dec": [
+   "Exactly one Today card at a time, chosen by a priority ladder (consent-imminent \u2192 attendance-due \u2192 month-start). Competing nudges are suppressed, not stacked.",
+   "Built as the design system's Action Panel 'with link' (Figma 100:7530), the slot Figma's hub notification frame (145:27122) reserves above the category list.",
+   "Shortcut labels are the Resources taxonomy verbatim, so Home and Resources cannot drift."
+  ],
+  "a": [
+   "'Good morning/afternoon/evening' is derived from device time, not from server time.",
+   "The greeting uses the practitioner's first name only; long names are untested beyond ~18 characters."
+  ],
+  "p": [
+   "Hub notifications carry a priority number so only one shows \u2014 the priority table is referenced in the use-case doc but not yet encoded here.",
+   "Consider a dismiss affordance on the Today card; today it clears only when the underlying task is done."
+  ],
+  "route": "home",
+  "key": "app__home",
+  "w": 376,
+  "h": 726,
+  "file": "app__home.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Identity document",
+  "d": "The scaffolded identity step: seven document types, a real SA-ID checksum, and a derived date of birth.",
+  "dec": [
+   "Validates the SA ID checksum client-side so errors surface before submission, offline.",
+   "Date of birth is derived from the ID rather than asked twice.",
+   "Deferrable \u2014 'Do this later' is a supported path, not a dead end."
+  ],
+  "a": [
+   "Seven document types cover the population; a fallback 'other' is not offered.",
+   "Closed-tenant mismatch is gated for SmartStart only."
+  ],
+  "p": [
+   "Photographing the document is proposed; today it is keyed in."
+  ],
+  "route": "idDoc",
+  "key": "app__idDoc",
+  "w": 376,
+  "h": 726,
+  "file": "app__idDoc.png"
+ },
+ {
+  "area": "Income",
+  "title": "Income",
+  "d": "The month's money position: collected so far, and the entry points to the paid checklist and expenses.",
+  "dec": [
+   "Principal-only, reached from the principal bottom nav.",
+   "Leads with the collected figure because that is the question being asked."
+  ],
+  "a": [
+   "One fee cycle per month."
+  ],
+  "p": [
+   "Multi-cycle and per-child schedules are proposed."
+  ],
+  "route": "income",
+  "key": "app__income",
+  "w": 376,
+  "h": 726,
+  "file": "app__income.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Mark a child as left",
+  "d": "Records that a child has left the programme, with a reason and optional note.",
+  "dec": [
+   "A leave is a state change on the record, never a delete \u2014 the register history must stay intact.",
+   "Reason is a closed list so the data is analysable."
+  ],
+  "a": [
+   "Leaving is reversible by an administrator; the prototype does not show that path."
+  ],
+  "p": [
+   "A 'returned' state is proposed for seasonal attendance."
+  ],
+  "route": "markLeft",
+  "key": "app__markLeft__k1",
+  "w": 376,
+  "h": 726,
+  "file": "app__markLeft__k1.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Menu (drawer)",
+  "d": "Full-height drawer opened from the hamburger. Role-scoped list of destinations that do not warrant a bottom-nav slot.",
+  "dec": [
+   "Overflow lives in a drawer rather than a fifth nav tab, keeping the bottom nav at four items for practitioners.",
+   "Rows use the design system 48 dp list-row with a leading duotone icon."
+  ],
+  "a": [
+   "Drawer contents are the same for both tenants; only branding changes."
+  ],
+  "p": [
+   "Menu order is not yet personalised by frequency of use."
+  ],
+  "route": "menu",
+  "key": "app__menu",
+  "w": 376,
+  "h": 726,
+  "file": "app__menu.png"
+ },
+ {
+  "area": "Income",
+  "title": "Month summary",
+  "d": "Income against expenses for the month, and the resulting position.",
+  "dec": [
+   "Outcome is colour-coded with the status tokens \u2014 success for a surplus, error for a shortfall \u2014 never colour alone, always with the figure."
+  ],
+  "a": [
+   "The month is the reporting unit."
+  ],
+  "p": [
+   "Year-to-date and trend are proposed."
+  ],
+  "route": "monthSummary",
+  "key": "app__monthSummary",
+  "w": 376,
+  "h": 726,
+  "file": "app__monthSummary.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Notification settings",
+  "d": "Per-category toggles controlling which notifications the user receives.",
+  "dec": [
+   "Defaults are opt-in for operational alerts (attendance, consent) and opt-out for digests."
+  ],
+  "a": [
+   "Channel choice (push vs SMS) is assumed to be a platform setting, not exposed here."
+  ],
+  "p": [
+   "Quiet hours are proposed; not in the MVP."
+  ],
+  "route": "notifSettings",
+  "key": "app__notifSettings",
+  "w": 376,
+  "h": 726,
+  "file": "app__notifSettings.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Notifications",
+  "d": "Chronological list of system notifications, with unread state driving the header bell badge.",
+  "dec": [
+   "Unread count is computed from the local store so the badge is correct offline.",
+   "Tapping a notification routes to the underlying record rather than opening a detail view of the notification itself."
+  ],
+  "a": [
+   "Notifications are generated client-side in the prototype; production will receive them from the platform."
+  ],
+  "p": [
+   "Grouping by day and a 'mark all read' action are proposed but not built."
+  ],
+  "route": "notifications",
+  "key": "app__notifications",
+  "w": 376,
+  "h": 726,
+  "file": "app__notifications.png"
+ },
+ {
+  "area": "Income",
+  "title": "Payment saved",
+  "d": "Confirmation after recording payments, with sync state.",
+  "dec": [
+   "Same save-and-sync language as attendance, so money and register behave identically offline."
+  ],
+  "a": [
+   "Payments queue offline like any other write."
+  ],
+  "p": [
+   "A printable/ shareable receipt is proposed."
+  ],
+  "route": "paymentSaved",
+  "key": "app__paymentSaved",
+  "w": 376,
+  "h": 726,
+  "file": "app__paymentSaved.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Profile",
+  "d": "The user's own record: identity, preschool, network, and the completion prompt if the identity step was deferred.",
+  "dec": [
+   "Deferred onboarding surfaces here as 'Complete your profile' rather than blocking use of the app.",
+   "The prompt is a design system Action Panel, matching the Home Today card's shape."
+  ],
+  "a": [
+   "One preschool per user in the MVP."
+  ],
+  "p": [
+   "Switching between preschools is stubbed and proposed."
+  ],
+  "route": "profileHome",
+  "key": "app__profileHome",
+  "w": 376,
+  "h": 726,
+  "file": "app__profileHome.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Register a child",
+  "d": "Minimum-plus-scaffold registration: the few fields needed to enrol, with the rest deferrable.",
+  "dec": [
+   "Only the fields required to take a register are mandatory; everything else can be completed later, matching the onboarding identity step.",
+   "Incomplete records save with a visible flag rather than blocking enrolment."
+  ],
+  "a": [
+   "A child can be enrolled before consent is received; consent is chased separately."
+  ],
+  "p": [
+   "Self-registration by caregivers via a share link exists as a parallel path (see Self-registration)."
+  ],
+  "route": "regStep1",
+  "key": "app__regStep1__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__regStep1__c1.png"
+ },
+ {
+  "area": "Attendance",
+  "title": "Register status",
+  "d": "Whether each class's register is done for the day, across the classes the user can see.",
+  "dec": [
+   "Principal-oriented overview that answers 'is the day covered?' without opening each class."
+  ],
+  "a": [
+   "Only today is shown; historical coverage lives in exports."
+  ],
+  "p": [
+   "A week view is proposed."
+  ],
+  "route": "registerStatus",
+  "key": "app__registerStatus__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__registerStatus__c1.png"
+ },
+ {
+  "area": "Staff",
+  "title": "Remove staff",
+  "d": "Removes a staff member, with the class-coverage consequence stated first.",
+  "dec": [
+   "Blocks or warns when removal would leave a class uncovered \u2014 the flow's whole purpose is that every class keeps a practitioner."
+  ],
+  "a": [
+   "Removal is not a delete; historical registers keep their author."
+  ],
+  "p": [
+   "A scheduled last-day is proposed rather than immediate removal."
+  ],
+  "route": "removeStaff",
+  "key": "app__removeStaff__s2",
+  "w": 376,
+  "h": 726,
+  "file": "app__removeStaff__s2.png"
+ },
+ {
+  "area": "Resources",
+  "title": "Resource category \u2014 Early learning activities",
+  "d": "The resources inside one category: title, a one-line description, and whether opening it will use the user's data.",
+  "dec": [
+   "The data-free flag is stated on every item, because data cost is a real barrier for this audience.",
+   "Reached identically from Home and from Resources \u2014 one destination, two entry points.",
+   "Items are presentational in this build; the app has no in-app resource viewer."
+  ],
+  "a": [
+   "The data-free flag is set per resource on the platform, not inferred.",
+   "Resources open outside the app in the browser."
+  ],
+  "p": [
+   "An 'opens outside the app and uses data' confirmation dialog exists in the wider resources module and is proposed for this build.",
+   "Offline caching of data-free documents is proposed."
+  ],
+  "route": "resDetail",
+  "key": "app__resDetail__Early-learning-activities",
+  "w": 376,
+  "h": 726,
+  "file": "app__resDetail__Early-learning-activities.png"
+ },
+ {
+  "area": "Resources",
+  "title": "Resource category \u2014 Funding and subsidies",
+  "d": "The resources inside one category: title, a one-line description, and whether opening it will use the user's data.",
+  "dec": [
+   "The data-free flag is stated on every item, because data cost is a real barrier for this audience.",
+   "Reached identically from Home and from Resources \u2014 one destination, two entry points.",
+   "Items are presentational in this build; the app has no in-app resource viewer."
+  ],
+  "a": [
+   "The data-free flag is set per resource on the platform, not inferred.",
+   "Resources open outside the app in the browser."
+  ],
+  "p": [
+   "An 'opens outside the app and uses data' confirmation dialog exists in the wider resources module and is proposed for this build.",
+   "Offline caching of data-free documents is proposed."
+  ],
+  "route": "resDetail",
+  "key": "app__resDetail__Funding-and-subsidies",
+  "w": 376,
+  "h": 726,
+  "file": "app__resDetail__Funding-and-subsidies.png"
+ },
+ {
+  "area": "Resources",
+  "title": "Resource category \u2014 Health and safety",
+  "d": "The resources inside one category: title, a one-line description, and whether opening it will use the user's data.",
+  "dec": [
+   "The data-free flag is stated on every item, because data cost is a real barrier for this audience.",
+   "Reached identically from Home and from Resources \u2014 one destination, two entry points.",
+   "Items are presentational in this build; the app has no in-app resource viewer."
+  ],
+  "a": [
+   "The data-free flag is set per resource on the platform, not inferred.",
+   "Resources open outside the app in the browser."
+  ],
+  "p": [
+   "An 'opens outside the app and uses data' confirmation dialog exists in the wider resources module and is proposed for this build.",
+   "Offline caching of data-free documents is proposed."
+  ],
+  "route": "resDetail",
+  "key": "app__resDetail__Health-and-safety",
+  "w": 376,
+  "h": 726,
+  "file": "app__resDetail__Health-and-safety.png"
+ },
+ {
+  "area": "Resources",
+  "title": "Resource category \u2014 Running your preschool",
+  "d": "The resources inside one category: title, a one-line description, and whether opening it will use the user's data.",
+  "dec": [
+   "The data-free flag is stated on every item, because data cost is a real barrier for this audience.",
+   "Reached identically from Home and from Resources \u2014 one destination, two entry points.",
+   "Items are presentational in this build; the app has no in-app resource viewer."
+  ],
+  "a": [
+   "The data-free flag is set per resource on the platform, not inferred.",
+   "Resources open outside the app in the browser."
+  ],
+  "p": [
+   "An 'opens outside the app and uses data' confirmation dialog exists in the wider resources module and is proposed for this build.",
+   "Offline caching of data-free documents is proposed."
+  ],
+  "route": "resDetail",
+  "key": "app__resDetail__Running-your-preschool",
+  "w": 376,
+  "h": 726,
+  "file": "app__resDetail__Running-your-preschool.png"
+ },
+ {
+  "area": "Resources",
+  "title": "Resources",
+  "d": "The four resource categories: Running your preschool, Early learning activities, Health and safety, Funding and subsidies.",
+  "dec": [
+   "This list is the single source of truth for the resource taxonomy \u2014 the Home shortcuts mirror it exactly.",
+   "Category-first rather than search-first, because the library is small and browsing beats querying at this size."
+  ],
+  "a": [
+   "Four categories are sufficient for the MVP library."
+  ],
+  "p": [
+   "Search across categories exists in the wider resources module but is not surfaced in this build."
+  ],
+  "route": "resourcesHub",
+  "key": "app__resourcesHub",
+  "w": 376,
+  "h": 726,
+  "file": "app__resourcesHub.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Self-registration \u2014 share link",
+  "d": "Generates a link a caregiver can use to register their own child, removing typing from the practitioner.",
+  "dec": [
+   "Sharing uses the device share sheet so it works with WhatsApp, the dominant channel for this audience.",
+   "The link is scoped to one class."
+  ],
+  "a": [
+   "Links do not expire in the prototype."
+  ],
+  "p": [
+   "Expiry and single-use links are proposed for production."
+  ],
+  "route": "selfRegShare",
+  "key": "app__selfRegShare__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__selfRegShare__c1.png"
+ },
+ {
+  "area": "Classes & children",
+  "title": "Self-registration \u2014 status",
+  "d": "Which caregivers have completed the self-registration form and which are outstanding.",
+  "dec": [
+   "Completion is visible per child so chasing is targeted rather than broadcast."
+  ],
+  "a": [
+   "A submission maps to exactly one child."
+  ],
+  "p": [
+   "Reminder nudges from this screen are proposed."
+  ],
+  "route": "selfRegStatus",
+  "key": "app__selfRegStatus__c1",
+  "w": 376,
+  "h": 726,
+  "file": "app__selfRegStatus__c1.png"
+ },
+ {
+  "area": "Consent",
+  "title": "Send consent request",
+  "d": "Sends a consent request to a child's caregiver.",
+  "dec": [
+   "Consent is treated as a first-class, time-bound obligation rather than a profile field.",
+   "The send action queues offline and reports that it will send on reconnection."
+  ],
+  "a": [
+   "One consent request per child at a time; re-sending replaces the outstanding request."
+  ],
+  "p": [
+   "Templated multilingual consent copy is proposed."
+  ],
+  "route": "sendConsent",
+  "key": "app__sendConsent__k1",
+  "w": 376,
+  "h": 726,
+  "file": "app__sendConsent__k1.png"
+ },
+ {
+  "area": "Consent",
+  "title": "Request sent",
+  "d": "Confirmation that a consent request has left the device or been queued.",
+  "dec": [
+   "Distinguishes 'sent' from 'queued' so the user is never misled while offline."
+  ],
+  "a": [
+   "Delivery receipts are not modelled."
+  ],
+  "p": [
+   "Delivery and read state from the messaging channel is proposed."
+  ],
+  "route": "sentConfirm",
+  "key": "app__sentConfirm",
+  "w": 376,
+  "h": 726,
+  "file": "app__sentConfirm.png"
+ },
+ {
+  "area": "Income",
+  "title": "Set fees",
+  "d": "Sets the class fee that auto-populates each child's monthly amount.",
+  "dec": [
+   "Fee is set at class level and overridable per child, so the common case is one number.",
+   "Auto-populated values remain editable \u2014 the review explicitly kept this."
+  ],
+  "a": [
+   "Fee changes apply from the current month forward, not retroactively."
+  ],
+  "p": [
+   "Sibling discounts and bursaries are proposed."
+  ],
+  "route": "setFees",
+  "key": "app__setFees",
+  "w": 376,
+  "h": 726,
+  "file": "app__setFees.png"
+ },
+ {
+  "area": "Profile, exports & system",
+  "title": "Preschool details",
+  "d": "The preschool's own record \u2014 name, address and identifying details.",
+  "dec": [
+   "Read-oriented; editing is deliberately narrow because these fields feed platform registration."
+  ],
+  "a": [
+   "One site per preschool."
+  ],
+  "p": [
+   "Multi-site organisations are proposed, out of MVP scope."
+  ],
+  "route": "siteDetails",
+  "key": "app__siteDetails",
+  "w": 376,
+  "h": 726,
+  "file": "app__siteDetails.png"
+ },
+ {
+  "area": "Staff",
+  "title": "Staff member",
+  "d": "One staff member: their classes and the leave/reassign actions.",
+  "dec": [
+   "Class coverage is shown next to the person, so the consequence of marking leave is visible before acting."
+  ],
+  "a": [
+   "A practitioner can hold multiple classes."
+  ],
+  "p": [
+   "Contact details and qualifications are proposed for a later release."
+  ],
+  "route": "staffDetail",
+  "key": "app__staffDetail__s2",
+  "w": 376,
+  "h": 726,
+  "file": "app__staffDetail__s2.png"
+ },
+ {
+  "area": "Staff",
+  "title": "Staff",
+  "d": "Everyone at the preschool, their classes, and who is currently on leave.",
+  "dec": [
+   "Principal-only surface, reached from the principal's bottom nav.",
+   "Leave state is on the row because it changes who can take a register."
+  ],
+  "a": [
+   "Staff are practitioners or the principal; no other roles in the MVP."
+  ],
+  "p": [
+   "Assistant and volunteer roles were considered and explicitly cut."
+  ],
+  "route": "staffList",
+  "key": "app__staffList",
+  "w": 376,
+  "h": 726,
+  "file": "app__staffList.png"
+ },
+ {
+  "area": "Staff",
+  "title": "Staff removed",
+  "d": "Confirmation, including where the removed member's classes went.",
+  "dec": [
+   "Names the reassignment explicitly so coverage is auditable."
+  ],
+  "a": [
+   "Reassignment is chosen during removal, not after."
+  ],
+  "p": [
+   "Undo within a session is proposed."
+  ],
+  "route": "staffRemoved",
+  "key": "app__staffRemoved",
+  "w": 376,
+  "h": 726,
+  "file": "app__staffRemoved.png"
+ },
+ {
+  "area": "Income",
+  "title": "Who's paid?",
+  "d": "A monthly checklist of every child's fee state, with part-payment capture.",
+  "dec": [
+   "A checklist rather than a ledger \u2014 the principal is reconciling against cash in hand, not doing bookkeeping.",
+   "Part payments are first-class: the row shows paid-of-owed and the balance.",
+   "Status pills use the platform status tokens, so Paid/Part/Not paid read the same as every other state in the app."
+  ],
+  "a": [
+   "Fees are per-child per-month and auto-populated from the class fee.",
+   "Cash is the dominant channel; no reconciliation against a bank feed."
+  ],
+  "p": [
+   "Receipts to caregivers are proposed, not built.",
+   "Arrears carried across months are proposed."
+  ],
+  "route": "whosPaid",
+  "key": "app__whosPaid",
+  "w": 376,
+  "h": 726,
+  "file": "app__whosPaid.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 full flow \u00b7 step 1",
+  "d": "Step 1 of the 'full flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "full-flow",
+  "key": "onb__full-flow__00",
+  "w": 372,
+  "h": 740,
+  "file": "onb__full-flow__00.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 full flow \u00b7 step 2",
+  "d": "Step 2 of the 'full flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "full-flow",
+  "key": "onb__full-flow__01",
+  "w": 372,
+  "h": 740,
+  "file": "onb__full-flow__01.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 full flow \u00b7 step 3",
+  "d": "Step 3 of the 'full flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "full-flow",
+  "key": "onb__full-flow__02",
+  "w": 372,
+  "h": 740,
+  "file": "onb__full-flow__02.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 full flow \u00b7 step 4",
+  "d": "Step 4 of the 'full flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "full-flow",
+  "key": "onb__full-flow__03",
+  "w": 372,
+  "h": 740,
+  "file": "onb__full-flow__03.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 full flow \u00b7 step 5",
+  "d": "Step 5 of the 'full flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "full-flow",
+  "key": "onb__full-flow__04",
+  "w": 372,
+  "h": 740,
+  "file": "onb__full-flow__04.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 full flow \u00b7 step 6",
+  "d": "Step 6 of the 'full flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "full-flow",
+  "key": "onb__full-flow__05",
+  "w": 372,
+  "h": 740,
+  "file": "onb__full-flow__05.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 no session \u00b7 step 1",
+  "d": "Step 1 of the 'no session' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "With no session the user lands on sign-in rather than a marketing screen."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "no-session",
+  "key": "onb__no-session__00",
+  "w": 372,
+  "h": 740,
+  "file": "onb__no-session__00.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 no session \u00b7 step 2",
+  "d": "Step 2 of the 'no session' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "With no session the user lands on sign-in rather than a marketing screen."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "no-session",
+  "key": "onb__no-session__01",
+  "w": 372,
+  "h": 740,
+  "file": "onb__no-session__01.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 no session \u00b7 step 3",
+  "d": "Step 3 of the 'no session' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "With no session the user lands on sign-in rather than a marketing screen."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "no-session",
+  "key": "onb__no-session__02",
+  "w": 372,
+  "h": 740,
+  "file": "onb__no-session__02.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 no session \u00b7 step 4",
+  "d": "Step 4 of the 'no session' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "With no session the user lands on sign-in rather than a marketing screen."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "no-session",
+  "key": "onb__no-session__03",
+  "w": 372,
+  "h": 740,
+  "file": "onb__no-session__03.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 no session \u00b7 step 5",
+  "d": "Step 5 of the 'no session' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "With no session the user lands on sign-in rather than a marketing screen."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456)."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "no-session",
+  "key": "onb__no-session__04",
+  "w": 372,
+  "h": 740,
+  "file": "onb__no-session__04.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 pin set \u00b7 step 1",
+  "d": "Step 1 of the 'pin set' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "pin-set",
+  "key": "onb__pin-set__00",
+  "w": 372,
+  "h": 740,
+  "file": "onb__pin-set__00.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 pin set \u00b7 step 2",
+  "d": "Step 2 of the 'pin set' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "pin-set",
+  "key": "onb__pin-set__01",
+  "w": 372,
+  "h": 740,
+  "file": "onb__pin-set__01.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 pin set \u00b7 step 3",
+  "d": "Step 3 of the 'pin set' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "pin-set",
+  "key": "onb__pin-set__02",
+  "w": 372,
+  "h": 740,
+  "file": "onb__pin-set__02.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 pin skipped \u00b7 step 1",
+  "d": "Step 1 of the 'pin skipped' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "pin-skipped",
+  "key": "onb__pin-skipped__00",
+  "w": 372,
+  "h": 740,
+  "file": "onb__pin-skipped__00.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 pin skipped \u00b7 step 2",
+  "d": "Step 2 of the 'pin skipped' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "pin-skipped",
+  "key": "onb__pin-skipped__01",
+  "w": 372,
+  "h": 740,
+  "file": "onb__pin-skipped__01.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 returning user flow \u00b7 step 1",
+  "d": "Step 1 of the 'returning user flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "returning-user-flow",
+  "key": "onb__returning-user-flow__00",
+  "w": 372,
+  "h": 740,
+  "file": "onb__returning-user-flow__00.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 returning user flow \u00b7 step 2",
+  "d": "Step 2 of the 'returning user flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "returning-user-flow",
+  "key": "onb__returning-user-flow__01",
+  "w": 372,
+  "h": 740,
+  "file": "onb__returning-user-flow__01.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 returning user flow \u00b7 step 3",
+  "d": "Step 3 of the 'returning user flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "returning-user-flow",
+  "key": "onb__returning-user-flow__02",
+  "w": 372,
+  "h": 740,
+  "file": "onb__returning-user-flow__02.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 returning user flow \u00b7 step 4",
+  "d": "Step 4 of the 'returning user flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "returning-user-flow",
+  "key": "onb__returning-user-flow__03",
+  "w": 372,
+  "h": 740,
+  "file": "onb__returning-user-flow__03.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 returning user flow \u00b7 step 5",
+  "d": "Step 5 of the 'returning user flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "returning-user-flow",
+  "key": "onb__returning-user-flow__04",
+  "w": 372,
+  "h": 740,
+  "file": "onb__returning-user-flow__04.png"
+ },
+ {
+  "area": "Onboarding & entry",
+  "title": "Onboarding \u2014 returning user flow \u00b7 step 6",
+  "d": "Step 6 of the 'returning user flow' entry path.",
+  "dec": [
+   "Phone number and a one-time code \u2014 no passwords, no SSO. A wrong code is retriable and nothing locks.",
+   "Every step that can be deferred is deferrable; deferral surfaces later as 'Complete your profile'.",
+   "PIN unlock is a convenience, not the credential \u2014 'Forgot PIN' and 'Not you?' both route back to sign-in by SMS code."
+  ],
+  "a": [
+   "The OTP is a fixed code in the prototype (123456).",
+   "The PIN is stored on the device only and is skippable."
+  ],
+  "p": [
+   "Copy is placeholder in places and pending a plain-language pass."
+  ],
+  "route": "returning-user-flow",
+  "key": "onb__returning-user-flow__05",
+  "w": 372,
+  "h": 740,
+  "file": "onb__returning-user-flow__05.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 All clear \u00b7 practitioner \u00b7 offline",
+  "d": "Home as a practitioner on ECD Connect (OA), offline, with the All clear scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the all clear item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card.",
+   "The cleared state uses the design system Success alert inside the notification panel, with no call to action."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__offline__all-clear",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__offline__all-clear.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Attendance due \u00b7 practitioner \u00b7 offline",
+  "d": "Home as a practitioner on ECD Connect (OA), offline, with the Attendance due scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the attendance due item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__offline__attendance-due",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__offline__attendance-due.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Consent imminent \u00b7 practitioner \u00b7 offline",
+  "d": "Home as a practitioner on ECD Connect (OA), offline, with the Consent imminent scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the consent imminent item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__offline__consent-imminent",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__offline__consent-imminent.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 practitioner \u00b7 offline",
+  "d": "Home as a practitioner on ECD Connect (OA), offline, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__offline__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__offline__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Month start \u00b7 practitioner \u00b7 offline",
+  "d": "Home as a practitioner on ECD Connect (OA), offline, with the Month start scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the month start item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__offline__month-start",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__offline__month-start.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 All clear \u00b7 practitioner \u00b7 online",
+  "d": "Home as a practitioner on ECD Connect (OA), online, with the All clear scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the all clear item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "The cleared state uses the design system Success alert inside the notification panel, with no call to action."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__online__all-clear",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__online__all-clear.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Attendance due \u00b7 practitioner \u00b7 online",
+  "d": "Home as a practitioner on ECD Connect (OA), online, with the Attendance due scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the attendance due item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__online__attendance-due",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__online__attendance-due.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Consent imminent \u00b7 practitioner \u00b7 online",
+  "d": "Home as a practitioner on ECD Connect (OA), online, with the Consent imminent scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the consent imminent item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__online__consent-imminent",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__online__consent-imminent.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 practitioner \u00b7 online",
+  "d": "Home as a practitioner on ECD Connect (OA), online, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__online__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__online__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Month start \u00b7 practitioner \u00b7 online",
+  "d": "Home as a practitioner on ECD Connect (OA), online, with the Month start scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the month start item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__practitioner__online__month-start",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__practitioner__online__month-start.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 All clear \u00b7 principal \u00b7 offline",
+  "d": "Home as a principal on ECD Connect (OA), offline, with the All clear scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the all clear item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card.",
+   "The cleared state uses the design system Success alert inside the notification panel, with no call to action."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__offline__all-clear",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__offline__all-clear.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Attendance due \u00b7 principal \u00b7 offline",
+  "d": "Home as a principal on ECD Connect (OA), offline, with the Attendance due scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the attendance due item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__offline__attendance-due",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__offline__attendance-due.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Consent imminent \u00b7 principal \u00b7 offline",
+  "d": "Home as a principal on ECD Connect (OA), offline, with the Consent imminent scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the consent imminent item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__offline__consent-imminent",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__offline__consent-imminent.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 principal \u00b7 offline",
+  "d": "Home as a principal on ECD Connect (OA), offline, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__offline__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__offline__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Month start \u00b7 principal \u00b7 offline",
+  "d": "Home as a principal on ECD Connect (OA), offline, with the Month start scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the month start item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__offline__month-start",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__offline__month-start.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 All clear \u00b7 principal \u00b7 online",
+  "d": "Home as a principal on ECD Connect (OA), online, with the All clear scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the all clear item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "The cleared state uses the design system Success alert inside the notification panel, with no call to action."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__online__all-clear",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__online__all-clear.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Attendance due \u00b7 principal \u00b7 online",
+  "d": "Home as a principal on ECD Connect (OA), online, with the Attendance due scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the attendance due item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__online__attendance-due",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__online__attendance-due.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Consent imminent \u00b7 principal \u00b7 online",
+  "d": "Home as a principal on ECD Connect (OA), online, with the Consent imminent scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the consent imminent item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__online__consent-imminent",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__online__consent-imminent.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 principal \u00b7 online",
+  "d": "Home as a principal on ECD Connect (OA), online, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__online__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__online__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Month start \u00b7 principal \u00b7 online",
+  "d": "Home as a principal on ECD Connect (OA), online, with the Month start scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the month start item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "No proposed changes for this state."
+  ],
+  "route": "ecd",
+  "key": "state__ecd__principal__online__month-start",
+  "w": 376,
+  "h": 726,
+  "file": "state__ecd__principal__online__month-start.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 practitioner \u00b7 offline \u00b7 SmartStart",
+  "d": "Home as a practitioner on SmartStart (white-label), offline, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__practitioner__offline__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__practitioner__offline__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 All clear \u00b7 practitioner \u00b7 online \u00b7 SmartStart",
+  "d": "Home as a practitioner on SmartStart (white-label), online, with the All clear scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the all clear item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect.",
+   "The cleared state uses the design system Success alert inside the notification panel, with no call to action."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__practitioner__online__all-clear",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__practitioner__online__all-clear.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Attendance due \u00b7 practitioner \u00b7 online \u00b7 SmartStart",
+  "d": "Home as a practitioner on SmartStart (white-label), online, with the Attendance due scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the attendance due item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__practitioner__online__attendance-due",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__practitioner__online__attendance-due.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Consent imminent \u00b7 practitioner \u00b7 online \u00b7 SmartStart",
+  "d": "Home as a practitioner on SmartStart (white-label), online, with the Consent imminent scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the consent imminent item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__practitioner__online__consent-imminent",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__practitioner__online__consent-imminent.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 practitioner \u00b7 online \u00b7 SmartStart",
+  "d": "Home as a practitioner on SmartStart (white-label), online, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__practitioner__online__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__practitioner__online__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Month start \u00b7 practitioner \u00b7 online \u00b7 SmartStart",
+  "d": "Home as a practitioner on SmartStart (white-label), online, with the Month start scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the month start item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__practitioner__online__month-start",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__practitioner__online__month-start.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 principal \u00b7 offline \u00b7 SmartStart",
+  "d": "Home as a principal on SmartStart (white-label), offline, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Offline shows the connection pill in the header and, where the action needs the network, a deferral notice inside the Today card.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Everything on this screen renders from the local store; only sending is deferred.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__principal__offline__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__principal__offline__live.png"
+ },
+ {
+  "area": "Home & daily states",
+  "title": "Home \u2014 Live (auto) \u00b7 principal \u00b7 online \u00b7 SmartStart",
+  "d": "Home as a principal on SmartStart (white-label), online, with the Live (auto) scenario active. The Today card, its call to action and the secondary count all change with these four inputs.",
+  "dec": [
+   "The Today card is chosen by the priority ladder; in this state it resolves to the live (auto) item.",
+   "Role changes both the card copy and the bottom nav \u2014 practitioners get Classes/Resources/Profile, principals get Classes/Income/Staff/Profile.",
+   "Tenant theming swaps the logo and re-points the action colour only \u2014 layout, type and spacing are identical to ECD Connect."
+  ],
+  "a": [
+   "The scenario chips are a prototype affordance; in production the state is derived from real data.",
+   "Principal sees every class in the preschool, not only assigned classes."
+  ],
+  "p": [
+   "SmartStart's action colour is its brand purple here; the design system's SmartStart theme maps action to the secondary blue. Worth reconciling."
+  ],
+  "route": "smartstart",
+  "key": "state__smartstart__principal__online__live",
+  "w": 376,
+  "h": 726,
+  "file": "state__smartstart__principal__online__live.png"
+ }
+]
