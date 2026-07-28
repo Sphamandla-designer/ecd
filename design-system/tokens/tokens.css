@@ -1,0 +1,235 @@
+/* ==========================================================================
+   ECD Connect 2.0 — design tokens for web
+   Generated from tokens.json. Source of truth: Figma 8s2xe3EyBRhrzDFy93NbfN,
+   page 0:1 "🎨 Design System".
+
+   Three layers:
+     --ecd-palette-*  raw Figma hues       (do NOT use in components)
+     --ecd-*          semantic roles       (use these)
+     --ecd-status-*   platform constants   (never themed)
+
+   White-labelling: override ONLY the role block in a [data-tenant] scope.
+   ========================================================================== */
+
+:root {
+  /* ---------- palette (raw hues — reference only) ---------- */
+  --ecd-palette-primary:            #27385A;
+  --ecd-palette-primary-accent-1:   #52607B;
+  --ecd-palette-primary-accent-2:   #D4D7DE;
+  --ecd-palette-secondary:          #FF2180;
+  --ecd-palette-secondary-accent-1: #FF90BF;
+  --ecd-palette-secondary-accent-2: #FFD3E6;
+  --ecd-palette-tertiary:           #83BB26;
+  --ecd-palette-tertiary-accent-1:  #C1DD92;
+  --ecd-palette-tertiary-accent-2:  #E6F1D4;
+  --ecd-palette-quaternary:         #1DBADF;
+  --ecd-palette-quaternary-accent-1:#8EDCEF;
+  --ecd-palette-quaternary-accent-2:#D2F1F9;
+  --ecd-palette-quinary:            #FFD525;
+  --ecd-palette-quinary-accent-1:   #FFEA92;
+  --ecd-palette-quinary-accent-2:   #FFF6D0;
+  --ecd-palette-text-dark:          #27385A;
+  --ecd-palette-text-mid:           #65727A;
+  --ecd-palette-text-light:         #C9CFD2;
+  --ecd-palette-ui-background:      #EFF6FA;
+  --ecd-palette-white:              #FFFFFF;
+
+  /* ---------- roles (USE THESE) ---------- */
+  --ecd-action:            var(--ecd-palette-quaternary);
+  --ecd-on-action:         var(--ecd-palette-white);
+  --ecd-action-hover:      var(--ecd-palette-quaternary-accent-1);
+  --ecd-action-disabled:   var(--ecd-palette-quaternary-accent-2);
+  --ecd-action-subtle:     var(--ecd-palette-quaternary-accent-2);
+
+  --ecd-select:            var(--ecd-palette-secondary);
+  --ecd-on-select:         var(--ecd-palette-white);
+  --ecd-select-subtle:     var(--ecd-palette-secondary-accent-2);
+
+  --ecd-app-bar:           var(--ecd-palette-primary);
+  --ecd-on-app-bar:        var(--ecd-palette-white);
+  --ecd-app-bar-muted:     var(--ecd-palette-primary-accent-1);
+
+  --ecd-background:        var(--ecd-palette-ui-background);
+  --ecd-surface:           var(--ecd-palette-white);
+  --ecd-line:              var(--ecd-palette-primary-accent-2);
+
+  --ecd-text-dark:         var(--ecd-palette-text-dark);
+  --ecd-text-mid:          var(--ecd-palette-text-mid);
+  --ecd-text-light:        var(--ecd-palette-text-light);
+  --ecd-scrim:             rgba(39, 56, 90, 0.7);
+
+  /* ---------- status (NEVER themed) ---------- */
+  --ecd-status-error-main:    #ED1414;
+  --ecd-status-error-dark:    #D20000;
+  --ecd-status-error-bg:      #FFEEF6;
+  --ecd-status-alert-main:    #FF5C00;
+  --ecd-status-alert-dark:    #E43802;
+  --ecd-status-alert-bg:      #FFEEE4;
+  --ecd-status-success-main:  #83BB26;
+  --ecd-status-success-dark:  #5A8F02;
+  --ecd-status-success-bg:    #E6F1D4;
+  --ecd-status-info-main:     #1D67D5;
+  --ecd-status-info-dark:     #1752AB;
+  --ecd-status-info-bg:       #EBF3FF;
+
+  /* ---------- developmental domains (NEVER themed) ---------- */
+  --ecd-domain-happy-and-secure:   #D3276C;  /* social & emotional */
+  --ecd-domain-speaking-listening: #9E4D8E;  /* language */
+  --ecd-domain-discovery-problem:  #6974AF;  /* cognitive */
+  --ecd-domain-developing-bodies:  #359AD1;  /* physical */
+
+  /* ---------- categories (main + tint) ---------- */
+  --ecd-category-activities-main:     var(--ecd-palette-quaternary);
+  --ecd-category-activities-tint:     var(--ecd-palette-quaternary-accent-2);
+  --ecd-category-stories-main:        var(--ecd-palette-secondary);
+  --ecd-category-stories-tint:        var(--ecd-palette-secondary-accent-2);
+  --ecd-category-teaching-tips-main:  var(--ecd-palette-quinary);
+  --ecd-category-teaching-tips-tint:  var(--ecd-palette-quinary-accent-2);
+  --ecd-category-other-main:          var(--ecd-palette-tertiary);
+  --ecd-category-other-tint:          var(--ecd-palette-tertiary-accent-2);
+
+  /* ---------- type ---------- */
+  --ecd-font-heading: Quicksand, system-ui, sans-serif;
+  --ecd-font-body:    Inter, system-ui, sans-serif;
+
+  --ecd-h1:          600 24px/32px var(--ecd-font-heading);
+  --ecd-h2:          600 20px/28px var(--ecd-font-heading);
+  --ecd-h3:          600 18px/24px var(--ecd-font-heading);
+  --ecd-h4:          600 16px/22px var(--ecd-font-heading);
+  --ecd-body:        400 16px/24px var(--ecd-font-body);
+  --ecd-body-tight:  400 16px/22px var(--ecd-font-body);
+  --ecd-body-medium: 500 16px/22px var(--ecd-font-body);
+  --ecd-help:        400 14px/20px var(--ecd-font-body);
+  --ecd-help-medium: 500 14px/20px var(--ecd-font-body);
+  --ecd-help-strong: 600 14px/20px var(--ecd-font-body);
+  --ecd-caption:     400 12px/16px var(--ecd-font-body);
+  --ecd-caption-medium: 500 12px/16px var(--ecd-font-body);
+  --ecd-overline:    600 12px/16px var(--ecd-font-body);   /* + letter-spacing below */
+  --ecd-overline-tracking: 2.5px;
+  --ecd-button:      600 14px/20px var(--ecd-font-heading);
+  --ecd-button-small:600 12px/16px var(--ecd-font-heading);
+  --ecd-button-fab:  600 16px/22px var(--ecd-font-heading);
+  --ecd-chip:        500 14px/16px var(--ecd-font-heading);
+  --ecd-chip-active: 600 14px/16px var(--ecd-font-heading);
+
+  /* ---------- space (4px base) ---------- */
+  --ecd-space-1: 4px;
+  --ecd-space-2: 8px;
+  --ecd-space-3: 12px;
+  --ecd-space-4: 16px;   /* the workhorse */
+  --ecd-space-6: 24px;
+  --ecd-space-8: 32px;
+  --ecd-screen-margin: 16px;
+
+  /* ---------- radius ---------- */
+  --ecd-radius-xs:           2px;   /* validator segments */
+  --ecd-radius-alert-button: 4px;
+  --ecd-radius-sm:           6px;   /* inputs, selects */
+  --ecd-radius-md:          10px;   /* cards, alerts, rows, small buttons */
+  --ecd-radius-lg:          15px;   /* full-width buttons — 15, not 16 */
+  --ecd-radius-xl:          20px;   /* dialogs, chips */
+  --ecd-radius-xxl:         24px;   /* FAB, icon circles */
+  --ecd-radius-full:       999px;
+
+  /* ---------- size ---------- */
+  --ecd-frame-width:        360px;
+  --ecd-content-width:      328px;
+  --ecd-table-width:        318px;
+  --ecd-dialog-width:       328px;
+  --ecd-dialog-content:     296px;
+  --ecd-half-field:         164px;
+
+  --ecd-app-bar-h:           64px;
+  --ecd-tab-bar-h:           56px;
+  --ecd-filter-bar-h:        56px;
+  --ecd-language-selector-h: 74px;
+  --ecd-footer-bar-h:        72px;
+
+  --ecd-button-h:        40px;   /* visual — wrap in a 48px hit area */
+  --ecd-button-small-h:  32px;
+  --ecd-fab:             48px;
+  --ecd-input-h:         48px;
+  --ecd-textarea-h:     120px;
+  --ecd-chip-h:          40px;
+  --ecd-filter-item-h:   48px;
+  --ecd-badge-h:         28px;
+  --ecd-touch-target:    48px;
+  --ecd-icon-circle:     48px;
+
+  --ecd-icon-xs: 16px;
+  --ecd-icon-sm: 20px;
+  --ecd-icon-md: 22px;
+  --ecd-icon-lg: 24px;
+  --ecd-icon-xl: 48px;
+
+  --ecd-avatar-sm:  48px;
+  --ecd-avatar-lg: 120px;
+
+  --ecd-row-compact: 56px;
+  --ecd-row-sum:     64px;
+  --ecd-row-default: 80px;
+  --ecd-row-long:    92px;
+  --ecd-row-longer: 112px;
+
+  --ecd-hairline:   1px;
+  --ecd-focus-ring: 2px;
+
+  /* ---------- elevation ---------- */
+  --ecd-elevation-sm:   0 1px 2px rgba(0,0,0,0.05);
+  --ecd-elevation-base: 0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.10);
+  --ecd-elevation-lg:   0 4px 6px -2px rgba(0,0,0,0.05), 0 10px 15px -3px rgba(0,0,0,0.10);
+  --ecd-elevation-dropdown: 0 0 0 1px #CAC5D8,
+                            0 4px 6px -2px rgba(0,0,0,0.05),
+                            0 10px 15px -3px rgba(0,0,0,0.10);
+  --ecd-elevation-button: 0 10px 10px -5px rgba(39,56,90,0.2);
+  --ecd-elevation-dialog: 0 20px 12.5px rgba(0,0,0,0.1), 0 10px 5px rgba(0,0,0,0.1);
+
+  /* ---------- motion ---------- */
+  --ecd-duration-fast:  150ms;
+  --ecd-duration-base:  250ms;
+  --ecd-duration-slow:  300ms;
+  --ecd-easing-standard:   cubic-bezier(0.2, 0, 0, 1);
+  --ecd-easing-decelerate: cubic-bezier(0, 0, 0, 1);
+}
+
+/* ==========================================================================
+   White-label example — SmartStart.
+   Only roles are re-pointed. Status, domain, type, space and radius are
+   untouched, which is the whole point of the role indirection.
+   ========================================================================== */
+
+[data-tenant="smartstart"] {
+  --ecd-palette-primary:            #583F99;
+  --ecd-palette-primary-accent-1:   #9484BD;
+  --ecd-palette-primary-accent-2:   #D7D1E6;
+  --ecd-palette-secondary:          #00B0E0;
+  --ecd-palette-secondary-accent-1: #66D0EC;
+  --ecd-palette-secondary-accent-2: #C2ECF8;
+  --ecd-palette-tertiary:           #ED145B;
+  --ecd-palette-tertiary-accent-2:  #FBC7D8;
+  --ecd-palette-text-dark:          #1F192E;
+  --ecd-palette-text-mid:           #483E63;
+  --ecd-palette-text-light:         #CAC5D8;
+  --ecd-palette-ui-background:      #F3F1F9;
+
+  /* SmartStart has no 4th hue — action maps onto its secondary blue */
+  --ecd-action:          var(--ecd-palette-secondary);
+  --ecd-action-hover:    var(--ecd-palette-secondary-accent-1);
+  --ecd-action-disabled: var(--ecd-palette-secondary-accent-2);
+  --ecd-action-subtle:   var(--ecd-palette-secondary-accent-2);
+  --ecd-select:          var(--ecd-palette-tertiary);
+  --ecd-select-subtle:   var(--ecd-palette-tertiary-accent-2);
+  --ecd-scrim:           rgba(148, 132, 189, 0.7);
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ecd-duration-fast: 0ms;
+    --ecd-duration-base: 0ms;
+    --ecd-duration-slow: 0ms;
+  }
+}

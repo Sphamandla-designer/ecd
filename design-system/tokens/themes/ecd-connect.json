@@ -54,7 +54,6 @@
   "scrim": { "base": "primary", "alpha": 0.7 },
 
   "categoryMapping": {
-    "$description": "Content categories → palette hue. Each resolves to a main (icon circle / badge) and its matching *Accent2 tint (card fill).",
     "activities": "quaternary",
     "stories": "secondary",
     "teachingTips": "quinary",
