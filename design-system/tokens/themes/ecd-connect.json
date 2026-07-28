@@ -1,42 +1,88 @@
 {
-  "$description": "ECD Connect default theme (Open Access model, ships in-binary as fallback). Source: Draft ECD Planning, Figma 7Ti9Qvr0dc1STxr6AWSxVX variables.",
+  "$description": "ECD Connect default theme (Open Access model). Ships in-binary as the fallback theme. Values extracted verbatim from Figma file 8s2xe3EyBRhrzDFy93NbfN (App-Screens), page 0:1 Colour Palette frame 100:1102 — these ARE the designs, so this theme must render pixel-identical to the Figma screens.",
   "tenant": "ecd-connect",
   "model": "OA",
-  "colors": {
+  "schemaVersion": "2.0.0",
+
+  "palette": {
     "primary": "#27385A",
-    "onPrimary": "#FFFFFF",
     "primaryAccent1": "#52607B",
-    "primaryAccent2": "#D3D8E1",
+    "primaryAccent2": "#D4D7DE",
     "secondary": "#FF2180",
-    "onSecondary": "#FFFFFF",
-    "secondaryAccent1": "#FF7AB3",
+    "secondaryAccent1": "#FF90BF",
     "secondaryAccent2": "#FFD3E6",
     "tertiary": "#83BB26",
-    "onTertiary": "#FFFFFF",
-    "tertiaryAccent1": "#A8D45E",
+    "tertiaryAccent1": "#C1DD92",
     "tertiaryAccent2": "#E6F1D4",
     "quaternary": "#1DBADF",
+    "quaternaryAccent1": "#8EDCEF",
     "quaternaryAccent2": "#D2F1F9",
     "quinary": "#FFD525",
+    "quinaryAccent1": "#FFEA92",
     "quinaryAccent2": "#FFF6D0",
-    "textDark": "#231F20",
-    "textMid": "#52607B",
-    "textLight": "#9BA3B2",
-    "background": "#F4F6F9",
-    "surface": "#FFFFFF",
-    "modalScrim": "#52607BB3"
+    "textDark": "#27385A",
+    "textMid": "#65727A",
+    "textLight": "#C9CFD2",
+    "uiBackground": "#EFF6FA",
+    "white": "#FFFFFF"
   },
-  "assets": {
-    "logoLight": "assets/ecd-connect/logo-white.svg",
-    "logoDark": "assets/ecd-connect/logo-navy.svg",
-    "appIcon": "assets/ecd-connect/app-icon.svg",
-    "doodlePattern": "assets/ecd-connect/pattern-doodles.svg",
-    "mascotPack": "default"
+
+  "roles": {
+    "action": "quaternary",
+    "onAction": "white",
+    "actionHover": "quaternaryAccent1",
+    "actionDisabled": "quaternaryAccent2",
+    "actionSubtle": "quaternaryAccent2",
+
+    "select": "secondary",
+    "onSelect": "white",
+    "selectSubtle": "secondaryAccent2",
+
+    "appBar": "primary",
+    "onAppBar": "white",
+    "appBarMuted": "primaryAccent1",
+
+    "background": "uiBackground",
+    "surface": "white",
+    "line": "primaryAccent2",
+
+    "textDark": "textDark",
+    "textMid": "textMid",
+    "textLight": "textLight"
   },
+
+  "scrim": { "base": "primary", "alpha": 0.7 },
+
   "categoryMapping": {
+    "$description": "Content categories → palette hue. Each resolves to a main (icon circle / badge) and its matching *Accent2 tint (card fill).",
+    "activities": "quaternary",
+    "stories": "secondary",
+    "teachingTips": "quinary",
+    "other": "tertiary",
     "classroom": "secondary",
     "business": "quinary",
     "community": "quaternary",
     "training": "tertiary"
+  },
+
+  "assets": {
+    "logoColour": "assets/ecd-connect/logo-colour.svg",
+    "logoWhite": "assets/ecd-connect/logo-white.svg",
+    "logoLockupSmall": "assets/ecd-connect/lockup-188x48.svg",
+    "logoLockupLarge": "assets/ecd-connect/lockup-271x64.svg",
+    "appIcon": "assets/ecd-connect/app-icon.svg",
+    "favicon": "assets/ecd-connect/favicon-512.png",
+    "patternShapes": "assets/ecd-connect/ci-shapes.svg",
+    "patternDots": "assets/ecd-connect/ci-dots.svg",
+    "graphicOverlays": {
+      "square360": "assets/ecd-connect/overlay-360.svg",
+      "large364": "assets/ecd-connect/overlay-large-364.svg",
+      "large244": "assets/ecd-connect/overlay-large2-244.svg",
+      "medium180": "assets/ecd-connect/overlay-medium-180.svg",
+      "banner134": "assets/ecd-connect/overlay-banner-134.svg",
+      "small90": "assets/ecd-connect/overlay-small-90.svg",
+      "small80": "assets/ecd-connect/overlay-small-80.svg"
+    },
+    "mascotPack": "cebisa"
   }
 }

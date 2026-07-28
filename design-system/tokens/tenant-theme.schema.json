@@ -2,51 +2,106 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ecdconnect.org/schemas/tenant-theme.schema.json",
   "title": "TENANT.theme_tokens",
-  "description": "Contract for the theme_tokens JSON stored per tenant (plan §9 data model) and served to clients by the tenant config & theming service (plan §8). Clients cache this offline. Status colours are intentionally NOT part of this schema — they are platform constants.",
+  "description": "Backend contract for the theme_tokens JSON stored per tenant and served by the tenant config & theming service. Clients cache this offline and fall back to the in-binary ECD Connect theme when absent. Structure mirrors design-system/tokens/tokens.json: a `palette` of raw hues, plus `roles` that POINT AT palette keys. Status colours, developmental-domain colours, the type scale, spacing, radii and component anatomy are NOT part of this schema — they are platform constants and must never be themed.",
   "type": "object",
-  "required": ["tenant", "model", "colors", "assets"],
+  "required": ["tenant", "model", "schemaVersion", "palette", "roles", "assets"],
   "additionalProperties": false,
+
   "properties": {
     "$description": { "type": "string" },
     "tenant": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-    "model": { "enum": ["OA", "WL"] },
-    "colors": {
+    "model": { "enum": ["OA", "WL"], "description": "OA = Open Access (default tenant), WL = White Label." },
+    "schemaVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+
+    "palette": {
       "type": "object",
+      "description": "The tenant's raw brand hues. A tenant need not supply all five hue families, but every palette key referenced by `roles` or `categoryMapping` MUST exist here.",
       "required": [
-        "primary", "onPrimary", "primaryAccent1", "primaryAccent2",
-        "secondary", "onSecondary", "secondaryAccent1", "secondaryAccent2",
-        "tertiary", "onTertiary", "tertiaryAccent1", "tertiaryAccent2",
-        "textDark", "textMid", "textLight", "background", "surface", "modalScrim"
+        "primary", "primaryAccent1", "primaryAccent2",
+        "secondary", "secondaryAccent1", "secondaryAccent2",
+        "textDark", "textMid", "textLight", "uiBackground", "white"
       ],
       "additionalProperties": false,
       "patternProperties": {
         "^(primary|secondary|tertiary|quaternary|quinary)(Accent[12])?$": { "$ref": "#/$defs/hex" },
-        "^on(Primary|Secondary|Tertiary)$": { "$ref": "#/$defs/hex" },
         "^text(Dark|Mid|Light)$": { "$ref": "#/$defs/hex" },
-        "^(background|surface)$": { "$ref": "#/$defs/hex" },
-        "^modalScrim$": { "$ref": "#/$defs/hexAlpha" }
+        "^(uiBackground|white)$": { "$ref": "#/$defs/hex" }
       }
     },
-    "assets": {
+
+    "roles": {
       "type": "object",
-      "required": ["logoLight", "logoDark", "appIcon", "doodlePattern"],
+      "description": "Maps each semantic role to a KEY in `palette`. This indirection is the white-label seam: components reference roles only, so a tenant re-points roles without any code change. Every value must be a key present in `palette`.",
+      "required": [
+        "action", "onAction", "actionHover", "actionDisabled", "actionSubtle",
+        "select", "onSelect", "selectSubtle",
+        "appBar", "onAppBar", "appBarMuted",
+        "background", "surface", "line",
+        "textDark", "textMid", "textLight"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(action|onAction|actionHover|actionDisabled|actionSubtle|select|onSelect|selectSubtle|appBar|onAppBar|appBarMuted|background|surface|line|textDark|textMid|textLight)$": {
+          "$ref": "#/$defs/paletteKey"
+        }
+      }
+    },
+
+    "scrim": {
+      "type": "object",
+      "description": "Modal scrim, expressed as a palette hue plus alpha so clients can composite it correctly. Defaults to primary @ 0.7.",
+      "required": ["base", "alpha"],
       "additionalProperties": false,
       "properties": {
-        "logoLight": { "type": "string", "description": "SVG lockup used on primary surfaces (white/light)" },
-        "logoDark": { "type": "string", "description": "SVG lockup used on white surfaces" },
-        "appIcon": { "type": "string" },
-        "doodlePattern": { "type": "string", "description": "Single-colour SVG tile; rendered tonally on primary" },
-        "mascotPack": { "type": "string", "default": "default" }
+        "base": { "$ref": "#/$defs/paletteKey" },
+        "alpha": { "type": "number", "minimum": 0, "maximum": 1 }
       }
     },
+
     "categoryMapping": {
       "type": "object",
-      "description": "Optional hub-category → colour-role mapping",
-      "additionalProperties": { "enum": ["primary", "secondary", "tertiary", "quaternary", "quinary"] }
+      "description": "Content-category → palette key. The client derives the card tint from the matching *Accent2 of the same hue family.",
+      "additionalProperties": { "$ref": "#/$defs/paletteKey" }
+    },
+
+    "assets": {
+      "type": "object",
+      "required": ["logoColour", "logoWhite", "appIcon"],
+      "additionalProperties": false,
+      "properties": {
+        "logoColour": { "type": "string", "description": "SVG logo mark in brand colour, for white surfaces." },
+        "logoWhite": { "type": "string", "description": "SVG logo mark in white, for the navy app bar and coloured surfaces." },
+        "logoLockupSmall": { "type": "string", "description": "188x48 mark + wordmark lockup." },
+        "logoLockupLarge": { "type": "string", "description": "271x64 mark + wordmark lockup." },
+        "appIcon": { "type": "string" },
+        "favicon": { "type": "string", "description": "512x512." },
+        "patternShapes": { "type": "string", "description": "CI shapes pattern tile (SVG)." },
+        "patternDots": { "type": "string", "description": "CI dots pattern tile (SVG)." },
+        "graphicOverlays": {
+          "type": "object",
+          "description": "Tonal header overlays. Heights are fixed by the design; supply the sizes the tenant's screens use.",
+          "additionalProperties": false,
+          "properties": {
+            "square360": { "type": "string" },
+            "large364": { "type": "string" },
+            "large244": { "type": "string" },
+            "medium180": { "type": "string" },
+            "banner134": { "type": "string" },
+            "small90": { "type": "string" },
+            "small80": { "type": "string" }
+          }
+        },
+        "mascotPack": { "type": "string", "default": "cebisa", "description": "Identifier for the animoji/mascot set. Slots are fixed; only the artwork changes." }
+      }
     }
   },
+
   "$defs": {
     "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
-    "hexAlpha": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$" }
+    "paletteKey": {
+      "type": "string",
+      "pattern": "^((primary|secondary|tertiary|quaternary|quinary)(Accent[12])?|text(Dark|Mid|Light)|uiBackground|white)$",
+      "description": "Must be a key present in this theme's `palette` object."
+    }
   }
 }

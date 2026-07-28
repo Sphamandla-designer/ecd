@@ -1,36 +1,87 @@
 {
-  "$description": "SmartStart white-label tenant theme (first WL tenant). Source: Funda App foundations, Figma PtgowNcKNzo12KErPmKPGr node 5:10497.",
+  "$description": "SmartStart white-label tenant theme. Palette from the sibling Funda/SmartStart library (values confirmed in App-Screens get_variable_defs on shared components — see extraction/00-design-system-page.md §1.2). IMPORTANT: SmartStart's brand has no distinct 4th/5th hue, so `action` maps to its secondary blue rather than a quaternary. This is the reference example of a tenant that re-points roles onto a different palette shape.",
   "tenant": "smartstart",
   "model": "WL",
-  "colors": {
+  "schemaVersion": "2.0.0",
+
+  "palette": {
     "primary": "#583F99",
-    "onPrimary": "#FFFFFF",
     "primaryAccent1": "#9484BD",
     "primaryAccent2": "#D7D1E6",
     "secondary": "#00B0E0",
-    "onSecondary": "#FFFFFF",
     "secondaryAccent1": "#66D0EC",
     "secondaryAccent2": "#C2ECF8",
     "tertiary": "#ED145B",
-    "onTertiary": "#FFFFFF",
     "tertiaryAccent1": "#F4729D",
     "tertiaryAccent2": "#FBC7D8",
-    "quaternary": "#66D0EC",
+    "quaternary": "#29C1EF",
+    "quaternaryAccent1": "#66D0EC",
     "quaternaryAccent2": "#C2ECF8",
     "quinary": "#F4729D",
+    "quinaryAccent1": "#F7A0BE",
     "quinaryAccent2": "#FBC7D8",
     "textDark": "#1F192E",
     "textMid": "#483E63",
-    "textLight": "#9B96A6",
-    "background": "#F3F1F9",
-    "surface": "#FFFFFF",
-    "modalScrim": "#9484BDB3"
+    "textLight": "#CAC5D8",
+    "uiBackground": "#F3F1F9",
+    "white": "#FFFFFF"
   },
+
+  "roles": {
+    "action": "secondary",
+    "onAction": "white",
+    "actionHover": "secondaryAccent1",
+    "actionDisabled": "secondaryAccent2",
+    "actionSubtle": "secondaryAccent2",
+
+    "select": "tertiary",
+    "onSelect": "white",
+    "selectSubtle": "tertiaryAccent2",
+
+    "appBar": "primary",
+    "onAppBar": "white",
+    "appBarMuted": "primaryAccent1",
+
+    "background": "uiBackground",
+    "surface": "white",
+    "line": "primaryAccent2",
+
+    "textDark": "textDark",
+    "textMid": "textMid",
+    "textLight": "textLight"
+  },
+
+  "scrim": { "base": "primaryAccent1", "alpha": 0.7 },
+
+  "categoryMapping": {
+    "activities": "secondary",
+    "stories": "tertiary",
+    "teachingTips": "quinary",
+    "other": "primaryAccent1",
+    "classroom": "tertiary",
+    "business": "quinary",
+    "community": "secondary",
+    "training": "primary"
+  },
+
   "assets": {
-    "logoLight": "assets/smartstart/logo-white.svg",
-    "logoDark": "assets/smartstart/logo-purple.svg",
-    "appIcon": "assets/smartstart/favicon.svg",
-    "doodlePattern": "assets/smartstart/pattern-flowers.svg",
-    "mascotPack": "default"
+    "logoColour": "assets/smartstart/logo-purple.svg",
+    "logoWhite": "assets/smartstart/logo-white.svg",
+    "logoLockupSmall": "assets/smartstart/lockup-188x48.svg",
+    "logoLockupLarge": "assets/smartstart/lockup-271x64.svg",
+    "appIcon": "assets/smartstart/app-icon.svg",
+    "favicon": "assets/smartstart/favicon-512.png",
+    "patternShapes": "assets/smartstart/pattern-flowers.svg",
+    "patternDots": "assets/smartstart/pattern-dots.svg",
+    "graphicOverlays": {
+      "square360": "assets/smartstart/overlay-360.svg",
+      "large364": "assets/smartstart/overlay-large-364.svg",
+      "large244": "assets/smartstart/overlay-large2-244.svg",
+      "medium180": "assets/smartstart/overlay-medium-180.svg",
+      "banner134": "assets/smartstart/overlay-banner-134.svg",
+      "small90": "assets/smartstart/overlay-small-90.svg",
+      "small80": "assets/smartstart/overlay-small-80.svg"
+    },
+    "mascotPack": "smartstart"
   }
 }
