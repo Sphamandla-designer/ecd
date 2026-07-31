@@ -1,6 +1,6 @@
-# Admin Platform — Dashboard in Figma
+# Admin Platform in Figma
 
-The primary screen of the **ECD Admin Platform** rebuilt as native, editable Figma layers in
+All twelve screens of the **ECD Admin Platform** rebuilt as native, editable Figma layers in
 [`k0txjCbvsb0PgtKc5aoVtW`](https://www.figma.com/design/k0txjCbvsb0PgtKc5aoVtW/Admin-panel),
 page `0:1` (`Admin Platform · Dashboard`).
 
@@ -15,11 +15,30 @@ rendered DOM** at 1440 wide, so the file shows what the browser actually paints.
 
 | Node | Size | What it is |
 |---|---|---|
-| `Dashboard — Back-end user` | 1440 × 1407 | The screen. One horizontal auto-layout: 228dp rail + 1212dp content column. |
-| `Spec — Dashboard` | 760 × 2847 | Dev-facing spec: source, layout, colour map, type ramp, component inventory, accessibility decisions, divergences. |
-| `Design system · Admin Platform` | section | The 10 components and 13 icons the screen is assembled from. |
+| `Dashboard — Back-end user` | 1440 × 1407 | The primary screen. One horizontal auto-layout: 228dp rail + 1212dp content column. |
+| `Screens · Back-end user` | section | The other eleven screens, left to right in nav order. |
+| `Spec — Admin Platform` | 760 × 3732 | Dev-facing spec: source, layout, colour map, type ramp, component inventory, screen index, accessibility decisions, divergences. |
+| `Design system · Admin Platform` | section | The 12 components and 13 icons the screens are assembled from. |
 
-73 instances, 182 text nodes, **zero** unstyled text, **zero** unintended hard-coded fills.
+**Zero** unstyled text and **zero** unintended hard-coded fills across all twelve screens.
+
+| Screen | Height | Text nodes | Instances |
+|---|---|---|---|
+| Dashboard | 1407 | 182 | 75 |
+| Users | 851 | 142 | 27 |
+| Bulk Onboarding | 457 | 54 | 27 |
+| New Registrations | 606 | 96 | 27 |
+| Sites | 655 | 113 | 27 |
+| Children | 851 | 142 | 27 |
+| Caregiver Registrations | 461 | 70 | 27 |
+| Attendance | 616 | 93 | 27 |
+| Coach Visits | 561 | 74 | 27 |
+| Communication | 560 | 63 | 27 |
+| Feedback & Cases | 469 | 80 | 27 |
+| Reports | 519 | 67 | 27 |
+
+Every screen shares one `Side rail` and one `Top bar` component instance — that is the 27. To mark
+the current page, set that nav item's `State` to `Active` on the rail instance.
 
 ## Foundations
 
@@ -48,6 +67,8 @@ anything numeric. Same split as the mobile app.
 
 | Component | Variants | Properties |
 |---|---|---|
+| Side rail | — | (override a nested Nav item's State to mark the page) |
+| Top bar | — | Page name |
 | Nav item | State = Default · Active | Label, Count, Badge (bool), Icon (swap) |
 | Button | Style = Primary · Secondary | Label |
 | Status pill | Tone = Success · Warning · Danger × Face = Data · Label | Label |
@@ -88,17 +109,25 @@ auto-layout frames.
   white, not palette entries.
 - **Prototype chrome excluded.** The dark `PROTOTYPE CONTROLS` strip at the top of the HTML build
   is a harness, not the product, and is not in the frame.
+- **Row actions use two weights** for one control class — Quicksand Bold 11.5 on some screens,
+  SemiBold 11.5 on others. Both are in the ramp (`Display/Row action`, `Display/Row action ·
+  light`) so the file matches the build. Pick one before build.
+- **Feedback & Cases renders pure `#000000`** in the "From" column. There is no black in this
+  system; it is bound to `role/text-dark` here. Fix the CSS.
+- **POST-MVP chips** sit on the disabled export buttons on Users, Children and Reports.
+  `role/disabled-bg` exists only for that pairing — never use it for a live control.
+- **Filter dropdowns** are native `<select>` elements, drawn here in their resting state only.
+  The open state is not designed.
 
 ## Rebuilding
 
-The screen was authored directly against the Plugin API rather than dumped from paint ops (the
-route used for the 103 mobile screens in `implementation/prototype-export/`). One screen at
-desktop density is worth hand-composing: it yields real auto-layout and real components instead
-of absolutely-positioned rectangles, which is what "editable" has to mean for a screen a designer
-will actually work in.
+The Dashboard was authored by hand against the component kit. The other eleven were **generated** —
+see `implementation/admin-export/`, which walks each screen's rendered DOM and emits a nested
+layout tree that maps 1:1 onto Figma auto-layout. That is a different route from the mobile
+pipeline in `implementation/prototype-export/`, which emits flat paint ops; here every container
+is a real auto-layout frame, so the screens reflow the way the code will.
 
-Geometry was read with Playwright against the running build. Two things that would otherwise be
-got wrong:
+Two things that would otherwise be got wrong, and cost a rebuild each:
 
 - **Read `borderBottomColor`, not `borderTopColor`.** With `border-bottom: 1px solid #E3E7EC` and
   no other border set, the *top* border colour computes to `currentColor` — navy. Reading the top
