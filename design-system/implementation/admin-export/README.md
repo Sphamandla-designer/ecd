@@ -93,3 +93,30 @@ Reproduced faithfully so design and build agree; each is flagged in the Spec pan
 - **POST-MVP chips** sit on disabled export buttons. `role/disabled-bg` exists only for that
   pairing.
 - **Filter dropdowns** are drawn in their resting state only — the open state is not designed.
+
+---
+
+## Full-file migration
+
+`../admin-migration/` extends this work from eleven screens to the whole product:
+20 Figma pages, 35 screens across every module and role tier, six UI states,
+15 components, 105 variables, 30 text styles, plus a documentation block beneath
+every screen and colour-coded annotations beside it.
+
+It reuses the same idea — a layout tree rather than paint ops — with three
+differences:
+
+- **Role and state coverage.** The Playwright driver walks 35 screens across three
+  role tiers (back-end user, system admin, super admin) and six simulated states,
+  rather than the eleven default-state screens here.
+- **Global subtree reuse.** Whole cards, table rows and the navigation rail repeat
+  across screens, so any subtree seen more than once is hoisted into a reuse table
+  and left as a `[9, idx, x, y]` reference. That took the payload from 292 kB to 174 kB.
+- **Renderers stored in the file.** The builder, the documentation renderer and the
+  narrative-page renderer are each written once to `setSharedPluginData` and
+  reconstructed per call with the async `Function` constructor, so batch calls carry
+  only data.
+
+Both pipelines target the same Figma file and agree on the token layer. Read this
+README first for the sizing heuristics and the divergences carried into the file —
+they still apply.
