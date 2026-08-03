@@ -10,7 +10,9 @@ const R = n => Math.round(n);
 // ---- 1. prune ---------------------------------------------------------------
 const plain = n => n.t === 'F' && !n.bg && !n.g && !n.rd && !n.sc && !n.sh && n.op === undefined && !n.clip && !n.field;
 function prune(n) {
-  if (n.c) {
+  // ONLY frames have children. A text node's `c` is its colour array — recursing
+  // into it filtered out every zero channel, so black became [1].
+  if (n.t === 'F' && n.c) {
     n.c = n.c.map(prune).filter(Boolean);
     // dissolve structureless wrappers when the parent lays children out absolutely
     if (n.abs) {

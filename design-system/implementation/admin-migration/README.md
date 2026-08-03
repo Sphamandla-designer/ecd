@@ -84,6 +84,20 @@ named style when the build uses AUTO line height.
 - **Guard malformed colour entries.** One `rgba()` in the build parses to a 1-element
   array; `paint()` returns null rather than throwing.
 
+Three further fixes came out of the Coach App migration in `../coach-migration/` and are
+now in this copy of `tree.js` and `compact2.js`. They were found there, not here, so the
+Admin file predates them — it is worth a re-run against these versions to see whether the
+same three defects are present in it.
+
+- **`prune()` walked a text node's colour array as if it were children.** Only frames have
+  children; a text node's `c` is `[r,g,b,a]`. Recursing into it and calling `.filter(Boolean)`
+  dropped every zero channel, so black `[0,0,0,1]` became `[1]`.
+- **Auto layout collapsed the vertical rhythm.** The build spaces stacks with *margins*,
+  which the DOM reports as position but not as gap. A flex container now only becomes Auto
+  Layout if its children actually sit gap-to-gap; otherwise it falls back to absolute.
+- **Modern `rgb(r g b / a)` syntax** parsed to a one-element array — split on whitespace as
+  well as commas.
+
 ## Known deviations
 
 - Four CSS-grid regions are rebuilt as absolutely positioned frames — Figma has no grid.
