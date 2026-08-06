@@ -105,10 +105,49 @@ it appears on and collected on pages 18 and 20.
 - **`role/action` (#1DBADF) at 2.2:1 on white.** Safe as a fill, unsafe for text.
   The build follows that rule; nothing enforces it.
 - **Nine missing screen codes** — VIS-04/05/06, WORK-02/03/04, ACT-01, OFF-01,
-  OFF-05. Reported as gaps; nothing was invented to fill them.
+  OFF-05. The migration reported these as gaps and invented nothing. They have
+  since been designed and added to page 19 only — see *Gap screens* below. The
+  HTML build still has no equivalent, so these nine are the one place where the
+  Figma file leads the build rather than mirroring it.
 
 ## Prototype
 
 Figma cannot link across pages, so page 19 holds a clone of all 44 screens wired
 end to end: 132 connections, 12 named flow starting points, and an audit that
 confirms every frame has at least one outgoing connection.
+
+## Gap screens
+
+The nine codes above now exist as a second row on page 19 (`y = 980`), under the
+label `Flow · GAP SCREENS`. Each was cloned from the closest existing screen, so
+palette, variable bindings and text styles carry over unchanged; only content and
+status tone were rewritten.
+
+| Code | Screen | Fills the hole where | Cloned from |
+|---|---|---|---|
+| VIS-04 | Visit In Progress | a draft visit is resumed — `VIS-01`'s Drafts tab had no destination | OFF-04 |
+| VIS-05 | Draft Saved | `WORK-05` → "Save Draft & Exit" returned Home with no confirmation | OFF-04 |
+| VIS-06 | Submitting Visit | "Complete Visit" jumped straight to `VIS-07` with no sending state | OFF-04 |
+| WORK-02 | Observation | step 2 of 5 had no step screen — the deck jumped to `OBS-01` | WORK-01 |
+| WORK-03 | Coaching Discussion | step 3 of 5, same gap into `DISC-01` | WORK-01 |
+| WORK-04 | Action Plan | step 4 of 5, same gap into `ACT-02` | WORK-01 |
+| ACT-01 | Review Previous Actions | last visit's actions were never closed off before new ones were agreed | ACT-02 |
+| OFF-01 | Offline Notice | signal loss was described in `ONB-04` but never shown in the app | OFF-04 |
+| OFF-05 | Sync Failed | `OFF-04` covered success and `OFF-06` covered conflict; plain failure had no screen | OFF-04 |
+
+`WORK-02/03/04` are deliberately *step gateways*, not duplicates of the Observation,
+Discussion and Action Plan screens. Each states which step of five is running,
+advances the progress bar, and hands off to the detail screens that already carry
+the work. That is the narrowest reading of the numbering that does not duplicate
+`OBS-*`, `DISC-*` and `ACT-02`.
+
+Page 19 is now 53 frames, 150 connections and 14 flow starting points — the two new
+flows are `13 · Resume a draft visit` and `14 · Losing and regaining signal`.
+
+Status tone was taken from the pills already in the file (`OFF-02`, `TASK-01`) rather
+than invented: success `#E2F0CD`/`#3D6511`, in-progress `#D2F1F9`/`#0B5568`, danger
+`#FFEEF4`/`#C1004F`, neutral `#EEF3F6`/`#5A6B7D`.
+
+The module pages (`07 Visits`, `08 Visit Workspace`, `11 Action Plans`,
+`14 Offline & Sync`) have **not** been updated — the nine screens exist on the
+prototype page only.
