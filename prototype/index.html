@@ -412,8 +412,11 @@ function keyInput(get, set, len, onFull){
     else if (/^\d$/.test(e.key) && v.length < len){ v += e.key; set(v); if (v.length===len) onFull(v); }
   };
 }
-$("otp-boxes").addEventListener("keydown", keyInput(
-  ()=>otp, v=>{ otp=v; $("otp-err").hidden=true; drawOtp(); }, 5, verify));
+$("otp-boxes").addEventListener("keydown", e=>{
+  // After a wrong code the boxes stay filled; the next digit starts a fresh code.
+  if (!$("otp-err").hidden && /^\d$/.test(e.key)){ otp=""; $("otp-err").hidden=true; }
+  keyInput(()=>otp, v=>{ otp=v; $("otp-err").hidden=true; drawOtp(); }, 5, verify)(e);
+});
 $("verify").onclick = ()=> verify(otp);
 function verify(code){
   if (code === "00000"){
