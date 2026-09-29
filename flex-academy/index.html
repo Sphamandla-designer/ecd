@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flex Academy — Build the business behind the bookings</title>
+<meta name="description" content="Flex Academy helps people start and scale short-term rental businesses with the playbook, systems and software experience behind The Flex and Base360.">
+<style>
+@font-face{font-family:"Plus Jakarta Sans";src:url(fonts/PlusJakartaSans-Latin.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+/* =========================================================
+   FLEX ACADEMY — tokens follow the supplied reference layout
+   (charcoal / white / soft green). Official Flex & Base360
+   values could not be verified: every value is PROPOSED.
+   ========================================================= */
+:root{
+  --ink:#1E2321;            /* darkest text */
+  --forest:#2B302E;         /* charcoal panels (hero, strip, dark section, footer) */
+  --forest-2:#363C39;       /* raised surface on charcoal */
+  --forest-3:#4A514D;       /* hairlines on charcoal */
+  --sage:#A9CF6E;           /* green accent: Launch / primary action */
+  --sage-press:#9BC25F;
+  --sage-soft:#EAF3DC;
+  --brass:#D8DFDA;          /* Scale accent on dark (pale) */
+  --paper:#FFFFFF;          /* page */
+  --sand:#F4F5F4;           /* alt surface */
+  --white:#FFFFFF;
+  --line:#E4E7E5;
+  --muted:#6A716D;          /* 5.1:1 on white */
+  --muted-dark:#B6BDB9;     /* 7.4:1 on charcoal */
+  --error:#B0271C;
+  --success:#2E6A45;
+  --focus:#5E8E2B;
+  --placeholder:#B4541B;
+  --f-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:var(--f-sans);
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px; --r-pill:999px;
+  --container:1180px; --gutter:32px;
+  --shadow-1:0 1px 2px rgba(30,35,33,.05),0 8px 24px rgba(30,35,33,.06);
+  --shadow-2:0 24px 64px rgba(20,24,22,.28);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.container{width:100%;max-width:calc(var(--container) + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+.on-dark{color:#fff}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.on-dark .eyebrow{color:var(--muted-dark)}
+.h-section{font-size:clamp(28px,2.6vw,36px);max-width:22ch}
+.lede{font-size:15.5px;line-height:1.65;color:var(--muted);max-width:56ch}
+.on-dark .lede{color:var(--muted-dark)}
+.small{font-size:14px;line-height:1.5}
+.micro{font-size:12.5px;line-height:1.45}
+.uline{position:relative;white-space:nowrap}
+.uline::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.3em;background:var(--sage);border-radius:999px;z-index:-1;opacity:.95}
+.on-dark .uline::after{background:var(--sage);opacity:.85}
+
+/* Photo slots: drop a file at photos/<name> and it replaces the fallback */
+.slot{position:relative;overflow:hidden;background:#E9ECEA}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.slot.has-photo img{display:block}
+.slot.has-photo .fallback,.slot.has-photo .slot-tag{display:none}
+.slot .fallback{position:absolute;inset:0;display:grid;place-items:center}
+.circle .slot-tag{left:50%;right:auto;bottom:14%;transform:translateX(-50%);text-align:center;max-width:72%;border-radius:8px}
+.slot-tag{position:absolute;left:10px;bottom:10px;font-size:11px;font-weight:600;color:#fff;background:rgba(30,35,33,.75);padding:5px 8px;border-radius:6px;line-height:1.3;max-width:calc(100% - 20px)}
+.slot-tag b{color:#F2B58A}
+
+/* ---------- Header (white, like the reference) ---------- */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.site-header.is-scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:var(--forest);display:grid;place-items:center}
+.brand-mark svg{width:16px;height:16px}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-name{font-weight:700;font-size:16px;letter-spacing:-.02em}
+.brand-sub{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav-links{display:flex;gap:26px;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-scale{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;text-decoration:none;padding:0 14px;min-height:40px;border-radius:var(--r-pill);border:1px solid var(--line);background:#fff;cursor:pointer}
+.nav-scale:hover{border-color:var(--ink)}
+.nav-scale svg{width:15px;height:15px}
+.menu-btn{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;align-items:center;justify-content:center;cursor:pointer}
+.mobile-menu{display:none}
+
+/* ---------- Hero: charcoal panel, copy left, cut-out person right ---------- */
+.hero-wrap{padding:0 16px}
+.hero{position:relative;background:var(--forest);color:#fff;border-radius:var(--r-xl);overflow:hidden;isolation:isolate}
+.hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;padding-top:72px;padding-bottom:0;align-items:end;min-height:560px}
+.hero-copy{grid-column:1 / span 6;padding-bottom:72px;align-self:center}
+.hero-kicker{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:20px}
+.hero h1{font-size:clamp(40px,4.4vw,60px);line-height:1.08;letter-spacing:-.03em;font-weight:600;max-width:15ch}
+.hero-sub{margin-top:22px;font-size:15.5px;line-height:1.65;color:#CFD5D1;max-width:46ch}
+.hero-sub strong{color:#fff;font-weight:600}
+.pill-form{display:flex;align-items:center;gap:8px;background:#fff;border-radius:var(--r-pill);padding:6px 6px 6px 18px;border:2px solid transparent;transition:border-color .2s;max-width:460px;margin-top:28px}
+.pill-form:focus-within{border-color:var(--sage)}
+.pill-form.has-error{border-color:#E48A80}
+.pill-form input{flex:1;min-width:0;border:0;outline:0;font:inherit;font-size:14.5px;color:var(--ink);background:transparent;height:40px}
+.pill-form input::placeholder{color:#8A918C}
+.pill-form svg.mail{width:16px;height:16px;color:var(--muted);flex:none}
+.hero .cl-msg{color:#F4A89F}
+.hero-scale{margin-top:16px;font-size:13.5px;color:var(--muted-dark)}
+.hero-scale button{background:none;border:0;padding:0;font:inherit;font-weight:600;color:#fff;text-decoration:underline;text-underline-offset:3px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.hero-scale button svg{width:14px;height:14px}
+.hero-proof{margin-top:30px;display:flex;align-items:center;gap:14px}
+.hero-proof .stack{display:flex}
+.hero-proof .stack i{width:30px;height:30px;border-radius:50%;border:2px solid var(--forest);margin-left:-8px;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:700;background:#fff;color:var(--ink)}
+.hero-proof .stack i:first-child{margin-left:0}
+.hero-proof .stack i.g{background:var(--sage)}
+.hero-proof .stack i.d{background:var(--forest-2);color:#fff;border-color:var(--forest-3)}
+.hero-proof b{display:block;font-size:13.5px}
+.hero-proof span{display:block;font-size:12px;color:var(--muted-dark)}
+.hero-visual{grid-column:7 / span 6;position:relative;height:560px;align-self:end}
+.hero-person{position:absolute;left:8%;right:0;bottom:0;top:36px}
+.hero-person .slot{position:absolute;inset:0;background:transparent}
+.hero-person .slot img{object-fit:contain;object-position:bottom center}
+.hero-person .fallback svg{width:100%;height:100%}
+.hero-person .slot-tag{left:auto;right:0;bottom:auto;top:0;max-width:200px;background:rgba(0,0,0,.35)}
+.doodle{position:absolute;color:#fff;opacity:.9;pointer-events:none}
+.doodle svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.doodle.d1{left:0;top:96px;width:56px;height:56px}          /* sparkle */
+.doodle.d2{left:6%;top:220px;width:64px;height:48px}        /* envelope */
+.doodle.d3{right:2%;top:60px;width:70px;height:40px}        /* arrow */
+.doodle.d4{right:8%;top:170px;width:44px;height:44px}       /* small star */
+.doodle.d5{left:2%;bottom:120px;width:80px;height:56px}     /* dashed swoosh */
+.doodle.d6{right:4%;bottom:150px;width:54px;height:54px}    /* key */
+
+/* ---------- Section 2: heading left, 6 category cards right ---------- */
+.section{padding:88px 0}
+.two-col{display:grid;grid-template-columns:repeat(12,1fr);gap:32px 24px;align-items:start}
+.two-col > .col-copy{grid-column:1 / span 5}
+.two-col > .col-grid{grid-column:6 / span 7}
+.col-copy .lede{margin-top:14px;font-size:14.5px}
+.cards6{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-content:start;grid-auto-rows:min-content}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:12px;min-height:126px;text-align:left;transition:border-color .2s,transform .2s var(--ease);cursor:default}
+.card:hover{border-color:#C9CFCB}
+.card.dark{background:var(--forest);color:#fff;border-color:var(--forest)}
+.card-ic{width:36px;height:36px;border-radius:9px;background:var(--sand);display:grid;place-items:center}
+.card.dark .card-ic{background:var(--forest-2)}
+.card-ic svg{width:18px;height:18px}
+.card b{font-size:14px;letter-spacing:-.01em;line-height:1.3}
+.card span{font-size:12px;color:var(--muted)}
+.card.dark span{color:var(--muted-dark)}
+.card .tags{display:flex;gap:4px;margin-top:auto}
+.tag-l,.tag-s{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:5px}
+.tag-l{background:var(--sage-soft);color:#3E5A17}
+.tag-s{background:var(--sand);color:var(--ink)}
+.card.dark .tag-s{background:var(--forest-2);color:#fff}
+.card.dark .tag-l{background:var(--sage);color:var(--ink)}
+
+/* ---------- Angled dark proof strip ---------- */
+.strip{padding:0 16px 88px}
+.strip-band{background:var(--forest);color:#fff;border-radius:var(--r-lg);padding:26px 44px;clip-path:polygon(0 0,100% 0,100% 100%,4% 100%,0 60%)}
+.strip-inner{max-width:var(--container);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.strip-title{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark);white-space:nowrap}
+.strip-logos{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.logo svg{width:22px;height:22px}
+.logo small{font-weight:500;font-size:12px;color:var(--muted-dark);letter-spacing:0}
+.stat{display:flex;flex-direction:column;line-height:1.1}
+.stat b{font-size:22px;letter-spacing:-.02em}
+.stat span{font-size:12px;color:var(--muted-dark);margin-top:4px}
+.strip-note{max-width:var(--container);margin:12px auto 0;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* ---------- Split sections with a circular image ---------- */
+.split{display:grid;grid-template-columns:repeat(12,1fr);gap:32px 24px;align-items:center}
+.split .copy{grid-column:1 / span 5}
+.split .art{grid-column:7 / span 6;position:relative;min-height:420px}
+.split.rev .copy{grid-column:8 / span 5;order:2}
+.split.rev .art{grid-column:1 / span 6;order:1}
+.copy .h-section{margin-top:12px}
+.copy .lede{margin-top:16px;font-size:14.5px}
+.checks{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.checks li{display:flex;gap:9px;align-items:flex-start;font-size:14px;line-height:1.4}
+.checks svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--ink)}
+.on-dark .checks svg{color:var(--sage)}
+.copy .btn{margin-top:26px}
+.price-line{margin-top:18px;display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--muted)}
+.on-dark .price-line{color:var(--muted-dark)}
+.price-line b{color:var(--ink);font-size:15px}
+.on-dark .price-line b{color:#fff}
+.circle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:360px;height:360px;border-radius:50%;box-shadow:var(--shadow-1)}
+.circle .fallback{background:linear-gradient(160deg,#E4E7E5,#CDD3CF)}
+.circle .fallback svg{width:70%;height:70%;color:#AEB6B1}
+.dots{position:absolute;inset:0;pointer-events:none}
+.dots svg{width:100%;height:100%}
+.pin{position:absolute;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 10px 5px 6px;font-size:11.5px;font-weight:600;box-shadow:var(--shadow-1)}
+.pin i{width:16px;height:16px;border-radius:50%;background:var(--sage);display:grid;place-items:center}
+.pin i svg{width:9px;height:9px}
+.pin.p1{left:2%;top:12%}.pin.p2{right:0;top:22%}.pin.p3{left:0;bottom:22%}.pin.p4{right:6%;bottom:10%}
+.mini{position:absolute;background:#fff;border-radius:12px;border:1px solid var(--line);padding:10px 12px;box-shadow:var(--shadow-1);font-size:12px;display:flex;align-items:center;gap:10px}
+.mini .ic{width:28px;height:28px;border-radius:8px;background:var(--sand);display:grid;place-items:center}
+.mini .ic svg{width:14px;height:14px}
+.mini b{display:block;font-size:12.5px}
+.mini span{color:var(--muted)}
+
+/* ---------- Dark "Scale" section ---------- */
+.dark-wrap{padding:0 16px}
+.dark{background:var(--forest);color:#fff;border-radius:var(--r-xl);padding:80px 0}
+.dark-head{text-align:center;max-width:640px;margin:0 auto 48px}
+.dark-head .lede{margin:12px auto 0;font-size:14.5px}
+.dark-grid{display:grid;grid-template-columns:1fr 340px 1fr;gap:32px;align-items:center}
+.dark-col{display:flex;flex-direction:column;gap:32px}
+.dark-item h3{font-size:16px;letter-spacing:-.01em}
+.dark-item p{margin-top:6px;font-size:13.5px;color:var(--muted-dark);line-height:1.55}
+.dark-col.r{text-align:right}
+.dark-circle{position:relative;width:340px;height:340px;margin:0 auto}
+.dark-circle .circle{width:300px;height:300px;box-shadow:0 0 0 18px rgba(255,255,255,.04),0 0 0 36px rgba(255,255,255,.025)}
+.dark-circle .doodle{color:#fff}
+.dark-cta{margin-top:48px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap}
+.dark-cta .price-line{margin:0}
+
+/* ---------- "Highlighted" listing grid → What you get ---------- */
+.list-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px}
+.list-head .lede{margin-top:10px;font-size:14.5px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.item{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px;display:flex;flex-direction:column;gap:10px;min-height:170px}
+.item-top{display:flex;justify-content:space-between;align-items:center}
+.item-top .ic{width:34px;height:34px;border-radius:9px;background:var(--sand);display:grid;place-items:center}
+.item-top .ic svg{width:16px;height:16px}
+.item b{font-size:14px;letter-spacing:-.01em;line-height:1.3}
+.item p{font-size:12.5px;color:var(--muted);line-height:1.5}
+.item-foot{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.chip{font-size:11px;font-weight:600;padding:4px 8px;border-radius:6px;background:var(--sand);color:var(--ink)}
+.chip.g{background:var(--sage-soft);color:#3E5A17}
+.grid-ctas{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.grid-ctas .hint{font-size:13px;color:var(--muted)}
+
+/* ---------- Founders + who it's for ---------- */
+.founders{display:grid;grid-template-columns:repeat(12,1fr);gap:32px 24px;align-items:center}
+.founders .copy{grid-column:1 / span 5}
+.founders .people{grid-column:7 / span 6;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.person{text-align:center}
+.person .circle{position:relative;left:auto;top:auto;transform:none;width:220px;height:220px;margin:0 auto}
+.person b{display:block;margin-top:14px;font-size:15px}
+.person span{display:block;font-size:12.5px;color:var(--muted)}
+.chain{margin-top:22px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;font-weight:600}
+.chain span{background:var(--sand);border-radius:999px;padding:6px 12px}
+.chain i{color:var(--muted);font-style:normal}
+.bio-ph{margin-top:18px;padding:12px 14px;border-radius:10px;border:1px dashed rgba(180,84,27,.5);background:rgba(180,84,27,.04);font-size:12.5px;color:var(--muted)}
+.bio-ph b{color:var(--placeholder)}
+
+.who{background:var(--sand);border-radius:var(--r-xl);padding:56px 48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start}
+.who-col h3{font-size:18px;margin-top:10px}
+.who-col ul{margin-top:14px}
+.who-col li{display:flex;gap:9px;padding:9px 0;border-top:1px solid #E1E5E2;font-size:14px;line-height:1.4}
+.who-col li svg{width:16px;height:16px;flex:none;margin-top:2px}
+.who-col .btn{margin-top:18px}
+.selector{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:22px}
+.selector legend{font-size:14.5px;font-weight:600;padding:0;margin-bottom:12px}
+.selector fieldset{border:0;margin:0;padding:0}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--sand);padding:4px;border-radius:12px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{min-height:44px;display:grid;place-items:center;border-radius:9px;font-weight:600;font-size:14px;cursor:pointer;color:var(--muted);transition:background .2s,color .2s}
+.seg input:checked + label{background:var(--forest);color:#fff}
+.seg input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
+.rec{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.rec p{font-size:13.5px;color:var(--muted)}
+.rec p b{color:var(--ink)}
+.rec[hidden]{display:none}
+
+/* ---------- Outcomes slot ---------- */
+.outcomes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.case{border-radius:var(--r-lg);border:2px dashed rgba(180,84,27,.55);background:repeating-linear-gradient(135deg,rgba(180,84,27,.035) 0 12px,transparent 12px 24px);padding:28px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+.case q{display:block;margin-top:24px;font-size:20px;line-height:1.35;color:#8A7A66;quotes:none;max-width:28ch;font-weight:500}
+.case-foot{display:flex;align-items:center;gap:12px;margin-top:24px;font-size:13px;color:var(--muted)}
+.case-foot i{width:40px;height:40px;border-radius:50%;border:1.5px dashed rgba(180,84,27,.55)}
+.case-foot b{display:block;color:var(--placeholder)}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.faq-intro{grid-column:1 / span 4}
+.faq-intro .contact{margin-top:20px;padding:14px 16px;border-radius:var(--r-md);background:var(--sand);font-size:13.5px;color:var(--muted)}
+.faq-list{grid-column:6 / span 7;border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 0;cursor:pointer;font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary .pm{width:28px;height:28px;flex:none;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .25s var(--ease),background .2s}
+.faq-list details[open] summary .pm{transform:rotate(45deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+.faq-list .a{padding:0 52px 20px 0;color:var(--muted);font-size:14.5px;max-width:62ch}
+.faq-list .a p + p{margin-top:8px}
+.faq-list .a b{color:var(--ink);font-weight:600}
+
+/* ---------- Final CTA + dark footer (one charcoal block, like the reference) ---------- */
+.final-wrap{padding:0 16px 16px}
+.final{background:var(--forest);color:#fff;border-radius:var(--r-xl);padding:72px 0 40px}
+.final-top{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding-bottom:56px;border-bottom:1px solid var(--forest-3)}
+.final h2{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.03em;line-height:1.1}
+.final-top p{margin-top:14px;color:var(--muted-dark);font-size:15px;max-width:44ch}
+.final-actions{display:flex;flex-direction:column;gap:12px}
+.final-row{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--forest-2);border:1px solid var(--forest-3);border-radius:var(--r-lg);padding:16px 18px}
+.final-row div b{display:block;font-size:14.5px}
+.final-row div span{font-size:12.5px;color:var(--muted-dark)}
+.footer-grid{display:grid;grid-template-columns:1.3fr .8fr .8fr 1.3fr;gap:32px;padding-top:48px}
+.footer h4{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:14px}
+.footer li + li{margin-top:8px}
+.footer a{text-decoration:none;font-size:14px;color:#DDE2DE}
+.footer a:hover{text-decoration:underline}
+.footer .blurb{margin-top:14px;font-size:13.5px;color:var(--muted-dark);max-width:32ch}
+.footer .brand-mark{background:#fff}
+.footer .brand-mark svg path{stroke:var(--forest)}
+.footer .brand-sub{color:var(--muted-dark)}
+.footer .pill-form{margin-top:0;max-width:none;padding-left:14px}
+.footer .pill-form .btn{--h:40px}
+.cl-msg{margin-top:8px;font-size:13px;display:flex;align-items:center;gap:8px;min-height:18px}
+.cl-msg.err{color:#F4A89F}
+.cl-msg svg{width:15px;height:15px;flex:none}
+.cl-success{display:none;align-items:center;gap:12px;background:var(--forest-2);border:1px solid var(--forest-3);border-radius:var(--r-md);padding:12px 14px;font-size:13.5px}
+.cl-success .tick{width:32px;height:32px;border-radius:50%;background:var(--sage);color:var(--ink);display:grid;place-items:center;flex:none}
+.cl-success b{display:block}
+.cl-success span{font-size:12.5px;color:var(--muted-dark)}
+.checklist.is-done .cl-form-wrap{display:none}
+.checklist.is-done .cl-success{display:flex}
+.footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--forest-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted-dark)}
+.footer-bottom nav{display:flex;gap:18px;flex-wrap:wrap}
+.footer-bottom a{font-size:12.5px}
+.sticky-cta{display:none}
+.switch-hint{display:none}
+/* Placeholder flag — makes unverified content visually obvious */
+.ph{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-sans);font-style:normal;font-weight:600;font-size:.78em;letter-spacing:0;line-height:1.2;color:var(--placeholder);background:rgba(180,84,27,.08);border:1px dashed rgba(180,84,27,.55);border-radius:6px;padding:2px 7px;white-space:nowrap;vertical-align:middle}
+.on-dark .ph,.ph.on-dark{color:#F2B58A;background:rgba(242,181,138,.08);border-color:rgba(242,181,138,.5)}
+.ph-note{font-size:12px;color:var(--placeholder);font-weight:500}
+.on-dark .ph-note{color:#F2B58A}
+
+/* ---------- Buttons ---------- */
+.btn{--h:52px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 22px;border-radius:var(--r-pill);border:1px solid transparent;font-weight:600;font-size:15.5px;letter-spacing:-.005em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .2s var(--ease),transform .15s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease),color .2s}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .2s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active,.btn.is-pressed{transform:scale(.97)}
+.btn-launch{background:var(--sage);color:var(--ink)}
+.btn-launch:hover,.btn-launch.is-pressed{background:var(--sage-press)}
+.btn-launch.is-pressed{box-shadow:0 0 0 4px rgba(213,227,186,.35)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#26302a}
+.btn-scale{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-scale:hover,.btn-scale.is-pressed{border-color:var(--brass);color:var(--brass)}
+.btn-scale.is-pressed{box-shadow:0 0 0 4px rgba(205,177,131,.25)}
+.btn-scale-solid{background:var(--brass);color:var(--ink)}
+.btn-scale-solid:hover{background:#D9C099}
+.btn-outline{background:transparent;color:var(--ink);border-color:rgba(20,27,23,.25)}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-sm{--h:42px;padding:0 16px;font-size:14px}
+.btn-block{width:100%}
+.btn[disabled]{cursor:progress;opacity:.9}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* =========================================================
+   CONVERSION DIALOGS
+   ========================================================= */
+.dialog{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:24px}
+.dialog.is-open{display:flex}
+.dialog-scrim{position:absolute;inset:0;background:rgba(12,17,14,.62);backdrop-filter:blur(4px);animation:fade .25s var(--ease)}
+.dialog-panel{position:relative;width:min(960px,100%);max-height:calc(100vh - 48px);display:grid;grid-template-columns:340px 1fr;background:#fff;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-2);animation:rise .35s var(--ease)}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.985)}}
+.dialog-aside{background:var(--forest);color:#fff;padding:36px 32px;display:flex;flex-direction:column;gap:20px;overflow:auto}
+.dialog-aside.is-launch{background:linear-gradient(180deg,var(--forest),#243029)}
+.dialog-aside .door-label{color:var(--brass)}
+.dialog-aside.is-launch .door-label{color:var(--sage)}
+.dialog-aside h2{font-size:28px;line-height:1.12;letter-spacing:-.03em}
+.dialog-aside p{font-size:14.5px;color:var(--muted-dark)}
+.aside-list{border-top:1px solid var(--forest-3)}
+.aside-list li{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--forest-3);font-size:14px;color:#DDE2DE;line-height:1.4}
+.aside-list svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--sage)}
+.dialog-aside:not(.is-launch) .aside-list svg{color:var(--brass)}
+.aside-foot{margin-top:auto;font-size:12.5px;color:var(--muted-dark);display:flex;gap:8px;align-items:flex-start}
+.aside-foot svg{width:14px;height:14px;flex:none;margin-top:2px}
+.dialog-main{position:relative;padding:36px 40px 32px;overflow:auto;display:flex;flex-direction:column}
+.dialog-close{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;z-index:2}
+.dialog-close:hover{border-color:var(--ink)}
+.dialog-close svg{width:18px;height:18px}
+.stepper{list-style:none;margin:0 0 24px;padding:0 52px 0 0;display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:24px;padding-right:52px}
+.stepper li{display:flex;align-items:center;gap:8px}
+.stepper li i{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:11px}
+.stepper li.on{color:var(--ink)}
+.stepper li.on i{background:var(--ink);border-color:var(--ink);color:#fff}
+.stepper li.done i{background:var(--sage);border-color:var(--sage);color:var(--ink)}
+.stepper .sep{width:20px;height:1px;background:var(--line)}
+.view{display:none;flex-direction:column;flex:1}
+.view.is-active{display:flex;animation:fade .3s var(--ease)}
+.view h3{font-size:28px;letter-spacing:-.03em;line-height:1.12;padding-right:48px}
+.view .intro{margin-top:10px;color:var(--muted);font-size:15.5px;max-width:52ch}
+
+/* Form fields */
+.form{margin-top:28px;display:flex;flex-direction:column;gap:20px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field > label,.field > .label{font-size:14px;font-weight:600;display:flex;justify-content:space-between;gap:12px}
+.field .opt{font-weight:500;color:var(--muted)}
+.help{font-size:13px;color:var(--muted);line-height:1.45}
+.input,.select{height:52px;border-radius:12px;border:1.5px solid #D6D1C6;background:#fff;padding:0 16px;font:inherit;font-size:16px;color:var(--ink);transition:border-color .15s,box-shadow .15s;width:100%}
+.input::placeholder{color:#8A918C}
+.input:hover,.select:hover{border-color:#B9B3A6}
+.input:focus,.select:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 4px rgba(111,143,62,.22)}
+.select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23141B17' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+.field.is-invalid .input,.field.is-invalid .select{border-color:var(--error);background:#FFF8F7}
+.field.is-invalid .input:focus{box-shadow:0 0 0 4px rgba(168,38,28,.15)}
+.field.is-valid .input{border-color:#8FAE5A}
+.err-msg{display:none;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:var(--error)}
+.err-msg svg{width:16px;height:16px;flex:none}
+.field.is-invalid .err-msg{display:flex}
+.form-alert{display:none;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:#FDF1EF;border:1px solid #F1C8C2;color:#7C1F17;font-size:14px}
+.form-alert svg{width:18px;height:18px;flex:none;margin-top:1px}
+.form-alert.show{display:flex}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{min-height:44px;min-width:56px;padding:0 16px;display:grid;place-items:center;border-radius:12px;border:1.5px solid #D6D1C6;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s}
+.chips label:hover{border-color:#B9B3A6}
+.chips input:checked + label{background:var(--ink);border-color:var(--ink);color:#fff}
+.chips input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
+.field.is-invalid .chips label{border-color:#E3A59E}
+.bands{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bands input{position:absolute;opacity:0;pointer-events:none}
+.bands label{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:12px;border:1.5px solid #D6D1C6;cursor:pointer;font-size:14px;transition:all .15s;min-height:56px;justify-content:center}
+.bands label b{font-weight:600}
+.bands label span{font-size:12px;color:var(--placeholder);font-weight:600}
+.bands input:checked + label{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:#FBFAF6}
+.bands input:focus-visible + label{outline:3px solid var(--focus);outline-offset:2px}
+.field.is-invalid .bands label{border-color:#E3A59E}
+.form-foot{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:12px}
+.privacy{font-size:12.5px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.privacy svg{width:14px;height:14px;flex:none;margin-top:2px}
+.spinner{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(20,27,23,.25);border-top-color:var(--ink);animation:spin .8s linear infinite}
+.btn-ink .spinner{border-color:rgba(255,255,255,.3);border-top-color:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.is-loading .form .input,.is-loading .form .select{opacity:.6;pointer-events:none}
+
+/* Loading skeleton */
+.loading-card{margin-top:28px;border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column;gap:14px}
+.loading-row{display:flex;align-items:center;gap:12px;font-size:15px}
+.loading-row .spinner{width:20px;height:20px}
+.loading-row .ok{width:20px;height:20px;border-radius:50%;background:var(--sage);display:grid;place-items:center}
+.loading-row .ok svg{width:12px;height:12px}
+.loading-row.muted{color:var(--muted)}
+.loading-row .wait{width:20px;height:20px;border-radius:50%;border:2px solid var(--line)}
+
+/* Confirmation */
+.confirm-badge{width:64px;height:64px;border-radius:50%;background:var(--sage);display:grid;place-items:center;margin-bottom:22px;animation:pop .5s var(--ease)}
+.confirm-badge svg{width:28px;height:28px}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.ticket{margin-top:24px;border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden}
+.ticket-top{display:flex;gap:18px;padding:20px;align-items:center;background:var(--paper)}
+.cal-ic{width:60px;flex:none;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);text-align:center}
+.cal-ic span{display:block;background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 0}
+.cal-ic b{display:block;font-size:22px;padding:6px 0;font-family:var(--f-serif);font-style:italic;font-weight:400;color:var(--muted)}
+.ticket-top h4{font-size:17px;letter-spacing:-.015em}
+.ticket-top .when{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+.ticket-bottom{display:flex;gap:10px;flex-wrap:wrap;padding:16px 20px;border-top:1px dashed var(--line);align-items:center}
+.cal-menu{position:relative}
+.cal-options{position:absolute;left:0;bottom:calc(100% + 8px);background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-1);padding:6px;min-width:250px;display:none;z-index:3}
+.cal-menu.open .cal-options{display:block}
+.cal-options a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;text-decoration:none;font-size:14.5px;font-weight:500}
+.cal-options a:hover{background:var(--paper)}
+.next-steps{margin-top:24px}
+.next-steps h4{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.next-steps ol{margin:12px 0 0;padding:0;list-style:none;counter-reset:n}
+.next-steps li{counter-increment:n;display:grid;grid-template-columns:28px 1fr;gap:12px;padding:10px 0;font-size:15px;border-bottom:1px solid var(--line)}
+.next-steps li:last-child{border-bottom:0}
+.next-steps li::before{content:counter(n);width:26px;height:26px;border-radius:50%;background:var(--sand);display:grid;place-items:center;font-size:12.5px;font-weight:700}
+.next-steps li span{color:var(--muted);display:block;font-size:14px}
+
+/* Calendar */
+.sched{margin-top:24px;display:grid;grid-template-columns:1.15fr 1fr;gap:24px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-head b{font-size:16px;letter-spacing:-.01em}
+.cal-nav{display:flex;gap:6px}
+.cal-nav button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center}
+.cal-nav button:disabled{opacity:.35;cursor:not-allowed}
+.cal-nav svg{width:16px;height:16px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-grid .dow{font-size:11.5px;font-weight:700;color:var(--muted);padding:6px 0;letter-spacing:.04em}
+.cal-grid button{aspect-ratio:1;border:0;border-radius:10px;background:transparent;font-size:14px;font-weight:500;cursor:pointer;color:#B1B6B2;min-height:40px}
+.cal-grid button.avail{color:var(--ink);background:var(--sage-soft);font-weight:600}
+.cal-grid button.avail:hover{background:var(--sage)}
+.cal-grid button.sel{background:var(--ink)!important;color:#fff!important}
+.cal-grid button:disabled{cursor:default}
+.cal-legend{margin-top:10px;display:flex;gap:14px;font-size:12px;color:var(--muted);align-items:center;flex-wrap:wrap}
+.cal-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--sage-soft);margin-right:6px;vertical-align:-1px}
+.slots-head{font-size:14px;font-weight:600;margin-bottom:10px;min-height:21px}
+.slots{display:flex;flex-direction:column;gap:8px}
+.slots button{min-height:46px;border-radius:12px;border:1.5px solid #D6D1C6;background:#fff;cursor:pointer;font-weight:600;font-size:14.5px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:var(--ink)}
+.slots button:hover{border-color:var(--ink)}
+.slots button.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slots button .ph{font-size:11px}
+.slots button.sel .ph{color:#F2B58A;border-color:rgba(242,181,138,.6);background:transparent}
+.slots-empty{border:1.5px dashed var(--line);border-radius:12px;padding:20px;font-size:14px;color:var(--muted);text-align:center}
+.tz{margin-top:14px}
+.tz .select{height:44px;font-size:14px}
+.book-details{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);display:none}
+.book-details.show{display:block}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:8px 0;font-weight:600;font-size:14.5px;cursor:pointer;color:var(--muted)}
+.back-btn:hover{color:var(--ink)}
+.back-btn svg{width:16px;height:16px}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+
+
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:5px 10px;border:1px solid transparent}
+.badge-launch{background:var(--sage-soft);color:#3E5A17}
+.badge-scale{background:var(--forest-2);color:#fff;border-color:var(--forest-3)}
+.btn-scale{border-color:rgba(255,255,255,.45)}
+.btn-scale:hover,.btn-scale.is-pressed{border-color:var(--sage);color:var(--sage)}
+
+/* Board / embed mode */
+.embed .site-header{position:relative}
+.embed .dialog-scrim,.embed .dialog-panel,.embed .view.is-active,.embed .confirm-badge{animation:none}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:1180px){
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .dark-grid{grid-template-columns:1fr 300px 1fr}
+}
+@media (max-width:980px){
+  :root{--gutter:24px}
+  .nav-links{display:none}
+  .hero-grid{grid-template-columns:1fr;min-height:0;padding-top:56px;align-items:start}
+  .hero-copy{grid-column:auto;padding-bottom:0}
+  .hero-visual{grid-column:auto;height:440px;margin-top:8px}
+  .two-col,.split,.split.rev,.founders,.faq-grid{grid-template-columns:1fr}
+  .two-col > .col-copy,.two-col > .col-grid,.split .copy,.split .art,.split.rev .copy,.split.rev .art,.founders .copy,.founders .people,.faq-intro,.faq-list{grid-column:auto;order:0}
+  .split .art{min-height:380px}
+  .dark-grid{grid-template-columns:1fr;gap:28px}
+  .dark-col.r{text-align:left}
+  .dark-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .who{grid-template-columns:1fr;padding:36px 28px}
+  .final-top{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .dialog-panel{grid-template-columns:1fr}
+  .dialog-aside{display:none}
+}
+@media (max-width:640px){
+  :root{--gutter:20px}
+  .ph{white-space:normal}
+  .section{padding:64px 0}
+  .nav{height:64px}
+  .brand-sub{display:none}
+  .nav-scale{display:none}
+  .nav-actions .btn-sm{--h:40px;padding:0 14px;font-size:13.5px}
+  .menu-btn{display:inline-flex}
+  .mobile-menu{position:fixed;inset:64px 0 auto 0;background:#fff;border-bottom:1px solid var(--line);padding:8px 20px 20px;z-index:39;box-shadow:0 20px 40px rgba(20,27,23,.12)}
+  .mobile-menu.open{display:block}
+  .mobile-menu a.nl{display:flex;justify-content:space-between;align-items:center;min-height:52px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600;font-size:17px}
+  .mobile-menu .mm-ctas{margin-top:16px;display:grid;gap:10px}
+  .hero-wrap{padding:0 8px}
+  .hero{border-radius:16px}
+  .hero-grid{padding-top:40px}
+  .hero h1{font-size:38px;max-width:none}
+  .hero-sub{font-size:15px}
+  .pill-form{flex-wrap:wrap;border-radius:16px;padding:6px}
+  .pill-form svg.mail{display:none}
+  .pill-form input{padding:0 12px;flex-basis:100%;height:46px}
+  .pill-form .btn{width:100%;--h:48px}
+  .hero-proof{margin-top:24px}
+  .hero-visual{height:360px;margin-top:0}
+  .hero-person{left:0;top:20px}
+  .hero-person .slot-tag{max-width:170px;font-size:10px}
+  .doodle.d2,.doodle.d5{display:none}
+  .cards6{grid-template-columns:1fr 1fr;gap:10px}
+  .card{padding:14px;min-height:0}
+  .strip{padding:0 8px 64px}
+  .strip-band{clip-path:none;padding:22px 20px;border-radius:14px}
+  .strip-inner{flex-direction:column;align-items:flex-start;gap:16px}
+  .strip-logos{gap:16px 24px}
+  .h-section{font-size:26px}
+  .checks{grid-template-columns:1fr}
+  .copy .btn{width:100%}
+  .split .art{min-height:340px}
+  .circle{width:260px;height:260px}
+  .pin.p1{left:0;top:6%}.pin.p2{right:0;top:14%}.pin.p3{left:0;bottom:14%}.pin.p4{right:0;bottom:4%}
+  .mini{display:none}
+  .dark-wrap{padding:0 8px}
+  .dark{padding:56px 0;border-radius:16px}
+  .dark-col{grid-template-columns:1fr;gap:18px}
+  .dark-circle{width:260px;height:260px}
+  .dark-circle .circle{width:230px;height:230px}
+  .dark-cta{flex-direction:column;align-items:stretch;text-align:center}
+  .dark-cta .btn{width:100%}
+  .list-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .list-head > .btn{display:none}
+  .grid4{grid-template-columns:1fr;gap:10px}
+  .item{min-height:0}
+  .grid-ctas .btn{width:100%}
+  .people{gap:10px}
+  .person .circle{width:150px;height:150px}
+  .who{padding:28px 20px}
+  .outcomes{grid-template-columns:1fr}
+  .final-wrap{padding:0 8px 8px}
+  .final{padding:56px 0 28px;border-radius:16px}
+  .final-row{flex-direction:column;align-items:stretch;text-align:left}
+  .final-row .btn{width:100%}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .sticky-cta{display:flex;position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:30;gap:8px;padding:8px;border-radius:16px;background:rgba(30,35,33,.95);backdrop-filter:blur(10px);box-shadow:var(--shadow-2);transform:translateY(140%);transition:transform .3s var(--ease)}
+  .sticky-cta.show{transform:none}
+  .sticky-cta .btn{--h:46px;font-size:14px}
+  .sticky-cta .btn-launch{flex:1}
+  .sticky-cta .btn-scale{padding:0 14px}
+  body.has-sticky .final{padding-bottom:100px}
+  /* Dialogs become full-screen sheets */
+  .dialog{padding:0;align-items:stretch}
+  .dialog-panel{border-radius:0;max-height:none;height:100%;width:100%}
+  .dialog-main{padding:20px 20px calc(20px + env(safe-area-inset-bottom))}
+  .dialog-close{top:12px;right:12px}
+  .stepper{margin-bottom:20px;font-size:12px;gap:6px}
+  .stepper li span{display:none}
+  .stepper li.on span{display:inline}
+  .view h3{font-size:25px}
+  .row-2,.sched{grid-template-columns:1fr}
+  .bands{grid-template-columns:1fr}
+  .form-foot{position:sticky;bottom:calc(-20px - env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,255,255,0),#fff 22%);margin:0 -20px -20px;padding:28px 20px 20px}
+  .foot-row{flex-direction:column-reverse;align-items:stretch}
+  .foot-row .btn{width:100%}
+  .ticket-bottom .btn,.cal-menu{width:100%}
+  .cal-options{left:0;right:0;min-width:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-check-c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.7L16 9.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5h.01"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4h2.4l1.6 4-2 1.3a11 11 0 0 0 7.2 7.2l1.3-2 4 1.6v2.4c0 .8-.7 1.5-1.5 1.5A16.5 16.5 0 0 1 4 5.5Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></symbol>
+  <symbol id="i-broom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4 9.5 12.5M6 13h8l2 7H4z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-graph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M8 15l4-4 3 3 5-6"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V20H4z"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 5a3 3 0 0 1 0 6M18 14c2.2.6 3.5 2.4 3.5 5"/></symbol>
+  <symbol id="i-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14.2 3H9.8l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.4 2.6h4.4l.4-2.6a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4c3 0 6 3 6 6-3 5-7 8-10 9l-5-5c1-3 4-7 9-10Z"/><circle cx="14.5" cy="9.5" r="1.5"/><path d="M8 16l-3 3M5 14l-2 1 1-3M10 19l-1 2 3-1"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 24 24" fill="none"><path d="M4 20V9.5L12 4l8 5.5V20" stroke="#A9CF6E" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="#A9CF6E" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ======================= NAVIGATION ======================= -->
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a class="brand" href="#top" aria-label="Flex Academy — home">
+      <span class="brand-mark"><svg><use href="#i-mark"/></svg></span>
+      <span class="brand-text"><span class="brand-name">Flex Academy</span><span class="brand-sub">By the founders of The Flex</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#top">Home</a>
+      <a href="#launch">Launch</a>
+      <a href="#scale">Scale</a>
+      <a href="#founders">Founders</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="nav-scale" data-open="scale" type="button"><svg><use href="#i-phone"/></svg>Book a strategy call</button>
+      <button class="btn btn-launch btn-sm" data-open="launch" type="button">Free webinar</button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg width="20" height="20"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="nl" href="#launch">Launch <svg width="18" height="18"><use href="#i-right"/></svg></a>
+    <a class="nl" href="#scale">Scale <svg width="18" height="18"><use href="#i-right"/></svg></a>
+    <a class="nl" href="#founders">Founders <svg width="18" height="18"><use href="#i-right"/></svg></a>
+    <a class="nl" href="#faq">FAQ <svg width="18" height="18"><use href="#i-right"/></svg></a>
+    <div class="mm-ctas">
+      <button class="btn btn-launch btn-block" data-open="launch" type="button">Register for the free webinar</button>
+      <button class="btn btn-ink btn-block" data-open="scale" type="button">Scale: book a free strategy call</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================= HERO ======================= -->
+<div class="hero-wrap">
+<section class="hero on-dark" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="hero-kicker">From the founders of The Flex &amp; Base360</p>
+      <h1 id="hero-title">Build the business behind the <span class="uline">bookings.</span></h1>
+      <p class="hero-sub">Flex Academy shares the playbook, operating systems and software experience used to build The Flex — so you can <strong>start your first short-term rental business</strong>, or <strong>grow the units you already run</strong> into a real company.</p>
+
+      <form class="pill-form" id="hero-form" novalidate aria-label="Register for the free webinar">
+        <svg class="mail"><use href="#i-mail"/></svg>
+        <label for="hero-email" class="sr-only">Email address</label>
+        <input id="hero-email" type="email" autocomplete="email" inputmode="email" placeholder="Your email address" aria-describedby="hero-msg">
+        <button class="btn btn-launch btn-sm" type="submit" id="hero-launch">Register for the free webinar</button>
+      </form>
+      <p class="cl-msg" id="hero-msg" role="alert"></p>
+      <p class="hero-scale">Already running several units? <button type="button" data-open="scale" id="hero-scale">Book a free strategy call <svg><use href="#i-arrow"/></svg></button></p>
+
+      <div class="hero-proof" aria-label="Operating experience behind the Academy">
+        <div class="stack" aria-hidden="true"><i class="g">LDN</i><i>PAR</i><i class="d">LIS</i><i>BER</i><i class="g">ALG</i></div>
+        <div><b>Built on a real operation</b><span>7 cities · 150+ corporate partners · 130+ booking platforms</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <span class="doodle d1"><svg viewBox="0 0 56 56"><path d="M28 6v14M28 36v14M6 28h14M36 28h14"/><path d="M14 14l6 6M36 36l6 6M14 42l6-6M36 20l6-6" opacity=".6"/></svg></span>
+      <span class="doodle d2"><svg viewBox="0 0 64 48"><rect x="6" y="10" width="52" height="32" rx="4"/><path d="m8 13 24 17 24-17"/><path d="M2 24h-1M63 24h1" opacity="0"/></svg></span>
+      <span class="doodle d3"><svg viewBox="0 0 70 40"><path d="M4 30c14-18 34-24 60-14"/><path d="m54 8 10 8-12 5"/></svg></span>
+      <span class="doodle d4"><svg viewBox="0 0 44 44"><path d="M22 4c1 10 8 17 18 18-10 1-17 8-18 18-1-10-8-17-18-18 10-1 17-8 18-18Z"/></svg></span>
+      <span class="doodle d5"><svg viewBox="0 0 80 56"><path d="M4 48c10-30 40-40 72-32" stroke-dasharray="5 6"/><circle cx="76" cy="16" r="3"/></svg></span>
+      <span class="doodle d6"><svg viewBox="0 0 54 54"><circle cx="18" cy="36" r="10"/><path d="m25 29 22-22M40 14l6 6M34 20l5 5"/></svg></span>
+
+      <div class="hero-person">
+        <div class="slot" data-photo="hero-person.png">
+          <img alt="">
+          <div class="fallback">
+            <svg viewBox="0 0 520 560" fill="none" aria-hidden="true">
+              <!-- soft cut-out silhouette: seated person with laptop -->
+              <defs><linearGradient id="hg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5B625E"/><stop offset="1" stop-color="#3B413E"/></linearGradient></defs>
+              <path d="M258 84c40 0 68 32 68 74 0 26-8 46-22 60 22 8 50 24 60 44 12 24 18 60 18 100v198H124V362c0-40 6-76 18-100 10-20 38-36 60-44-14-14-22-34-22-60 0-42 28-74 78-74Z" fill="url(#hg)"/>
+              <path d="M300 246c22 6 44 18 56 40 10 18 14 40 14 58" stroke="#6A726D" stroke-width="3" stroke-linecap="round"/>
+              <rect x="140" y="420" width="250" height="14" rx="4" fill="#C9CFCB"/>
+              <path d="M170 302h190l16 118H154z" fill="#D9DDDA"/>
+              <rect x="186" y="318" width="158" height="86" rx="4" fill="#3A403D"/>
+              <rect x="0" y="434" width="520" height="126" fill="#2B302E"/>
+            </svg>
+          </div>
+          <span class="slot-tag"><b>Photo slot</b> · add <code>photos/hero-person.png</code> (cut-out person with laptop, transparent background)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ======================= SECTION 2: EXPLORE THE METHOD (6 cards) ======================= -->
+<section class="section" id="method" aria-labelledby="method-title">
+  <div class="container two-col">
+    <div class="col-copy">
+      <span class="eyebrow">The Flex Academy method</span>
+      <h2 class="h-section" id="method-title" style="margin-top:12px">Explore the path from your first unit to an operating company</h2>
+      <p class="lede">Six stages the founders worked through building The Flex, then systemised in Base360. Launch covers the foundations; Scale builds the company on top.</p>
+      <p class="micro" style="margin-top:14px;color:var(--muted)"><span class="ph">Proposed learning journey</span> Final syllabus to be confirmed.</p>
+    </div>
+    <ol class="col-grid cards6">
+      <li class="card dark"><span class="card-ic"><svg><use href="#i-search"/></svg></span><b>Find &amp; evaluate opportunities</b><span>Judge a unit, a market and a deal before you commit.</span><div class="tags"><span class="tag-l">Launch</span></div></li>
+      <li class="card"><span class="card-ic"><svg><use href="#i-doc"/></svg></span><b>Structure the business</b><span>An operating model that can hold more than one unit.</span><div class="tags"><span class="tag-l">Launch</span></div></li>
+      <li class="card"><span class="card-ic"><svg><use href="#i-graph"/></svg></span><b>Pricing &amp; revenue</b><span>Set rates, distribute across channels, track earnings.</span><div class="tags"><span class="tag-l">Launch</span><span class="tag-s">Scale</span></div></li>
+      <li class="card"><span class="card-ic"><svg><use href="#i-broom"/></svg></span><b>Repeatable operations</b><span>Check-ins, cleans and maintenance as routines.</span><div class="tags"><span class="tag-l">Launch</span><span class="tag-s">Scale</span></div></li>
+      <li class="card"><span class="card-ic"><svg><use href="#i-cog"/></svg></span><b>Systems, team &amp; automation</b><span>Hand work to software and people, not your evenings.</span><div class="tags"><span class="tag-s">Scale</span></div></li>
+      <li class="card"><span class="card-ic"><svg><use href="#i-rocket"/></svg></span><b>Foundations for growth</b><span>Add units without adding chaos.</span><div class="tags"><span class="tag-s">Scale</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================= ANGLED PROOF STRIP ======================= -->
+<section class="strip" aria-label="The operating experience behind Flex Academy">
+  <div class="strip-band">
+    <div class="strip-inner">
+      <span class="strip-title">Built by the people behind</span>
+      <div class="strip-logos">
+        <span class="logo"><svg><use href="#i-home"/></svg>The Flex <small>Flexible Living, Made Easy.</small></span>
+        <span class="logo"><svg><use href="#i-cog"/></svg>Base360 <small>STR software on AI autopilot</small></span>
+        <span class="stat"><b>150+</b><span>corporate housing partners</span></span>
+        <span class="stat"><b>130+</b><span>booking platforms connected</span></span>
+        <span class="stat"><b>7</b><span>cities operated</span></span>
+      </div>
+    </div>
+  </div>
+  <p class="strip-note"><span>Figures supplied in the brief. Cities: London, Paris, Lisbon, Berlin, Algiers, Oran, Constantine — Milan and Cairo upcoming.</span><span class="ph">Confirm before launch</span></p>
+</section>
+
+<!-- ======================= LAUNCH: split with circular image + map ======================= -->
+<section class="section" id="launch" aria-labelledby="launch-title" style="padding-top:0">
+  <div class="container split">
+    <div class="copy">
+      <span class="badge badge-launch">01 · Launch</span>
+      <h2 class="h-section" id="launch-title">Start your first short-term rental business</h2>
+      <p class="lede">For people who are employed, want a business of their own, and have no units or one unit. You need a credible, practical playbook — how to find a property, structure the deal, run guests and pricing — so you can start with less guesswork.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check-c"/></svg>Self-paced course</li>
+        <li><svg><use href="#i-check-c"/></svg>Live group sessions</li>
+        <li><svg><use href="#i-check-c"/></svg>Templates</li>
+        <li><svg><use href="#i-check-c"/></svg>Guidance for opening your first units</li>
+      </ul>
+      <p class="price-line">Programme fee <b>X</b> <span class="ph">Price placeholder</span></p>
+      <button class="btn btn-ink" data-open="launch" type="button">Register for the free webinar <svg><use href="#i-arrow"/></svg></button>
+      <p class="micro" style="margin-top:12px;color:var(--muted)">How you join: a free live webinar that teaches the essentials and introduces the programme. Enrol afterwards if it's right for you.</p>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="dots"><svg viewBox="0 0 560 420"><defs><pattern id="dp" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#D5DAD7"/></pattern></defs><ellipse cx="280" cy="210" rx="270" ry="150" fill="url(#dp)"/></svg></div>
+      <div class="circle slot" data-photo="launch-apartment.jpg">
+        <img alt="">
+        <div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11"/><path d="M8 20v-7h8v7M3 20h18"/></svg></div>
+        <span class="slot-tag"><b>Photo slot</b> · <code>photos/launch-apartment.jpg</code> (official The Flex apartment)</span>
+      </div>
+      <span class="pin p1"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>London</span>
+      <span class="pin p2"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Lisbon</span>
+      <span class="pin p3"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Paris</span>
+      <span class="pin p4"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Berlin</span>
+      <div class="mini" style="right:4%;top:44%"><span class="ic"><svg><use href="#i-play"/></svg></span><div><b>Free live webinar</b><span class="ph" style="font-size:10.5px">[Webinar date]</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SCALE: dark section with circular portrait ======================= -->
+<div class="dark-wrap" id="scale">
+<section class="dark on-dark" aria-labelledby="scale-title">
+  <div class="container">
+    <div class="dark-head">
+      <span class="badge badge-scale">02 · Scale · Premium</span>
+      <h2 class="h-section" id="scale-title" style="margin:12px auto 0">Turn the units you run into a real company</h2>
+      <p class="lede">For existing operators managing several units. If growth is stuck behind manual work, thin margins and no time, Scale builds the systems, commercial discipline and team structure to move past it — with the founders alongside you.</p>
+    </div>
+    <div class="dark-grid">
+      <div class="dark-col r">
+        <div class="dark-item"><h3>12-week programme</h3><p>A structured run, not an open-ended course.</p></div>
+        <div class="dark-item"><h3>Weekly group sessions</h3><p>Work through your operation with other operators.</p></div>
+        <div class="dark-item"><h3>Monthly 1:1 with a founder</h3><p>Direct time with the people who built The Flex.</p></div>
+      </div>
+      <div class="dark-circle" aria-hidden="true">
+        <span class="doodle" style="left:-30px;top:10px;width:56px;height:36px"><svg viewBox="0 0 70 40"><path d="M4 30c14-18 34-24 60-14"/><path d="m54 8 10 8-12 5"/></svg></span>
+        <span class="doodle" style="right:-24px;bottom:30px;width:40px;height:40px"><svg viewBox="0 0 44 44"><path d="M22 4c1 10 8 17 18 18-10 1-17 8-18 18-1-10-8-17-18-18 10-1 17-8 18-18Z"/></svg></span>
+        <div class="circle slot" data-photo="scale-operator.jpg">
+          <img alt="">
+          <div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></div>
+          <span class="slot-tag"><b>Photo slot</b> · <code>photos/scale-operator.jpg</code> (operator / team at work)</span>
+        </div>
+      </div>
+      <div class="dark-col">
+        <div class="dark-item"><h3>Operator community</h3><p>A peer group at the same stage of growth.</p></div>
+        <div class="dark-item"><h3>SOPs and templates</h3><p>The documents The Flex runs on, adapted to yours.</p></div>
+        <div class="dark-item"><h3>Base360 access during the programme</h3><p>Run your operation on the software built for The Flex.</p></div>
+      </div>
+    </div>
+    <div class="dark-cta">
+      <p class="price-line">Programme fee <b>Y</b> <span class="ph on-dark">Price placeholder · above X</span></p>
+      <button class="btn btn-launch" data-open="scale" type="button">Book a free strategy call <svg><use href="#i-arrow"/></svg></button>
+      <span class="small" style="color:var(--muted-dark)">20–30 minutes with the team</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ======================= WHAT YOU GET: listing grid ======================= -->
+<section class="section" id="compare" aria-labelledby="compare-title">
+  <div class="container">
+    <div class="list-head">
+      <div>
+        <span class="eyebrow">What you get</span>
+        <h2 class="h-section" id="compare-title" style="margin-top:10px">Everything confirmed in each programme</h2>
+        <p class="lede">Nothing padded: these are the components supplied for each offer. Anything not listed isn't part of the offer yet.</p>
+      </div>
+      <button class="btn btn-outline btn-sm" data-open="launch" type="button">Start with the webinar</button>
+    </div>
+    <ul class="grid4">
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-play"/></svg></span><span class="chip g">Launch</span></div><b>Self-paced course</b><p>Learn the foundations in your own time, around your job.</p><div class="item-foot"><span class="chip">Online</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-users"/></svg></span><span class="chip g">Launch</span></div><b>Live group sessions</b><p>Work through questions live with the team.</p><div class="item-foot"><span class="chip">Live</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-doc"/></svg></span><span class="chip g">Launch</span></div><b>Templates</b><p>Practical documents for opening your first units.</p><div class="item-foot"><span class="chip">Resources</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-home"/></svg></span><span class="chip g">Launch</span></div><b>First-unit guidance</b><p>Learning resources for starting an STR business.</p><div class="item-foot"><span class="chip">Resources</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-cal"/></svg></span><span class="chip">Scale</span></div><b>12-week programme</b><p>A fixed run with weekly group sessions.</p><div class="item-foot"><span class="chip">Cohort</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-phone"/></svg></span><span class="chip">Scale</span></div><b>Monthly 1:1 with a founder</b><p>Direct time with Raouf or Michael on your business.</p><div class="item-foot"><span class="chip">1:1</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-layers"/></svg></span><span class="chip">Scale</span></div><b>Operator community + SOPs</b><p>A peer group, plus the procedures The Flex runs on.</p><div class="item-foot"><span class="chip">Community</span><span class="micro" style="color:var(--muted)">Included</span></div></li>
+      <li class="item"><div class="item-top"><span class="ic"><svg><use href="#i-cog"/></svg></span><span class="chip">Scale</span></div><b>Base360 access</b><p>Use the software during the programme. <span class="ph">[Terms after]</span></p><div class="item-foot"><span class="chip">Software</span><span class="micro" style="color:var(--muted)">During programme</span></div></li>
+    </ul>
+    <div class="grid-ctas">
+      <button class="btn btn-ink" data-open="launch" type="button">Register for the free webinar <svg><use href="#i-arrow"/></svg></button>
+      <button class="btn btn-outline" data-open="scale" type="button">Book a free strategy call</button>
+      <span class="hint">Prices: Launch <b>X</b> · Scale <b>Y</b> (higher than X) — <span class="ph">final pricing TBC</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOUNDERS ======================= -->
+<section class="section" id="founders" aria-labelledby="founders-title" style="padding-top:0">
+  <div class="container founders">
+    <div class="copy">
+      <span class="eyebrow">The founders</span>
+      <h2 class="h-section" id="founders-title" style="margin-top:12px">Taught by operators, not gurus</h2>
+      <p class="lede">Raouf Yousfi and Michael Buggy founded The Flex, built Base360 to run it, and are now sharing that operating experience through Flex Academy.</p>
+      <div class="chain"><span>The Flex</span><i>→</i><span>Base360</span><i>→</i><span>Flex Academy</span></div>
+      <div class="bio-ph"><b>[Official founder bios to be supplied]</b> — approved bios only. No quotes or achievements are shown until confirmed.</div>
+    </div>
+    <div class="people">
+      <figure class="person" style="margin:0">
+        <div class="circle slot" data-photo="raouf-yousfi.jpg"><img alt="Raouf Yousfi"><div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></div><span class="slot-tag"><b>Official photo</b> · <code>photos/raouf-yousfi.jpg</code></span></div>
+        <figcaption><b>Raouf Yousfi</b><span>Co-founder, The Flex &amp; Base360</span></figcaption>
+      </figure>
+      <figure class="person" style="margin:0">
+        <div class="circle slot" data-photo="michael-buggy.jpg"><img alt="Michael Buggy"><div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></div><span class="slot-tag"><b>Official photo</b> · <code>photos/michael-buggy.jpg</code></span></div>
+        <figcaption><b>Michael Buggy</b><span>Co-founder, The Flex &amp; Base360</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WHO IT'S FOR ======================= -->
+<section class="section" id="who" aria-labelledby="who-title" style="padding-top:0">
+  <div class="container">
+    <div class="who">
+      <div class="who-col">
+        <span class="eyebrow">Who each programme is for</span>
+        <h2 class="h-section" id="who-title" style="font-size:24px">Find your starting point</h2>
+        <div class="selector" style="margin-top:16px">
+          <fieldset>
+            <legend>How many STR units do you run today?</legend>
+            <div class="seg">
+              <input type="radio" name="units-q" id="uq0" value="0"><label for="uq0">None</label>
+              <input type="radio" name="units-q" id="uq1" value="1"><label for="uq1">1</label>
+              <input type="radio" name="units-q" id="uq2" value="2"><label for="uq2">2–4</label>
+              <input type="radio" name="units-q" id="uq5" value="5"><label for="uq5">5+</label>
+            </div>
+          </fieldset>
+          <div class="rec" id="rec-none"><p>Choose an option to see the recommended next step.</p></div>
+          <div class="rec" id="rec-launch" hidden aria-live="polite"><p><b>Launch is your starting point.</b> Begin with the free webinar.</p><button class="btn btn-ink btn-sm" data-open="launch" type="button">Register for the free webinar</button></div>
+          <div class="rec" id="rec-scale" hidden aria-live="polite"><p><b>Scale is built for you.</b> Book a free strategy call.</p><button class="btn btn-ink btn-sm" data-open="scale" type="button">Book a free strategy call</button></div>
+        </div>
+      </div>
+      <div class="who-col">
+        <span class="badge badge-launch">Launch</span>
+        <h3>Launch is for you if…</h3>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>You want to start a short-term rental business</li>
+          <li><svg><use href="#i-check"/></svg>You have no units, or only one</li>
+          <li><svg><use href="#i-check"/></svg>You want a structured introduction to how the business works</li>
+        </ul>
+        <p class="micro" style="margin-top:12px;color:var(--muted)">Already running several units? Scale will serve you better.</p>
+      </div>
+      <div class="who-col">
+        <span class="badge badge-scale" style="background:var(--forest);color:#fff;border-color:var(--forest)">Scale</span>
+        <h3>Scale is for you if…</h3>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>You already operate short-term rentals</li>
+          <li><svg><use href="#i-check"/></svg>You manage several units today</li>
+          <li><svg><use href="#i-check"/></svg>You need repeatable systems and structure to grow</li>
+        </ul>
+        <p class="micro" style="margin-top:12px;color:var(--muted)">Still getting your first unit going? Start with Launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= OUTCOMES ======================= -->
+<section class="section" id="proof" aria-labelledby="proof-title" style="padding-top:0">
+  <div class="container">
+    <div class="list-head">
+      <div>
+        <span class="eyebrow">Outcomes</span>
+        <h2 class="h-section" id="proof-title" style="margin-top:10px">Real results only — when they're real</h2>
+        <p class="lede">Flex Academy is new, so no invented testimonials. These slots are reserved for verified student outcomes.</p>
+      </div>
+    </div>
+    <div class="outcomes">
+      <figure class="case" style="margin:0"><span class="ph">[Insert verified Academy case study or testimonial before launch]</span><q>Verified student story — starting point, what changed, in their own words.</q><figcaption class="case-foot"><i></i><div><b>[Student name, with permission]</b>[Programme · city · starting point]</div></figcaption></figure>
+      <figure class="case" style="margin:0"><span class="ph">[Insert verified Academy case study or testimonial before launch]</span><q>Second verified outcome — ideally one Launch and one Scale story.</q><figcaption class="case-foot"><i></i><div><b>[Student name, with permission]</b>[Programme · city · starting point]</div></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section class="section" id="faq" aria-labelledby="faq-title" style="padding-top:0">
+  <div class="container faq-grid">
+    <div class="faq-intro">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="h-section" id="faq-title" style="margin-top:10px">Good questions to ask first</h2>
+      <p class="lede" style="margin-top:12px;font-size:14.5px">Anything still open is marked — final details will be confirmed before launch.</p>
+      <div class="contact">Something else? <span class="ph">[Contact email — to be supplied]</span></div>
+    </div>
+    <div class="faq-list">
+      <details open><summary>Do I need to own a property to join Launch?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>No. Launch is designed for people with <b>no units or only one unit</b>.</p></div></details>
+      <details><summary>What is included in the free webinar?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>A live session that teaches practical information about starting a short-term rental business, introduces Launch and explains how to enrol. Registration asks for name, email and country only.</p><p><span class="ph">[Webinar agenda — to be confirmed]</span></p></div></details>
+      <details><summary>How does the Launch programme work?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>A <b>self-paced course</b>, <b>live group sessions</b> and <b>templates</b>, with practical guidance for opening your first units.</p><p><span class="ph">[Programme length and schedule — to be confirmed]</span></p></div></details>
+      <details><summary>Who is the Scale programme designed for?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>Operators who already manage several units and want to grow into a structured company.</p></div></details>
+      <details><summary>How much does each programme cost?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>Launch is <b>X</b> and Scale is <b>Y</b>, a premium tier priced above Launch. <span class="ph">[Final pricing to be confirmed]</span> The webinar and the strategy call are both free.</p></div></details>
+      <details><summary>What is the time commitment?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>Scale runs for <b>12 weeks</b> with weekly group sessions and a monthly founder 1:1. Launch is self-paced with live group sessions. <span class="ph">[Hours per week — to be confirmed]</span></p></div></details>
+      <details><summary>Is Base360 included in the Scale programme?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>Yes — Scale includes <b>Base360 access during the programme</b>. <span class="ph">[Terms after the programme — to be confirmed]</span></p></div></details>
+      <details><summary>Can people outside the UK participate?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>Yes. Flex Academy is built for English-speaking markets globally, including the UK, US, Canada and Australia. <span class="ph">[Session times across time zones — TBC]</span></p></div></details>
+      <details><summary>What happens during the free strategy call?<span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary><div class="a"><p>A 20–30 minute conversation about your current operation, where you want to take it, and whether Scale is the right fit.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FINAL CTA + FOOTER (one dark block) ======================= -->
+<div class="final-wrap" id="final">
+<section class="final on-dark" aria-labelledby="final-title">
+  <div class="container">
+    <div class="final-top">
+      <div>
+        <span class="eyebrow">Flex Academy</span>
+        <h2 id="final-title" style="margin-top:12px">Build the business behind the <span class="uline">bookings.</span></h2>
+        <p>From your first unit to a short-term rental company — start where you are.</p>
+      </div>
+      <div class="final-actions">
+        <div class="final-row"><div><b>Launch · 0–1 units</b><span>Free live webinar</span></div><button class="btn btn-launch btn-sm" data-open="launch" type="button">Register for the free webinar</button></div>
+        <div class="final-row"><div><b>Scale · several units</b><span>Free 20–30 min strategy call</span></div><button class="btn btn-scale btn-sm" data-open="scale" type="button">Book a free strategy call</button></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top"><span class="brand-mark"><svg><use href="#i-mark"/></svg></span><span class="brand-text"><span class="brand-name">Flex Academy</span><span class="brand-sub">By the founders of The Flex</span></span></a>
+          <p class="blurb">Education for people starting and scaling short-term rental businesses, built on the experience behind The Flex and Base360.</p>
+        </div>
+        <div>
+          <h4>Academy</h4>
+          <ul><li><a href="#launch">Launch</a></li><li><a href="#scale">Scale</a></li><li><a href="#method">Method</a></li><li><a href="#founders">Founders</a></li><li><a href="#faq">FAQ</a></li></ul>
+        </div>
+        <div>
+          <h4>Family</h4>
+          <ul><li><a href="https://theflex.global/" rel="noopener" target="_blank">The Flex ↗</a></li><li><a href="https://base360.ai/" rel="noopener" target="_blank">Base360 ↗</a></li><li><span class="ph on-dark">[Contact email]</span></li></ul>
+        </div>
+        <div class="checklist" id="checklist">
+          <h4>Get the STR scaling checklist <span class="ph on-dark">Proposed asset</span></h4>
+          <div class="cl-form-wrap">
+            <form class="pill-form" id="cl-form" novalidate>
+              <label for="cl-email" class="sr-only">Email address</label>
+              <input id="cl-email" type="email" autocomplete="email" placeholder="Your email address" aria-describedby="cl-msg">
+              <button class="btn btn-launch btn-sm" type="submit">Subscribe</button>
+            </form>
+            <p class="cl-msg" id="cl-msg" role="alert"></p>
+            <p class="micro" style="color:var(--muted-dark);margin-top:6px">We'll send the checklist when it's published. No other emails without your consent.</p>
+          </div>
+          <div class="cl-success" role="status"><span class="tick"><svg width="16" height="16"><use href="#i-check"/></svg></span><div><b>You're on the list.</b><span>We'll email <span id="cl-sent">you</span> when it's published.</span></div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span class="ph on-dark">[Year]</span> <span class="ph on-dark">[Legal entity name]</span></span>
+        <nav aria-label="Legal"><a href="#" onclick="return false">Privacy <span class="ph on-dark">[TBC]</span></a><a href="#" onclick="return false">Terms <span class="ph on-dark">[TBC]</span></a><a href="#" onclick="return false">Cookies <span class="ph on-dark">[TBC]</span></a></nav>
+      </div>
+    </footer>
+  </div>
+</section>
+</div>
+
+</main>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta" id="sticky-cta" aria-label="Quick actions">
+  <button class="btn btn-launch" data-open="launch" type="button">Free webinar <svg><use href="#i-arrow"/></svg></button>
+  <button class="btn btn-scale" data-open="scale" type="button">Scale call</button>
+</div>
+
+<!-- =========================================================
+     FLOW A — LAUNCH WEBINAR REGISTRATION
+     ========================================================= -->
+<div class="dialog" id="dlg-launch" aria-hidden="true">
+  <div class="dialog-scrim" data-close></div>
+  <div class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="launch-title">
+    <aside class="dialog-aside is-launch on-dark">
+      <div class="door-label"><span>Launch · Free webinar</span></div>
+      <h2>Learn how a short-term rental business really starts.</h2>
+      <p>A free live session from the team behind The Flex and Base360.</p>
+      <ul class="aside-list">
+        <li><svg><use href="#i-check"/></svg>Practical guidance on starting an STR business</li>
+        <li><svg><use href="#i-check"/></svg>An introduction to the Launch programme</li>
+        <li><svg><use href="#i-check"/></svg>Option to enrol afterwards — no obligation</li>
+      </ul>
+      <p class="small">When: <span class="ph">[Webinar date]</span> <span class="ph">[Webinar time and time zone]</span></p>
+      <p class="aside-foot"><svg><use href="#i-globe"/></svg>Open to English-speaking audiences worldwide.</p>
+    </aside>
+    <div class="dialog-main">
+      <button class="dialog-close" data-close type="button" aria-label="Close"><svg><use href="#i-close"/></svg></button>
+      <ol class="stepper" aria-label="Progress"><li class="on" data-step="1"><i>1</i><span>Your details</span></li><li class="sep" aria-hidden="true"></li><li data-step="2"><i>2</i><span>Confirmed</span></li></ol>
+
+      <!-- STATE 2 / ERROR -->
+      <div class="view is-active" data-view="form">
+        <h3 id="launch-title">Register for the free webinar</h3>
+        <p class="intro">Three quick details and your seat is saved. We'll email your joining link.</p>
+        <form class="form" id="launch-form" novalidate>
+          <div class="form-alert" id="launch-alert" role="alert"><svg><use href="#i-alert"/></svg><span>Please fix the highlighted fields to continue.</span></div>
+          <div class="field" data-field="name">
+            <label for="l-name">Full name</label>
+            <input class="input" id="l-name" name="name" autocomplete="name" placeholder="e.g. Jordan Smith" aria-describedby="l-name-err">
+            <p class="err-msg" id="l-name-err"><svg><use href="#i-alert"/></svg>Enter your name so we know what to call you.</p>
+          </div>
+          <div class="field" data-field="email">
+            <label for="l-email">Email address</label>
+            <input class="input" id="l-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="l-email-help l-email-err">
+            <p class="help" id="l-email-help">Your joining link and reminders go here.</p>
+            <p class="err-msg" id="l-email-err"><svg><use href="#i-alert"/></svg>Enter a valid email, like name@example.com.</p>
+          </div>
+          <div class="field" data-field="country">
+            <label for="l-country">Country</label>
+            <select class="select" id="l-country" name="country" autocomplete="country-name" aria-describedby="l-country-help l-country-err"></select>
+            <p class="help" id="l-country-help">Helps us schedule sessions for your time zone.</p>
+            <p class="err-msg" id="l-country-err"><svg><use href="#i-alert"/></svg>Select the country you're based in.</p>
+          </div>
+          <div class="form-foot">
+            <button class="btn btn-ink btn-block" type="submit" id="launch-submit">Save my seat <svg><use href="#i-arrow"/></svg></button>
+            <p class="privacy"><svg><use href="#i-lock"/></svg><span>We'll only use your details for this webinar and programme updates. <span class="ph">[Privacy policy link]</span></span></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- STATE 3 -->
+      <div class="view" data-view="loading" aria-live="polite">
+        <h3>Saving your seat…</h3>
+        <p class="intro">This only takes a moment.</p>
+        <div class="loading-card">
+          <div class="loading-row"><span class="ok"><svg><use href="#i-check"/></svg></span>Details checked</div>
+          <div class="loading-row"><span class="spinner" aria-hidden="true"></span>Reserving your place</div>
+          <div class="loading-row muted"><span class="wait"></span>Sending your confirmation email</div>
+        </div>
+        <div class="form-foot"><button class="btn btn-ink btn-block" disabled><span class="spinner" aria-hidden="true"></span>Registering…</button></div>
+      </div>
+
+      <!-- STATE 4 -->
+      <div class="view" data-view="done" role="status">
+        <span class="confirm-badge"><svg><use href="#i-check"/></svg></span>
+        <h3>You're registered, <span id="l-first">there</span>.</h3>
+        <p class="intro">Your seat for the free Flex Academy webinar is saved. A confirmation is on its way to <b id="l-sent">your inbox</b>.</p>
+        <div class="ticket">
+          <div class="ticket-top">
+            <div class="cal-ic" aria-hidden="true"><span>WEBINAR</span><b>—</b></div>
+            <div><h4>Launch your short-term rental business — free webinar</h4><div class="when"><span class="ph">[Webinar date]</span><span class="ph">[Webinar time and time zone]</span></div></div>
+          </div>
+          <div class="ticket-bottom">
+            <div class="cal-menu">
+              <button class="btn btn-ink btn-sm" type="button" aria-expanded="false" data-cal-toggle><svg><use href="#i-cal"/></svg>Add to calendar</button>
+              <div class="cal-options" role="menu">
+                <a href="#" role="menuitem" onclick="return false">Google Calendar <span class="ph">[Calendar link]</span></a>
+                <a href="#" role="menuitem" onclick="return false">Outlook <span class="ph">[Calendar link]</span></a>
+                <a href="#" role="menuitem" onclick="return false">Apple / .ics <span class="ph">[Calendar link]</span></a>
+              </div>
+            </div>
+            <span class="small" style="color:var(--muted)">Online · link sent by email</span>
+          </div>
+        </div>
+        <div class="next-steps">
+          <h4>What happens next</h4>
+          <ol>
+            <li><div>Check your inbox<span>Your confirmation and joining link are on the way.</span></div></li>
+            <li><div>Join live on the day<span>We'll send a reminder before the session starts. <span class="ph">[Reminder timing]</span></span></div></li>
+            <li><div>Decide on Launch<span>Enrolment details are shared during the webinar — no obligation.</span></div></li>
+          </ol>
+        </div>
+        <div class="form-foot"><button class="btn btn-outline btn-block" data-close type="button">Back to Flex Academy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     FLOW B — SCALE STRATEGY CALL
+     ========================================================= -->
+<div class="dialog" id="dlg-scale" aria-hidden="true">
+  <div class="dialog-scrim" data-close></div>
+  <div class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="scale-title">
+    <aside class="dialog-aside on-dark">
+      <div class="door-label"><span>Scale · Strategy call</span></div>
+      <h2>A conversation about your business — not a sales script.</h2>
+      <p>20–30 minutes with the team behind The Flex and Base360.</p>
+      <ul class="aside-list">
+        <li><svg><use href="#i-check"/></svg>Where your operation is today</li>
+        <li><svg><use href="#i-check"/></svg>What's holding growth back</li>
+        <li><svg><use href="#i-check"/></svg>Whether the 12-week Scale programme fits</li>
+      </ul>
+      <p class="aside-foot"><svg><use href="#i-lock"/></svg>Your answers are only used to prepare for the call.</p>
+    </aside>
+    <div class="dialog-main">
+      <button class="dialog-close" data-close type="button" aria-label="Close"><svg><use href="#i-close"/></svg></button>
+      <ol class="stepper" aria-label="Progress"><li class="on" data-step="1"><i>1</i><span>Your operation</span></li><li class="sep" aria-hidden="true"></li><li data-step="2"><i>2</i><span>Pick a time</span></li><li class="sep" aria-hidden="true"></li><li data-step="3"><i>3</i><span>Confirmed</span></li></ol>
+
+      <!-- STATE 2: QUALIFICATION -->
+      <div class="view is-active" data-view="form">
+        <h3 id="scale-title">Tell us about your operation</h3>
+        <p class="intro">Four quick questions so the team understands your situation before the call. Takes about a minute.</p>
+        <form class="form" id="scale-form" novalidate>
+          <div class="form-alert" id="scale-alert" role="alert"><svg><use href="#i-alert"/></svg><span>A few answers are missing — they're highlighted below.</span></div>
+          <div class="field" data-field="units" role="group" aria-labelledby="s-units-l">
+            <span class="label" id="s-units-l">How many units do you manage today?</span>
+            <div class="chips">
+              <input type="radio" name="units" id="su1" value="1"><label for="su1">1</label>
+              <input type="radio" name="units" id="su2" value="2–4"><label for="su2">2–4</label>
+              <input type="radio" name="units" id="su3" value="5–9"><label for="su3">5–9</label>
+              <input type="radio" name="units" id="su4" value="10–24"><label for="su4">10–24</label>
+              <input type="radio" name="units" id="su5" value="25+"><label for="su5">25+</label>
+            </div>
+            <p class="err-msg"><svg><use href="#i-alert"/></svg>Select how many units you manage now.</p>
+          </div>
+          <div class="row-2">
+            <div class="field" data-field="target">
+              <label for="s-target">Target number of units</label>
+              <select class="select" id="s-target" name="target">
+                <option value="">Select a target</option>
+                <option>5–9</option><option>10–24</option><option>25–49</option><option>50–99</option><option>100+</option>
+              </select>
+              <p class="help">Where you'd like to be in the next 12–24 months.</p>
+              <p class="err-msg"><svg><use href="#i-alert"/></svg>Choose a target.</p>
+            </div>
+            <div class="field" data-field="city">
+              <label for="s-city">City</label>
+              <input class="input" id="s-city" name="city" autocomplete="address-level2" placeholder="e.g. Manchester">
+              <p class="help">Where most of your units are.</p>
+              <p class="err-msg"><svg><use href="#i-alert"/></svg>Enter a city.</p>
+            </div>
+          </div>
+          <div class="field" data-field="budget" role="group" aria-labelledby="s-budget-l">
+            <span class="label" id="s-budget-l"><span>Budget for growth</span><span class="ph-note">Placeholder bands — final ranges TBC</span></span>
+            <div class="bands">
+              <input type="radio" name="budget" id="sb1" value="A"><label for="sb1"><b>Band A</b><span>[Range to be confirmed]</span></label>
+              <input type="radio" name="budget" id="sb2" value="B"><label for="sb2"><b>Band B</b><span>[Range to be confirmed]</span></label>
+              <input type="radio" name="budget" id="sb3" value="C"><label for="sb3"><b>Band C</b><span>[Range to be confirmed]</span></label>
+              <input type="radio" name="budget" id="sb4" value="D"><label for="sb4"><b>Prefer to discuss on the call</b><span style="color:var(--muted);font-weight:500">No problem</span></label>
+            </div>
+            <p class="help">Investment you're considering for growing the business. It helps us tailor the conversation.</p>
+            <p class="err-msg"><svg><use href="#i-alert"/></svg>Choose a band, or "Prefer to discuss on the call".</p>
+          </div>
+          <div class="form-foot">
+            <button class="btn btn-ink btn-block" type="submit">Continue to pick a time <svg><use href="#i-arrow"/></svg></button>
+            <p class="privacy"><svg><use href="#i-lock"/></svg><span>Only used to prepare for your call. <span class="ph">[Privacy policy link]</span></span></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- STATE 3: CALENDAR -->
+      <div class="view" data-view="calendar">
+        <h3>Pick a time for your call</h3>
+        <p class="intro">Choose a day, then a slot. Calls last 20–30 minutes on video.</p>
+        <div class="sched">
+          <div>
+            <div class="cal-head"><b id="cal-month">Month</b><div class="cal-nav"><button type="button" id="cal-prev" aria-label="Previous month"><svg><use href="#i-left"/></svg></button><button type="button" id="cal-next" aria-label="Next month"><svg><use href="#i-right"/></svg></button></div></div>
+            <div class="cal-grid" id="cal-grid" role="grid" aria-label="Choose a date"></div>
+            <div class="cal-legend"><span><i></i>Illustrative availability</span><span class="ph">Connect scheduling tool</span></div>
+          </div>
+          <div>
+            <p class="slots-head" id="slots-head">Select a date to see times</p>
+            <div class="slots" id="slots"><div class="slots-empty">Available times appear here.</div></div>
+            <div class="field tz"><label for="s-tz">Time zone</label><select class="select" id="s-tz"></select></div>
+          </div>
+        </div>
+        <form class="book-details" id="book-form" novalidate>
+          <div class="row-2">
+            <div class="field" data-field="bname"><label for="s-name">Full name</label><input class="input" id="s-name" autocomplete="name" placeholder="e.g. Jordan Smith"><p class="err-msg"><svg><use href="#i-alert"/></svg>Enter your name.</p></div>
+            <div class="field" data-field="bemail"><label for="s-email">Email for the invite</label><input class="input" id="s-email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com"><p class="err-msg"><svg><use href="#i-alert"/></svg>Enter a valid email.</p></div>
+          </div>
+        </form>
+        <div class="form-foot">
+          <div class="foot-row">
+            <button class="back-btn" type="button" data-back><svg><use href="#i-left"/></svg>Back to your answers</button>
+            <button class="btn btn-ink" type="button" id="book-btn" disabled>Confirm booking <svg><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATE 4: CONFIRMED -->
+      <div class="view" data-view="done" role="status">
+        <span class="confirm-badge" style="background:var(--brass)"><svg><use href="#i-check"/></svg></span>
+        <h3>Your strategy call is booked.</h3>
+        <p class="intro">We're looking forward to hearing about your operation. An invite with the video link is on its way to <b id="s-sent">your inbox</b>.</p>
+        <div class="ticket">
+          <div class="ticket-top">
+            <div class="cal-ic" aria-hidden="true"><span id="s-mon">DATE</span><b id="s-day">—</b></div>
+            <div><h4>Flex Academy · Scale strategy call (20–30 min)</h4><div class="when"><span class="ph" id="s-date">[Selected date]</span><span class="ph" id="s-time">[Selected time and time zone]</span></div></div>
+          </div>
+          <div class="ticket-bottom">
+            <div class="cal-menu">
+              <button class="btn btn-ink btn-sm" type="button" aria-expanded="false" data-cal-toggle><svg><use href="#i-cal"/></svg>Add to calendar</button>
+              <div class="cal-options" role="menu">
+                <a href="#" role="menuitem" onclick="return false">Google Calendar <span class="ph">[Calendar link]</span></a>
+                <a href="#" role="menuitem" onclick="return false">Outlook <span class="ph">[Calendar link]</span></a>
+                <a href="#" role="menuitem" onclick="return false">Apple / .ics <span class="ph">[Calendar link]</span></a>
+              </div>
+            </div>
+            <button class="btn btn-outline btn-sm" type="button" data-reschedule>Reschedule</button>
+          </div>
+        </div>
+        <div class="next-steps">
+          <h4>What happens next</h4>
+          <ol>
+            <li><div>We review your answers<span>So the call starts from your business, not from scratch.</span></div></li>
+            <li><div>Bring your numbers and questions<span>Units, current tools, where time goes — whatever's useful.</span></div></li>
+            <li><div>Leave with a clear view<span>What to fix first, and whether Scale is the right next step.</span></div></li>
+          </ol>
+        </div>
+        <div class="form-foot"><button class="btn btn-outline btn-block" data-close type="button">Back to Flex Academy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var params = new URLSearchParams(location.search);
+  var EMBED = params.has('embed');
+  if (EMBED) document.body.classList.add('embed');
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var mqMobile = window.matchMedia('(max-width:640px)');
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  /* ---------- Countries (priority group for core English-speaking markets) ---------- */
+  var PRIORITY = ['United Kingdom','United States','Canada','Australia','Ireland','New Zealand','South Africa'];
+  var ALL = ['Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Canada','Cape Verde','Central African Republic','Chad','Chile','China','Colombia','Comoros','Congo','Costa Rica','Côte d’Ivoire','Croatia','Cuba','Cyprus','Czechia','Democratic Republic of the Congo','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Grenada','Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','North Macedonia','Norway','Oman','Pakistan','Palau','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Rwanda','Saint Kitts and Nevis','Saint Lucia','Saint Vincent and the Grenadines','Samoa','San Marino','São Tomé and Príncipe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Sweden','Switzerland','Taiwan','Tajikistan','Tanzania','Thailand','Timor-Leste','Togo','Tonga','Trinidad and Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States','Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'];
+  (function(){
+    var sel = $('#l-country'), html = '<option value="">Select your country</option><optgroup label="Most common">';
+    PRIORITY.forEach(function(c){ html += '<option>'+c+'</option>'; });
+    html += '</optgroup><optgroup label="All countries">';
+    ALL.forEach(function(c){ html += '<option>'+c+'</option>'; });
+    sel.innerHTML = html + '</optgroup>';
+  })();
+
+  /* ---------- Time zones ---------- */
+  var userTZ = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Europe/London';
+  (function(){
+    var zones = ['Europe/London','Europe/Dublin','America/New_York','America/Chicago','America/Denver','America/Los_Angeles','America/Toronto','America/Vancouver','Australia/Sydney','Australia/Melbourne','Australia/Perth','Pacific/Auckland','Africa/Johannesburg','Asia/Dubai','Asia/Singapore'];
+    if (zones.indexOf(userTZ) === -1) zones.unshift(userTZ);
+    $('#s-tz').innerHTML = zones.map(function(z){ return '<option'+(z===userTZ?' selected':'')+'>'+z+'</option>'; }).join('');
+  })();
+
+  /* ---------- Header + mobile menu ---------- */
+  var header = $('.site-header');
+  var onScroll = function(){ header.classList.toggle('is-scrolled', scrollY > 8); };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var menuBtn = $('.menu-btn'), menu = $('#mobile-menu');
+  menuBtn.addEventListener('click', function(){
+    var open = !menu.classList.contains('open');
+    menu.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  $$('#mobile-menu a, #mobile-menu button').forEach(function(a){ a.addEventListener('click', function(){ menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); }); });
+
+  /* ---------- Mobile path tabs ---------- */
+  var tabs = $$('.path-tabs [role=tab]'); var HAS_TABS = tabs.length > 0;
+  function selectTab(name, focus){
+    if (!HAS_TABS) return;
+    tabs.forEach(function(t){
+      var on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    $('#path-launch').hidden = name !== 'launch';
+    $('#path-scale').hidden = name !== 'scale';
+    var hint = $('#switch-hint');
+    hint.querySelector('span').textContent = name === 'launch' ? 'Already running several units?' : 'Just getting started?';
+    hint.querySelector('button').textContent = name === 'launch' ? 'View Scale' : 'View Launch';
+    hint.querySelector('button').dataset.tabLink = name === 'launch' ? 'scale' : 'launch';
+  }
+  function syncPaths(){
+    if (!HAS_TABS) return;
+    if (mqMobile.matches) selectTab(($('.path-tabs [aria-selected=true]')||tabs[0]).dataset.tab);
+    else { $('#path-launch').hidden = false; $('#path-scale').hidden = false; }
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ selectTab(t.dataset.tab); });
+    t.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){ e.preventDefault(); selectTab(tabs[(i+1)%2].dataset.tab, true); }
+    });
+  });
+  document.addEventListener('click', function(e){
+    var l = e.target.closest('[data-tab-link]');
+    if (l && mqMobile.matches){ selectTab(l.dataset.tabLink); if (l.tagName === 'BUTTON') $('#paths').scrollIntoView({behavior:'smooth'}); }
+  });
+  (mqMobile.addEventListener ? mqMobile.addEventListener('change', syncPaths) : mqMobile.addListener(syncPaths));
+  syncPaths();
+
+  /* ---------- Photo slots: show the image if the file exists ---------- */
+  $$('.slot[data-photo]').forEach(function(s){
+    var img = $('img', s); if (!img) return;
+    img.addEventListener('load', function(){ s.classList.add('has-photo'); });
+    img.src = 'photos/' + s.dataset.photo;
+  });
+
+  /* ---------- Hero email pill: prefill and open the Launch flow ---------- */
+  $('#hero-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = $('#hero-email').value.trim(), msg = $('#hero-msg'), form = this;
+    if (v && !EMAIL_RE.test(v)){
+      form.classList.add('has-error'); $('#hero-email').setAttribute('aria-invalid','true');
+      msg.className = 'cl-msg err'; msg.innerHTML = '<svg><use href="#i-alert"/></svg>Enter a valid email, like name@example.com.'; return;
+    }
+    form.classList.remove('has-error'); $('#hero-email').removeAttribute('aria-invalid'); msg.textContent = '';
+    if (v) $('#l-email').value = v;
+    var b = $('#hero-launch'); b.classList.add('is-pressed');
+    setTimeout(function(){ b.classList.remove('is-pressed'); openDialog('launch', b); if (v) $('#l-name').focus({preventScroll:true}); }, 140);
+  });
+
+  /* ---------- Units self-selector ---------- */
+  $$('input[name="units-q"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      var launch = +r.value <= 1;
+      $('#rec-none').hidden = true;
+      $('#rec-launch').hidden = !launch; $('#rec-scale').hidden = launch;
+    });
+  });
+
+  /* ---------- FAQ: one open at a time ---------- */
+  $$('.faq-list details').forEach(function(d){
+    d.addEventListener('toggle', function(){ if (d.open) $$('.faq-list details').forEach(function(o){ if (o !== d) o.open = false; }); });
+  });
+
+  /* ---------- Sticky mobile CTA ---------- */
+  var sticky = $('#sticky-cta'), heroVisible = true, finalVisible = false, dialogOpen = false;
+  function updateSticky(){ var show = !heroVisible && !finalVisible && !dialogOpen && !EMBED; sticky.classList.toggle('show', show); document.body.classList.toggle('has-sticky', show); }
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ heroVisible = es[0].isIntersecting; updateSticky(); }, {rootMargin:'-120px 0px 0px 0px'}).observe($('#hero-form'));
+    new IntersectionObserver(function(es){ finalVisible = es[0].isIntersecting; updateSticky(); }).observe($('#final'));
+  }
+
+  /* ---------- Dialog management ---------- */
+  var lastTrigger = null, openDlg = null;
+  function focusables(el){ return $$('a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])', el).filter(function(x){ return x.offsetParent !== null; }); }
+  function openDialog(id, trigger){
+    var d = $('#dlg-'+id); if (!d) return;
+    lastTrigger = trigger || document.activeElement; openDlg = d;
+    d.classList.add('is-open'); d.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden'; dialogOpen = true; updateSticky();
+    setTimeout(function(){ var f = focusables($('.view.is-active', d)); (f[0]||$('.dialog-close',d)).focus({preventScroll:true}); }, 30);
+  }
+  function closeDialog(){
+    if (!openDlg) return;
+    openDlg.classList.remove('is-open'); openDlg.setAttribute('aria-hidden','true');
+    document.body.style.overflow = ''; dialogOpen = false; updateSticky();
+    if (openDlg.id === 'dlg-launch' && launchDone) resetLaunch();
+    if (openDlg.id === 'dlg-scale' && scaleDone) resetScale();
+    openDlg = null; if (lastTrigger && lastTrigger.focus) lastTrigger.focus({preventScroll:true});
+  }
+  document.addEventListener('click', function(e){
+    var o = e.target.closest('[data-open]');
+    if (o){ e.preventDefault(); var btn = o; btn.classList.add('is-pressed'); setTimeout(function(){ btn.classList.remove('is-pressed'); openDialog(btn.dataset.open, btn); }, 140); return; }
+    if (e.target.closest('[data-close]')) closeDialog();
+    var ct = e.target.closest('[data-cal-toggle]');
+    if (ct){ var m = ct.parentNode; var op = !m.classList.contains('open'); m.classList.toggle('open', op); ct.setAttribute('aria-expanded', op); }
+    else $$('.cal-menu.open').forEach(function(m){ if (!m.contains(e.target)) { m.classList.remove('open'); $('[data-cal-toggle]',m).setAttribute('aria-expanded',false); } });
+  });
+  document.addEventListener('keydown', function(e){
+    if (!openDlg) return;
+    if (e.key === 'Escape'){ closeDialog(); return; }
+    if (e.key === 'Tab'){
+      var f = focusables($('.dialog-panel', openDlg)); if (!f.length) return;
+      var first = f[0], last = f[f.length-1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+  function showView(d, name){
+    $$('.view', d).forEach(function(v){ v.classList.toggle('is-active', v.dataset.view === name); });
+    $('.dialog-main', d).scrollTop = 0;
+  }
+  function setStep(d, n){
+    $$('.stepper li[data-step]', d).forEach(function(li){ var s = +li.dataset.step; li.classList.toggle('on', s === n); li.classList.toggle('done', s < n); $('i',li).innerHTML = s < n ? '<svg width="12" height="12"><use href="#i-check"/></svg>' : s; });
+  }
+
+  /* ---------- Validation helpers ---------- */
+  function setField(f, ok){
+    f.classList.toggle('is-invalid', !ok);
+    $$('input,select', f).forEach(function(i){ if (ok) i.removeAttribute('aria-invalid'); else i.setAttribute('aria-invalid','true'); });
+    return ok;
+  }
+  function liveValidate(form, rules){
+    Object.keys(rules).forEach(function(k){
+      var f = $('[data-field="'+k+'"]', form);
+      $$('input,select', f).forEach(function(i){
+        i.addEventListener(i.type === 'radio' || i.tagName === 'SELECT' ? 'change' : 'blur', function(){ if (f.classList.contains('is-invalid') || i.value) { var ok = setField(f, rules[k]()); f.classList.toggle('is-valid', ok && i.tagName==='INPUT' && i.type!=='radio'); } });
+        i.addEventListener('input', function(){ if (f.classList.contains('is-invalid') && rules[k]()) setField(f, true); });
+      });
+    });
+  }
+  function runAll(form, rules, alertEl){
+    var firstBad = null;
+    Object.keys(rules).forEach(function(k){ var f = $('[data-field="'+k+'"]', form); if (!setField(f, rules[k]()) && !firstBad) firstBad = f; });
+    if (alertEl) alertEl.classList.toggle('show', !!firstBad);
+    if (firstBad){ var i = $('input,select', firstBad); i && i.focus(); }
+    return !firstBad;
+  }
+
+  /* ---------- FLOW A: Launch ---------- */
+  var dl = $('#dlg-launch'), lf = $('#launch-form'), launchDone = false;
+  var lRules = {
+    name: function(){ return $('#l-name').value.trim().length >= 2; },
+    email: function(){ return EMAIL_RE.test($('#l-email').value.trim()); },
+    country: function(){ return !!$('#l-country').value; }
+  };
+  liveValidate(lf, lRules);
+  function launchConfirm(){
+    var n = $('#l-name').value.trim().split(/\s+/)[0] || 'there';
+    $('#l-first').textContent = n; $('#l-sent').textContent = $('#l-email').value.trim() || 'your inbox';
+    setStep(dl, 2); showView(dl, 'done'); launchDone = true;
+    setTimeout(function(){ $('[data-cal-toggle]', dl).focus({preventScroll:true}); }, 30);
+  }
+  lf.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!runAll(lf, lRules, $('#launch-alert'))) return;
+    showView(dl, 'loading');
+    setTimeout(launchConfirm, 1600);
+  });
+  function resetLaunch(){ lf.reset(); $$('.field', lf).forEach(function(f){ f.classList.remove('is-invalid','is-valid'); }); $('#launch-alert').classList.remove('show'); setStep(dl,1); showView(dl,'form'); launchDone = false; }
+
+  /* ---------- FLOW B: Scale ---------- */
+  var ds = $('#dlg-scale'), sf = $('#scale-form'), scaleDone = false;
+  var checked = function(n){ return !!$('input[name="'+n+'"]:checked', sf); };
+  var sRules = {
+    units: function(){ return checked('units'); },
+    target: function(){ return !!$('#s-target').value; },
+    city: function(){ return $('#s-city').value.trim().length >= 2; },
+    budget: function(){ return checked('budget'); }
+  };
+  liveValidate(sf, sRules);
+  sf.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!runAll(sf, sRules, $('#scale-alert'))) return;
+    setStep(ds, 2); showView(ds, 'calendar'); renderCal();
+    setTimeout(function(){ var b = $('#cal-grid button.avail'); b && b.focus({preventScroll:true}); }, 30);
+  });
+  $('[data-back]', ds).addEventListener('click', function(){ setStep(ds,1); showView(ds,'form'); });
+
+  // Calendar — availability is ILLUSTRATIVE: weekdays from tomorrow for ~5 weeks.
+  var today = new Date(); today.setHours(0,0,0,0);
+  var viewMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  var selDate = null, selSlot = null;
+  var maxDate = new Date(today); maxDate.setDate(maxDate.getDate()+35);
+  function isAvail(d){ var w = d.getDay(); return d > today && d <= maxDate && w !== 0 && w !== 6; }
+  var fmtMonth = new Intl.DateTimeFormat('en-GB',{month:'long',year:'numeric'});
+  var fmtLong = new Intl.DateTimeFormat('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  function renderCal(){
+    $('#cal-month').textContent = fmtMonth.format(viewMonth);
+    var g = $('#cal-grid'), html = '';
+    ['Mo','Tu','We','Th','Fr','Sa','Su'].forEach(function(d){ html += '<span class="dow" role="columnheader">'+d+'</span>'; });
+    var first = (viewMonth.getDay()+6)%7, days = new Date(viewMonth.getFullYear(), viewMonth.getMonth()+1, 0).getDate();
+    for (var i=0;i<first;i++) html += '<span></span>';
+    for (var dd=1; dd<=days; dd++){
+      var d = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), dd), a = isAvail(d);
+      var sel = selDate && d.getTime() === selDate.getTime();
+      html += '<button type="button" data-d="'+d.getTime()+'" class="'+(a?'avail':'')+(sel?' sel':'')+'" '+(a?'':'disabled')+' aria-label="'+fmtLong.format(d)+(a?', available':', unavailable')+'" aria-pressed="'+!!sel+'">'+dd+'</button>';
+    }
+    g.innerHTML = html;
+    $('#cal-prev').disabled = viewMonth <= new Date(today.getFullYear(), today.getMonth(), 1);
+    $('#cal-next').disabled = new Date(viewMonth.getFullYear(), viewMonth.getMonth()+1, 1) > maxDate;
+  }
+  $('#cal-prev').addEventListener('click', function(){ viewMonth.setMonth(viewMonth.getMonth()-1); renderCal(); });
+  $('#cal-next').addEventListener('click', function(){ viewMonth.setMonth(viewMonth.getMonth()+1); renderCal(); });
+  $('#cal-grid').addEventListener('click', function(e){
+    var b = e.target.closest('button.avail'); if (!b) return;
+    selDate = new Date(+b.dataset.d); selSlot = null; renderCal(); renderSlots(); updateBook();
+  });
+  function renderSlots(){
+    $('#slots-head').textContent = fmtLong.format(selDate);
+    var html = '';
+    for (var i=1;i<=4;i++) html += '<button type="button" data-slot="'+i+'" class="'+(selSlot===i?'sel':'')+'" aria-pressed="'+(selSlot===i)+'">Slot '+i+' <span class="ph">[Time slot '+i+']</span></button>';
+    $('#slots').innerHTML = html;
+  }
+  $('#slots').addEventListener('click', function(e){
+    var b = e.target.closest('button[data-slot]'); if (!b) return;
+    selSlot = +b.dataset.slot; renderSlots(); updateBook();
+    $('#book-form').classList.add('show');
+    setTimeout(function(){ $('#s-name').focus({preventScroll:false}); }, 30);
+  });
+  function updateBook(){ $('#book-btn').disabled = !(selDate && selSlot); if (!selSlot) $('#book-form').classList.remove('show'); }
+  var bRules = {
+    bname: function(){ return $('#s-name').value.trim().length >= 2; },
+    bemail: function(){ return EMAIL_RE.test($('#s-email').value.trim()); }
+  };
+  liveValidate($('#book-form'), bRules);
+  function scaleConfirm(){
+    $('#s-date').textContent = fmtLong.format(selDate);
+    $('#s-time').textContent = '[Time slot '+selSlot+'] · '+$('#s-tz').value;
+    $('#s-mon').textContent = selDate.toLocaleString('en-GB',{month:'short'}).toUpperCase();
+    $('#s-day').textContent = selDate.getDate();
+    $('#s-sent').textContent = $('#s-email').value.trim() || 'your inbox';
+    setStep(ds,3); showView(ds,'done'); scaleDone = true;
+  }
+  $('#book-btn').addEventListener('click', function(){
+    if (!runAll($('#book-form'), bRules)) return;
+    var b = this; b.disabled = true; b.innerHTML = '<span class="spinner" aria-hidden="true"></span>Booking…';
+    setTimeout(function(){ b.innerHTML = 'Confirm booking <svg><use href="#i-arrow"/></svg>'; scaleConfirm(); }, 1200);
+  });
+  $('[data-reschedule]', ds).addEventListener('click', function(){ selSlot = null; scaleDone = false; setStep(ds,2); showView(ds,'calendar'); renderCal(); renderSlots(); updateBook(); });
+  function resetScale(){ sf.reset(); $('#book-form').reset(); $$('.field', ds).forEach(function(f){ f.classList.remove('is-invalid','is-valid'); }); $('#scale-alert').classList.remove('show'); selDate = null; selSlot = null; $('#slots').innerHTML = '<div class="slots-empty">Available times appear here.</div>'; $('#slots-head').textContent = 'Select a date to see times'; updateBook(); setStep(ds,1); showView(ds,'form'); scaleDone = false; }
+
+  /* ---------- Secondary: checklist ---------- */
+  $('#cl-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = $('#cl-email').value.trim(), msg = $('#cl-msg'), form = this;
+    if (!EMAIL_RE.test(v)){
+      form.classList.add('has-error'); $('#cl-email').setAttribute('aria-invalid','true');
+      msg.className = 'cl-msg err'; msg.innerHTML = '<svg><use href="#i-alert"/></svg>Enter a valid email, like name@example.com.'; $('#cl-email').focus({preventScroll:true}); return;
+    }
+    form.classList.remove('has-error'); $('#cl-email').removeAttribute('aria-invalid'); msg.textContent = '';
+    $('#cl-sent').textContent = v; $('#checklist').classList.add('is-done');
+  });
+
+  /* =========================================================
+     BOARD / STATIC STATE RENDERING
+     index.html?embed&flow=launch&state=error  (used by board.html)
+     ========================================================= */
+  function fillLaunch(){ $('#l-name').value = 'Jordan Smith'; $('#l-email').value = 'jordan@example.com'; $('#l-country').value = 'United Kingdom'; }
+  function fillScale(){ $('#su2').checked = true; $('#s-target').value = '10–24'; $('#s-city').value = 'Manchester'; $('#sb4').checked = true; }
+  function pickDemoDate(){ var d = new Date(today); do { d.setDate(d.getDate()+1); } while(!isAvail(d)); d.setDate(d.getDate()+ (d.getDay()===5?3:1)); if(!isAvail(d)) d.setDate(d.getDate()+1); selDate = d; viewMonth = new Date(d.getFullYear(), d.getMonth(), 1); }
+  var flow = params.get('flow'), state = params.get('state');
+  if (EMBED){
+    $$('.dialog').forEach(function(d){ d.style.position = 'fixed'; });
+    var fire = function(el){ el.classList.add('is-pressed'); };
+    if (flow === 'launch'){
+      if (state === 'entry'){ fire($('#hero-launch')); }
+      else {
+        dl.classList.add('is-open'); document.body.style.overflow='hidden';
+        if (state === 'error'){ $('#l-name').value = 'Jordan Smith'; $('#l-email').value = 'jordan@example'; runAll(lf, lRules, $('#launch-alert')); }
+        if (state === 'filled'){ fillLaunch(); $$('.field', lf).forEach(function(f){ f.classList.add('is-valid'); }); }
+        if (state === 'loading'){ fillLaunch(); showView(dl,'loading'); }
+        if (state === 'done'){ fillLaunch(); launchConfirm(); }
+      }
+    }
+    if (flow === 'scale'){
+      if (state === 'entry'){ fire($('#hero-scale')); }
+      else {
+        ds.classList.add('is-open'); document.body.style.overflow='hidden';
+        if (state === 'error'){ $('#su2').checked = true; runAll(sf, sRules, $('#scale-alert')); }
+        if (state === 'filled'){ fillScale(); }
+        if (state === 'calendar' || state === 'slot' || state === 'done'){
+          fillScale(); setStep(ds,2); showView(ds,'calendar'); pickDemoDate(); renderCal();
+          if (state !== 'calendar'){ renderSlots(); selSlot = 2; renderSlots(); updateBook(); $('#book-form').classList.add('show'); $('#s-name').value = 'Jordan Smith'; $('#s-email').value = 'jordan@example.com'; }
+          if (state === 'calendar'){ renderSlots(); }
+          if (state === 'done'){ scaleConfirm(); }
+        }
+      }
+    }
+    if (flow === 'checklist'){
+      var cl = $('#checklist');
+      if (state === 'error'){ $('#cl-email').value = 'jordan@'; $('#cl-form').dispatchEvent(new Event('submit',{cancelable:true})); }
+      if (state === 'done'){ $('#cl-email').value = 'jordan@example.com'; $('#cl-form').dispatchEvent(new Event('submit',{cancelable:true})); }
+    }
+    if (params.get('tab')) selectTab(params.get('tab'));
+    if (params.get('faq') === 'closed') $$('.faq-list details').forEach(function(d){ d.open = false; });
+    // report height to the board
+    var anchor = params.get('at');
+    var report = function(){ parent.postMessage({fa:true, id:params.get('id'), h:document.documentElement.scrollHeight}, '*'); };
+    addEventListener('load', function(){ if (anchor){ var t = document.getElementById(anchor); if (t) { document.documentElement.style.scrollBehavior='auto'; scrollTo(0, t.getBoundingClientRect().top + scrollY - (+params.get('offset')||0)); } } report(); setTimeout(report, 600); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flex Academy — Design board</title>
+<style>
+@font-face{font-family:"Plus Jakarta Sans";src:url(fonts/PlusJakartaSans-Latin.woff2) format("woff2");font-weight:400 700;font-display:swap}
+:root{
+  --canvas:#E7E8E6;--ink:#1E2321;--forest:#2B302E;--sage:#A9CF6E;--brass:#D8DFDA;--muted:#6A716D;--line:#D6D9D7;--paper:#F4F5F4;--placeholder:#B4541B;
+  --f-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;--f-serif:var(--f-sans);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.serif{font-family:var(--f-sans);font-style:normal;font-weight:600;box-shadow:inset 0 -.32em 0 var(--sage)}
+.top{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff;display:flex;align-items:center;gap:24px;padding:0 24px;height:60px;overflow-x:auto}
+.top .file{display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap}
+.top .file i{width:26px;height:26px;border-radius:8px;background:var(--forest);display:grid;place-items:center;font-style:normal;color:var(--sage);font-size:12px;border:1px solid #3A463F}
+.tabs{display:flex;gap:4px}
+.tabs a{color:#A9B3AC;text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:10px;white-space:nowrap}
+.tabs a:hover{color:#fff}
+.tabs a[aria-current="page"]{background:#2A342E;color:#fff}
+.top .open{margin-left:auto;color:var(--ink);background:var(--sage);text-decoration:none;font-weight:600;font-size:13.5px;padding:8px 14px;border-radius:999px;white-space:nowrap}
+.page{display:none;padding:48px 40px 120px}
+.page.on{display:block}
+.page-head{max-width:1100px;margin-bottom:40px}
+.page-head .k{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.page-head h1{margin:8px 0 0;font-size:40px;letter-spacing:-.035em;line-height:1.1;font-weight:600}
+.page-head p{margin:12px 0 0;color:var(--muted);max-width:75ch}
+.row{display:flex;flex-wrap:wrap;gap:40px 32px;align-items:flex-start;margin-bottom:64px}
+.row-title{width:100%;display:flex;align-items:baseline;gap:14px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:-12px}
+.row-title h2{margin:0;font-size:20px;letter-spacing:-.02em}
+.row-title span{color:var(--muted);font-size:14px}
+.frame{display:flex;flex-direction:column;gap:10px}
+.frame-label{font-size:12.5px;font-weight:600;color:#4A524D;display:flex;gap:8px;align-items:center;max-width:100%}
+.frame-label b{font-weight:700;color:var(--ink)}
+.frame-label .tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff;border:1px solid var(--line);padding:2px 6px;border-radius:5px;color:var(--muted)}
+.vp{position:relative;overflow:hidden;background:#fff;border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 12px 32px rgba(20,27,23,.12)}
+.vp iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#fff}
+.frame-note{font-size:13px;color:var(--muted);max-width:var(--nw,420px)}
+
+/* Notes */
+.notes{max-width:1200px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(20,27,23,.1);padding:56px;display:grid;grid-template-columns:repeat(12,1fr);gap:32px 40px}
+.notes header{grid-column:1/-1;display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:1px solid #E6E1D7;padding-bottom:28px}
+.notes header h1{margin:0;font-size:44px;letter-spacing:-.04em;line-height:1.05;font-weight:600}
+.notes header p{margin:0;color:var(--muted);max-width:44ch}
+.n{grid-column:span 6}
+.n.w{grid-column:1/-1}
+.n.t{grid-column:span 4}
+.n h3{margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:baseline}
+.n h3 em{font-family:var(--f-serif);font-size:24px;letter-spacing:0;text-transform:none;color:#9A8F7C;font-weight:400}
+.n p,.n li{font-size:15px;color:#2B332E}
+.n p{margin:0 0 10px}
+.n ul,.n ol{margin:0;padding-left:18px}
+.n li{margin-bottom:6px}
+.n b{color:var(--ink)}
+.decisions{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.decision{border:1px solid #E6E1D7;border-radius:14px;padding:20px;background:var(--paper)}
+.decision b{display:block;font-size:17px;letter-spacing:-.015em;margin-bottom:6px}
+.decision p{font-size:14.5px;margin:0}
+.decision .why{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.callout{border-radius:14px;padding:20px;background:var(--forest);color:#fff}
+.callout p{color:#D7DDD8}
+.callout b{color:var(--sage)}
+.tokens{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.sw{border:1px solid #E6E1D7;border-radius:12px;overflow:hidden;font-size:12px}
+.sw i{display:block;height:56px}
+.sw span{display:block;padding:8px 10px;line-height:1.35}
+.sw span b{display:block;font-size:12.5px}
+.typespec{display:flex;flex-direction:column;gap:10px}
+.typespec div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid #EEE9DF;padding-bottom:10px}
+.typespec small{color:var(--muted);font-size:12px;white-space:nowrap}
+table.reg{width:100%;border-collapse:collapse;font-size:14px}
+table.reg th,table.reg td{text-align:left;padding:10px 12px;border-bottom:1px solid #EEE9DF;vertical-align:top}
+table.reg th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ph{display:inline-block;font-weight:600;font-size:12px;color:var(--placeholder);background:rgba(180,84,27,.08);border:1px dashed rgba(180,84,27,.55);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.flow span{background:var(--paper);border:1px solid #E6E1D7;border-radius:8px;padding:5px 10px;font-weight:600}
+.flow i{font-style:normal;color:var(--muted)}
+@media (max-width:900px){.notes{padding:28px;grid-template-columns:1fr}.n,.n.t{grid-column:auto}.decisions,.tokens{grid-template-columns:1fr 1fr}.page{padding:32px 16px 80px}.notes header{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="file"><i>FA</i>Flex Academy — Landing page assessment</div>
+  <nav class="tabs" aria-label="Pages">
+    <a href="#landing">01 Landing page</a>
+    <a href="#mobile">02 Mobile</a>
+    <a href="#flows">03 Conversion flows</a>
+    <a href="#notes">04 Design notes</a>
+  </nav>
+  <a class="open" href="index.html" target="_blank" rel="noopener">Open live prototype ↗</a>
+</div>
+
+<section class="page" id="landing">
+  <div class="page-head">
+    <span class="k">Page 01</span>
+    <h1>Landing page — Desktop 1440</h1>
+    <p>Full-scroll landing page rendered from the live prototype at 1440px, laid out to the supplied reference: charcoal hero with cut-out figure and doodle marks, email pill, six-card grid with one dark card, angled logo strip, circular-image split sections, dark feature section, listing grid and dark footer. Every button opens the matching conversion flow. Orange dashed tags mark placeholders; grey "Photo slot" tags mark where the photography drops in.</p>
+  </div>
+  <div class="row" data-row></div>
+</section>
+
+<section class="page" id="mobile">
+  <div class="page-head">
+    <span class="k">Page 02</span>
+    <h1>Mobile — 390</h1>
+    <p>Mobile is recomposed rather than shrunk: the hero pill stacks into a full-width input and button, the six-card grid becomes two columns, the dark Scale section stacks its feature columns around the portrait, the listing grid becomes a single column, and a sticky CTA bar appears only once the hero CTA has scrolled away.</p>
+  </div>
+  <div class="row" data-row></div>
+</section>
+
+<section class="page" id="flows">
+  <div class="page-head">
+    <span class="k">Page 03</span>
+    <h1>Conversion flows</h1>
+    <p>Each frame shows the live component in a specific state. Read left to right. Flow A = Launch webinar registration. Flow B = Scale strategy call. Flow C = secondary checklist capture.</p>
+  </div>
+  <div class="row" data-row></div>
+</section>
+
+<section class="page" id="notes">
+  <article class="notes">
+    <header>
+      <div><span class="k" style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Page 04 · Design notes</span>
+      <h1>Build the business behind the <span class="serif">bookings.</span></h1></div>
+      <p>One page, two entry points: Launch (0–1 units, free webinar) and Scale (several units, strategy call). The page's job is to help each visitor pick the right one and take that step.</p>
+    </header>
+
+    <section class="n">
+      <h3><em>1</em> Audience &amp; why two paths</h3>
+      <p><b>Launch</b> is for employed people with no units or one unit who want an income-generating business of their own. It's the larger audience and the cheaper entry offer, so it gets the primary visual weight: sage CTA, first position, and a low-commitment free webinar.</p>
+      <p><b>Scale</b> is for operators with several units who are held back by manual work, thin margins and no time. It's the premium offer, so it gets a darker, premium treatment (forest and brass), a full value proposition and equal space in every decision section. It is never tucked into a dropdown or the footer.</p>
+      <p>The two groups have different problems, so the page names both problems separately before it shows any offer.</p>
+    </section>
+
+    <section class="n">
+      <h3><em>2</em> The Flex · Base360 · Flex Academy</h3>
+      <p>The page tells one story in three steps: <b>Operate → Systemise → Teach</b>. The Flex brings hospitality and real photography (apartment image in the Launch section, city pins). Base360 brings systems and operational clarity (the method cards, the 130+ channel fact). Flex Academy sits on the supplied reference's charcoal / white / green system so it reads as a sibling brand rather than a copy of either parent.</p>
+      <p>Neither parent logo was redesigned. Flex Academy uses a provisional wordmark with an endorsement line, "By the founders of The Flex".</p>
+    </section>
+
+    <section class="n w">
+      <h3><em>3</em> Architecture &amp; conversion logic</h3>
+      <div class="flow"><span>Nav (both CTAs)</span><i>→</i><span>Hero: email pill + Scale link</span><i>→</i><span>Method (6 cards)</span><i>→</i><span>Angled proof strip</span><i>→</i><span>Launch ★ (split + circle)</span><i>→</i><span>Scale ★ (dark section)</span><i>→</i><span>What you get (grid)</span><i>→</i><span>Founders</span><i>→</i><span>Who it's for + unit selector</span><i>→</i><span>Outcomes (honest slots)</span><i>→</i><span>FAQ</span><i>→</i><span>Final CTA + footer + checklist</span></div>
+      <p style="margin-top:14px">The first screen answers what the Academy is, who it's for and what to do next: the email pill is the low-friction Launch entry (it pre-fills the registration form), and the Scale link sits directly beneath it so operators aren't sent through the wrong funnel. The method cards and proof strip establish credibility before the offers. Launch and Scale then each get a full section with its own problem framing, components, price placeholder and CTA. The founders, qualification and FAQ sections handle the objections a visitor has after choosing a path.</p>
+    </section>
+
+    <section class="n w">
+      <h3><em>4</em> Three key design decisions</h3>
+      <div class="decisions">
+        <div class="decision"><b>Email pill for Launch, text link for Scale — in the same hero</b><p>The reference's single email pill maps to the larger Launch audience: one field, one green button. Scale gets an explicit underlined link one line below, plus a permanent nav button.</p><p class="why">Why: the pill keeps the first action to a single field, while the Scale link means existing operators never have to hunt — and never register for a beginner webinar by mistake.</p></div>
+        <div class="decision"><b>Light section = Launch, dark section = Scale</b><p>The reference alternates white and charcoal blocks. Launch takes the white split section with the circular image; Scale takes the dark section with the circular portrait. Green is reserved for the primary action and Launch tags.</p><p class="why">Why: the alternation the reference already has becomes meaning — visitors can tell which programme a section is about before reading it. Status is never shown by colour alone.</p></div>
+        <div class="decision"><b>Honest placeholders as a design element</b><p>Prices X and Y, the webinar date, time slots, budget bands, bios and testimonials all use one dashed orange placeholder style. They're visible in the design, but the layout doesn't break when real content arrives.</p><p class="why">Why: credibility is the product. An unverified number would undermine the one thing the page needs visitors to believe.</p></div>
+      </div>
+    </section>
+
+    <section class="n t">
+      <h3><em>5</em> Trade-off / assumption</h3>
+      <p><b>One primary action in the hero.</b> Following the reference, the hero has a single email pill. That's right for the larger Launch audience but gives Scale less first-screen weight than a two-button hero would. Mitigation: the Scale link sits directly under the pill, a Scale button is fixed in the nav and the mobile sticky bar, and Scale owns the page's only dark feature section.</p>
+      <p><b>Assumption:</b> "several units" means 2 or more. The unit selector routes 0–1 → Launch and 2+ → Scale.</p>
+    </section>
+
+    <section class="n t">
+      <h3><em>6</em> First experiment after launch</h3>
+      <p><b>Hero A/B test:</b> the email pill hero (control) against a two-button hero with equal Launch / Scale CTAs and no email field (variant).</p>
+      <p><b>Primary metric:</b> total qualified conversions (webinar registrations + booked calls). <b>Guardrail:</b> Scale call bookings must not drop, and neither should the share of callers who meet the "several units" criterion.</p>
+      <p>This tests the page's biggest bet: whether a single-field pill converts more beginners than it costs in Scale bookings.</p>
+    </section>
+
+    <section class="n t">
+      <div class="callout">
+        <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A9B3AC">Flows at a glance</p>
+        <p><b>A · Launch:</b> CTA → Name / Email / Country → validation → saving → confirmed + Add to calendar</p>
+        <p><b>B · Scale:</b> CTA → units · target · city · budget → validation → calendar + slot + name/email → booked + Add to calendar</p>
+        <p style="margin:0"><b>C · Checklist:</b> email → validation → "on the list"</p>
+      </div>
+    </section>
+
+    <section class="n w">
+      <h3><em>7</em> Unverified facts, placeholders &amp; assets to confirm</h3>
+      <table class="reg">
+        <thead><tr><th>Item</th><th>Status in design</th><th>Needed before launch</th></tr></thead>
+        <tbody>
+          <tr><td>Launch price / Scale price</td><td><span class="ph">X</span> <span class="ph">Y</span> (Y &gt; X)</td><td>Final pricing and currency display</td></tr>
+          <tr><td>Webinar date, time, time zone, calendar links</td><td><span class="ph">[Webinar date]</span> <span class="ph">[Calendar link]</span></td><td>Schedule, webinar platform and ICS/Google/Outlook links</td></tr>
+          <tr><td>Strategy call slots and availability</td><td>Illustrative weekday availability, <span class="ph">[Time slot n]</span></td><td>Scheduling tool (e.g. Calendly or HubSpot) and real availability</td></tr>
+          <tr><td>Budget bands</td><td><span class="ph">[Range to be confirmed]</span></td><td>Bands approved by the Academy team</td></tr>
+          <tr><td>Founder photographs and bios</td><td>Silhouette placeholders + <span class="ph">[Official bios]</span></td><td>Official, approved portraits and bios</td></tr>
+          <tr><td>Photography (5 slots)</td><td>Grey "Photo slot" tags: <code>photos/hero-person.png</code>, <code>launch-apartment.jpg</code>, <code>scale-operator.jpg</code>, <code>raouf-yousfi.jpg</code>, <code>michael-buggy.jpg</code>. Each appears automatically once the file is added.</td><td>Image generation and stock hosts were both blocked from the design environment (free-plan generator; network policy). Supply official The Flex / founder photos, or generate and label the hero and operator images.</td></tr>
+          <tr><td>Testimonials / case studies</td><td><span class="ph">[Insert verified Academy case study…]</span></td><td>Verified student outcomes, with permission</td></tr>
+          <tr><td>STR scaling checklist</td><td>Waitlist capture, <span class="ph">Proposed launch asset</span></td><td>The checklist itself, plus ESP integration</td></tr>
+          <tr><td>Proof strip: 150+ partners, 130+ platforms, 7 cities</td><td>From the brief</td><td>Confirm current figures with The Flex / Base360 (official sites were not reachable from the design environment)</td></tr>
+          <tr><td>Brand colours and fonts</td><td>Proposed tokens (below)</td><td>Check against the official brand guidelines</td></tr>
+          <tr><td>Legal: entity, privacy, terms, contact email</td><td><span class="ph">[Placeholder]</span></td><td>Legal copy and contact details</td></tr>
+          <tr><td>Method (6 steps), Launch duration and weekly hours</td><td><span class="ph">Proposed learning journey</span>, "Not specified"</td><td>Confirmed syllabus and programme terms</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="n">
+      <h3>Proposed tokens</h3>
+      <div class="tokens">
+        <div class="sw"><i style="background:#2B302E"></i><span><b>Charcoal</b>#2B302E</span></div>
+        <div class="sw"><i style="background:#1E2321"></i><span><b>Ink</b>#1E2321</span></div>
+        <div class="sw"><i style="background:#A9CF6E"></i><span><b>Green</b>#A9CF6E · action</span></div>
+        <div class="sw"><i style="background:#EAF3DC"></i><span><b>Green soft</b>#EAF3DC · Launch tag</span></div>
+        <div class="sw"><i style="background:#F4F5F4"></i><span><b>Surface</b>#F4F5F4</span></div>
+        <div class="sw"><i style="background:#FFFFFF;border-bottom:1px solid #E6E1D7"></i><span><b>White</b>#FFFFFF</span></div>
+      </div>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">The charcoal / white / green system is taken from the supplied reference. All pairings pass WCAG AA: ink on green is 9.0:1, muted text #6A716D on white is 5.0:1, and #B6BDB9 on charcoal is 7.0:1. Radii are 8, 12, 16 and 20; spacing uses a 4/8 base; the grid is 12 columns with an 1180px container; mobile has 20px margins, 44px+ touch targets and 16px inputs, so iOS doesn't zoom on focus.</p>
+    </section>
+    <section class="n">
+      <h3>Type</h3>
+      <div class="typespec">
+        <div><span style="font-size:40px;letter-spacing:-.03em;font-weight:600;line-height:1">Display <span class="serif">accent</span></span><small>Jakarta 600 · 60/65 · −3%</small></div>
+        <div><span style="font-size:28px;letter-spacing:-.02em;font-weight:600">Section heading</span><small>Jakarta 600 · 36/40</small></div>
+        <div><span style="font-size:16px">Body copy for reading comfortably</span><small>Jakarta 400 · 16/26</small></div>
+        <div><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Eyebrow label</span><small>Jakarta 600 · 12 · +8%</small></div>
+      </div>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">One family, Plus Jakarta Sans (self-hosted, SIL OFL), matching the geometric sans in the reference. The green underline marks the single accent word in the hero and final headline. It can be swapped for official brand fonts once those are confirmed.</p>
+    </section>
+  </article>
+</section>
+
+<script>
+var W = window;
+var FRAMES = {
+  landing: [
+    {title:'Desktop / 1440 / Landing page — full scroll', q:'', w:1440, full:true, s:.62}
+  ],
+  mobile: [
+    {title:'Mobile / 390 / 01 Hero', q:'', w:390, h:844, s:1, note:'Two doors stack: Launch stays dominant with a full-width CTA, and Scale compresses into a secondary tier with its own CTA. The image follows the CTAs so both actions fit above the fold.'},
+    {title:'Mobile / 390 / 02 Launch section', q:'&at=launch&offset=0', w:390, h:1400, s:.82, note:'Copy first, then the circular image with city pins; checklist collapses to one column and the CTA goes full width.'},
+    {title:'Mobile / 390 / 02b Scale section', q:'&at=scale&offset=0', w:390, h:1500, s:.82, note:'The three-column dark layout stacks: intro, portrait, then the six programme components in one column.'},
+    {title:'Mobile / 390 / Full scroll (reference)', q:'', w:390, full:true, s:.5, note:'Complete mobile page for reference.'}
+  ],
+  flows: [
+    {row:'Flow A — Launch: Register for the free webinar', sub:'Starts from any "Register for the free webinar" CTA'},
+    {title:'A1 · CTA entry (pressed state)', q:'&flow=launch&state=entry', w:1440, h:900, s:.36},
+    {title:'A2 · Registration form — Name · Email · Country', q:'&flow=launch&state=filled', w:1440, h:900, s:.36},
+    {title:'A2b · Validation error', q:'&flow=launch&state=error', w:1440, h:900, s:.36},
+    {title:'A3 · Submitting / loading', q:'&flow=launch&state=loading', w:1440, h:900, s:.36},
+    {title:'A4 · Confirmation + Add to calendar', q:'&flow=launch&state=done', w:1440, h:900, s:.36},
+    {row:'Flow B — Scale: Book a free strategy call', sub:'Qualification → calendar → confirmation'},
+    {title:'B1 · CTA entry (pressed state)', q:'&flow=scale&state=entry', w:1440, h:900, s:.36},
+    {title:'B2 · Qualification form', q:'&flow=scale&state=filled', w:1440, h:900, s:.36},
+    {title:'B2b · Validation error', q:'&flow=scale&state=error', w:1440, h:900, s:.36},
+    {title:'B3a · Calendar — date selected', q:'&flow=scale&state=calendar', w:1440, h:900, s:.36},
+    {title:'B3b · Slot selected + invite details', q:'&flow=scale&state=slot', w:1440, h:900, s:.36},
+    {title:'B4 · Booking confirmed', q:'&flow=scale&state=done', w:1440, h:900, s:.36},
+    {row:'Flow C — Secondary: STR scaling checklist', sub:'Email capture in the final CTA section · marked as a proposed launch asset'},
+    {title:'C1 · Checklist capture (footer)', q:'&at=checklist&offset=200', w:1440, h:640, s:.5},
+    {title:'C1b · Invalid email', q:'&flow=checklist&state=error&at=checklist&offset=200', w:1440, h:640, s:.5},
+    {title:'C2 · Added to list', q:'&flow=checklist&state=done&at=checklist&offset=200', w:1440, h:640, s:.5},
+    {row:'Mobile flows — 390', sub:'Dialogs become full-screen sheets with a sticky action bar'},
+    {title:'A2m · Registration', q:'&flow=launch&state=filled', w:390, h:844, s:.6},
+    {title:'A2bm · Error', q:'&flow=launch&state=error', w:390, h:844, s:.6},
+    {title:'A3m · Loading', q:'&flow=launch&state=loading', w:390, h:844, s:.6},
+    {title:'A4m · Confirmed', q:'&flow=launch&state=done', w:390, h:844, s:.6},
+    {title:'B2m · Qualification', q:'&flow=scale&state=filled', w:390, h:844, s:.6},
+    {title:'B3m · Calendar', q:'&flow=scale&state=slot', w:390, h:844, s:.6},
+    {title:'B4m · Booked', q:'&flow=scale&state=done', w:390, h:844, s:.6},
+    {title:'C1m · Checklist', q:'&at=checklist&offset=80', w:390, h:844, s:.6}
+  ]
+};
+var built = {}, uid = 0, frames = {};
+function build(page){
+  if (built[page] || !FRAMES[page]) return; built[page] = true;
+  var host = document.querySelector('#'+page+' [data-row]'), html = '';
+  FRAMES[page].forEach(function(f){
+    if (f.row){ html += '<div class="row-title"><h2>'+f.row+'</h2><span>'+f.sub+'</span></div>'; return; }
+    var id = 'f'+(uid++), h = f.h || 900; frames[id] = f;
+    var src = 'index.html?embed&id='+id+f.q;
+    html += '<figure class="frame" style="margin:0"><figcaption class="frame-label"><b>'+f.title+'</b><span class="tag">'+f.w+(f.full?' · full':'')+'</span></figcaption>'+
+      '<div class="vp" id="vp-'+id+'" style="width:'+(f.w*f.s)+'px;height:'+(h*f.s)+'px"><iframe title="'+f.title+'" src="'+src+'" style="width:'+f.w+'px;height:'+h+'px;transform:scale('+f.s+')" loading="lazy"></iframe></div>'+
+      (f.note ? '<p class="frame-note" style="--nw:'+Math.max(300, f.w*f.s)+'px">'+f.note+'</p>' : '')+'</figure>';
+  });
+  host.innerHTML = html;
+}
+W.addEventListener('message', function(e){
+  var d = e.data; if (!d || !d.fa || !frames[d.id] || !frames[d.id].full) return;
+  var f = frames[d.id], vp = document.getElementById('vp-'+d.id);
+  vp.style.height = (d.h*f.s)+'px'; vp.querySelector('iframe').style.height = d.h+'px';
+});
+function show(){
+  var page = (location.hash || '#landing').slice(1);
+  if (!document.getElementById(page)) page = 'landing';
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id === page); });
+  document.querySelectorAll('.tabs a').forEach(function(a){ if (a.getAttribute('href') === '#'+page) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  build(page); scrollTo(0,0);
+}
+W.addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
