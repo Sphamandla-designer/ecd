@@ -17,7 +17,7 @@ All images were supplied via the repo and are wired in. Slots switch from their 
 
 | File | Used for | Source / status |
 | --- | --- | --- |
-| `photos/hero-person.png` | Hero cut-out figure | Client-supplied stock (rawpixel); background removed with rembg. **Not made by the designer.** |
+| `photos/hero-person.png` | Hero cut-out figure | Client-supplied stock (rawpixel); background removed with rembg, and a Flex Academy wordmark composited onto the laptop lid (image generation was unavailable on the free plan, so this was done in Pillow). **Photo not made by the designer.** |
 | `photos/launch-apartment.jpg` | Launch section circle | Client-supplied stock interior. Replace with official The Flex photography. |
 | `photos/method-apartment.jpg` | Card under the method copy | Client-supplied stock interior. Replace with official The Flex photography. |
 | `photos/scale-team.jpg` | Scale section circle | Client-supplied stock (Getty Images 875599880). **Licence must be confirmed before launch.** |
@@ -49,7 +49,7 @@ index.html?embed&at=launch   |   &at=scale   |   &at=checklist
 | Three-brand relationship | Proof strip, founders chain, notes §2 |
 | Desktop 1440 full scroll · Mobile 390 hero + one section | Board pages 01 and 02 |
 | Design notes: audience, structure, 3 decisions, first test, 2-more-days, Loom outline | Board page 04 |
-| Optional hero motion concept | Live in `index.html` hero (underline draws, doodles pop, figure rises; off under reduced motion) |
+| Optional hero motion concept | Live: underline draws, doodles pop and float, figure rises; mouse parallax in the hero; scroll-reveal with stagger on every section; count-up on the proof strip; card tilt and lift on hover; scroll progress bar; hide-on-scroll header. All off under `prefers-reduced-motion`. |
 | Mark anything not made by you | Fonts (SIL OFL) and all photo slots are labelled; no stock or AI imagery is included |
 
 ## Honesty rules applied

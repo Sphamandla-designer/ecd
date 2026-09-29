@@ -156,16 +156,16 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-person .slot-tag{left:auto;right:0;bottom:auto;top:0;max-width:200px;background:rgba(0,0,0,.35)}
 /* Hero motion concept: headline underline draws in, doodles pop in staggered, figure rises. Off under prefers-reduced-motion. */
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:.9;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:1;transform:none}}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .hero .uline::after{transform-origin:left;animation:draw .6s var(--ease) .5s both}
-.hero .doodle{opacity:0;animation:pop .5s var(--ease) both}
+.hero .doodle{animation:pop .5s var(--ease) both}
 .hero .doodle.d1{animation-delay:.9s}.hero .doodle.d2{animation-delay:1.05s}.hero .doodle.d3{animation-delay:1.2s}.hero .doodle.d4{animation-delay:1.35s}.hero .doodle.d5{animation-delay:1.5s}.hero .doodle.d6{animation-delay:1.65s}
 .hero-person{animation:rise .7s var(--ease) .2s both}
-.embed .hero .uline::after,.embed .hero .doodle,.embed .hero-person{animation:none;opacity:.9}
+.embed .hero .uline::after,.embed .hero .doodle,.embed .hero-person{animation:none;opacity:1}
 .embed .hero-person{opacity:1}
-.doodle{position:absolute;color:#fff;opacity:.9;pointer-events:none}
-.doodle svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.doodle{position:absolute;color:#fff;opacity:1;pointer-events:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.doodle svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .doodle.d1{left:0;top:96px;width:56px;height:56px}          /* sparkle */
 .doodle.d2{left:6%;top:220px;width:64px;height:48px}        /* envelope */
 .doodle.d3{right:2%;top:60px;width:70px;height:40px}        /* arrow */
@@ -246,7 +246,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 
 /* ---------- Dark "Scale" section ---------- */
 .dark-wrap{padding:0 16px}
-.dark{background:var(--forest);color:#fff;border-radius:var(--r-xl);padding:80px 0}
+section.dark{background:var(--forest);color:#fff;border-radius:var(--r-xl);padding:96px 0}
 .dark-head{text-align:center;max-width:640px;margin:0 auto 48px}
 .dark-head .lede{margin:12px auto 0;font-size:14.5px}
 .dark-grid{display:grid;grid-template-columns:1fr 340px 1fr;gap:32px;align-items:center}
@@ -634,7 +634,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   .pin.p1{left:0;top:6%}.pin.p2{right:0;top:14%}.pin.p3{left:0;bottom:14%}.pin.p4{right:0;bottom:4%}
   .mini{display:none}
   .dark-wrap{padding:0 8px}
-  .dark{padding:56px 0;border-radius:16px}
+  section.dark{padding:64px 0;border-radius:16px}
   .dark-col{grid-template-columns:1fr;gap:18px}
   .dark-circle{width:260px;height:260px}
   .dark-circle .circle{width:230px;height:230px}
@@ -752,6 +752,101 @@ body{background:var(--cream-50)}
 /* Focus */
 :focus-visible{outline:3px solid var(--focus)}
 .seg input:focus-visible + label,.chips input:focus-visible + label,.bands input:focus-visible + label{outline-color:var(--focus)}
+
+/* =====================================================================
+   PASS 3 — rhythm, method grid, blue primaries, gradients, motion
+   ===================================================================== */
+:root{--sec:120px;--grad-panel:radial-gradient(90% 70% at 100% 100%,rgba(75,91,239,.45) 0%,rgba(75,91,239,0) 62%),radial-gradient(60% 55% at 0% 0%,rgba(141,95,246,.28) 0%,rgba(141,95,246,0) 60%),linear-gradient(160deg,var(--teal-900) 0%,var(--teal-800) 100%)}
+@media (max-width:640px){:root{--sec:72px}}
+
+/* Consistent vertical rhythm: every band gets the same breathing room */
+.section{padding:var(--sec) 0}
+.strip{padding:0 16px var(--sec)}
+.hero-wrap{padding:0 16px}
+.dark-wrap{padding:0 16px}
+.final-wrap{padding:0 16px 16px}
+@media (max-width:640px){.strip{padding:0 8px var(--sec)}}
+
+/* Method: equal boxes, image fills the column beside them */
+.two-col{align-items:stretch}
+.two-col > .col-copy{display:flex;flex-direction:column}
+.method-photo{flex:1;display:flex;flex-direction:column;margin-top:28px!important;min-height:0}
+.method-photo .slot{flex:1;aspect-ratio:auto;min-height:240px;border-radius:var(--r-lg)}
+.cards6{align-content:stretch;grid-auto-rows:1fr}
+.card{min-height:170px;padding:20px}
+.card.dark{padding:20px;border-radius:var(--r-md);border-color:transparent}
+.alt.dark{padding:20px;border-color:transparent}
+@media (max-width:640px){.method-photo .slot{min-height:200px;flex:none;aspect-ratio:5/3}.two-col{align-items:start}.cards6{grid-auto-rows:auto}}
+
+/* Primary actions are indigo everywhere (secondary stay outlined) */
+.btn-ink,.on-dark .btn-launch,.btn-launch{background:var(--indigo-500);color:#fff}
+.btn-ink:hover,.on-dark .btn-launch:hover,.btn-launch:hover{background:var(--indigo-600)}
+.on-dark .btn-launch .spinner{border-color:rgba(255,255,255,.3);border-top-color:#fff}
+
+/* Green → gradients built from the tokens */
+.hero,section.dark,.final,.strip-band,.card.dark,.alt.dark,.dialog-aside,.dialog-aside.is-launch{background:var(--grad-panel)}
+.brand-mark,.sticky-cta{background:var(--grad-panel)}
+.badge-launch,.tag-l,.chip.g,.card.dark .tag-l{background:var(--grad-tab);color:#fff;border:0}
+.uline::after,.on-dark .uline::after{background:var(--grad-display);opacity:1}
+.faq-list details[open] summary .pm{background:var(--indigo-500);border-color:var(--indigo-500)}
+.seg input:checked + label{background:var(--grad-panel)}
+.stepper li.on i{background:var(--indigo-500);border-color:var(--indigo-500)}
+.next-steps li::before{background:var(--indigo-50);color:var(--indigo-700)}
+.cal-ic span{background:var(--grad-panel)}
+.hero-proof .stack i.d{background:var(--indigo-500);border-color:transparent}
+
+/* Hover & interaction */
+.btn{transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .25s var(--ease),border-color .2s var(--ease),color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-launch:hover,.btn-ink:hover{box-shadow:0 12px 28px rgba(75,91,239,.35)}
+.btn-scale:hover,.btn-outline:hover{box-shadow:0 10px 24px rgba(16,21,38,.12)}
+.card,.item,.alt{transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .2s}
+.card:hover,.item:hover,.alt:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,21,38,.10)}
+.card-ic,.item-top .ic,.challenge-ic{transition:transform .35s var(--ease),background .3s}
+.card:hover .card-ic,.item:hover .item-top .ic{transform:rotate(-8deg) scale(1.08);background:var(--indigo-50)}
+.card.dark:hover .card-ic{background:rgba(255,255,255,.14)}
+.slot img{transition:transform 1.2s var(--ease)}
+.circle:hover img,.method-photo .slot:hover img,.founders-photo .slot:hover img{transform:scale(1.06)}
+.pin,.mini{transition:transform .35s var(--ease),box-shadow .35s}
+.pin:hover,.mini:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 24px rgba(16,21,38,.12)}
+.nav-links a{position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--grad-tab);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.faq-list summary{transition:color .2s}
+.faq-list summary:hover{color:var(--indigo-600)}
+.seg label,.chips label,.bands label{transition:background .2s,color .2s,transform .15s}
+.seg label:hover,.chips label:hover{transform:translateY(-1px)}
+.dark-item{transition:transform .35s var(--ease)}
+.dark-item:hover{transform:translateX(4px)}
+.dark-col.r .dark-item:hover{transform:translateX(-4px)}
+.final-row{transition:transform .35s var(--ease),border-color .3s}
+.final-row:hover{transform:translateY(-3px);border-color:rgba(178,147,249,.5)}
+
+/* Ambient motion */
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes floaty2{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(178,147,249,.45)}100%{box-shadow:0 0 0 22px rgba(178,147,249,0)}}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.doodle svg{animation:floaty2 6s ease-in-out infinite}
+.doodle.d2 svg,.doodle.d4 svg,.doodle.d6 svg{animation-duration:7.5s;animation-direction:reverse}
+.pin{animation:floaty 5s ease-in-out infinite}
+.pin.p2{animation-delay:-1.2s}.pin.p3{animation-delay:-2.4s}.pin.p4{animation-delay:-3.6s}
+.mini{animation:floaty 6s ease-in-out infinite;animation-delay:-2s}
+.dark-circle .circle::after{content:"";position:absolute;inset:0;border-radius:50%;animation:pulse-ring 3.2s ease-out infinite;pointer-events:none}
+.uline::after{background-size:200% 100%;animation:shimmer 6s linear infinite}
+.hero-person{will-change:transform}
+.parallax{will-change:transform;transition:transform .12s linear}
+
+/* Scroll reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.rv.in{opacity:1;transform:none}
+.embed .rv,.no-motion .rv{opacity:1;transform:none;transition:none}
+#progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:var(--grad-tab);z-index:60;pointer-events:none}
+.site-header{transition:box-shadow .3s,border-color .2s,transform .35s var(--ease)}
+.site-header.is-scrolled{box-shadow:0 8px 30px rgba(16,21,38,.06)}
+.site-header.is-hidden{transform:translateY(-100%)}
+.stat b{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.doodle svg,.pin,.mini,.uline::after,.dark-circle .circle::after{animation:none}}
 </style>
 </head>
 <body>
@@ -886,7 +981,6 @@ body{background:var(--cream-50)}
       <p class="micro" style="margin-top:14px;color:var(--muted)"><span class="ph">Proposed learning journey</span> Final syllabus to be confirmed.</p>
       <figure class="method-photo" style="margin:28px 0 0">
         <div class="slot" data-photo="method-apartment.jpg"><img alt="A furnished short-term rental living and dining room opening onto a terrace"><div class="fallback"></div><span class="slot-tag"><b>Photo slot</b> · <code>photos/method-apartment.jpg</code></span></div>
-        <figcaption class="micro" style="margin-top:8px;color:var(--muted)">The kind of unit the method is built around. <span class="ph">Stock image — replace with official The Flex photography</span></figcaption>
       </figure>
     </div>
     <ol class="col-grid cards6">
@@ -914,11 +1008,11 @@ body{background:var(--cream-50)}
       </div>
     </div>
   </div>
-  <p class="strip-note"><span>Figures supplied in the brief. Cities: London, Paris, Lisbon, Berlin, Algiers, Oran, Constantine — Milan and Cairo upcoming.</span><span class="ph">Confirm before launch</span></p>
+  <p class="strip-note"><span>Figures supplied in the brief. Cities: London, Paris, Lisbon, Berlin, Algiers, Oran, Constantine — Milan and Cairo upcoming.</span></p>
 </section>
 
 <!-- ======================= LAUNCH: split with circular image + map ======================= -->
-<section class="section" id="launch" aria-labelledby="launch-title" style="padding-top:0">
+<section class="section" id="launch" aria-labelledby="launch-title">
   <div class="container split">
     <div class="copy">
       <span class="badge badge-launch">01 · Launch</span>
@@ -1019,7 +1113,7 @@ body{background:var(--cream-50)}
 </section>
 
 <!-- ======================= VS THE ALTERNATIVES ======================= -->
-<section class="section" id="why" aria-labelledby="why-title" style="padding-top:0">
+<section class="section" id="why" aria-labelledby="why-title">
   <div class="container">
     <div class="list-head">
       <div>
@@ -1038,7 +1132,7 @@ body{background:var(--cream-50)}
 </section>
 
 <!-- ======================= FOUNDERS ======================= -->
-<section class="section" id="founders" aria-labelledby="founders-title" style="padding-top:0">
+<section class="section" id="founders" aria-labelledby="founders-title">
   <div class="container founders">
     <div class="copy">
       <span class="eyebrow">The founders</span>
@@ -1055,7 +1149,7 @@ body{background:var(--cream-50)}
 </section>
 
 <!-- ======================= WHO IT'S FOR ======================= -->
-<section class="section" id="who" aria-labelledby="who-title" style="padding-top:0">
+<section class="section" id="who" aria-labelledby="who-title">
   <div class="container">
     <div class="who">
       <div class="who-col">
@@ -1101,7 +1195,7 @@ body{background:var(--cream-50)}
 </section>
 
 <!-- ======================= OUTCOMES ======================= -->
-<section class="section" id="proof" aria-labelledby="proof-title" style="padding-top:0">
+<section class="section" id="proof" aria-labelledby="proof-title">
   <div class="container">
     <div class="list-head">
       <div>
@@ -1118,7 +1212,7 @@ body{background:var(--cream-50)}
 </section>
 
 <!-- ======================= FAQ ======================= -->
-<section class="section" id="faq" aria-labelledby="faq-title" style="padding-top:0">
+<section class="section" id="faq" aria-labelledby="faq-title">
   <div class="container faq-grid">
     <div class="faq-intro">
       <span class="eyebrow">FAQ</span>
@@ -1787,6 +1881,84 @@ body{background:var(--cream-50)}
     var anchor = params.get('at');
     var report = function(){ parent.postMessage({fa:true, id:params.get('id'), h:document.documentElement.scrollHeight}, '*'); };
     addEventListener('load', function(){ if (anchor){ var t = document.getElementById(anchor); if (t) { document.documentElement.style.scrollBehavior='auto'; scrollTo(0, t.getBoundingClientRect().top + scrollY - (+params.get('offset')||0)); } } report(); setTimeout(report, 600); });
+  }
+})();
+</script>
+
+<div id="progress" aria-hidden="true"></div>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var embed = document.body.classList.contains('embed');
+  if (reduce) document.documentElement.classList.add('no-motion');
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* Scroll progress + hide-on-scroll-down header */
+  var bar = document.getElementById('progress'), header = document.querySelector('.site-header'), lastY = 0;
+  function onScroll(){
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (max ? scrollY / max : 0) + ')';
+    var goingDown = scrollY > lastY && scrollY > 320;
+    header.classList.toggle('is-hidden', goingDown && !document.querySelector('.dialog.is-open'));
+    lastY = scrollY;
+  }
+  if (!embed){ addEventListener('scroll', onScroll, {passive:true}); onScroll(); }
+
+  /* Scroll reveal with stagger */
+  if (!embed && !reduce && 'IntersectionObserver' in window){
+    var groups = ['.section > .container > *:not(.two-col):not(.split):not(.founders):not(.faq-grid)','.two-col > *','.split > *','.founders > *','.faq-grid > *','.cards6 > li','.grid4 > li','.alts > li','.dark-head','.dark-col > *','.dark-circle','.dark-cta','.who-col','.outcomes > *','.strip-band','.final-top > *','.footer-grid > div'];
+    var seen = new Set();
+    groups.forEach(function(sel){
+      var idx = {};
+      $$(sel).forEach(function(el){
+        if (seen.has(el) || el.closest('.rv')) return; seen.add(el);
+        var key = el.parentNode; idx[key] = (idx[key]||0); el.style.setProperty('--i', Math.min(idx[key]++, 8)); el.classList.add('rv');
+      });
+    });
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    $$('.rv').forEach(function(el){ io.observe(el); });
+    // anything already in view at load
+    requestAnimationFrame(function(){ $$('.rv').forEach(function(el){ var r = el.getBoundingClientRect(); if (r.top < innerHeight*.9) el.classList.add('in'); }); });
+  }
+
+  /* Count-up on the proof strip */
+  if (!embed && !reduce && 'IntersectionObserver' in window){
+    var counted = false;
+    var io2 = new IntersectionObserver(function(es){
+      if (!es[0].isIntersecting || counted) return; counted = true;
+      $$('.strip .stat b').forEach(function(b){
+        var m = b.textContent.match(/^(\d+)(.*)$/); if (!m) return;
+        var to = +m[1], suffix = m[2], t0 = performance.now(), dur = 1400;
+        (function tick(now){ var p = Math.min(1, (now - t0)/dur); p = 1 - Math.pow(1-p, 3); b.textContent = Math.round(to*p) + suffix; if (p < 1) requestAnimationFrame(tick); })(t0);
+      });
+    }, {threshold:.4});
+    var strip = document.querySelector('.strip-band'); strip && io2.observe(strip);
+  }
+
+  /* Hero mouse parallax: doodles drift, figure and headline counter-move */
+  var hero = document.querySelector('.hero');
+  if (hero && !reduce && !embed && matchMedia('(pointer:fine)').matches){
+    var layers = $$('.hero .doodle').map(function(d,i){ d.classList.add('parallax'); return {el:d, depth: 18 + (i%3)*10}; });
+    var person = document.querySelector('.hero-person'); person.classList.add('parallax');
+    var copy = document.querySelector('.hero-copy'); copy.classList.add('parallax');
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    function frame(){
+      cx += (tx - cx) * .12; cy += (ty - cy) * .12;
+      layers.forEach(function(l){ l.el.style.transform = 'translate(' + (cx*l.depth) + 'px,' + (cy*l.depth) + 'px)'; });
+      person.style.transform = 'translate(' + (cx*-10) + 'px,' + (cy*-6) + 'px) rotate(' + (cx*1.2) + 'deg)';
+      copy.style.transform = 'translate(' + (cx*6) + 'px,' + (cy*4) + 'px)';
+      if (Math.abs(tx-cx) > .001 || Math.abs(ty-cy) > .001) raf = requestAnimationFrame(frame); else raf = null;
+    }
+    hero.addEventListener('mousemove', function(e){ var r = hero.getBoundingClientRect(); tx = (e.clientX - r.left)/r.width - .5; ty = (e.clientY - r.top)/r.height - .5; if (!raf) raf = requestAnimationFrame(frame); });
+    hero.addEventListener('mouseleave', function(){ tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(frame); });
+  }
+
+  /* Cards tilt slightly toward the cursor */
+  if (!reduce && !embed && matchMedia('(pointer:fine)').matches){
+    $$('.card, .item, .alt').forEach(function(c){
+      c.addEventListener('mousemove', function(e){ var r = c.getBoundingClientRect(); var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5; c.style.transform = 'translateY(-6px) rotateX(' + (-y*5) + 'deg) rotateY(' + (x*6) + 'deg)'; c.style.transformStyle = 'preserve-3d'; });
+      c.addEventListener('mouseleave', function(){ c.style.transform = ''; });
+    });
   }
 })();
 </script>
