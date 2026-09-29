@@ -13,13 +13,13 @@ Open `board.html` to review, or `index.html` to click through. Both are static a
 
 ## Photography slots
 
-The layout follows the supplied reference (cut-out figure in the hero, circular images in the split sections). Image generation and stock-photo hosts were both unreachable from the design environment, so the five slots ship with labelled fallbacks. Add these files and reload:
+The layout follows the supplied reference (cut-out figure in the hero, circular images in the split sections). Three images were supplied via the repo (commit "Image materials") and are wired in: the hero figure (background removed with rembg), and two apartment interiors. They are stock imagery supplied by the client, not made by the designer, and are labelled as such in the design notes. Founder portraits remain labelled fallbacks until official photos arrive.
 
 | File | Used for | Notes |
 | --- | --- | --- |
 | `photos/hero-person.png` | Hero cut-out figure | Person at a laptop, transparent background, ~900×1000px, bottom-aligned |
 | `photos/launch-apartment.jpg` | Launch section circle | Official The Flex apartment photo, square crop |
-| `photos/scale-operator.jpg` | Scale section circle | Operator / team at work, square crop |
+| `photos/scale-apartment.jpg` | Scale section circle | Second apartment photo, square crop |
 | `photos/raouf-yousfi.jpg` | Founders | Official portrait, square crop |
 | `photos/michael-buggy.jpg` | Founders | Official portrait, square crop |
 
@@ -59,5 +59,5 @@ index.html?embed&at=launch   |   &at=scale   |   &at=checklist
 - Prices appear only as **X** and **Y** (Y > X).
 - The webinar date, time slots, calendar links, budget bands, founder bios and photos, testimonials, contact details and legal details are all dashed orange placeholders.
 - Proof uses only the figures in the brief: 150+ corporate partners, 130+ channels and the seven cities. Confirm them before launch.
-- All five photo slots are labelled fallbacks until real files are added. There are no fabricated metrics.
+- Hero figure and both apartment photos are supplied stock images (marked). Founder portraits remain labelled fallbacks. There are no fabricated metrics.
 - The official theflex.global and base360.ai sites were not reachable from the design environment, so the colours and fonts are **proposed tokens**. They are documented in the design notes.
