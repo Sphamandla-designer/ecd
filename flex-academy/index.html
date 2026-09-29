@@ -129,6 +129,16 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-person .slot img{object-fit:contain;object-position:bottom center}
 .hero-person .fallback svg{width:100%;height:100%}
 .hero-person .slot-tag{left:auto;right:0;bottom:auto;top:0;max-width:200px;background:rgba(0,0,0,.35)}
+/* Hero motion concept: headline underline draws in, doodles pop in staggered, figure rises. Off under prefers-reduced-motion. */
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:.9;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero .uline::after{transform-origin:left;animation:draw .6s var(--ease) .5s both}
+.hero .doodle{opacity:0;animation:pop .5s var(--ease) both}
+.hero .doodle.d1{animation-delay:.9s}.hero .doodle.d2{animation-delay:1.05s}.hero .doodle.d3{animation-delay:1.2s}.hero .doodle.d4{animation-delay:1.35s}.hero .doodle.d5{animation-delay:1.5s}.hero .doodle.d6{animation-delay:1.65s}
+.hero-person{animation:rise .7s var(--ease) .2s both}
+.embed .hero .uline::after,.embed .hero .doodle,.embed .hero-person{animation:none;opacity:.9}
+.embed .hero-person{opacity:1}
 .doodle{position:absolute;color:#fff;opacity:.9;pointer-events:none}
 .doodle svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .doodle.d1{left:0;top:96px;width:56px;height:56px}          /* sparkle */
@@ -238,6 +248,16 @@ ul,ol{margin:0;padding:0;list-style:none}
 .chip.g{background:var(--sage-soft);color:#3E5A17}
 .grid-ctas{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .grid-ctas .hint{font-size:13px;color:var(--muted)}
+
+/* ---------- Alternatives ---------- */
+.alts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.alt{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:8px}
+.alt.dark{background:var(--forest);color:#fff;border-color:var(--forest)}
+.alt-k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.alt.dark .alt-k{color:var(--sage)}
+.alt b{font-size:15px;letter-spacing:-.01em;line-height:1.3}
+.alt p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.alt.dark p{color:var(--muted-dark)}
 
 /* ---------- Founders + who it's for ---------- */
 .founders{display:grid;grid-template-columns:repeat(12,1fr);gap:32px 24px;align-items:center}
@@ -521,7 +541,7 @@ ul,ol{margin:0;padding:0;list-style:none}
    RESPONSIVE
    ========================================================= */
 @media (max-width:1180px){
-  .grid4{grid-template-columns:repeat(2,1fr)}
+  .grid4,.alts{grid-template-columns:repeat(2,1fr)}
   .dark-grid{grid-template-columns:1fr 300px 1fr}
 }
 @media (max-width:980px){
@@ -591,7 +611,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   .dark-cta .btn{width:100%}
   .list-head{flex-direction:column;align-items:flex-start;gap:12px}
   .list-head > .btn{display:none}
-  .grid4{grid-template-columns:1fr;gap:10px}
+  .grid4,.alts{grid-template-columns:1fr;gap:10px}
   .item{min-height:0}
   .grid-ctas .btn{width:100%}
   .people{gap:10px}
@@ -847,7 +867,7 @@ ul,ol{margin:0;padding:0;list-style:none}
       <div class="dark-col">
         <div class="dark-item"><h3>Operator community</h3><p>A peer group at the same stage of growth.</p></div>
         <div class="dark-item"><h3>SOPs and templates</h3><p>The documents The Flex runs on, adapted to yours.</p></div>
-        <div class="dark-item"><h3>Base360 access during the programme</h3><p>Run your operation on the software built for The Flex.</p></div>
+        <div class="dark-item"><h3>Base360 access during the programme</h3><p>Run your operation on the software built for The Flex: channel manager (130+ platforms), AI pricing, unified guest inbox, cleaning &amp; maintenance, CRM, finance and HR.</p></div>
       </div>
     </div>
     <div class="dark-cta">
@@ -885,6 +905,25 @@ ul,ol{margin:0;padding:0;list-style:none}
       <button class="btn btn-outline" data-open="scale" type="button">Book a free strategy call</button>
       <span class="hint">Prices: Launch <b>X</b> · Scale <b>Y</b> (higher than X) — <span class="ph">final pricing TBC</span></span>
     </div>
+  </div>
+</section>
+
+<!-- ======================= VS THE ALTERNATIVES ======================= -->
+<section class="section" id="why" aria-labelledby="why-title" style="padding-top:0">
+  <div class="container">
+    <div class="list-head">
+      <div>
+        <span class="eyebrow">Why not just…</span>
+        <h2 class="h-section" id="why-title" style="margin-top:10px">What you're probably comparing us with</h2>
+        <p class="lede">You've seen the videos, the cheap courses and the expensive masterminds. Here's the honest difference, so you can decide with your eyes open.</p>
+      </div>
+    </div>
+    <ul class="alts">
+      <li class="alt"><span class="alt-k">Free videos</span><b>Plenty of tips, no sequence</b><p>Useful for ideas. Hard to turn into a business plan, and nobody checks your numbers or your first deal.</p></li>
+      <li class="alt"><span class="alt-k">Cheap online courses</span><b>Theory, usually from one market</b><p>Often built by someone who teaches more than they operate, with no live support once you've paid.</p></li>
+      <li class="alt"><span class="alt-k">Expensive masterminds</span><b>Network first, systems second</b><p>Great rooms, big fees. The operating playbook and the software are usually still left for you to build.</p></li>
+      <li class="alt dark"><span class="alt-k">Flex Academy</span><b>Operators, systems and software in one place</b><p>The playbook from running The Flex across 7 cities, the SOPs it runs on, founder time, and Base360 during Scale. Priced at X for Launch and Y for Scale <span class="ph on-dark">TBC</span>.</p></li>
+    </ul>
   </div>
 </section>
 
@@ -1028,7 +1067,7 @@ ul,ol{margin:0;padding:0;list-style:none}
           <ul><li><a href="https://theflex.global/" rel="noopener" target="_blank">The Flex ↗</a></li><li><a href="https://base360.ai/" rel="noopener" target="_blank">Base360 ↗</a></li><li><span class="ph on-dark">[Contact email]</span></li></ul>
         </div>
         <div class="checklist" id="checklist">
-          <h4>Get the STR scaling checklist <span class="ph on-dark">Proposed asset</span></h4>
+          <h4>Not ready to talk? Join the waitlist &amp; get the STR scaling checklist <span class="ph on-dark">Proposed asset</span></h4>
           <div class="cl-form-wrap">
             <form class="pill-form" id="cl-form" novalidate>
               <label for="cl-email" class="sr-only">Email address</label>
@@ -1036,7 +1075,7 @@ ul,ol{margin:0;padding:0;list-style:none}
               <button class="btn btn-launch btn-sm" type="submit">Subscribe</button>
             </form>
             <p class="cl-msg" id="cl-msg" role="alert"></p>
-            <p class="micro" style="color:var(--muted-dark);margin-top:6px">We'll send the checklist when it's published. No other emails without your consent.</p>
+            <p class="micro" style="color:var(--muted-dark);margin-top:6px">You'll get the checklist when it's published and first word on the next webinar and Scale cohort. No other emails without your consent.</p>
           </div>
           <div class="cl-success" role="status"><span class="tick"><svg width="16" height="16"><use href="#i-check"/></svg></span><div><b>You're on the list.</b><span>We'll email <span id="cl-sent">you</span> when it's published.</span></div></div>
         </div>

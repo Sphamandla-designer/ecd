@@ -36,6 +36,24 @@ index.html?embed&flow=checklist&state=error|done&at=checklist
 index.html?embed&at=launch   |   &at=scale   |   &at=checklist
 ```
 
+## Brief coverage
+
+| Brief requirement | Where it is |
+| --- | --- |
+| Two audiences, Launch leads | Hero pill = Launch; Scale link under it + nav button; Launch section first, Scale owns the dark section |
+| 5-second / 30-second test | Hero states who it's for and both actions; method cards + proof strip before any offer |
+| Launch conversion: name, email, country → confirmation with date + add-to-calendar | Flow A (`?flow=launch&state=…`) |
+| Scale conversion: units, target, city, budget band → calendar → confirmation | Flow B (`?flow=scale&state=…`) |
+| Secondary: waitlist / STR scaling checklist | Footer capture (`?flow=checklist&state=…`) |
+| Act at any scroll depth | CTA in nav, hero, both offer sections, grid, selector, final block; mobile sticky bar |
+| Sceptical audience vs YouTube / cheap courses / masterminds | "Why not just…" section |
+| Offer details (X/Y, components) + proposed better structure | Launch/Scale sections, "What you get"; board notes §8 |
+| Three-brand relationship | Proof strip, founders chain, notes §2 |
+| Desktop 1440 full scroll · Mobile 390 hero + one section | Board pages 01 and 02 |
+| Design notes: audience, structure, 3 decisions, first test, 2-more-days, Loom outline | Board page 04 |
+| Optional hero motion concept | Live in `index.html` hero (underline draws, doodles pop, figure rises; off under reduced motion) |
+| Mark anything not made by you | Fonts (SIL OFL) and all photo slots are labelled; no stock or AI imagery is included |
+
 ## Honesty rules applied
 
 - Prices appear only as **X** and **Y** (Y > X).
