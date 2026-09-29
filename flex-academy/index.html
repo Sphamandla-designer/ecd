@@ -13,24 +13,49 @@
    values could not be verified: every value is PROPOSED.
    ========================================================= */
 :root{
-  --ink:#1E2321;            /* darkest text */
-  --forest:#2B302E;         /* charcoal panels (hero, strip, dark section, footer) */
-  --forest-2:#363C39;       /* raised surface on charcoal */
-  --forest-3:#4A514D;       /* hairlines on charcoal */
-  --sage:#A9CF6E;           /* green accent: Launch / primary action */
-  --sage-press:#9BC25F;
-  --sage-soft:#EAF3DC;
-  --brass:#D8DFDA;          /* Scale accent on dark (pale) */
-  --paper:#FFFFFF;          /* page */
-  --sand:#F4F5F4;           /* alt surface */
-  --white:#FFFFFF;
-  --line:#E4E7E5;
-  --muted:#6A716D;          /* 5.1:1 on white */
-  --muted-dark:#B6BDB9;     /* 7.4:1 on charcoal */
-  --error:#B0271C;
-  --success:#2E6A45;
-  --focus:#5E8E2B;
+  /* =====================================================================
+     COLOUR TOKENS — Flex Academy design system v1.0 (colour layer only).
+     Flex zone: cream paper + deep teal. Base360 zone: lavender + indigo/violet.
+     Type, radius, spacing and elevation tokens below are unchanged.
+     ===================================================================== */
+  /* Flex zone — sampled from The Flex */
+  --teal-900:#1F3534; --teal-800:#2E4D4C; --teal-700:#3B5F5D; --teal-600:#506965; --teal-500:#6E8784; --teal-100:#E6EFEC;
+  --cream-50:#FFFDF6; --cream-100:#FEF9E9; --cream-200:#F4ECD6;
+  /* Base360 zone — sampled from Base360 */
+  --indigo-400:#5F70FE; --indigo-500:#4B5BEF; --indigo-600:#4950E0; --indigo-700:#3D58E8; --indigo-50:#EDECFF;
+  --violet-500:#8D5FF6; --violet-400:#B293F9; --violet-700:#6D45D9; --violet-50:#F1ECFE;
+  --lav-50:#F5F6FC; --lav-100:#EEF0FA; --lav-200:#E0D7F9; --mist-100:#F7F9FC;
+  /* Neutrals */
+  --ink-900:#101526; --ink-700:#2B3040; --ink-500:#4F5768; --ink-400:#6B7385;
+  --line:#E6E3DA; --line-cool:#E4E7F0; --white:#FFFFFF;
+  /* Status */
+  --st-urgent-fg:#A83A64; --st-urgent-bg:#FBE8EF; --st-pending-fg:#7A5A26; --st-pending-bg:#FBF1DD;
+  --st-info-fg:#3D5CBE; --st-info-bg:#E7ECFC; --st-done-fg:#2F7A4F; --st-done-bg:#E3F2E8;
+  --error:#B42318; --focus:#4B5BEF;
+  /* Gradients (available to the design; not applied in the colour-only pass) */
+  --grad-display:linear-gradient(90deg,#995CF5 0%,#C274F7 55%,#D151EF 100%);
+  --grad-tab:linear-gradient(90deg,#B070FB 0%,#D077F3 100%);
+  --grad-wash:linear-gradient(180deg,var(--lav-50) 0%,var(--lav-100) 55%,var(--lav-200) 100%);
+  --grad-wash-corner:radial-gradient(120% 90% at 100% 100%,#EBD6F6 0%,rgba(235,214,246,0) 60%),var(--grad-wash);
+  --grad-line:linear-gradient(180deg,rgba(141,95,246,0) 0%,#8D5FF6 18%,#8D5FF6 82%,rgba(141,95,246,0) 100%);
+
+  /* Legacy aliases — every existing class picks up the new palette */
+  --ink:var(--ink-900);
+  --forest:var(--teal-800);
+  --forest-2:var(--teal-700);
+  --forest-3:var(--teal-500);
+  --sage:var(--indigo-500);
+  --sage-press:var(--indigo-600);
+  --sage-soft:var(--indigo-50);
+  --brass:var(--violet-400);
+  --paper:var(--cream-50);
+  --sand:var(--cream-100);
+  --muted:var(--ink-500);
+  --muted-dark:#C3D2CF;        /* 5.9:1 on teal-800 */
+  --success:var(--st-done-fg);
   --placeholder:#B4541B;
+
+  /* Unchanged non-colour tokens */
   --f-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-serif:var(--f-sans);
   --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px; --r-pill:999px;
@@ -652,6 +677,81 @@ ul,ol{margin:0;padding:0;list-style:none}
   .ticket-bottom .btn,.cal-menu{width:100%}
   .cal-options{left:0;right:0;min-width:0}
 }
+
+/* =====================================================================
+   COLOUR OVERRIDES — design system v1.0, colour layer only.
+   Shapes, sizes, spacing and type are deliberately left as they were.
+   ===================================================================== */
+body{background:var(--cream-50)}
+.site-header{background:rgba(255,253,246,.92)}
+.hero,section.dark,.final,.strip-band{background:var(--teal-800)}
+.dialog-aside.is-launch{background:linear-gradient(180deg,var(--teal-800),var(--teal-900))}
+.sticky-cta{background:rgba(31,53,52,.95)}
+
+/* Buttons: same pill, new roles */
+.btn-launch{background:var(--indigo-500);color:#fff}
+.btn-launch:hover,.btn-launch.is-pressed{background:var(--indigo-600)}
+.btn-launch:active{background:var(--indigo-700)}
+.btn-launch.is-pressed{box-shadow:0 0 0 4px rgba(95,112,254,.22)}
+.btn-launch .spinner{border-color:rgba(255,255,255,.3);border-top-color:#fff}
+.btn-ink{background:var(--teal-800);color:#fff}
+.btn-ink:hover{background:var(--teal-900)}
+.btn-outline{background:#fff;color:var(--ink-900);border-color:var(--line-cool)}
+.btn-outline:hover{border-color:var(--ink-900)}
+.btn-scale{color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-scale:hover,.btn-scale.is-pressed{border-color:var(--violet-400);color:#fff;background:rgba(178,147,249,.12)}
+.btn-scale.is-pressed{box-shadow:0 0 0 4px rgba(178,147,249,.25)}
+.btn-scale-solid{background:#fff;color:var(--teal-800)}
+.btn-scale-solid:hover{background:var(--cream-100)}
+.on-dark .btn-launch{background:var(--cream-50);color:var(--teal-800)}
+.on-dark .btn-launch:hover{background:#fff}
+.on-dark .btn-launch .spinner{border-color:rgba(46,77,76,.3);border-top-color:var(--teal-800)}
+.on-dark .pill-form .btn-launch{background:var(--indigo-500);color:#fff}
+.on-dark .pill-form .btn-launch:hover{background:var(--indigo-600)}
+
+/* Text colours */
+.lede{color:var(--ink-500)}
+.on-dark .lede{color:var(--muted-dark)}
+.eyebrow,.alt-k,.footer h4{color:var(--ink-400)}
+.on-dark .eyebrow,.hero-kicker,.strip-title{color:var(--muted-dark)}
+
+/* Highlight underline: shape kept, recoloured (gradient-text treatment held back) */
+.uline::after{background:var(--violet-400);opacity:1}
+.on-dark .uline::after{background:var(--violet-400);opacity:.9}
+
+/* Badges, tags, chips */
+.badge-launch{background:var(--teal-100);color:var(--teal-800)}
+.badge-scale{background:rgba(178,147,249,.18);color:#E4DAFF;border-color:rgba(178,147,249,.35)}
+.tag-l{background:var(--teal-100);color:var(--teal-800)}
+.tag-s{background:var(--violet-50);color:var(--violet-700)}
+.card.dark .tag-l{background:var(--cream-50);color:var(--teal-800)}
+.card.dark .tag-s{background:rgba(178,147,249,.2);color:#E4DAFF}
+.chip.g{background:var(--teal-100);color:var(--teal-800)}
+
+/* Cards */
+.card,.item,.alt{border-color:var(--line)}
+.card:hover,.item:hover{border-color:#D6D0BF}
+
+/* Accents that sat on charcoal with the old green — re-pointed for teal */
+.alt.dark .alt-k{color:#C9B8FF}
+.on-dark .checks svg{color:var(--violet-400)}
+.hero-proof .stack i.g{background:var(--violet-400);color:var(--ink-900)}
+.cl-success .tick{background:var(--cream-50);color:var(--teal-800)}
+.pin i{background:var(--indigo-500);color:#fff}
+.pill-form:focus-within{border-color:var(--violet-400)}
+.confirm-badge{background:var(--indigo-500);color:#fff}
+.stepper li.done i{background:var(--indigo-500);color:#fff}
+.loading-row .ok{background:var(--indigo-500);color:#fff}
+.dialog-aside.is-launch .door-label{color:#C9B8FF}
+.aside-list svg{color:var(--violet-400)}
+.input:focus,.select:focus{border-color:var(--indigo-500);box-shadow:0 0 0 4px rgba(75,91,239,.18)}
+.field.is-valid .input{border-color:var(--st-done-fg)}
+.cal-grid button.avail:hover{background:var(--indigo-500);color:#fff}
+.cal-legend i{background:var(--indigo-50)}
+
+/* Focus */
+:focus-visible{outline:3px solid var(--focus)}
+.seg input:focus-visible + label,.chips input:focus-visible + label,.bands input:focus-visible + label{outline-color:var(--focus)}
 </style>
 </head>
 <body>
@@ -684,7 +784,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 5a3 3 0 0 1 0 6M18 14c2.2.6 3.5 2.4 3.5 5"/></symbol>
   <symbol id="i-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14.2 3H9.8l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.4 2.6h4.4l.4-2.6a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z"/></symbol>
   <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4c3 0 6 3 6 6-3 5-7 8-10 9l-5-5c1-3 4-7 9-10Z"/><circle cx="14.5" cy="9.5" r="1.5"/><path d="M8 16l-3 3M5 14l-2 1 1-3M10 19l-1 2 3-1"/></symbol>
-  <symbol id="i-mark" viewBox="0 0 24 24" fill="none"><path d="M4 20V9.5L12 4l8 5.5V20" stroke="#A9CF6E" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="#A9CF6E" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 24 24" fill="none"><path d="M4 20V9.5L12 4l8 5.5V20" stroke="#B293F9" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="#B293F9" stroke-width="2.2" stroke-linejoin="round"/></symbol>
 </svg>
 
 <!-- ======================= NAVIGATION ======================= -->
@@ -841,10 +941,10 @@ ul,ol{margin:0;padding:0;list-style:none}
         <div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11"/><path d="M8 20v-7h8v7M3 20h18"/></svg></div>
         <span class="slot-tag"><b>Photo slot</b> · <code>photos/launch-apartment.jpg</code></span>
       </div>
-      <span class="pin p1"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>London</span>
-      <span class="pin p2"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Lisbon</span>
-      <span class="pin p3"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Paris</span>
-      <span class="pin p4"><i><svg viewBox="0 0 24 24" fill="none" stroke="#1E2321" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Berlin</span>
+      <span class="pin p1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>London</span>
+      <span class="pin p2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Lisbon</span>
+      <span class="pin p3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Paris</span>
+      <span class="pin p4"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5L19 7"/></svg></i>Berlin</span>
       <div class="mini" style="right:4%;top:44%"><span class="ic"><svg><use href="#i-play"/></svg></span><div><b>Free live webinar</b><span class="ph" style="font-size:10.5px">[Webinar date]</span></div></div>
     </div>
   </div>
