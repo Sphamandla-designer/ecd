@@ -6,14 +6,13 @@
 <title>Flex Academy — Design board</title>
 <style>
 @font-face{font-family:"Plus Jakarta Sans";src:url(fonts/PlusJakartaSans-Latin.woff2) format("woff2");font-weight:400 700;font-display:swap}
-@font-face{font-family:"Instrument Serif";src:url(fonts/InstrumentSerif-Italic.woff2) format("woff2");font-style:italic;font-display:swap}
 :root{
-  --canvas:#E7E5E0;--ink:#141B17;--forest:#1F2823;--sage:#D5E3BA;--brass:#CDB183;--muted:#59625C;--line:#D6D2C9;--paper:#F8F6F1;--placeholder:#B4541B;
-  --f-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;--f-serif:"Instrument Serif",Georgia,serif;
+  --canvas:#E7E8E6;--ink:#1E2321;--forest:#2B302E;--sage:#A9CF6E;--brass:#D8DFDA;--muted:#6A716D;--line:#D6D9D7;--paper:#F4F5F4;--placeholder:#B4541B;
+  --f-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;--f-serif:var(--f-sans);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
-.serif{font-family:var(--f-serif);font-style:italic;font-weight:400}
+.serif{font-family:var(--f-sans);font-style:normal;font-weight:600;box-shadow:inset 0 -.32em 0 var(--sage)}
 .top{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff;display:flex;align-items:center;gap:24px;padding:0 24px;height:60px;overflow-x:auto}
 .top .file{display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap}
 .top .file i{width:26px;height:26px;border-radius:8px;background:var(--forest);display:grid;place-items:center;font-style:normal;color:var(--sage);font-size:12px;border:1px solid #3A463F}
@@ -97,7 +96,7 @@ table.reg th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;colo
   <div class="page-head">
     <span class="k">Page 01</span>
     <h1>Landing page — Desktop 1440</h1>
-    <p>Full-scroll landing page rendered from the live prototype at 1440px. Every button in the live version opens the matching conversion flow. Orange dashed tags mark placeholders and unverified content.</p>
+    <p>Full-scroll landing page rendered from the live prototype at 1440px, laid out to the supplied reference: charcoal hero with cut-out figure and doodle marks, email pill, six-card grid with one dark card, angled logo strip, circular-image split sections, dark feature section, listing grid and dark footer. Every button opens the matching conversion flow. Orange dashed tags mark placeholders; grey "Photo slot" tags mark where the photography drops in.</p>
   </div>
   <div class="row" data-row></div>
 </section>
@@ -106,7 +105,7 @@ table.reg th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;colo
   <div class="page-head">
     <span class="k">Page 02</span>
     <h1>Mobile — 390</h1>
-    <p>Mobile is recomposed rather than shrunk: the hero's Scale entry collapses into a compact second tier, the path section becomes a segmented Launch / Scale switcher, the comparison table becomes stacked rows, and a sticky CTA bar appears only once the hero CTAs have scrolled away.</p>
+    <p>Mobile is recomposed rather than shrunk: the hero pill stacks into a full-width input and button, the six-card grid becomes two columns, the dark Scale section stacks its feature columns around the portrait, the listing grid becomes a single column, and a sticky CTA bar appears only once the hero CTA has scrolled away.</p>
   </div>
   <div class="row" data-row></div>
 </section>
@@ -137,36 +136,36 @@ table.reg th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;colo
 
     <section class="n">
       <h3><em>2</em> The Flex · Base360 · Flex Academy</h3>
-      <p>The page tells one story in three steps: <b>Operate → Systemise → Teach</b>. The Flex brings hospitality, warmth and architectural photography (warm interior imagery, sand tones). Base360 brings systems and operational clarity (a product UI card and the 130+ channel fact). Flex Academy uses a restrained editorial system that sits between the two, so it reads as a sibling brand rather than a copy of either.</p>
+      <p>The page tells one story in three steps: <b>Operate → Systemise → Teach</b>. The Flex brings hospitality and real photography (apartment image in the Launch section, city pins). Base360 brings systems and operational clarity (the method cards, the 130+ channel fact). Flex Academy sits on the supplied reference's charcoal / white / green system so it reads as a sibling brand rather than a copy of either parent.</p>
       <p>Neither parent logo was redesigned. Flex Academy uses a provisional wordmark with an endorsement line, "By the founders of The Flex".</p>
     </section>
 
     <section class="n w">
       <h3><em>3</em> Architecture &amp; conversion logic</h3>
-      <div class="flow"><span>Nav (both CTAs)</span><i>→</i><span>Hero: two doors</span><i>→</i><span>Proof strip</span><i>→</i><span>Two problems</span><i>→</i><span>Choose your path ★</span><i>→</i><span>Method</span><i>→</i><span>Founders</span><i>→</i><span>Compare</span><i>→</i><span>Outcomes (honest slot)</span><i>→</i><span>Who it's for + unit selector</span><i>→</i><span>FAQ</span><i>→</i><span>Final CTA + checklist</span><i>→</i><span>Footer</span></div>
-      <p style="margin-top:14px">The first screen answers what the Academy is, who it's for and what to do next. Proof comes straight after the hero because the main objection is "why trust these people?" The problem section helps visitors recognise their stage before they see offers. The founders and comparison sections handle the objections a visitor has after choosing a path. Every scroll depth has a contextual next step, but no section repeats a CTA without a reason. Each CTA sits beside the specific promise it acts on.</p>
+      <div class="flow"><span>Nav (both CTAs)</span><i>→</i><span>Hero: email pill + Scale link</span><i>→</i><span>Method (6 cards)</span><i>→</i><span>Angled proof strip</span><i>→</i><span>Launch ★ (split + circle)</span><i>→</i><span>Scale ★ (dark section)</span><i>→</i><span>What you get (grid)</span><i>→</i><span>Founders</span><i>→</i><span>Who it's for + unit selector</span><i>→</i><span>Outcomes (honest slots)</span><i>→</i><span>FAQ</span><i>→</i><span>Final CTA + footer + checklist</span></div>
+      <p style="margin-top:14px">The first screen answers what the Academy is, who it's for and what to do next: the email pill is the low-friction Launch entry (it pre-fills the registration form), and the Scale link sits directly beneath it so operators aren't sent through the wrong funnel. The method cards and proof strip establish credibility before the offers. Launch and Scale then each get a full section with its own problem framing, components, price placeholder and CTA. The founders, qualification and FAQ sections handle the objections a visitor has after choosing a path.</p>
     </section>
 
     <section class="n w">
       <h3><em>4</em> Three key design decisions</h3>
       <div class="decisions">
-        <div class="decision"><b>A "two-door" hero, not a hero plus pricing cards</b><p>The hero splits one panel into Launch (sage, primary, larger audience) and Scale (dark, premium). Visitors choose their stage in the first five seconds.</p><p class="why">Why: a single CTA would make Scale an afterthought, and two pricing cards would feel like a SaaS funnel. One panel keeps both paths visibly part of one academy.</p></div>
-        <div class="decision"><b>A colour code that means something</b><p>Sage = Launch and the primary action. Forest and brass = Scale and premium. The same code runs through the badges, path panels, comparison columns, dialogs and confirmations.</p><p class="why">Why: once learned, it lets visitors scan the page for "their" content, and the extra cues reinforce self-selection. Status is never shown by colour alone: labels and icons always accompany it.</p></div>
+        <div class="decision"><b>Email pill for Launch, text link for Scale — in the same hero</b><p>The reference's single email pill maps to the larger Launch audience: one field, one green button. Scale gets an explicit underlined link one line below, plus a permanent nav button.</p><p class="why">Why: the pill keeps the first action to a single field, while the Scale link means existing operators never have to hunt — and never register for a beginner webinar by mistake.</p></div>
+        <div class="decision"><b>Light section = Launch, dark section = Scale</b><p>The reference alternates white and charcoal blocks. Launch takes the white split section with the circular image; Scale takes the dark section with the circular portrait. Green is reserved for the primary action and Launch tags.</p><p class="why">Why: the alternation the reference already has becomes meaning — visitors can tell which programme a section is about before reading it. Status is never shown by colour alone.</p></div>
         <div class="decision"><b>Honest placeholders as a design element</b><p>Prices X and Y, the webinar date, time slots, budget bands, bios and testimonials all use one dashed orange placeholder style. They're visible in the design, but the layout doesn't break when real content arrives.</p><p class="why">Why: credibility is the product. An unverified number would undermine the one thing the page needs visitors to believe.</p></div>
       </div>
     </section>
 
     <section class="n t">
       <h3><em>5</em> Trade-off / assumption</h3>
-      <p><b>Mobile path switcher.</b> On mobile, Launch and Scale sit behind a segmented control instead of being stacked, which roughly halves the scroll length. The risk is that Scale content is hidden by default. To mitigate this, the tab labels show both audiences, the Scale tab restyles in forest when selected, a "View Scale" hint follows the panel, and Scale stays reachable from the hero, the sticky bar, the comparison rows and the final CTA.</p>
+      <p><b>One primary action in the hero.</b> Following the reference, the hero has a single email pill. That's right for the larger Launch audience but gives Scale less first-screen weight than a two-button hero would. Mitigation: the Scale link sits directly under the pill, a Scale button is fixed in the nav and the mobile sticky bar, and Scale owns the page's only dark feature section.</p>
       <p><b>Assumption:</b> "several units" means 2 or more. The unit selector routes 0–1 → Launch and 2+ → Scale.</p>
     </section>
 
     <section class="n t">
       <h3><em>6</em> First experiment after launch</h3>
-      <p><b>Hero A/B test:</b> the two-door hero (control) against a single primary webinar CTA with a text-link Scale route (variant).</p>
+      <p><b>Hero A/B test:</b> the email pill hero (control) against a two-button hero with equal Launch / Scale CTAs and no email field (variant).</p>
       <p><b>Primary metric:</b> total qualified conversions (webinar registrations + booked calls). <b>Guardrail:</b> Scale call bookings must not drop, and neither should the share of callers who meet the "several units" criterion.</p>
-      <p>This tests the page's biggest bet: whether showing both paths up front helps self-selection or splits attention.</p>
+      <p>This tests the page's biggest bet: whether a single-field pill converts more beginners than it costs in Scale bookings.</p>
     </section>
 
     <section class="n t">
@@ -188,8 +187,7 @@ table.reg th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;colo
           <tr><td>Strategy call slots and availability</td><td>Illustrative weekday availability, <span class="ph">[Time slot n]</span></td><td>Scheduling tool (e.g. Calendly or HubSpot) and real availability</td></tr>
           <tr><td>Budget bands</td><td><span class="ph">[Range to be confirmed]</span></td><td>Bands approved by the Academy team</td></tr>
           <tr><td>Founder photographs and bios</td><td>Silhouette placeholders + <span class="ph">[Official bios]</span></td><td>Official, approved portraits and bios</td></tr>
-          <tr><td>Hospitality photography</td><td>Illustrated interior placeholder, labelled</td><td>Official The Flex photography (not stock, not AI)</td></tr>
-          <tr><td>Base360 product UI</td><td>Illustrative HTML card, labelled, with no metrics</td><td>Official Base360 screenshot</td></tr>
+          <tr><td>Photography (5 slots)</td><td>Grey "Photo slot" tags: <code>photos/hero-person.png</code>, <code>launch-apartment.jpg</code>, <code>scale-operator.jpg</code>, <code>raouf-yousfi.jpg</code>, <code>michael-buggy.jpg</code>. Each appears automatically once the file is added.</td><td>Image generation and stock hosts were both blocked from the design environment (free-plan generator; network policy). Supply official The Flex / founder photos, or generate and label the hero and operator images.</td></tr>
           <tr><td>Testimonials / case studies</td><td><span class="ph">[Insert verified Academy case study…]</span></td><td>Verified student outcomes, with permission</td></tr>
           <tr><td>STR scaling checklist</td><td>Waitlist capture, <span class="ph">Proposed launch asset</span></td><td>The checklist itself, plus ESP integration</td></tr>
           <tr><td>Proof strip: 150+ partners, 130+ platforms, 7 cities</td><td>From the brief</td><td>Confirm current figures with The Flex / Base360 (official sites were not reachable from the design environment)</td></tr>
@@ -203,24 +201,24 @@ table.reg th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;colo
     <section class="n">
       <h3>Proposed tokens</h3>
       <div class="tokens">
-        <div class="sw"><i style="background:#1F2823"></i><span><b>Forest</b>#1F2823</span></div>
-        <div class="sw"><i style="background:#141B17"></i><span><b>Ink</b>#141B17</span></div>
-        <div class="sw"><i style="background:#D5E3BA"></i><span><b>Sage</b>#D5E3BA · Launch</span></div>
-        <div class="sw"><i style="background:#CDB183"></i><span><b>Brass</b>#CDB183 · Scale</span></div>
-        <div class="sw"><i style="background:#EFEBE3"></i><span><b>Sand</b>#EFEBE3</span></div>
-        <div class="sw"><i style="background:#F8F6F1"></i><span><b>Paper</b>#F8F6F1</span></div>
+        <div class="sw"><i style="background:#2B302E"></i><span><b>Charcoal</b>#2B302E</span></div>
+        <div class="sw"><i style="background:#1E2321"></i><span><b>Ink</b>#1E2321</span></div>
+        <div class="sw"><i style="background:#A9CF6E"></i><span><b>Green</b>#A9CF6E · action</span></div>
+        <div class="sw"><i style="background:#EAF3DC"></i><span><b>Green soft</b>#EAF3DC · Launch tag</span></div>
+        <div class="sw"><i style="background:#F4F5F4"></i><span><b>Surface</b>#F4F5F4</span></div>
+        <div class="sw"><i style="background:#FFFFFF;border-bottom:1px solid #E6E1D7"></i><span><b>White</b>#FFFFFF</span></div>
       </div>
-      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">The forest-and-sage direction comes from the supplied reference layout. All pairings pass WCAG AA: ink on sage is 13:1, and body text is muted #59625C on paper at 5.9:1. Radii are 10, 16, 24 and 32; spacing uses a 4/8 base; the grid is 12 columns with a 1200px container; mobile has 20px margins, 44px+ touch targets and 16px inputs, so iOS doesn't zoom on focus.</p>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">The charcoal / white / green system is taken from the supplied reference. All pairings pass WCAG AA: ink on green is 9.0:1, muted text #6A716D on white is 5.0:1, and #B6BDB9 on charcoal is 7.0:1. Radii are 8, 12, 16 and 20; spacing uses a 4/8 base; the grid is 12 columns with an 1180px container; mobile has 20px margins, 44px+ touch targets and 16px inputs, so iOS doesn't zoom on focus.</p>
     </section>
     <section class="n">
       <h3>Type</h3>
       <div class="typespec">
-        <div><span style="font-size:40px;letter-spacing:-.04em;font-weight:600;line-height:1">Display <span class="serif" style="color:#6E8F3A">accent</span></span><small>Jakarta 600 · 78/80 · −4.5%</small></div>
-        <div><span style="font-size:28px;letter-spacing:-.03em;font-weight:600">Section heading</span><small>Jakarta 600 · 54/58</small></div>
-        <div><span style="font-size:17px">Body copy for reading comfortably</span><small>Jakarta 400 · 17/27</small></div>
-        <div><span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Eyebrow label</span><small>Jakarta 700 · 12 · +14%</small></div>
+        <div><span style="font-size:40px;letter-spacing:-.03em;font-weight:600;line-height:1">Display <span class="serif">accent</span></span><small>Jakarta 600 · 60/65 · −3%</small></div>
+        <div><span style="font-size:28px;letter-spacing:-.02em;font-weight:600">Section heading</span><small>Jakarta 600 · 36/40</small></div>
+        <div><span style="font-size:16px">Body copy for reading comfortably</span><small>Jakarta 400 · 16/26</small></div>
+        <div><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Eyebrow label</span><small>Jakarta 600 · 12 · +8%</small></div>
       </div>
-      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">Plus Jakarta Sans handles everything functional. Instrument Serif Italic is used only for a single accent word per heading, which gives the hospitality-editorial voice. Both fonts are self-hosted (SIL OFL), so they can be swapped for official brand fonts once those are confirmed.</p>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--muted)">One family, Plus Jakarta Sans (self-hosted, SIL OFL), matching the geometric sans in the reference. The green underline marks the single accent word in the hero and final headline. It can be swapped for official brand fonts once those are confirmed.</p>
     </section>
   </article>
 </section>
@@ -233,9 +231,9 @@ var FRAMES = {
   ],
   mobile: [
     {title:'Mobile / 390 / 01 Hero', q:'', w:390, h:844, s:1, note:'Two doors stack: Launch stays dominant with a full-width CTA, and Scale compresses into a secondary tier with its own CTA. The image follows the CTAs so both actions fit above the fold.'},
-    {title:'Mobile / 390 / 02 Paths — Launch selected', q:'&at=paths&offset=0', w:390, h:1640, s:.82, note:'A segmented switcher replaces two long stacked cards. "How you join" moves above the price so the mechanism is clear before the CTA.'},
-    {title:'Mobile / 390 / 02b Paths — Scale selected', q:'&at=paths&offset=0&tab=scale', w:390, h:1640, s:.82, note:'Selecting Scale restyles the tab in forest, so the premium treatment carries over.'},
-    {title:'Mobile / 390 / Full scroll (reference)', q:'', w:390, full:true, s:.5, note:'Complete mobile page for reference. The comparison table becomes stacked Launch / Scale rows.'}
+    {title:'Mobile / 390 / 02 Launch section', q:'&at=launch&offset=0', w:390, h:1400, s:.82, note:'Copy first, then the circular image with city pins; checklist collapses to one column and the CTA goes full width.'},
+    {title:'Mobile / 390 / 02b Scale section', q:'&at=scale&offset=0', w:390, h:1500, s:.82, note:'The three-column dark layout stacks: intro, portrait, then the six programme components in one column.'},
+    {title:'Mobile / 390 / Full scroll (reference)', q:'', w:390, full:true, s:.5, note:'Complete mobile page for reference.'}
   ],
   flows: [
     {row:'Flow A — Launch: Register for the free webinar', sub:'Starts from any "Register for the free webinar" CTA'},
@@ -252,9 +250,9 @@ var FRAMES = {
     {title:'B3b · Slot selected + invite details', q:'&flow=scale&state=slot', w:1440, h:900, s:.36},
     {title:'B4 · Booking confirmed', q:'&flow=scale&state=done', w:1440, h:900, s:.36},
     {row:'Flow C — Secondary: STR scaling checklist', sub:'Email capture in the final CTA section · marked as a proposed launch asset'},
-    {title:'C1 · Checklist capture', q:'&at=checklist&offset=260', w:1440, h:640, s:.5},
-    {title:'C1b · Invalid email', q:'&flow=checklist&state=error&at=checklist&offset=260', w:1440, h:640, s:.5},
-    {title:'C2 · Added to list', q:'&flow=checklist&state=done&at=checklist&offset=260', w:1440, h:640, s:.5},
+    {title:'C1 · Checklist capture (footer)', q:'&at=checklist&offset=200', w:1440, h:640, s:.5},
+    {title:'C1b · Invalid email', q:'&flow=checklist&state=error&at=checklist&offset=200', w:1440, h:640, s:.5},
+    {title:'C2 · Added to list', q:'&flow=checklist&state=done&at=checklist&offset=200', w:1440, h:640, s:.5},
     {row:'Mobile flows — 390', sub:'Dialogs become full-screen sheets with a sticky action bar'},
     {title:'A2m · Registration', q:'&flow=launch&state=filled', w:390, h:844, s:.6},
     {title:'A2bm · Error', q:'&flow=launch&state=error', w:390, h:844, s:.6},
@@ -263,7 +261,7 @@ var FRAMES = {
     {title:'B2m · Qualification', q:'&flow=scale&state=filled', w:390, h:844, s:.6},
     {title:'B3m · Calendar', q:'&flow=scale&state=slot', w:390, h:844, s:.6},
     {title:'B4m · Booked', q:'&flow=scale&state=done', w:390, h:844, s:.6},
-    {title:'C1m · Checklist', q:'&at=checklist&offset=120', w:390, h:844, s:.6}
+    {title:'C1m · Checklist', q:'&at=checklist&offset=80', w:390, h:844, s:.6}
   ]
 };
 var built = {}, uid = 0, frames = {};
