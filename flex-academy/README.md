@@ -11,19 +11,17 @@ A premium, two-path landing page for Flex Academy: **Build the business behind t
 
 Open `board.html` to review, or `index.html` to click through. Both are static and need no build step. To render the board's iframes reliably, serve the folder, for example with `npx http-server flex-academy`.
 
-## Photography slots
+## Photography
 
-The layout follows the supplied reference (cut-out figure in the hero, circular images in the split sections). Three images were supplied via the repo (commit "Image materials") and are wired in: the hero figure (background removed with rembg), and two apartment interiors. They are stock imagery supplied by the client, not made by the designer, and are labelled as such in the design notes. Founder portraits remain labelled fallbacks until official photos arrive.
+All images were supplied via the repo and are wired in. Slots switch from their labelled fallback to the image automatically.
 
-| File | Used for | Notes |
+| File | Used for | Source / status |
 | --- | --- | --- |
-| `photos/hero-person.png` | Hero cut-out figure | Person at a laptop, transparent background, ~900×1000px, bottom-aligned |
-| `photos/launch-apartment.jpg` | Launch section circle | Official The Flex apartment photo, square crop |
-| `photos/scale-apartment.jpg` | Scale section circle | Second apartment photo, square crop |
-| `photos/raouf-yousfi.jpg` | Founders | Official portrait, square crop |
-| `photos/michael-buggy.jpg` | Founders | Official portrait, square crop |
-
-Mark any generated image as such in the design notes; never use generated imagery for the founders.
+| `photos/hero-person.png` | Hero cut-out figure | Client-supplied stock (rawpixel); background removed with rembg. **Not made by the designer.** |
+| `photos/launch-apartment.jpg` | Launch section circle | Client-supplied stock interior. Replace with official The Flex photography. |
+| `photos/method-apartment.jpg` | Card under the method copy | Client-supplied stock interior. Replace with official The Flex photography. |
+| `photos/scale-team.jpg` | Scale section circle | Client-supplied stock (Getty Images 875599880). **Licence must be confirmed before launch.** |
+| `photos/founders.jpg` | Founders section | Supplied photo of Raouf Yousfi and Michael Buggy (579×401 — request a higher-resolution original; confirm who is left/right before adding name captions per person). |
 
 ## Static states for review
 
@@ -59,5 +57,5 @@ index.html?embed&at=launch   |   &at=scale   |   &at=checklist
 - Prices appear only as **X** and **Y** (Y > X).
 - The webinar date, time slots, calendar links, budget bands, founder bios and photos, testimonials, contact details and legal details are all dashed orange placeholders.
 - Proof uses only the figures in the brief: 150+ corporate partners, 130+ channels and the seven cities. Confirm them before launch.
-- Hero figure and both apartment photos are supplied stock images (marked). Founder portraits remain labelled fallbacks. There are no fabricated metrics.
+- Stock images (hero figure, two interiors, team photo) are marked as supplied and not made by the designer; the founders photo is the supplied official one. There are no fabricated metrics.
 - The official theflex.global and base360.ai sites were not reachable from the design environment, so the colours and fonts are **proposed tokens**. They are documented in the design notes.

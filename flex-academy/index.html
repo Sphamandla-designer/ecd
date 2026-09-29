@@ -171,6 +171,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .card.dark .tag-s{background:var(--forest-2);color:#fff}
 .card.dark .tag-l{background:var(--sage);color:var(--ink)}
 
+.method-photo .slot{aspect-ratio:5/3;border-radius:var(--r-lg)}
+
 /* ---------- Angled dark proof strip ---------- */
 .strip{padding:0 16px 88px}
 .strip-band{background:var(--forest);color:#fff;border-radius:var(--r-lg);padding:26px 44px;clip-path:polygon(0 0,100% 0,100% 100%,4% 100%,0 60%)}
@@ -262,7 +264,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* ---------- Founders + who it's for ---------- */
 .founders{display:grid;grid-template-columns:repeat(12,1fr);gap:32px 24px;align-items:center}
 .founders .copy{grid-column:1 / span 5}
-.founders .people{grid-column:7 / span 6;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.founders .people{grid-column:7 / span 6}
+.founders-photo .slot{aspect-ratio:579/401;border-radius:var(--r-lg);box-shadow:var(--shadow-1)}
+.founders-photo figcaption{margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.founders-photo figcaption b{font-size:15px}
+.founders-photo figcaption span{color:var(--muted)}
 .person{text-align:center}
 .person .circle{position:relative;left:auto;top:auto;transform:none;width:220px;height:220px;margin:0 auto}
 .person b{display:block;margin-top:14px;font-size:15px}
@@ -778,6 +784,10 @@ ul,ol{margin:0;padding:0;list-style:none}
       <h2 class="h-section" id="method-title" style="margin-top:12px">Explore the path from your first unit to an operating company</h2>
       <p class="lede">Six stages the founders worked through building The Flex, then systemised in Base360. Launch covers the foundations; Scale builds the company on top.</p>
       <p class="micro" style="margin-top:14px;color:var(--muted)"><span class="ph">Proposed learning journey</span> Final syllabus to be confirmed.</p>
+      <figure class="method-photo" style="margin:28px 0 0">
+        <div class="slot" data-photo="method-apartment.jpg"><img alt="A furnished short-term rental living and dining room opening onto a terrace"><div class="fallback"></div><span class="slot-tag"><b>Photo slot</b> · <code>photos/method-apartment.jpg</code></span></div>
+        <figcaption class="micro" style="margin-top:8px;color:var(--muted)">The kind of unit the method is built around. <span class="ph">Stock image — replace with official The Flex photography</span></figcaption>
+      </figure>
     </div>
     <ol class="col-grid cards6">
       <li class="card dark"><span class="card-ic"><svg><use href="#i-search"/></svg></span><b>Find &amp; evaluate opportunities</b><span>Judge a unit, a market and a deal before you commit.</span><div class="tags"><span class="tag-l">Launch</span></div></li>
@@ -858,10 +868,10 @@ ul,ol{margin:0;padding:0;list-style:none}
       <div class="dark-circle" aria-hidden="true">
         <span class="doodle" style="left:-30px;top:10px;width:56px;height:36px"><svg viewBox="0 0 70 40"><path d="M4 30c14-18 34-24 60-14"/><path d="m54 8 10 8-12 5"/></svg></span>
         <span class="doodle" style="right:-24px;bottom:30px;width:40px;height:40px"><svg viewBox="0 0 44 44"><path d="M22 4c1 10 8 17 18 18-10 1-17 8-18 18-1-10-8-17-18-18 10-1 17-8 18-18Z"/></svg></span>
-        <div class="circle slot" data-photo="scale-apartment.jpg">
-          <img alt="">
+        <div class="circle slot" data-photo="scale-team.jpg">
+          <img alt="A team of operators talking in an office">
           <div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></div>
-          <span class="slot-tag"><b>Photo slot</b> · <code>photos/scale-apartment.jpg</code></span>
+          <span class="slot-tag"><b>Photo slot</b> · <code>photos/scale-team.jpg</code></span>
         </div>
       </div>
       <div class="dark-col">
@@ -937,16 +947,10 @@ ul,ol{margin:0;padding:0;list-style:none}
       <div class="chain"><span>The Flex</span><i>→</i><span>Base360</span><i>→</i><span>Flex Academy</span></div>
       <div class="bio-ph"><b>[Official founder bios to be supplied]</b> — approved bios only. No quotes or achievements are shown until confirmed.</div>
     </div>
-    <div class="people">
-      <figure class="person" style="margin:0">
-        <div class="circle slot" data-photo="raouf-yousfi.jpg"><img alt="Raouf Yousfi"><div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></div><span class="slot-tag"><b>Official photo</b> · <code>photos/raouf-yousfi.jpg</code></span></div>
-        <figcaption><b>Raouf Yousfi</b><span>Co-founder, The Flex &amp; Base360</span></figcaption>
-      </figure>
-      <figure class="person" style="margin:0">
-        <div class="circle slot" data-photo="michael-buggy.jpg"><img alt="Michael Buggy"><div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></div><span class="slot-tag"><b>Official photo</b> · <code>photos/michael-buggy.jpg</code></span></div>
-        <figcaption><b>Michael Buggy</b><span>Co-founder, The Flex &amp; Base360</span></figcaption>
-      </figure>
-    </div>
+    <figure class="people founders-photo" style="margin:0">
+      <div class="slot" data-photo="founders.jpg"><img alt="Raouf Yousfi and Michael Buggy, co-founders of The Flex and Base360, seated together"><div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:30%;color:#AEB6B1"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 5a3 3 0 0 1 0 6M18 14c2.2.6 3.5 2.4 3.5 5"/></svg></div><span class="slot-tag"><b>Official photo</b> · <code>photos/founders.jpg</code></span></div>
+      <figcaption><b>Raouf Yousfi &amp; Michael Buggy</b><span>Co-founders, The Flex &amp; Base360</span></figcaption>
+    </figure>
   </div>
 </section>
 
