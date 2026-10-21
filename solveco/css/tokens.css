@@ -1,43 +1,52 @@
 /* SolveCo homepage concept — design tokens
-   Provisional palette: deep navy / off-white / muted teal.
-   Official brand colours could not be verified (site unreachable from the build
-   environment) — see README.md "Unresolved questions". */
+   Palette taken from the supplied logo: white, logo red (#e34d4e) and the
+   charcoal the logo sits on. See README.md for the one documented departure
+   (a slightly darker red for filled buttons and inline text, for contrast). */
 :root {
-  /* Colour */
-  --navy-950: #0b1b2b;
-  --navy-900: #10263b;
-  --navy-800: #16324c;
-  --navy-700: #1f4262;
-  --navy-100: #d9e1ea;
-  --ink: #122233;
-  --ink-soft: #3f5062;
-  --ink-muted: #5f6f80;
-  --paper: #f7f5f0;
-  --paper-2: #efece5;
+  /* Brand */
+  --red: #e34d4e;          /* logo red: accents, markers, large text */
+  --red-ink: #cf3b3c;      /* button fills + red text on white (4.8:1) */
+  --red-deep: #b73233;     /* hover */
+  --red-light: #f07476;    /* red text on charcoal (large text / hover) */
+  --red-tint: #fdeeee;
   --white: #ffffff;
-  --line: #d8d4cb;
-  --line-strong: #b9b3a7;
-  --teal-700: #1f6f73;
-  --teal-600: #2a8488;
-  --teal-100: #d7e9e9;
-  --teal-50: #eaf3f3;
-  --focus: #e0a526;
-  --error: #a63a2b;
+
+  /* Charcoal from the logo background */
+  --char-950: #1f262b;
+  --char-900: #2b3338;
+  --char-800: #38424a;
+  --char-700: #4a555d;
+  --char-300: #b8c0c5;
+  --char-100: #e4e8ea;
+
+  /* Neutrals */
+  --ink: #1f262b;
+  --ink-soft: #4a555d;
+  --ink-muted: #66727a;
+  --bg: #ffffff;
+  --bg-soft: #f4f5f6;
+  --bg-tint: #eceff0;
+  --line: #dfe3e6;
+  --line-strong: #c2c9ce;
+  --on-dark: #e4e8ea;
+  --on-dark-muted: #aab4bb;
+  --focus: #ffb703;
+  --error: #b12a2b;
 
   /* Typography */
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
   --text-lg: 1.1875rem;
-  --text-xl: clamp(1.3125rem, 1.1rem + 0.7vw, 1.625rem);
-  --text-2xl: clamp(1.75rem, 1.35rem + 1.3vw, 2.5rem);
-  --text-3xl: clamp(2.25rem, 1.6rem + 2.4vw, 3.75rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.75rem, 1.3rem + 1.6vw, 2.75rem);
+  --text-3xl: clamp(2.25rem, 1.5rem + 2.6vw, 3.75rem);
 
-  --leading-tight: 1.1;
-  --leading-snug: 1.25;
+  --leading-tight: 1.08;
+  --leading-snug: 1.2;
   --leading-body: 1.6;
 
   /* Spacing */
@@ -49,20 +58,21 @@
   --space-6: 2rem;
   --space-7: 3rem;
   --space-8: 4rem;
-  --space-9: 6rem;
-  --section-y: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  --section-y: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
 
   /* Layout */
-  --content-max: 76rem;
+  --content-max: 78rem;
   --prose-max: 40rem;
 
   /* Shape & motion */
-  --radius-sm: 3px;
-  --radius-md: 6px;
-  --shadow-sm: 0 1px 2px rgba(11, 27, 43, 0.06);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --shadow-md: 0 10px 30px rgba(31, 38, 43, 0.12);
+  --shadow-lg: 0 24px 60px rgba(31, 38, 43, 0.22);
   --ease: 180ms ease;
 
-  /* Header */
-  --header-h: 4.5rem;
+  --header-h: 5rem;
 }

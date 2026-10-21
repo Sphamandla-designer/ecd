@@ -11,9 +11,9 @@
   <meta property="og:description" content="Complex insurance challenges. Clear, dependable solutions. An independent, unendorsed homepage concept for SolveCo's actuarial and business solutions consultancy.">
   <meta property="og:image" content="og-image.svg">
   <meta property="og:locale" content="en_ZA">
-  <meta name="theme-color" content="#10263b">
+  <meta name="theme-color" content="#2b3338">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/SourceSerif4-Latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/PlusJakartaSans-Latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Inter-Latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -27,7 +27,7 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="wordmark" href="#top" aria-label="SolveCo — back to top">Solve<span>Co</span><small>Actuarial &amp; Business Solutions</small></a>
+      <a class="logo" href="#top" aria-label="SolveCo Actuarial Services — back to top"><svg viewBox="0 0 224 60" aria-hidden="true" focusable="false"><text class="l-solve" x="6" y="54" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="50" font-weight="800" letter-spacing="-1.5" textLength="146" lengthAdjust="spacingAndGlyphs">solve</text><text class="l-co" x="155" y="54" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="50" font-weight="300" letter-spacing="-1" stroke-width="1.6" textLength="50" lengthAdjust="spacingAndGlyphs">co</text><text class="l-tag" x="154" y="17" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="9.5" font-weight="600" letter-spacing="0.8" textLength="52" lengthAdjust="spacingAndGlyphs">ACTUARIAL SERVICES</text><path class="l-mark" d="M209 6h13v12z"/></svg></a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <svg class="icon icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -37,186 +37,238 @@
       </button>
 
       <nav id="primary-nav" class="primary-nav" aria-label="Primary">
-        <ul class="nav-list">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#insights">Expert Insights</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="nav-cta"><a class="btn btn-primary" href="#contact">Discuss a project</a></li>
-        </ul>
+        <div class="nav-pill">
+          <ul class="nav-list">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#insights">Expert Insights</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="nav-cta"><a class="btn btn-inverse" href="#contact">Discuss a project <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a></li>
+          </ul>
+        </div>
       </nav>
     </div>
   </header>
 
   <main id="main">
     <!-- B. Hero -->
-    <section class="hero" id="top" aria-labelledby="hero-title">
+    <section class="hero on-dark" id="top" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div>
-          <span class="eyebrow">Actuarial and business solutions · Since 2006</span>
-          <h1 id="hero-title">Complex insurance challenges. Clear, dependable solutions.</h1>
+          <span class="tag">Actuarial &amp; business solutions · Since 2006</span>
+          <h1 id="hero-title">Complex insurance challenges. <em>Clear, dependable</em> solutions.</h1>
           <p class="lede">Specialist actuarial expertise, administration system support and business solutions for the insurance and financial services industries.</p>
           <div class="hero-actions">
-            <a class="btn btn-inverse" href="#services">Explore our services</a>
+            <a class="btn btn-primary" href="#services">Explore our services <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
             <a class="btn btn-outline-inverse" href="#contact">Discuss a project</a>
           </div>
-          <ul class="hero-note" aria-label="Areas of work">
-            <li>Administration systems</li>
-            <li>Product &amp; business development</li>
-            <li>Modelling &amp; valuations</li>
-            <li>Data services</li>
-          </ul>
+          <dl class="hero-meta">
+            <div><dt>Operating since</dt><dd>2006</dd></div>
+            <div><dt>Sectors</dt><dd>Life, pensions, health &amp; short-term insurance</dd></div>
+          </dl>
         </div>
 
-        <figure class="hero-figure">
-          <!-- Abstract composition: a structured system of connected stages. Illustrative only; no data is represented. -->
-          <svg viewBox="0 0 480 400" role="img" aria-labelledby="hero-fig-title" focusable="false">
-            <title id="hero-fig-title">Abstract diagram of interconnected stages in a structured process</title>
-            <defs>
-              <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <path d="M24 0H0v24" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-              </pattern>
-            </defs>
-            <rect width="480" height="400" fill="url(#grid)"/>
-            <g stroke="#8fc7c9" stroke-width="1.5" fill="none" opacity="0.9">
-              <path d="M72 96 H216 V200 H336"/>
-              <path d="M72 200 H168 V304 H408"/>
-              <path d="M216 96 V56 H408"/>
-              <path d="M336 200 V96 H408"/>
-              <path d="M168 304 V344 H288"/>
-            </g>
-            <g fill="#10263b" stroke="#8fc7c9" stroke-width="1.5">
-              <rect x="40" y="72" width="64" height="48" rx="2"/>
-              <rect x="40" y="176" width="64" height="48" rx="2"/>
-              <rect x="184" y="176" width="64" height="48" rx="2"/>
-              <rect x="304" y="176" width="64" height="48" rx="2"/>
-              <rect x="376" y="32" width="64" height="48" rx="2"/>
-              <rect x="376" y="72" width="64" height="48" rx="2" fill="#2a8488" stroke="#2a8488"/>
-              <rect x="376" y="280" width="64" height="48" rx="2"/>
-              <rect x="256" y="320" width="64" height="48" rx="2"/>
-            </g>
-            <g fill="rgba(255,255,255,0.55)">
-              <rect x="52" y="90" width="40" height="3"/><rect x="52" y="99" width="28" height="3"/>
-              <rect x="52" y="194" width="40" height="3"/><rect x="52" y="203" width="28" height="3"/>
-              <rect x="196" y="194" width="40" height="3"/><rect x="196" y="203" width="28" height="3"/>
-              <rect x="316" y="194" width="40" height="3"/><rect x="316" y="203" width="28" height="3"/>
-              <rect x="388" y="50" width="40" height="3"/><rect x="388" y="59" width="28" height="3"/>
-              <rect x="388" y="298" width="40" height="3"/><rect x="388" y="307" width="28" height="3"/>
-              <rect x="268" y="338" width="40" height="3"/><rect x="268" y="347" width="28" height="3"/>
-            </g>
-            <g fill="#ffffff">
-              <rect x="388" y="90" width="40" height="3"/><rect x="388" y="99" width="28" height="3"/>
-            </g>
-            <g fill="#8fc7c9">
-              <circle cx="216" cy="96" r="4"/><circle cx="216" cy="56" r="4"/><circle cx="168" cy="200" r="4"/>
-              <circle cx="336" cy="200" r="4"/><circle cx="168" cy="304" r="4"/><circle cx="336" cy="96" r="4"/>
-            </g>
-          </svg>
-          <figcaption>Illustrative composition only. It does not depict SolveCo data, systems or results.</figcaption>
+        <figure class="hero-visual">
+          <!-- Layered cards: an illustrative composition of structured actuarial work. No SolveCo data or results are shown. -->
+          <div class="card-stack" aria-hidden="true">
+            <div class="hv-card hv-main">
+              <h3>System verification</h3>
+              <ul class="hv-list">
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Specifications reviewed</li>
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Pre go-live checks</li>
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Automated test run</li>
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Post-deployment checks</li>
+              </ul>
+            </div>
+            <div class="hv-card hv-side">
+              <h3>Product lifecycle</h3>
+              <ul class="hv-list">
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Design</li>
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Pricing</li>
+                <li><span class="ok" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></span>Profit testing</li>
+              </ul>
+            </div>
+            <div class="hv-card hv-low">
+              <h3>Data preparation</h3>
+              <ul class="hv-bars">
+                <li>Policy data rebuild <span><i style="width:72%"></i></span></li>
+                <li>Pre-migration prep <span><i style="width:88%"></i></span></li>
+                <li>Post-migration fixes <span><i style="width:46%"></i></span></li>
+              </ul>
+            </div>
+            <div class="hv-badge"><strong>2006</strong><small>Established</small></div>
+          </div>
+          <figcaption class="hero-caption">Illustrative composition only. It does not depict SolveCo data, systems or results.</figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- Audience orientation -->
+    <!-- Audience orientation (reference: dark feature band under the hero) -->
     <section class="audiences" aria-labelledby="audiences-title">
-      <h2 id="audiences-title" class="visually-hidden">Find the services relevant to you</h2>
       <div class="container audiences-inner">
-        <a class="audience" href="#service-product">
-          <span class="audience-num" aria-hidden="true">I</span>
-          <span>
-            <h3>Insurers seeking actuarial and product-development expertise</h3>
-            <p>Product design, pricing, profit testing, experience analysis and reinsurance support.</p>
-          </span>
+        <a class="aud-lead" href="#approach">
+          <h2 id="audiences-title">How does SolveCo work with clients?</h2>
+          <span class="text-link">Our working approach <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span>
         </a>
-        <a class="audience" href="#service-admin">
-          <span class="audience-num" aria-hidden="true">II</span>
-          <span>
-            <h3>Teams implementing, upgrading or migrating administration systems</h3>
-            <p>Project management, specifications, system verification and automated testing.</p>
-          </span>
-        </a>
-        <a class="audience" href="#service-modelling">
-          <span class="audience-num" aria-hidden="true">III</span>
-          <span>
-            <h3>Businesses needing modelling, valuations or data preparation</h3>
-            <p>Valuations, capital management, IAS19 calculations and data cleaning services.</p>
-          </span>
-        </a>
+        <div class="aud-panel">
+          <a class="audience" href="#service-product">
+            <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="M8 15l4-5 3 3 5-7"/></svg></span>
+            <span>
+              <h3>Actuarial &amp; product expertise</h3>
+              <p>For insurers developing, pricing or profit-testing products and analysing experience.</p>
+            </span>
+          </a>
+          <a class="audience" href="#service-admin">
+            <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M8 11l2.5 2.5L16 8"/></svg></span>
+            <span>
+              <h3>Administration system projects</h3>
+              <p>For teams implementing, upgrading or migrating insurance administration systems.</p>
+            </span>
+          </a>
+          <a class="audience" href="#service-modelling">
+            <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+            <span>
+              <h3>Modelling, valuations &amp; data</h3>
+              <p>For businesses needing valuations, capital work, IAS19 calculations or clean data.</p>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- F. Company credibility (placed early, as in the reference's "About" block) -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-inner">
+          <figure class="about-visual">
+            <!-- Abstract: a structured grid of policy records moving to a clean state. Illustrative only. -->
+            <svg viewBox="0 0 400 330" aria-hidden="true" focusable="false">
+              <defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#c2c9ce"/></pattern></defs>
+              <rect width="400" height="330" fill="url(#dots)"/>
+              <g>
+                <rect x="40" y="60" width="150" height="210" rx="16" fill="#ffffff" stroke="#dfe3e6"/>
+                <rect x="60" y="84" width="60" height="8" rx="4" fill="#2b3338"/>
+                <rect x="60" y="106" width="110" height="6" rx="3" fill="#e4e8ea"/><rect x="60" y="122" width="90" height="6" rx="3" fill="#e4e8ea"/><rect x="60" y="138" width="100" height="6" rx="3" fill="#e4e8ea"/>
+                <rect x="60" y="154" width="70" height="6" rx="3" fill="#e34d4e"/><rect x="60" y="170" width="110" height="6" rx="3" fill="#e4e8ea"/><rect x="60" y="186" width="80" height="6" rx="3" fill="#e34d4e"/>
+                <rect x="60" y="202" width="100" height="6" rx="3" fill="#e4e8ea"/><rect x="60" y="218" width="95" height="6" rx="3" fill="#e4e8ea"/><rect x="60" y="234" width="60" height="6" rx="3" fill="#e4e8ea"/>
+              </g>
+              <path d="M196 165h26" stroke="#2b3338" stroke-width="2" stroke-linecap="round"/><path d="M216 158l8 7-8 7" fill="none" stroke="#2b3338" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <g>
+                <rect x="232" y="60" width="128" height="210" rx="16" fill="#2b3338"/>
+                <rect x="252" y="84" width="60" height="8" rx="4" fill="#ffffff"/>
+                <g fill="#4a555d"><rect x="252" y="106" width="88" height="6" rx="3"/><rect x="252" y="122" width="72" height="6" rx="3"/><rect x="252" y="138" width="80" height="6" rx="3"/><rect x="252" y="154" width="60" height="6" rx="3"/><rect x="252" y="170" width="88" height="6" rx="3"/><rect x="252" y="186" width="66" height="6" rx="3"/><rect x="252" y="202" width="80" height="6" rx="3"/><rect x="252" y="218" width="76" height="6" rx="3"/><rect x="252" y="234" width="48" height="6" rx="3"/></g>
+                <circle cx="330" cy="240" r="16" fill="#e34d4e"/><path d="M323 240l5 5 9-10" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+            <figcaption>Illustrative only</figcaption>
+          </figure>
+
+          <div>
+            <span class="tag">About SolveCo</span>
+            <h2 id="about-title">An independent actuarial consultancy serving insurers since 2006</h2>
+            <p class="lede">SolveCo provides actuarial and business solutions to the insurance and financial industries, with a focus on the life assurance, pensions, health and short-term insurance sectors.</p>
+            <div class="about-rows">
+              <div class="about-row">
+                <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
+                <div>
+                  <h3>What the firm does</h3>
+                  <p>Practical support: implementing and verifying administration systems, developing and pricing products, modelling and valuing liabilities, and preparing data for migration.</p>
+                </div>
+              </div>
+              <div class="about-row">
+                <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M21 19c0-2.5-1.8-4.5-4-4.5"/></svg></span>
+                <div>
+                  <h3>Who leads it</h3>
+                  <p>Led by its founder and Managing Director, Mia Geringer, and working alongside clients' own actuarial teams.</p>
+                </div>
+              </div>
+            </div>
+            <div class="about-cta">
+              <p>Meet the people behind the work on SolveCo's team page.</p>
+              <a class="btn btn-primary" href="https://www.solveco.co.za/our-team/" target="_blank" rel="noopener">Our team<span class="visually-hidden"> (opens in a new tab)</span> <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+            </div>
+          </div>
+        </div>
+
+        <dl class="facts">
+          <div class="fact"><dt>Established</dt><dd>2006<small>As stated on solveco.co.za.</small></dd></div>
+          <div class="fact"><dt>Service areas</dt><dd>Four core groups<small>Plus peer review, outsourcing and other services.</small></dd></div>
+          <div class="fact"><dt>Industries</dt><dd>Insurance &amp; finance<small>Life, pensions, health and short-term insurance.</small></dd></div>
+          <div class="fact"><dt>Based in</dt><dd>South Africa<small>Johannesburg office.</small></dd></div>
+        </dl>
       </div>
     </section>
 
     <!-- C. Services overview -->
-    <section class="section" id="services" aria-labelledby="services-title">
+    <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Services</span>
-          <h2 id="services-title">Actuarial and business solutions for insurers and financial services businesses</h2>
-          <p class="lede">SolveCo's published services span administration system assistance, product and business development, modelling and valuations, and data services. Each group below links to the relevant page on SolveCo's current website.</p>
+        <div class="section-head split">
+          <div>
+            <span class="tag">Our services</span>
+            <h2 id="services-title">Actuarial and business solutions for insurers and financial services businesses</h2>
+          </div>
+          <p class="lede">SolveCo's published services span four core groups. Each card links to the relevant page on SolveCo's current website.</p>
         </div>
 
         <ul class="services-grid">
           <li class="service" id="service-admin">
-            <div class="service-mark" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="32" height="22" rx="1"/><path d="M4 13h32M12 34h16M20 28v6"/><path d="M14 22l4-4 4 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="service-visual" aria-hidden="true">
+              <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="20" y="10" width="120" height="58" rx="6"/><path d="M20 24h120"/><rect x="30" y="34" width="40" height="24" rx="3"/><path d="M80 40h50M80 50h36"/><path d="M36 46l5 5 10-10" stroke="#e34d4e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 80h40M80 68v12"/></svg>
             </div>
-            <h3><a href="https://www.solveco.co.za/" target="_blank" rel="noopener">Administration System Assistance</a></h3>
-            <p>Actuarial and project support for insurance administration systems, from new implementations and upgrades to independent verification before and after go-live.</p>
-            <ul class="service-list" aria-label="Examples of administration system services">
-              <li>Project management</li>
-              <li>System verification &amp; testing</li>
-              <li>Automated testing</li>
-              <li>Product &amp; system specifications</li>
-              <li>Advice on administration software</li>
-            </ul>
-            <div class="service-footer" aria-hidden="true">View on solveco.co.za <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg><span class="ext">opens in a new tab</span></div>
+            <div class="service-body">
+              <div class="service-title">
+                <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+                <h3><a href="https://www.solveco.co.za/" target="_blank" rel="noopener">Administration System Assistance</a></h3>
+              </div>
+              <p>Project support and independent verification for insurance administration systems, before and after go-live.</p>
+              <ul class="service-list" aria-label="Examples"><li>Project management</li><li>Verification &amp; testing</li><li>Automated testing</li><li>Specifications</li><li>Software advice</li></ul>
+              <div class="service-footer" aria-hidden="true"><span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>View on solveco.co.za <span class="ext">· new tab</span></div>
+            </div>
           </li>
 
           <li class="service" id="service-product">
-            <div class="service-mark" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 32h28"/><path d="M8 28V16M16 28V10M24 28V20M32 28V6" stroke-linecap="round"/><circle cx="32" cy="6" r="2.5" fill="currentColor" stroke="none"/></svg>
+            <div class="service-visual" aria-hidden="true">
+              <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 74h120"/><path d="M30 64V40M55 64V26M80 64V46M105 64V18M130 64V32" stroke-linecap="round" stroke-width="6"/><path d="M30 34l25-10 25 16 25-24 25 12" stroke="#e34d4e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="105" cy="16" r="3.5" fill="#e34d4e" stroke="none"/></svg>
             </div>
-            <h3><a href="https://www.solveco.co.za/product-and-business-development/" target="_blank" rel="noopener">Product &amp; Business Development</a></h3>
-            <p>Support across the product lifecycle: designing and pricing products, testing profitability, verifying actuarial software and improving the processes that run the business.</p>
-            <ul class="service-list" aria-label="Examples of product and business development services">
-              <li>Product design &amp; pricing</li>
-              <li>Profit testing</li>
-              <li>Actuarial software coding verification</li>
-              <li>Process auditing &amp; automation</li>
-              <li>Experience analysis</li>
-              <li>Reinsurance support</li>
-            </ul>
-            <div class="service-footer" aria-hidden="true">View on solveco.co.za <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg><span class="ext">opens in a new tab</span></div>
+            <div class="service-body">
+              <div class="service-title">
+                <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="M8 15l4-5 3 3 5-7"/></svg></span>
+                <h3><a href="https://www.solveco.co.za/product-and-business-development/" target="_blank" rel="noopener">Product &amp; Business Development</a></h3>
+              </div>
+              <p>Support across the product lifecycle, from design and pricing to profit testing, process improvement and reinsurance.</p>
+              <ul class="service-list" aria-label="Examples"><li>Product design &amp; pricing</li><li>Profit testing</li><li>Coding verification</li><li>Process auditing &amp; automation</li><li>Experience analysis</li><li>Reinsurance support</li></ul>
+              <div class="service-footer" aria-hidden="true"><span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>View on solveco.co.za <span class="ext">· new tab</span></div>
+            </div>
           </li>
 
           <li class="service" id="service-modelling">
-            <div class="service-mark" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 4l14 8v16l-14 8-14-8V12z" stroke-linejoin="round"/><path d="M20 4v16M6 12l14 8 14-8M20 36V20" stroke-linejoin="round"/></svg>
+            <div class="service-visual" aria-hidden="true">
+              <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M80 8l40 20v34L80 82 40 62V28z" stroke-linejoin="round"/><path d="M80 8v38M40 28l40 18 40-18M80 82V46" stroke-linejoin="round"/><circle cx="80" cy="46" r="4" fill="#e34d4e" stroke="none"/></svg>
             </div>
-            <h3><a href="https://www.solveco.co.za/" target="_blank" rel="noopener">Modelling &amp; Valuations</a></h3>
-            <p>Actuarial modelling and valuation work for insurers, pension arrangements and businesses that need an independent, well-documented view of liabilities and value.</p>
-            <ul class="service-list" aria-label="Examples of modelling and valuation services">
-              <li>Valuations</li>
-              <li>Capital management</li>
-              <li>Share price valuations</li>
-              <li>IAS19 calculations</li>
-            </ul>
-            <div class="service-footer" aria-hidden="true">View on solveco.co.za <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg><span class="ext">opens in a new tab</span></div>
+            <div class="service-body">
+              <div class="service-title">
+                <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/></svg></span>
+                <h3><a href="https://www.solveco.co.za/" target="_blank" rel="noopener">Modelling &amp; Valuations</a></h3>
+              </div>
+              <p>Actuarial modelling and valuation work that gives an independent, documented view of liabilities, capital and value.</p>
+              <ul class="service-list" aria-label="Examples"><li>Valuations</li><li>Capital management</li><li>Share price valuations</li><li>IAS19 calculations</li></ul>
+              <div class="service-footer" aria-hidden="true"><span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>View on solveco.co.za <span class="ext">· new tab</span></div>
+            </div>
           </li>
 
           <li class="service" id="service-data">
-            <div class="service-mark" aria-hidden="true">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="20" cy="9" rx="13" ry="4"/><path d="M7 9v22c0 2.2 5.8 4 13 4s13-1.8 13-4V9"/><path d="M7 20c0 2.2 5.8 4 13 4s13-1.8 13-4"/><path d="M26 30l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="service-visual" aria-hidden="true">
+              <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="60" cy="22" rx="30" ry="9"/><path d="M30 22v40c0 5 13.4 9 30 9s30-4 30-9V22"/><path d="M30 42c0 5 13.4 9 30 9s30-4 30-9"/><circle cx="118" cy="60" r="16" fill="#e34d4e" stroke="none"/><path d="M110 60l6 6 10-12" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3><a href="https://www.solveco.co.za/data-cleaning-services/" target="_blank" rel="noopener">Data Cleaning Services</a></h3>
-            <p>Preparing, reconstructing and repairing policy data around system migrations, and turning clean data into visual and predictive analytics.</p>
-            <ul class="service-list" aria-label="Examples of data cleaning services">
-              <li>Policy data reconstruction</li>
-              <li>Pre-migration preparation</li>
-              <li>Post-migration fixes</li>
-              <li>Data reserve cleaning</li>
-              <li>Visual &amp; predictive analytics</li>
-            </ul>
-            <div class="service-footer" aria-hidden="true">View on solveco.co.za <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg><span class="ext">opens in a new tab</span></div>
+            <div class="service-body">
+              <div class="service-title">
+                <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+                <h3><a href="https://www.solveco.co.za/data-cleaning-services/" target="_blank" rel="noopener">Data Cleaning Services</a></h3>
+              </div>
+              <p>Reconstructing, preparing and repairing policy data around migrations, and turning clean data into analytics.</p>
+              <ul class="service-list" aria-label="Examples"><li>Policy data reconstruction</li><li>Pre-migration preparation</li><li>Post-migration fixes</li><li>Data reserve cleaning</li><li>Visual &amp; predictive analytics</li></ul>
+              <div class="service-footer" aria-hidden="true"><span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>View on solveco.co.za <span class="ext">· new tab</span></div>
+            </div>
           </li>
         </ul>
 
@@ -225,52 +277,26 @@
             <h3 id="other-services-title">Other services</h3>
             <p>SolveCo also lists independent actuarial peer review, resource outsourcing and Head of Actuarial Function services. The four groups above are a starting point rather than the full offering.</p>
           </div>
-          <a class="text-link" href="https://www.solveco.co.za/" target="_blank" rel="noopener">See all services on solveco.co.za<span class="visually-hidden"> (opens in a new tab)</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          <a class="text-link" href="https://www.solveco.co.za/" target="_blank" rel="noopener">See all services on solveco.co.za<span class="visually-hidden"> (opens in a new tab)</span> <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
         </aside>
       </div>
     </section>
 
     <!-- D. Expertise and working approach -->
-    <section class="section approach" id="approach" aria-labelledby="approach-title">
+    <section class="section approach on-dark" id="approach" aria-labelledby="approach-title">
       <div class="container approach-inner">
         <div class="approach-intro">
-          <span class="eyebrow">How we work</span>
+          <span class="tag">How we work</span>
           <h2 id="approach-title">Specialist support that fits the way your business already runs</h2>
           <p>SolveCo describes its approach in terms of understanding the business first, communicating transparently and leaving clients with documented work they can own. The principles below paraphrase that published description.</p>
-          <p class="approach-source">Paraphrased from <a href="https://www.solveco.co.za/" target="_blank" rel="noopener">solveco.co.za<span class="visually-hidden"> (opens in a new tab)</span></a>. This is not a formal framework or methodology.</p>
+          <p class="approach-source">Paraphrased from <a href="https://www.solveco.co.za/" target="_blank" rel="noopener">solveco.co.za<span class="visually-hidden"> (opens in a new tab)</span></a>. Not a formal framework, methodology or guarantee.</p>
         </div>
-
         <ol class="principles">
-          <li class="principle">
-            <div>
-              <h3>Understand the business before recommending solutions</h3>
-              <p>Time is spent understanding how a client's business operates before any solution is recommended or implemented, so that the work addresses the actual problem.</p>
-            </div>
-          </li>
-          <li class="principle">
-            <div>
-              <h3>Communicate transparently</h3>
-              <p>Clear, open communication throughout an engagement, so clients know what is being done, why, and where a project stands.</p>
-            </div>
-          </li>
-          <li class="principle">
-            <div>
-              <h3>Allocate resources to the project at hand</h3>
-              <p>Support is shaped around the specific project, including interim resourcing and project-specific capacity rather than a one-size-fits-all team.</p>
-            </div>
-          </li>
-          <li class="principle">
-            <div>
-              <h3>Document the work and transfer the knowledge</h3>
-              <p>Best-practice reporting and documentation, so the outcome, and the understanding behind it, stay with the client after the engagement ends.</p>
-            </div>
-          </li>
-          <li class="principle">
-            <div>
-              <h3>Work alongside client actuarial teams</h3>
-              <p>Integration with in-house actuarial teams to complete projects on time, complementing existing capability rather than replacing it.</p>
-            </div>
-          </li>
+          <li class="principle"><div><h3>Understand the business before recommending solutions</h3><p>Time is spent understanding how a client's business operates before any solution is recommended or implemented, so that the work addresses the actual problem.</p></div></li>
+          <li class="principle"><div><h3>Communicate transparently</h3><p>Clear, open communication throughout an engagement, so clients know what is being done, why, and where a project stands.</p></div></li>
+          <li class="principle"><div><h3>Allocate resources to the project at hand</h3><p>Support is shaped around the specific project, including interim resourcing and project-specific capacity rather than a one-size-fits-all team.</p></div></li>
+          <li class="principle"><div><h3>Document the work and transfer the knowledge</h3><p>Best-practice reporting and documentation, so the outcome, and the understanding behind it, stay with the client after the engagement ends.</p></div></li>
+          <li class="principle"><div><h3>Work alongside client actuarial teams</h3><p>Integration with in-house actuarial teams to complete projects on time, complementing existing capability rather than replacing it.</p></div></li>
         </ol>
       </div>
     </section>
@@ -278,69 +304,39 @@
     <!-- E. Insurance systems and implementation insight -->
     <section class="section" id="insights" aria-labelledby="insights-title">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Expert Insights</span>
-          <h2 id="insights-title">Why insurance system projects need actuarial involvement</h2>
+        <div class="section-head split">
+          <div>
+            <span class="tag">Expert Insights</span>
+            <h2 id="insights-title">Why insurance system projects need actuarial involvement</h2>
+          </div>
           <p class="lede">SolveCo publishes practitioner insights drawn from its work on administration systems. The featured article below is published on the SolveCo website.</p>
         </div>
 
         <article class="insight-card" aria-labelledby="insight-article-title">
           <div class="insight-media" aria-hidden="true">
-            <svg viewBox="0 0 240 240" fill="none" stroke="#1f6f73" stroke-width="1.5">
-              <rect x="20" y="20" width="200" height="200" rx="2" stroke="#b9d9da"/>
-              <path d="M20 70h200M20 120h200M20 170h200M70 20v200M120 20v200M170 20v200" stroke="#b9d9da"/>
-              <rect x="34" y="34" width="22" height="22" fill="#1f6f73" stroke="none"/>
-              <rect x="84" y="84" width="22" height="22" fill="#1f6f73" stroke="none"/>
-              <rect x="134" y="134" width="22" height="22" fill="#1f6f73" stroke="none"/>
-              <rect x="184" y="184" width="22" height="22" fill="#10263b" stroke="none"/>
-              <path d="M56 45h28M106 95h28M156 145h28" stroke-linecap="round"/>
-              <path d="M45 56v28M95 106v28M145 156v28" stroke-linecap="round"/>
-              <rect x="134" y="34" width="22" height="22" stroke="#10263b" stroke-dasharray="3 3"/>
-              <rect x="34" y="134" width="22" height="22" stroke="#10263b" stroke-dasharray="3 3"/>
+            <svg viewBox="0 0 240 240" fill="none" stroke="#38424a" stroke-width="1.5">
+              <rect x="20" y="20" width="200" height="200" rx="18" stroke="#c2c9ce"/>
+              <path d="M20 70h200M20 120h200M20 170h200M70 20v200M120 20v200M170 20v200" stroke="#dfe3e6"/>
+              <rect x="34" y="34" width="22" height="22" rx="6" fill="#38424a" stroke="none"/>
+              <rect x="84" y="84" width="22" height="22" rx="6" fill="#38424a" stroke="none"/>
+              <rect x="134" y="134" width="22" height="22" rx="6" fill="#38424a" stroke="none"/>
+              <rect x="184" y="184" width="22" height="22" rx="6" fill="#e34d4e" stroke="none"/>
+              <path d="M56 45h28M106 95h28M156 145h28M45 56v28M95 106v28M145 156v28" stroke-linecap="round"/>
+              <rect x="134" y="34" width="22" height="22" rx="6" stroke="#e34d4e" stroke-dasharray="3 3"/>
+              <rect x="34" y="134" width="22" height="22" rx="6" stroke="#e34d4e" stroke-dasharray="3 3"/>
             </svg>
           </div>
           <div class="insight-body">
-            <div class="insight-meta">
-              <span class="tag">Featured article</span>
-              <span>By Mia Geringer, SolveCo</span>
-            </div>
+            <div class="insight-meta"><span class="label">Featured article</span><span>By Mia Geringer, SolveCo</span></div>
             <h3 id="insight-article-title">Why Insurance System Implementations Really Go Wrong</h3>
             <p class="sub">Lessons from supporting implementations, upgrades and migrations across Southern Africa.</p>
             <p>Drawing on SolveCo's experience of administration system projects, the article looks at where implementations tend to fail in practice: in understanding the business the system must serve, in requirements and specifications, and in the testing that proves the system does what it should.</p>
             <div class="insight-actions">
-              <a class="btn btn-primary" href="https://www.solveco.co.za/expert-insights/" target="_blank" rel="noopener">Read the expert insight<span class="visually-hidden"> on solveco.co.za (opens in a new tab)</span></a>
-              <a class="text-link" href="https://www.solveco.co.za/expert-insights/" target="_blank" rel="noopener">All Expert Insights<span class="visually-hidden"> (opens in a new tab)</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+              <a class="btn btn-dark" href="https://www.solveco.co.za/expert-insights/" target="_blank" rel="noopener">Read the expert insight<span class="visually-hidden"> on solveco.co.za (opens in a new tab)</span> <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+              <a class="text-link" href="https://www.solveco.co.za/expert-insights/" target="_blank" rel="noopener">All Expert Insights<span class="visually-hidden"> (opens in a new tab)</span> <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
             </div>
           </div>
         </article>
-      </div>
-    </section>
-
-    <!-- F. Company credibility -->
-    <section class="section about" id="about" aria-labelledby="about-title">
-      <div class="container about-inner">
-        <div class="prose">
-          <span class="eyebrow">About SolveCo</span>
-          <h2 id="about-title">An independent actuarial consultancy serving insurers since 2006</h2>
-          <p class="lede">SolveCo provides actuarial and business solutions to the insurance and financial industries, with a focus on the life assurance, pensions, health and short-term insurance sectors.</p>
-          <p>The firm's work centres on practical support: helping insurers implement and verify administration systems, develop and price products, model and value liabilities, and prepare data for migration. It is led by its founder and Managing Director, Mia Geringer, and works alongside clients' own actuarial teams.</p>
-          <a class="text-link" href="https://www.solveco.co.za/our-team/" target="_blank" rel="noopener">Meet the team on solveco.co.za<span class="visually-hidden"> (opens in a new tab)</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-
-        <dl class="facts">
-          <div class="fact">
-            <dt>Established</dt>
-            <dd>2006<small>Operating as an actuarial and business solutions provider since 2006, as stated on solveco.co.za.</small></dd>
-          </div>
-          <div class="fact">
-            <dt>Industries served</dt>
-            <dd>Insurance and financial services<small>Life assurance, pensions, health and short-term insurance.</small></dd>
-          </div>
-          <div class="fact">
-            <dt>Based in</dt>
-            <dd>South Africa<small>Johannesburg office. Full contact details are published on the official website.</small></dd>
-          </div>
-        </dl>
       </div>
     </section>
 
@@ -348,10 +344,9 @@
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact-inner">
         <div>
-          <span class="eyebrow">Contact</span>
+          <span class="tag">Contact</span>
           <h2 id="contact-title">Discuss a project with SolveCo</h2>
           <p class="lede">Whether you are planning a system implementation, developing a product or preparing data for migration, a short conversation is the quickest way to establish how SolveCo can help.</p>
-
           <dl class="contact-details">
             <div>
               <dt>Telephone</dt>
@@ -371,7 +366,6 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
             <p><strong>Prototype form.</strong> This concept has no backend. Nothing you type here is stored or sent to SolveCo. Use the telephone number or official website to make a real enquiry.</p>
           </div>
-
           <form class="form-grid" id="enquiry-form" novalidate aria-describedby="form-status">
             <div class="field">
               <label for="f-name">Full name</label>
@@ -395,7 +389,7 @@
               <p class="visually-hidden" id="f-msg-hint">Please describe your project or question in at least 20 characters.</p>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary" type="submit">Check enquiry details</button>
+              <button class="btn btn-primary" type="submit">Check enquiry details <span class="dot" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></button>
               <a class="btn btn-secondary" href="https://www.solveco.co.za/" target="_blank" rel="noopener">Contact SolveCo via official site<span class="visually-hidden"> (opens in a new tab)</span></a>
             </div>
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -409,20 +403,20 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a class="wordmark" href="#top">Solve<span>Co</span><small>Actuarial &amp; Business Solutions</small></a>
+        <a class="logo" href="#top" aria-label="SolveCo Actuarial Services — back to top"><svg viewBox="0 0 224 60" aria-hidden="true" focusable="false"><text class="l-solve" x="6" y="54" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="50" font-weight="800" letter-spacing="-1.5" textLength="146" lengthAdjust="spacingAndGlyphs">solve</text><text class="l-co" x="155" y="54" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="50" font-weight="300" letter-spacing="-1" stroke-width="1.6" textLength="50" lengthAdjust="spacingAndGlyphs">co</text><text class="l-tag" x="154" y="17" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="9.5" font-weight="600" letter-spacing="0.8" textLength="52" lengthAdjust="spacingAndGlyphs">ACTUARIAL SERVICES</text><path class="l-mark" d="M209 6h13v12z"/></svg></a>
         <p class="footer-desc">An actuarial and business solutions provider serving the insurance and financial services industries since 2006, with services spanning administration system assistance, product and business development, modelling and valuations, and data services.</p>
       </div>
       <nav aria-label="Footer">
         <h2 class="footer-heading">On this page</h2>
         <ul class="footer-links">
+          <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#approach">How we work</a></li>
           <li><a href="#insights">Expert Insights</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <div class="footer-contact">
+      <div>
         <h2 class="footer-heading">Official SolveCo pages</h2>
         <ul class="footer-links">
           <li><a href="https://www.solveco.co.za/" target="_blank" rel="noopener">solveco.co.za</a><span class="ext">↗</span></li>
@@ -435,7 +429,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>© <span id="year">2026</span> SolveCo. Company name used for identification only.</p>
+      <p>© <span id="year">2026</span> SolveCo. Company name and logo used for identification only.</p>
       <p>Independent homepage redesign concept. Not commissioned, reviewed or endorsed by SolveCo. Links marked ↗ open SolveCo's official website in a new tab.</p>
     </div>
   </footer>
