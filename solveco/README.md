@@ -4,7 +4,7 @@
 
 ## Published preview
 
-Pushing `solveco/` to the repository's default branch runs `.github/workflows/solveco-pages.yml`, which publishes the site files (and nothing else from this repo) to the `gh-pages` branch. GitHub Pages serves that branch at **https://sphamandla-designer.github.io/ecd/**. The page is credited "Designed by AX-Channels" in the footer, linking to <https://www.axchannels.co.za/>.
+Pushing `solveco/` to the repository's default branch runs `.github/workflows/solveco-pages.yml`, which publishes the site files (and nothing else from this repo) to the `gh-pages` branch. GitHub Pages serves that branch at **https://sphamandla-designer.github.io/ecd/**. The page is credited "Designed by AX-Channels" in the footer, linking to <https://sphamandla-designer.github.io/axchannels/>.
 
 ## Before launch
 
