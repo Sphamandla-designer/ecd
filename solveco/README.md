@@ -8,7 +8,7 @@ Pushing `solveco/` to the repository's default branch runs `.github/workflows/so
 
 ## Client logos
 
-The "Trusted by" strip under the hero auto-slides right to left (CSS animation, pauses on hover, static and scrollable under reduced-motion). It is wired to eight placeholder files, `img/clients/client-01.svg` to `client-08.svg`. The live clients page (solveco.co.za/our-clients) could not be fetched from the build environment, so the real logos still need to be dropped in: replace each placeholder with the client's logo (SVG or PNG, roughly 200×80, transparent background), keep the file names or update the two `marquee-track` lists in `index.html`, and set each image's `alt` to the client name. Remove any slot that is not needed from both lists.
+The "Trusted by" strip under the hero shows the nine client logos uploaded to the repository (Knorr-Bremse, Nedbank, Sanlam, AVBOB, BDO South Africa, Hollard, ISG Namibia, Metropolitan, Momentum), trimmed and resized into `img/clients/`. They auto-slide right to left, render in grey and show their real colours on hover; the strip pauses on hover and becomes a static scrollable row under reduced-motion. To add or remove a client, edit the `clients` list in the page source (both `marquee-track` lists carry the same set) and drop the file in `img/clients/`.
 
 ## Before launch
 
