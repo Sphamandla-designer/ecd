@@ -1,6 +1,16 @@
 # SolveCo — Responsive Homepage Redesign Concept
 
-**Independent sales concept.** This prototype demonstrates the potential value of a homepage redesign for SolveCo, a South African actuarial and business solutions consultancy. It has **not** been commissioned, reviewed or endorsed by SolveCo and is not a replacement for the live site at <https://www.solveco.co.za/>. The page carries a visible banner and footer note saying so, and is marked `noindex, nofollow`.
+**Status: production candidate.** Per the client's direction this page is now written and labelled as SolveCo's homepage, intended to replace the current one at <https://www.solveco.co.za/>. The concept banner, footer disclaimer, `noindex` tag, "stock placeholder" captions and "view on solveco.co.za" cues have been removed, and links to existing SolveCo pages open in the same tab. Before it goes live, the items under **Before launch** must be resolved.
+
+## Before launch
+
+1. **Photography licence.** All photos are crops of the Getty Images team photo in this repository. Confirm the licence covers web use, or replace the files in `img/` (same names, same crops) with SolveCo's own photography.
+2. **Enquiry form backend.** The form validates but does not send. Connect it to an email handler or CRM and remove the "Form not yet connected" notice in `index.html`.
+3. **Social profile URLs.** Facebook is linked. LinkedIn and X icons point to the homepage until the real profile URLs are supplied.
+4. **Email address.** `info@solveco.co.za` comes from third-party directories; confirm it is monitored.
+5. **Service page URLs.** Administration System Assistance and Modelling & Valuations cards link to the homepage; point them at their dedicated pages. The featured article button links to the Expert Insights index; point it at the article.
+6. **Head of Actuarial Function.** An older SolveCo page says the firm cannot provide a HAF. Confirm the current position before publishing that wording.
+7. **Spanish copy.** The translation was machine-assisted by this build; have a Spanish speaker proofread `js/i18n.js`.
 
 ## Run it
 
@@ -28,7 +38,7 @@ python3 -m http.server 8765
 | `logo.svg` | Vector re-creation of the supplied SolveCo logo (see "Logo" below). |
 | `assets/` | The supplied logo screenshot (`logo-source.png`) and the layout reference (`reference.jpg`). |
 | `favicon.svg`, `og-image.svg` | Favicon and Open Graph preview image derived from the logo. |
-| `solveco-standalone.html` | Single-file build with CSS, script and fonts inlined. Regenerate after edits. |
+| `solveco-standalone.html` | Single-file build with CSS, scripts, fonts and images inlined (about 670 KB). Regenerate after edits. |
 
 ## Design decisions
 
@@ -38,6 +48,7 @@ python3 -m http.server 8765
 - **Logo.** The supplied file is a 221×60 screenshot on a charcoal background, too small to use directly and unusable on light surfaces. `logo.svg` re-creates it as vectors (bold "solve", light outlined red "co", "ACTUARIAL SERVICES" above, red triangle). Replace it with the official vector logo when available; letterforms are an approximation in Plus Jakarta Sans.
 - **Layout from the reference, widened.** Content now runs to a 1440px container with a full-bleed photographic hero, so wide screens are filled rather than centred. The about block mirrors the reference exactly: rounded photo left, pill tag and heading right, icon-labelled "What we do" row, dark pill bar with a button, the second icon row under the photo, then a four-column stats row with red top bars. Stats hold only facts from the official site (since 2006, nine systems verified, four service areas, four sectors). Star ratings, avatars-with-counter and invented figures were not carried over.
 - **Expanded sections.** Top bar with phone, email, location, social icons and the EN/ES switch; navigation Home · Services · Projects · Career · About · Contact; a Projects section describing the engagement types on SolveCo's site without client names; a Career section inviting speculative enquiries; a contact section with details, social links, photo and the prototype form; a four-column footer.
+- **About bar and card CTAs (latest revision).** The "Led by..." line under About is a plain horizontal row with a red marker, a divider and a "Meet the team" button, replacing the black pill bar. Service and project cards end in an "Explore more" call to action instead of "View on solveco.co.za".
 - **Language switch.** UK and Spanish flags with EN/ES abbreviations. Spanish is a full translation of every string (189 keys plus form messages), applied client-side, remembered in localStorage, and reflected in the `lang` attribute. The featured article title stays in English because the article is published in English.
 - **Photography.** No image generation was available (the connected image service needs a paid plan) and every stock-photo host is blocked by this environment's network policy. All photographs are crops of the Getty Images team photo already uploaded to this repository, captioned as stock placeholders. Getty imagery is licence-controlled: confirm the licence or replace these before showing the concept outside the team.
 - **Typography.** Plus Jakarta Sans for headings, buttons and labels (close to the reference's geometric sans); Inter for body text. Both self-hosted, no third-party requests at runtime.
