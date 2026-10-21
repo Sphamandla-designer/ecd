@@ -4,7 +4,11 @@
 
 ## Published preview
 
-Pushing `solveco/` to the repository's default branch runs `.github/workflows/solveco-pages.yml`, which publishes the site files (and nothing else from this repo) to the `gh-pages` branch. GitHub Pages serves that branch at **https://sphamandla-designer.github.io/ecd/**. The page is credited "Designed by AX-Channels" in the footer, linking to <https://sphamandla-designer.github.io/axchannels/>.
+Pushing `solveco/` to the repository's default branch runs `.github/workflows/solveco-pages.yml`, which publishes the site files (and nothing else from this repo) to the `gh-pages` branch. GitHub Pages serves that branch at **https://sphamandla-designer.github.io/ecd/**. 
+
+## Client logos
+
+The "Trusted by" strip under the hero auto-slides right to left (CSS animation, pauses on hover, static and scrollable under reduced-motion). It is wired to eight placeholder files, `img/clients/client-01.svg` to `client-08.svg`. The live clients page (solveco.co.za/our-clients) could not be fetched from the build environment, so the real logos still need to be dropped in: replace each placeholder with the client's logo (SVG or PNG, roughly 200×80, transparent background), keep the file names or update the two `marquee-track` lists in `index.html`, and set each image's `alt` to the client name. Remove any slot that is not needed from both lists.
 
 ## Before launch
 
@@ -12,7 +16,7 @@ Pushing `solveco/` to the repository's default branch runs `.github/workflows/so
 2. **Enquiry form backend.** The form validates but does not send. Connect it to an email handler or CRM and remove the "Form not yet connected" notice in `index.html`.
 3. **Social profile URLs.** Facebook is linked. LinkedIn and X icons point to the homepage until the real profile URLs are supplied.
 4. **Email address.** `info@solveco.co.za` comes from third-party directories; confirm it is monitored.
-5. **Service page URLs.** Administration System Assistance and Modelling & Valuations cards link to the homepage; point them at their dedicated pages. The featured article button links to the Expert Insights index; point it at the article.
+5. **Service page URLs.** The Modelling & Valuations card links to the homepage; point it at its dedicated page (Administration System Assistance now links to its verified page). The featured article button links to the Expert Insights index; point it at the article.
 6. **Head of Actuarial Function.** An older SolveCo page says the firm cannot provide a HAF. Confirm the current position before publishing that wording.
 7. **Spanish copy.** The translation was machine-assisted by this build; have a Spanish speaker proofread `js/i18n.js`.
 
@@ -53,6 +57,7 @@ python3 -m http.server 8765
 - **Layout from the reference, widened.** Content now runs to a 1440px container with a full-bleed photographic hero, so wide screens are filled rather than centred. The about block mirrors the reference exactly: rounded photo left, pill tag and heading right, icon-labelled "What we do" row, dark pill bar with a button, the second icon row under the photo, then a four-column stats row with red top bars. Stats hold only facts from the official site (since 2006, nine systems verified, four service areas, four sectors). Star ratings, avatars-with-counter and invented figures were not carried over.
 - **Expanded sections.** Top bar with phone, email, location, social icons and the EN/ES switch; navigation Home · Services · Projects · About · Contact; a Projects section describing the engagement types on SolveCo's site without client names; a contact section with details, social links, photo and the prototype form; a four-column footer.
 - **About bar and card CTAs (latest revision).** The "Led by..." line under About is a plain horizontal row with a red marker, a divider and a "Meet the team" button, replacing the black pill bar. Service and project cards end in an "Explore more" call to action instead of "View on solveco.co.za".
+- **Motion.** Hero copy and panel fade up on load with a slow settle on the background photo; sections, cards and facts reveal on scroll with a short stagger (IntersectionObserver, 600 ms); buttons lift 1px and icon chips scale on hover; the client strip slides continuously. All of it is disabled under `prefers-reduced-motion`.
 - **Language switch.** UK and Spanish flags with EN/ES abbreviations. Spanish is a full translation of every string (189 keys plus form messages), applied client-side, remembered in localStorage, and reflected in the `lang` attribute. The featured article title stays in English because the article is published in English.
 - **Photography.** No image generation was available (the connected image service needs a paid plan) and every stock-photo host is blocked by this environment's network policy. All photographs are crops of the Getty Images team photo already uploaded to this repository, captioned as stock placeholders. Getty imagery is licence-controlled: confirm the licence or replace these before showing the concept outside the team.
 - **Typography.** Plus Jakarta Sans for headings, buttons and labels (close to the reference's geometric sans); Inter for body text. Both self-hosted, no third-party requests at runtime.
