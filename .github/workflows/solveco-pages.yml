@@ -1,0 +1,39 @@
+name: Publish SolveCo site to GitHub Pages
+
+# Publishes the contents of solveco/ to the gh-pages branch, which GitHub
+# Pages serves at https://sphamandla-designer.github.io/ecd/
+# Branch publishing auto-enables Pages without a repo-admin setup step.
+
+on:
+  push:
+    branches: [claude/mobile-design-system-rmx7ni]
+    paths: [solveco/**, .github/workflows/solveco-pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish solveco/ to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/site
+          # Only the website files are published. Design sources (reference,
+          # logo screenshot, README, standalone build) stay in the repo.
+          cp -r solveco/index.html solveco/css solveco/js solveco/fonts solveco/img solveco/favicon.svg solveco/og-image.svg solveco/logo.svg /tmp/site/
+          touch /tmp/site/.nojekyll
+          git checkout --orphan gh-pages
+          git rm -rfq .
+          cp -r /tmp/site/. .
+          git add -A
+          git commit -q -m "Publish SolveCo site"
+          git push -f origin gh-pages

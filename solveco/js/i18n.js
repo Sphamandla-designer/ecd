@@ -174,6 +174,7 @@ window.SOLVECO_I18N = {
   "f.o2": "Servicios de limpieza de datos",
   "f.o3": "Nuestro equipo",
   "foot.c1": "Todos los derechos reservados.",
+  "foot.credit": "Diseñado por",
   "err.name": "Introduzca su nombre completo.",
   "err.email": "Introduzca un correo electrónico profesional válido.",
   "err.org": "Introduzca su organización.",

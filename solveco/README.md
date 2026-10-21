@@ -2,6 +2,10 @@
 
 **Status: production candidate.** Per the client's direction this page is now written and labelled as SolveCo's homepage, intended to replace the current one at <https://www.solveco.co.za/>. The concept banner, footer disclaimer, `noindex` tag, "stock placeholder" captions and "view on solveco.co.za" cues have been removed, and links to existing SolveCo pages open in the same tab. Before it goes live, the items under **Before launch** must be resolved.
 
+## Published preview
+
+Pushing `solveco/` to the repository's default branch runs `.github/workflows/solveco-pages.yml`, which publishes the site files (and nothing else from this repo) to the `gh-pages` branch. GitHub Pages serves that branch at **https://sphamandla-designer.github.io/ecd/**. The page is credited "Designed by AX-Channels" in the footer, linking to <https://www.axchannels.co.za/>.
+
 ## Before launch
 
 1. **Photography licence.** All photos are crops of the Getty Images team photo in this repository. Confirm the licence covers web use, or replace the files in `img/` (same names, same crops) with SolveCo's own photography.
