@@ -1,7 +1,42 @@
 /* SolveCo homepage concept — progressive enhancement only.
-   The page is fully usable without this script. */
+   The page is fully usable (in English) without this script. */
 (function () {
   "use strict";
+
+  /* ---------- Language switch (EN / ES) ---------- */
+  var DICT = window.SOLVECO_I18N || { en: {}, es: {} };
+  var originals = {};              // key -> original English innerHTML
+  var current = "en";
+  var nodes = document.querySelectorAll("[data-i18n]");
+  nodes.forEach(function (el) { originals[el.getAttribute("data-i18n")] = el.innerHTML; });
+
+  function tr(key) {
+    if (current !== "en" && DICT[current] && DICT[current][key]) return DICT[current][key];
+    if (DICT.en && DICT.en[key]) return DICT.en[key];
+    return originals[key] || "";
+  }
+
+  function setLang(lang, persist) {
+    current = (lang === "es") ? "es" : "en";
+    nodes.forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      var html = current === "en" ? originals[key] : (DICT.es[key] || originals[key]);
+      if (el.innerHTML !== html) el.innerHTML = html;
+    });
+    document.documentElement.lang = current === "es" ? "es" : "en-ZA";
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === current));
+    });
+    if (persist) { try { localStorage.setItem("solveco-lang", current); } catch (e) { /* storage unavailable */ } }
+  }
+
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang"), true); });
+  });
+  try {
+    var saved = localStorage.getItem("solveco-lang");
+    if (saved === "es") setLang("es", false);
+  } catch (e) { /* ignore */ }
 
   /* ---------- Mobile navigation ---------- */
   var toggle = document.querySelector(".nav-toggle");
@@ -13,24 +48,18 @@
     nav.classList.toggle("is-open", open);
     document.body.classList.toggle("nav-open", open);
     var label = toggle.querySelector(".label");
-    if (label) label.textContent = open ? "Close" : "Menu";
+    if (label) label.textContent = open ? tr("nav.close") : tr("nav.menu2");
   }
   function isOpen() { return toggle.getAttribute("aria-expanded") === "true"; }
 
   if (toggle && nav) {
     toggle.addEventListener("click", function () { setOpen(!isOpen()); });
-
-    // Close on Escape and return focus to the toggle.
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && isOpen()) { setOpen(false); toggle.focus(); }
     });
-
-    // Close after choosing a link so the anchor target is visible.
     nav.addEventListener("click", function (e) {
       if (e.target.closest("a") && mq.matches) setOpen(false);
     });
-
-    // Keep focus inside the open menu (toggle + links) on small screens.
     document.addEventListener("keydown", function (e) {
       if (e.key !== "Tab" || !isOpen() || !mq.matches) return;
       var focusables = [toggle].concat(Array.prototype.slice.call(nav.querySelectorAll("a")));
@@ -38,8 +67,6 @@
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
-
-    // Reset state if the viewport grows past the mobile breakpoint.
     var onChange = function () { if (!mq.matches && isOpen()) setOpen(false); };
     if (mq.addEventListener) mq.addEventListener("change", onChange); else mq.addListener(onChange);
   }
@@ -49,27 +76,22 @@
   if (form) {
     var status = document.getElementById("form-status");
     var fields = [
-      { id: "f-name",  label: "your full name" },
-      { id: "f-email", label: "a valid business email address", email: true },
-      { id: "f-org",   label: "your organisation" },
-      { id: "f-msg",   label: "a short description of your enquiry (at least 20 characters)", min: 20 }
+      { id: "f-name",  err: "err.name" },
+      { id: "f-email", err: "err.email", email: true },
+      { id: "f-org",   err: "err.org" },
+      { id: "f-msg",   err: "err.msg", min: 20 }
     ];
-
     function validate(f) {
       var el = document.getElementById(f.id);
       var wrap = el.closest(".field");
       var err = document.getElementById(f.id + "-error");
       var v = el.value.trim();
-      var msg = "";
-      if (!v) msg = "Please enter " + f.label + ".";
-      else if (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) msg = "Please enter " + f.label + ".";
-      else if (f.min && v.length < f.min) msg = "Please enter " + f.label + ".";
-      wrap.setAttribute("data-invalid", msg ? "true" : "false");
-      el.setAttribute("aria-invalid", msg ? "true" : "false");
-      err.textContent = msg;
-      return !msg;
+      var bad = !v || (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) || (f.min && v.length < f.min);
+      wrap.setAttribute("data-invalid", bad ? "true" : "false");
+      el.setAttribute("aria-invalid", bad ? "true" : "false");
+      err.textContent = bad ? tr(f.err) : "";
+      return !bad;
     }
-
     fields.forEach(function (f) {
       var el = document.getElementById(f.id);
       el.addEventListener("blur", function () { if (el.value.trim()) validate(f); });
@@ -77,7 +99,6 @@
         if (el.closest(".field").getAttribute("data-invalid") === "true") validate(f);
       });
     });
-
     form.addEventListener("submit", function (e) {
       e.preventDefault(); // Prototype: nothing is transmitted anywhere.
       var firstInvalid = null;
@@ -87,14 +108,12 @@
       });
       if (firstInvalid) {
         status.setAttribute("data-tone", "error");
-        status.textContent = "Please correct the highlighted fields.";
+        status.textContent = tr("err.fix");
         firstInvalid.focus();
         return;
       }
       status.setAttribute("data-tone", "ok");
-      status.innerHTML = "Your details are complete. This prototype does not send enquiries, so nothing has been submitted to SolveCo. " +
-        "To make a real enquiry, call <a href=\"tel:+27109000693\">+27 10 900 0693</a> or visit " +
-        "<a href=\"https://www.solveco.co.za/\" target=\"_blank\" rel=\"noopener\">solveco.co.za<span class=\"visually-hidden\"> (opens in a new tab)</span></a>.";
+      status.innerHTML = tr("ok.status");
     });
   }
 
