@@ -1,0 +1,68 @@
+/* SolveCo homepage concept — design tokens
+   Provisional palette: deep navy / off-white / muted teal.
+   Official brand colours could not be verified (site unreachable from the build
+   environment) — see README.md "Unresolved questions". */
+:root {
+  /* Colour */
+  --navy-950: #0b1b2b;
+  --navy-900: #10263b;
+  --navy-800: #16324c;
+  --navy-700: #1f4262;
+  --navy-100: #d9e1ea;
+  --ink: #122233;
+  --ink-soft: #3f5062;
+  --ink-muted: #5f6f80;
+  --paper: #f7f5f0;
+  --paper-2: #efece5;
+  --white: #ffffff;
+  --line: #d8d4cb;
+  --line-strong: #b9b3a7;
+  --teal-700: #1f6f73;
+  --teal-600: #2a8488;
+  --teal-100: #d7e9e9;
+  --teal-50: #eaf3f3;
+  --focus: #e0a526;
+  --error: #a63a2b;
+
+  /* Typography */
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: clamp(1.3125rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-2xl: clamp(1.75rem, 1.35rem + 1.3vw, 2.5rem);
+  --text-3xl: clamp(2.25rem, 1.6rem + 2.4vw, 3.75rem);
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-body: 1.6;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --section-y: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+
+  /* Layout */
+  --content-max: 76rem;
+  --prose-max: 40rem;
+
+  /* Shape & motion */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --shadow-sm: 0 1px 2px rgba(11, 27, 43, 0.06);
+  --ease: 180ms ease;
+
+  /* Header */
+  --header-h: 4.5rem;
+}
